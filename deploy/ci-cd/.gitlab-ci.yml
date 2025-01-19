@@ -4,6 +4,7 @@ stages:
 
 default:
   image: node:20.5.1-alpine
+  interruptible: true
 
 .standart-rules:
   rules:
