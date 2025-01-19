@@ -25,5 +25,3 @@ build-job:
   script:
     - npm install
     - npm run build
-
-#test
