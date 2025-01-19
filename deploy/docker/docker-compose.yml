@@ -2,8 +2,8 @@ services:
   frontend:
     container_name: odeyalo-frontend
     build:
-      dockerfile: ./docker/dockerfile/Dockerfile
-      context: ../
+      dockerfile: ./deploy/docker/dockerfile/Dockerfile
+      context: ../../
     restart: on-failure
     volumes:
       - /app/app
