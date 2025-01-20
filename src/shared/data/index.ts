@@ -6,3 +6,4 @@ export * from "./cookies";
 export * from "./httpStatuses";
 export * from "./defaultInitialState";
 export * from "./dailyTaskTypes";
+export * from "./ua";

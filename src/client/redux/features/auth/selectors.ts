@@ -1,5 +1,6 @@
 import { type RootState } from "../../store";
 import { type AccessRole } from "@/shared/config/access";
+import { MOBILE_DEVICE_TYPES } from "@/shared/data";
 
 const selectAuthModule = (state: RootState) => {
   return state.authReducer;
@@ -22,11 +23,9 @@ export const selectRole = (state: RootState): AccessRole => {
 };
 
 export const selectIsMobile = (state: RootState): boolean => {
-  const MOBILE = "mobile";
-  const TABLET = "tablet";
   const deviceType = selectAuthModule(state).ua.device.type;
 
-  const isMobile = deviceType === MOBILE || deviceType === TABLET;
+  const isMobile = !!deviceType && MOBILE_DEVICE_TYPES.includes(deviceType);
 
   return isMobile;
 };
