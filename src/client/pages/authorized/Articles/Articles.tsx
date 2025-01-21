@@ -25,10 +25,10 @@ export const ArticlesPage: FC = () => {
         <Subtitle>Статей пока нет</Subtitle>
       ) : (
         <div className={styles.articlesList}>
-          {data.map((el) => (
+          {data.map((article) => (
             <ArticleCard
-              key={el.id}
-              articles={el}
+              key={article.id}
+              article={article}
             />
           ))}
         </div>

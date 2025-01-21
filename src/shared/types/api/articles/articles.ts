@@ -3,6 +3,7 @@ export type GetArticlesResponseData = {
   title: string;
   progress: number;
   fullProgress: number;
+  image: string;
 }[];
 
 export type GetArticlesApiResponseData = {
@@ -10,4 +11,5 @@ export type GetArticlesApiResponseData = {
   theme: string;
   score: number;
   max_score: number;
+  link_to_picture: string;
 }[];
