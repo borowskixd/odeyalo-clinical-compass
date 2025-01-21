@@ -22,19 +22,19 @@ const rolesNav: Nav = {
     { href: pages.usersResults.path, title: "Результаты тестов" },
   ],
   client: [
-    { href: pages.profile.path, title: "План" },
+    { href: pages.main.path, title: "План" },
     { href: pages.articles.path, title: "Теория" },
     { href: pages.exercises.path, title: "Тесты" },
     { href: pages.psychologist.path, title: "Психологи" },
   ],
   hr: [
-    { href: pages.profile.path, title: "План" },
+    { href: pages.main.path, title: "План" },
     { href: pages.articles.path, title: "Теория" },
     { href: pages.exercises.path, title: "Тесты" },
     { href: pages.psychologist.path, title: "Психологи" },
   ],
   psychologist: [
-    { href: pages.profile.path, title: "План" },
+    { href: pages.main.path, title: "План" },
     { href: pages.articles.path, title: "Теория" },
     { href: pages.exercises.path, title: "Тесты" },
     { href: pages.psychologist.path, title: "Психологи" },

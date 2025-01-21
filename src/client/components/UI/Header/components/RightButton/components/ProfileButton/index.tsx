@@ -1,18 +1,21 @@
 "use client";
 
 import styles from "./styles.module.scss";
+import { useRouter } from "next/navigation";
 import { Button, ProfileImage } from "@/client/components";
 import {
   useAppDispatch,
   useAppSelector,
   useClickOutside,
 } from "@/client/hooks";
-import { authActions, selectProfile, useLogoutMutation } from "@/client/redux";
+import { selectProfile, useLogoutMutation } from "@/client/redux";
+import { redirectWithReload } from "@/client/utils";
 import { ACCESS } from "@/shared/config/access";
 import { pages } from "@/shared/data";
 import { type FC, useEffect, useRef, useState } from "react";
 
 export const ProfileButton: FC = () => {
+  const router = useRouter();
   const profile = useAppSelector(selectProfile);
   const [logout, { isSuccess }] = useLogoutMutation();
   const dispatch = useAppDispatch();
@@ -34,9 +37,9 @@ export const ProfileButton: FC = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(authActions.setInitialUserData());
+      redirectWithReload(pages.login.path);
     }
-  }, [isSuccess, dispatch]);
+  }, [isSuccess, dispatch, router]);
 
   const logoutHandler = () => {
     logout();
@@ -62,7 +65,7 @@ export const ProfileButton: FC = () => {
         >
           <Button
             className={styles.popupItem}
-            href={pages.profile.path}
+            href={pages.main.path}
           >
             Перейти в профиль
           </Button>

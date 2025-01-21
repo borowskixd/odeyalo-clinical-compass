@@ -57,10 +57,9 @@ export class Page<P extends Record<string, any> = never> {
 }
 
 export interface Pages {
-  landing: Page;
+  main: Page;
   login: Page;
   registration: Page;
-  successRegistration: Page;
   cabinet: Page;
   application: Page<{ id: string }>;
   client: Page<{ id: string }>;
@@ -69,7 +68,6 @@ export interface Pages {
   giveExercise: Page;
   changePassword: Page;
   resetPassword: Page;
-  profile: Page;
   psychologist: Page;
   result: Page<{ id: string }>;
   detailResult: Page<{ id: string }>;
