@@ -2,10 +2,9 @@ import { ACCESS } from "@/shared/config/access";
 import { Page, type Pages, type Routes } from "@/shared/types";
 
 export const pages: Pages = {
-  landing: new Page("/"),
+  main: new Page("/"),
   login: new Page("/login", [ACCESS.unauthorized]),
   registration: new Page("/registration", [ACCESS.unauthorized]),
-  successRegistration: new Page("/registration/success", [ACCESS.client]),
   cabinet: new Page("/cabinet", [ACCESS.psychologist, ACCESS.hr]),
   application: new Page<{ id: string }>("/cabinet/applications/:id", [
     ACCESS.psychologist,
@@ -30,11 +29,6 @@ export const pages: Pages = {
     ACCESS.unauthorized,
   ]),
   resetPassword: new Page("/password/reset", [ACCESS.unauthorized]),
-  profile: new Page("/profile", [
-    ACCESS.client,
-    ACCESS.psychologist,
-    ACCESS.hr,
-  ]),
   psychologist: new Page("/psychologists", [
     ACCESS.client,
     ACCESS.psychologist,
@@ -74,8 +68,3 @@ export const routes: Routes = Array.from(Object.values(pages)).toSorted(
     return 0;
   },
 );
-
-export const errorPages = {
-  notFound: new Page("/error/not-found"),
-  accessDenied: new Page("/error/access-denied"),
-};

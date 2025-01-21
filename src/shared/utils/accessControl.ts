@@ -1,5 +1,5 @@
 import { ACCESS, type AccessRole } from "../config/access";
-import { errorPages, pages, routes } from "../data";
+import { pages, routes } from "../data";
 
 const checkPath = (pathname: string, template: string): boolean => {
   const pathDivider = "/";
@@ -26,22 +26,18 @@ const checkPath = (pathname: string, template: string): boolean => {
 };
 
 export const checkAccess = (pathname: string, userRole: AccessRole) => {
-  let responsePath: string = errorPages.notFound.path;
-  let responseType: "next" | "rewrite" | "redirect" = "rewrite";
+  let responsePath: string = pathname;
+  let responseType: "next" | "redirect" = "next";
 
   for (const route of routes) {
     const { path, access } = route;
 
     if (checkPath(pathname, path)) {
-      if (!access || access.includes(userRole)) {
-        responsePath = pathname;
-        responseType = "next";
-      } else {
-        if (userRole === ACCESS.unauthorized) {
+      if (!access || access.includes(userRole)) break;
+      else {
+        if (access.length === 1 && access[0] === ACCESS.admin) break;
+        else if (userRole === ACCESS.unauthorized) {
           responsePath = pages.login.path;
-          responseType = "redirect";
-        } else if (pathname === pages.registration.path) {
-          responsePath = pages.successRegistration.path;
           responseType = "redirect";
         } else if (
           pathname === pages.hrSurvey.path ||
@@ -49,15 +45,9 @@ export const checkAccess = (pathname: string, userRole: AccessRole) => {
         ) {
           responsePath = pages.cabinet.path;
           responseType = "redirect";
-        } else if (access.length === 1 && access[0] === ACCESS.admin) {
-          responsePath = errorPages.notFound.path;
-          responseType = "rewrite";
         } else if (access.length === 1 && access[0] === ACCESS.unauthorized) {
-          responsePath = pages.profile.path;
+          responsePath = pages.main.path;
           responseType = "redirect";
-        } else {
-          responsePath = errorPages.accessDenied.path;
-          responseType = "rewrite";
         }
       }
       break;

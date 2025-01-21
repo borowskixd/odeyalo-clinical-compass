@@ -15,9 +15,15 @@ export const metadata: Metadata = {
 
 type RootLayoutProps = Readonly<{
   children: ReactNode;
+  authorized: ReactNode;
+  unauthorized: ReactNode;
 }>;
 
-const RootLayout: FC<RootLayoutProps> = async ({ children }) => {
+const RootLayout: FC<RootLayoutProps> = async ({
+  children,
+  authorized,
+  unauthorized,
+}) => {
   const locale = await getLocale();
 
   return (
@@ -25,11 +31,14 @@ const RootLayout: FC<RootLayoutProps> = async ({ children }) => {
       <body className={fontVariablesClass}>
         <I18nLayer>
           <StoreLayer>
-            <AuthLayer>
+            <AuthLayer
+              authorized={authorized}
+              unauthorized={unauthorized}
+            >
               {children}
-              <SnackbarsPortal />
-              <ModalsPortal />
             </AuthLayer>
+            <SnackbarsPortal />
+            <ModalsPortal />
           </StoreLayer>
         </I18nLayer>
       </body>

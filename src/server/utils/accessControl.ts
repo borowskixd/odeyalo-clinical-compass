@@ -68,10 +68,6 @@ export const checkAuth = async (
       response = NextResponse.redirect(new URL(path, request.url));
       break;
     }
-    case "rewrite": {
-      response = NextResponse.rewrite(new URL(path, request.url));
-      break;
-    }
   }
 
   if (loginResponse) {
