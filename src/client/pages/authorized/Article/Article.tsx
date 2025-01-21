@@ -3,8 +3,12 @@
 import { ArticleCard } from "../Articles/components";
 import styles from "./styles.module.scss";
 import { useParams } from "next/navigation";
-import PatternImage from "@/client/assets/webp/pattern.webp";
-import { Container, DefaultError, LoadingLoop } from "@/client/components";
+import {
+  Container,
+  DefaultError,
+  LoadingLoop,
+  PageTitle,
+} from "@/client/components";
 import {
   useGetArticleByIdQuery,
   useGetArticlesQuery,
@@ -38,15 +42,10 @@ export const ArticlePage: FC = () => {
     : [];
 
   return (
-    <Container>
+    <Container className={styles.container}>
       {article && (
         <div className={styles.main}>
-          <div
-            className={styles.image}
-            style={{ backgroundImage: `url("${PatternImage.src}")` }}
-          >
-            <h1 className={styles.title}>{article?.title}</h1>
-          </div>
+          <PageTitle className={styles.title}>{article?.title}</PageTitle>
           <div className={styles.content}>
             {article?.content.map((el) => (
               <div
@@ -61,7 +60,9 @@ export const ArticlePage: FC = () => {
       )}
       {filteredArticles.length && (
         <div className={styles.recomendations}>
-          <h3 className={styles.recomendationsTitle}>Смотрите также</h3>
+          <PageTitle className={styles.recomendationsTitle}>
+            Смотрите также
+          </PageTitle>
           <div className={styles.articlesList}>
             {filteredArticles.map((article) => (
               <ArticleCard
