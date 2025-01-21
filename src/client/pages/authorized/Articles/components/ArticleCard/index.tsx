@@ -11,18 +11,16 @@ interface ArticleCardProps {
 export const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
   return (
     <Link href={pages.article.getLink({ params: { id: article.id } })}>
-      <div className={styles.articleCard}>
+      <div className={styles.card}>
         <div
           className={styles.imageContainer}
           style={{ backgroundImage: `url("${article.image}")` }}
         >
-          <div className={styles.articleTags}>
-            <div className={styles.articleTag}>
-              {article.fullProgress} минут
-            </div>
+          <div className={styles.tags}>
+            <div className={styles.tag}>{article.fullProgress} минут</div>
           </div>
         </div>
-        <div className={styles.articleTitle}>{article.title}</div>
+        <div className={styles.title}>{article.title}</div>
       </div>
     </Link>
   );

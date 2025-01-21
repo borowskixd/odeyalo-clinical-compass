@@ -1,14 +1,10 @@
 "use client";
 
+import { ArticleCard } from "../Articles/components";
 import styles from "./styles.module.scss";
 import { useParams } from "next/navigation";
 import PatternImage from "@/client/assets/webp/pattern.webp";
-import {
-  ArticleCard,
-  Container,
-  DefaultError,
-  LoadingLoop,
-} from "@/client/components";
+import { Container, DefaultError, LoadingLoop } from "@/client/components";
 import {
   useGetArticleByIdQuery,
   useGetArticlesQuery,
@@ -67,10 +63,10 @@ export const ArticlePage: FC = () => {
         <div className={styles.recomendations}>
           <h3 className={styles.recomendationsTitle}>Смотрите также</h3>
           <div className={styles.articlesList}>
-            {filteredArticles.map((el) => (
+            {filteredArticles.map((article) => (
               <ArticleCard
-                key={el.id}
-                articles={el}
+                key={article.id}
+                article={article}
               />
             ))}
           </div>

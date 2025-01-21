@@ -1,6 +1,5 @@
 export * from "./ApplicationCard";
 export * from "./ApplicationProfileCard";
-export * from "./ArticleCard";
 export * from "./ClientCard";
 export * from "./GiveExerciseCard";
 export * from "./ProfileCard";

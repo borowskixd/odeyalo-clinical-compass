@@ -1,38 +1,13 @@
-"use client";
-
+import { ArticlesList } from "./components";
 import styles from "./styles.module.scss";
-import {
-  ArticleCard,
-  Container,
-  DefaultError,
-  LoadingLoop,
-  PageTitle,
-  Subtitle,
-} from "@/client/components";
-import { useGetArticlesQuery } from "@/client/redux";
+import { Container, PageTitle } from "@/client/components";
 import { type FC } from "react";
 
 export const ArticlesPage: FC = () => {
-  const { data, isError, isLoading, error } = useGetArticlesQuery();
-
-  if (isLoading) return <LoadingLoop />;
-  if (isError) return <DefaultError error={error} />;
-
   return (
-    <Container>
+    <Container className={styles.container}>
       <PageTitle className={styles.title}>Теория</PageTitle>
-      {!data || !data.length ? (
-        <Subtitle>Статей пока нет</Subtitle>
-      ) : (
-        <div className={styles.articlesList}>
-          {data.map((article) => (
-            <ArticleCard
-              key={article.id}
-              article={article}
-            />
-          ))}
-        </div>
-      )}
+      <ArticlesList />
     </Container>
   );
 };
