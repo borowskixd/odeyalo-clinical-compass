@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 10px;
+  padding: 16px;
   visibility: hidden;
   opacity: 0;
   transition:
@@ -34,7 +34,7 @@
 }
 
 .header {
-  height: 64px;
+  min-height: 64px;
   margin-bottom: 20px;
   display: flex;
   align-items: center;

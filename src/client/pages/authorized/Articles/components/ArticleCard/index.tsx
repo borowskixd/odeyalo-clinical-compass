@@ -13,14 +13,13 @@ export const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
     <Link href={pages.article.getLink({ params: { id: article.id } })}>
       <div className={styles.card}>
         <div
-          className={styles.imageContainer}
+          className={styles.image}
           style={{ backgroundImage: `url("${article.image}")` }}
-        >
-          <div className={styles.tags}>
-            <div className={styles.tag}>{article.fullProgress} минут</div>
-          </div>
-        </div>
+        ></div>
         <div className={styles.title}>{article.title}</div>
+        <div className={styles.tags}>
+          <div className={styles.tag}>{article.fullProgress} минут</div>
+        </div>
       </div>
     </Link>
   );
