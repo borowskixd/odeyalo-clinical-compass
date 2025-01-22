@@ -1,9 +1,11 @@
-.title {
-  margin-bottom: 40px;
+@use "@/client/styles/colors" as *;
+
+.container {
+  padding: 20px;
+  background-color: $color-white100;
+  border-radius: 32px;
 }
 
-.articlesList {
-  display: flex;
-  gap: 36px 24px;
-  flex-flow: wrap;
+.title {
+  margin-bottom: 40px;
 }

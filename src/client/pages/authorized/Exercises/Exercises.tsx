@@ -1,42 +1,13 @@
-"use client";
-
-import { ExerciseCard } from "./components";
+import { ExercisesList } from "./components";
 import styles from "./styles.module.scss";
-import {
-  Container,
-  DefaultError,
-  LoadingLoop,
-  PageTitle,
-  Subtitle,
-} from "@/client/components";
-import { useGetTestsQuery } from "@/client/redux";
+import { Container, PageTitle } from "@/client/components";
 import { type FC } from "react";
 
 export const ExercisesPage: FC = () => {
-  const { data: tests, ...getTestsState } = useGetTestsQuery();
-
-  if (getTestsState.isLoading) return <LoadingLoop />;
-  if (getTestsState.isError)
-    return <DefaultError error={getTestsState.error} />;
-
   return (
     <Container className={styles.container}>
-      <PageTitle className={styles.title}>Психологические тесты</PageTitle>
-      <div className={styles.section}>
-        {(!tests || !tests.length) && <Subtitle>Нет доступных тестов</Subtitle>}
-        {!!tests && !!tests.length && (
-          <div className={styles.list}>
-            {tests.map((test) => {
-              return (
-                <ExerciseCard
-                  key={test.id}
-                  exercise={test}
-                />
-              );
-            })}
-          </div>
-        )}
-      </div>
+      <PageTitle className={styles.title}>Тесты</PageTitle>
+      <ExercisesList />
     </Container>
   );
 };

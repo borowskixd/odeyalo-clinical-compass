@@ -1,0 +1,39 @@
+@use "@/client/styles/fontStyles" as *;
+@use "@/client/styles/colors" as *;
+
+.card {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  border-radius: 12px;
+  background-color: $color-white70;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+  flex-flow: wrap;
+}
+
+.tag {
+  padding: 6px 16px;
+  @include bodyS;
+  font-size: 12px;
+  border-radius: 12px;
+  background-color: $color-white70;
+}
+
+.title {
+  @include bodyLBold;
+}

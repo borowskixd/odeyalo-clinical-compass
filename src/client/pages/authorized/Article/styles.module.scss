@@ -1,5 +1,11 @@
-@use "@/client/styles/textStyles" as *;
-@use "@/client/styles/variables" as *;
+@use "@/client/styles/fontStyles" as *;
+@use "@/client/styles/colors" as *;
+
+.container {
+  padding: 20px;
+  background-color: $color-white100;
+  border-radius: 32px;
+}
 
 .image {
   position: relative;
@@ -29,19 +35,13 @@
   }
 }
 
-.title {
-  @include displayLarge;
-  color: $color-white;
-  z-index: 1;
-}
-
 .content {
   margin-top: 32px;
   display: flex;
   flex-flow: column;
-  gap: 16px;
+  gap: 24px;
 
-  @include bodyLarge;
+  @include bodyM;
 }
 
 .recomendations {
@@ -50,12 +50,11 @@
 
 .recomendationsTitle {
   margin-bottom: 32px;
-
-  @include headlineMedium;
 }
 
 .articlesList {
-  display: flex;
-  gap: 36px 24px;
-  flex-flow: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  column-gap: 16px;
+  row-gap: 20px;
 }

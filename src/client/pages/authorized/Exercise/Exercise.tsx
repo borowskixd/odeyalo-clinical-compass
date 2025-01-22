@@ -78,12 +78,7 @@ export const ExercisePage: FC = () => {
       {test && currentQuestion && (
         <>
           <PageTitle className={styles.title}>{test.title}</PageTitle>
-          <div className={styles.header}>
-            <h4 className={styles.question}>{currentQuestion.title}</h4>
-            <div className={styles.questionNumber}>
-              {currentQuestionNumber + 1}/{test.questions.length}
-            </div>
-          </div>
+          <h4 className={styles.question}>{currentQuestion.title}</h4>
           <div className={styles.radioButtons}>
             {currentQuestion.answers.map((answer) => {
               return (
@@ -108,20 +103,23 @@ export const ExercisePage: FC = () => {
               disabled={currentQuestionNumber <= 0}
             >
               <ArrowIcon className={styles.backIcon} />
-              Предыдущий вопрос
+              Назад
             </Button>
             <PrimaryButton
               disabled={isSendButtonDisabled}
               onClick={sendTestResultHandler}
+              className={styles.endTestButton}
             >
-              Закончить тест
+              {isSendButtonDisabled
+                ? `${currentQuestionNumber + 1} из ${test.questions.length}`
+                : "Закончить тест"}
             </PrimaryButton>
             <Button
               className={styles.button}
               onClick={() => showQuestion(currentQuestionNumber + 1)}
               disabled={currentQuestionNumber + 1 >= test.questions.length}
             >
-              Следующий вопрос
+              Далее
               <ArrowIcon />
             </Button>
           </div>

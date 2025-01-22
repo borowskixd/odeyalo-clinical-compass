@@ -47,9 +47,8 @@ export const ExerciseCard: FC<Props> = ({ exercise }) => {
         className={styles.card}
         onClick={handleOpen}
       >
-        <img
-          src={exercise.image}
-          alt={exercise.title}
+        <div
+          style={{ backgroundImage: `url("${exercise.image}")` }}
           className={styles.image}
         />
         <h5 className={styles.title}>{exercise.title}</h5>
