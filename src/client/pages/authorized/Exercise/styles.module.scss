@@ -1,21 +1,19 @@
-@use "@/client/styles/variables" as *;
-@use "@/client/styles/textStyles" as *;
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
 
 .title {
   margin-bottom: 40px;
+
+  @media screen and (max-width: 450px) {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+  }
 }
 
-.header {
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: space-between;
-  gap: 32px;
-  align-items: flex-start;
-  @include titleLarge;
-}
-
-.questionNumber {
-  color: $color-primary;
+.question {
+  margin-bottom: 30px;
+  @include bodyXL;
 }
 
 .radioButtons {
@@ -29,25 +27,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
 }
 
 .button {
-  color: $color-primary;
-  @include labelLarge;
+  color: $color-blue80;
+  @include bodyS;
   display: flex;
   align-items: center;
+  gap: 8px;
   transition: color 0.2s;
 
   & path {
-    stroke: $color-primary;
+    stroke: $color-blue80;
   }
 
   &:disabled {
-    color: $color-primary-fixed-dim;
+    color: $color-blue60;
 
     & path {
-      stroke: $color-primary-fixed-dim;
+      stroke: $color-blue60;
     }
+  }
+}
+
+.endTestButton {
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    order: 1;
   }
 }
 
