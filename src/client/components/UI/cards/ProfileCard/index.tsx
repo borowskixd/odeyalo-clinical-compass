@@ -1,14 +1,15 @@
-import { ProfileImage } from "../../Images";
+import { Symptom } from "../../Symptom";
+import { ProfileImage } from "../../images";
 import styles from "./styles.module.scss";
-import { type GetApplicationResponseData } from "@/shared/types";
+import { type GetClientResponseData } from "@/shared/types";
 import { mapAgeToText } from "@/shared/utils";
 import { type FC } from "react";
 
 interface Props {
-  profile: GetApplicationResponseData;
+  profile: GetClientResponseData;
 }
 
-export const ApplicationProfileCard: FC<Props> = ({ profile }) => {
+export const ProfileCard: FC<Props> = ({ profile }) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
@@ -32,10 +33,19 @@ export const ApplicationProfileCard: FC<Props> = ({ profile }) => {
       <div className={styles.info}>
         Возраст: {profile.age === 0 ? "не указан" : mapAgeToText(profile.age)}
       </div>
-      {!!profile.problem && (
+      {!!profile.problems.length && (
         <>
           <div className={styles.info}>Запрос:</div>
-          <div className={styles.problems}>{profile.problem}</div>
+          <div className={styles.problems}>
+            {profile.problems.map((problem, index) => {
+              return (
+                <Symptom
+                  key={index}
+                  problem={problem}
+                />
+              );
+            })}
+          </div>
         </>
       )}
     </div>

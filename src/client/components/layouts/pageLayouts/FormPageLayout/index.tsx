@@ -23,12 +23,14 @@ export const FormPageLayout: FC<FormPageLayoutProps> = ({
       >
         <FormBackground />
         {comeBackLink && (
-          <Link
-            href={comeBackLink}
-            className={styles.comeBackButton}
-          >
-            <ArrowIcon />
-          </Link>
+          <div className={styles.comeBackButtonWrapper}>
+            <Link
+              href={comeBackLink}
+              className={styles.comeBackButton}
+            >
+              <ArrowIcon />
+            </Link>
+          </div>
         )}
         <div className={styles.formContainer}>
           <PageTitle className={styles.title}>{title}</PageTitle>
