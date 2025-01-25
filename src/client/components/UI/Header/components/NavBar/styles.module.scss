@@ -5,8 +5,60 @@
   display: flex;
   gap: 20px;
   align-items: center;
+
+  @media screen and (max-width: 900px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    padding: 0 8px;
+    gap: 8px;
+    background-color: $color-blue20;
+    z-index: 100;
+  }
 }
 
 .navLink {
   min-width: 112px;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    min-width: auto;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    @include bodySBold;
+    color: $color-blue100;
+    font-size: 12px;
+    line-height: 16px;
+    background-color: transparent;
+    border-radius: 0;
+  }
+}
+
+.iconWrapper {
+  width: 62px;
+  height: 32px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+
+  & > svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &.active {
+    background-color: $color-blue40;
+  }
+
+  @media screen and (max-width: 900px) {
+    display: flex;
+  }
 }
