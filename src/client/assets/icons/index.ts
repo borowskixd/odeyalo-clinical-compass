@@ -10,3 +10,7 @@ export * from "./NextIcon";
 export * from "./TelegramIcon";
 export * from "./VkIcon";
 export * from "./Feather";
+export * from "./Flame";
+export * from "./Grid4";
+export * from "./Leaderboard";
+export * from "./TextSnippet";

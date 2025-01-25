@@ -1,6 +1,6 @@
-import { Switch } from "../../Inputs";
 import styles from "./styles.module.scss";
 import Link from "next/link";
+import { Switch } from "@/client/components";
 import { type FC } from "react";
 
 interface Props {

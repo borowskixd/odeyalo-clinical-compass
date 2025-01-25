@@ -2,12 +2,15 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 import { LogoIcon } from "@/client/assets/icons";
 import { pages } from "@/shared/data";
+import { getIsMobile } from "@/shared/utils";
 import { type FC } from "react";
 
-export const Logo: FC = () => {
+export const Logo: FC = async () => {
+  const isMobile = await getIsMobile();
+
   return (
     <Link
-      href={pages.main.path}
+      href={isMobile ? pages.login.path : pages.main.path}
       className={styles.logo}
     >
       <LogoIcon />

@@ -1,18 +1,27 @@
 @use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
 
 body {
-  padding: 0 16px;
-  font-size: 16px;
+  min-height: 100vh;
+  padding: 30px 16px 110px;
   background-color: $color-white70;
   color: $color-black100;
+  @include bodyS;
   overflow-x: hidden;
   font-family: var(--font-inter);
+
+  @media screen and (max-width: 900px) {
+    padding-top: 186px;
+  }
 }
 
 #snackbars {
   position: fixed;
-  bottom: 30px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
+  padding: 30px 16px;
   display: flex;
   justify-content: flex-end;
   pointer-events: none;
