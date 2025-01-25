@@ -1,6 +1,6 @@
-import { PrimaryButton } from "../../Buttons";
-import { ProfileImage } from "../../Images";
 import { Symptom } from "../../Symptom";
+import { PrimaryButton } from "../../buttons";
+import { ProfileImage } from "../../images";
 import styles from "../styles.module.scss";
 import { pages } from "@/shared/data";
 import { type GetClientsResponseData } from "@/shared/types";
