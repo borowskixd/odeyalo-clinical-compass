@@ -33,10 +33,17 @@ export const ExercisePage: FC = () => {
 
   useEffect(() => {
     if (sendTestResultState.isSuccess) {
-      router.push(pages.result.getLink({ params: { id } }));
+      const { testResultId } = sendTestResultState.data;
+      router.push(pages.detailResult.getLink({ params: { id: testResultId } }));
       dispatch(PopupsService.openSnackbarWithDelay("Тест успешно пройден!"));
     }
-  }, [sendTestResultState.isSuccess, dispatch, id, router]);
+  }, [
+    sendTestResultState.isSuccess,
+    sendTestResultState.data,
+    dispatch,
+    id,
+    router,
+  ]);
 
   const selectAnswerHandler = (number: number, score: number) => {
     const newAnswers = [...answers];

@@ -8,6 +8,7 @@ import {
   type GiveTestRequestData,
   type ResponseSuccessInfo,
   type SendTestResultRequestData,
+  type SendTestResultResponseData,
 } from "@/shared/types";
 
 const testsApi = api.injectEndpoints({
@@ -52,7 +53,7 @@ const testsApi = api.injectEndpoints({
     }),
 
     sendTestResult: builder.mutation<
-      ResponseSuccessInfo,
+      SendTestResultResponseData,
       SendTestResultRequestData
     >({
       query: (body) => ({

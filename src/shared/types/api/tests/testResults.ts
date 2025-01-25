@@ -48,3 +48,11 @@ export interface SendTestResultApiRequestData {
   date: string;
   results: number[];
 }
+
+export interface SendTestResultResponseData {
+  testResultId: string;
+}
+
+export interface SendTestResultApiResponseData {
+  test_result_id: string;
+}
