@@ -1,4 +1,3 @@
-import styles from "./styles.module.scss";
 import { type ReactNode } from "react";
 
 export default function UnauthorizedLayout({
@@ -6,5 +5,5 @@ export default function UnauthorizedLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  return <div className={styles.body}>{children}</div>;
+  return children;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "./styles.module.scss";
+import { Flame, Grid4, Leaderboard, TextSnippet } from "@/client/assets/icons";
 import { SecondaryButton } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
 import { selectProfile } from "@/client/redux";
@@ -11,6 +12,7 @@ import { type FC } from "react";
 interface NavLink {
   href: string;
   title: string;
+  Icon?: FC<any>;
 }
 
 type Nav = Record<keyof typeof ACCESS, NavLink[]>;
@@ -22,40 +24,47 @@ const rolesNav: Nav = {
     { href: pages.usersResults.path, title: "Результаты тестов" },
   ],
   client: [
-    { href: pages.main.path, title: "План" },
-    { href: pages.articles.path, title: "Теория" },
-    { href: pages.exercises.path, title: "Тесты" },
-    { href: pages.psychologist.path, title: "Психологи" },
+    { href: pages.main.path, title: "План", Icon: Grid4 },
+    { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
+    { href: pages.psychologist.path, title: "Психологи", Icon: Flame },
+    { href: pages.exercises.path, title: "Тесты", Icon: Leaderboard },
   ],
   hr: [
-    { href: pages.main.path, title: "План" },
-    { href: pages.articles.path, title: "Теория" },
-    { href: pages.exercises.path, title: "Тесты" },
-    { href: pages.psychologist.path, title: "Психологи" },
+    { href: pages.main.path, title: "План", Icon: Grid4 },
+    { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
+    { href: pages.psychologist.path, title: "Психологи", Icon: Flame },
+    { href: pages.exercises.path, title: "Тесты", Icon: Leaderboard },
   ],
   psychologist: [
-    { href: pages.main.path, title: "План" },
-    { href: pages.articles.path, title: "Теория" },
-    { href: pages.exercises.path, title: "Тесты" },
-    { href: pages.psychologist.path, title: "Психологи" },
+    { href: pages.main.path, title: "План", Icon: Grid4 },
+    { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
+    { href: pages.psychologist.path, title: "Психологи", Icon: Flame },
+    { href: pages.exercises.path, title: "Тесты", Icon: Leaderboard },
   ],
   unauthorized: [],
 };
 
 export const NavBar: FC = () => {
-  const userData = useAppSelector(selectProfile);
+  const { role } = useAppSelector(selectProfile);
 
-  const navList = rolesNav[userData.role];
+  const navList = rolesNav[role];
+
+  if (!navList.length) return null;
 
   return (
     <nav className={styles.nav}>
-      {navList.map((el) => (
+      {navList.map(({ title, href, Icon }) => (
         <SecondaryButton
-          key={el.title}
+          key={title}
           className={styles.navLink}
-          href={el.href}
+          href={href}
         >
-          {el.title}
+          {!!Icon && (
+            <div className={`${styles.iconWrapper}`}>
+              <Icon />
+            </div>
+          )}
+          {title}
         </SecondaryButton>
       ))}
     </nav>
