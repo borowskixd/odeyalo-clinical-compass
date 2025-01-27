@@ -1,12 +1,10 @@
 "use client";
 
 import styles from "./styles.module.scss";
-import { type FC } from "react";
+import { type FC, type InputHTMLAttributes } from "react";
 
-interface Props {
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
   labelText: string;
-  className?: string;
-  [key: string]: any;
 }
 
 export const Radio: FC<Props> = ({
