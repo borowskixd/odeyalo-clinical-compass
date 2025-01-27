@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import { useParams } from "next/navigation";
 import {
   Container,
+  ContentWrapper,
   DefaultError,
   LoadingLoop,
   PageTitle,
@@ -29,22 +30,17 @@ export const ArticlePage: FC = () => {
     return <DefaultError error={getArticleState.error} />;
 
   return (
-    <Container className={styles.container}>
-      {article && (
-        <div className={styles.main}>
-          <PageTitle className={styles.title}>{article?.title}</PageTitle>
-          <div className={styles.content}>
-            {article?.content.map((el) => (
-              <div
-                className={styles.contentItem}
-                key={el.id}
-              >
-                {el.content}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+    <Container>
+      <ContentWrapper>
+        {article && (
+          <>
+            <PageTitle>{article?.title}</PageTitle>
+            <div className={styles.content}>
+              {article?.content.map((el) => <p key={el.id}>{el.content}</p>)}
+            </div>
+          </>
+        )}
+      </ContentWrapper>
     </Container>
   );
 };

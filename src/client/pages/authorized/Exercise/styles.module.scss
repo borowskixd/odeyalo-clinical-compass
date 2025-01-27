@@ -2,7 +2,7 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 
   @media screen and (max-width: 450px) {
     font-size: 24px;
@@ -12,7 +12,7 @@
 }
 
 .question {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   @include bodyXL;
 }
 

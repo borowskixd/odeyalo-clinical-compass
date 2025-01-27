@@ -26,15 +26,12 @@
 }
 
 .formContainer {
-  width: 100%;
   max-width: 420px;
   padding: 20px;
   display: flex;
   flex-flow: column;
   align-items: flex-start;
   gap: 30px;
-  background-color: $color-white100;
-  border-radius: 32px;
 }
 
 .title {

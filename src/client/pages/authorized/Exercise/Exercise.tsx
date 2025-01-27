@@ -6,6 +6,7 @@ import { ArrowIcon } from "@/client/assets/icons";
 import {
   Button,
   Container,
+  ContentWrapper,
   DefaultError,
   LoadingLoop,
   PageTitle,
@@ -82,56 +83,58 @@ export const ExercisePage: FC = () => {
 
   return (
     <Container>
-      {test && currentQuestion && (
-        <>
-          <PageTitle className={styles.title}>{test.title}</PageTitle>
-          <h4 className={styles.question}>{currentQuestion.title}</h4>
-          <div className={styles.radioButtons}>
-            {currentQuestion.answers.map((answer) => {
-              return (
-                <Radio
-                  key={answer.id}
-                  name="question"
-                  labelText={answer.text}
-                  onClick={() =>
-                    selectAnswerHandler(currentQuestion.number, answer.score)
-                  }
-                  defaultChecked={
-                    answers[currentQuestion.number - 1] === answer.score
-                  }
-                />
-              );
-            })}
-          </div>
-          <div className={styles.buttons}>
-            <Button
-              className={styles.button}
-              onClick={() => showQuestion(currentQuestionNumber - 1)}
-              disabled={currentQuestionNumber <= 0}
-            >
-              <ArrowIcon className={styles.backIcon} />
-              Назад
-            </Button>
-            <PrimaryButton
-              disabled={isSendButtonDisabled}
-              onClick={sendTestResultHandler}
-              className={styles.endTestButton}
-            >
-              {isSendButtonDisabled
-                ? `${currentQuestionNumber + 1} из ${test.questions.length}`
-                : "Закончить тест"}
-            </PrimaryButton>
-            <Button
-              className={styles.button}
-              onClick={() => showQuestion(currentQuestionNumber + 1)}
-              disabled={currentQuestionNumber + 1 >= test.questions.length}
-            >
-              Далее
-              <ArrowIcon />
-            </Button>
-          </div>
-        </>
-      )}
+      <ContentWrapper>
+        {test && currentQuestion && (
+          <>
+            <PageTitle className={styles.title}>{test.title}</PageTitle>
+            <h4 className={styles.question}>{currentQuestion.title}</h4>
+            <div className={styles.radioButtons}>
+              {currentQuestion.answers.map((answer) => {
+                return (
+                  <Radio
+                    key={answer.id}
+                    name="question"
+                    labelText={answer.text}
+                    onClick={() =>
+                      selectAnswerHandler(currentQuestion.number, answer.score)
+                    }
+                    defaultChecked={
+                      answers[currentQuestion.number - 1] === answer.score
+                    }
+                  />
+                );
+              })}
+            </div>
+            <div className={styles.buttons}>
+              <Button
+                className={styles.button}
+                onClick={() => showQuestion(currentQuestionNumber - 1)}
+                disabled={currentQuestionNumber <= 0}
+              >
+                <ArrowIcon className={styles.backIcon} />
+                Назад
+              </Button>
+              <PrimaryButton
+                disabled={isSendButtonDisabled}
+                onClick={sendTestResultHandler}
+                className={styles.endTestButton}
+              >
+                {isSendButtonDisabled
+                  ? `${currentQuestionNumber + 1} из ${test.questions.length}`
+                  : "Закончить тест"}
+              </PrimaryButton>
+              <Button
+                className={styles.button}
+                onClick={() => showQuestion(currentQuestionNumber + 1)}
+                disabled={currentQuestionNumber + 1 >= test.questions.length}
+              >
+                Далее
+                <ArrowIcon />
+              </Button>
+            </div>
+          </>
+        )}
+      </ContentWrapper>
     </Container>
   );
 };
