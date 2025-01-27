@@ -28,7 +28,7 @@
 .modal {
   width: 456px;
   padding: 24px 16px;
-  @include bodyS;
+  @include bodyM;
   background-color: $color-white100;
   border-radius: 28px;
 }

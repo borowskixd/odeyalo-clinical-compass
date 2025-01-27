@@ -33,7 +33,7 @@
 
 .button {
   color: $color-blue80;
-  @include bodyS;
+  @include bodyM;
   display: flex;
   align-items: center;
   gap: 8px;

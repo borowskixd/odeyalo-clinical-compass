@@ -6,7 +6,7 @@ body {
   padding: 30px 16px 110px;
   background-color: $color-white70;
   color: $color-black100;
-  @include bodyS;
+  @include bodyM;
   overflow-x: hidden;
   font-family: var(--font-inter);
 
