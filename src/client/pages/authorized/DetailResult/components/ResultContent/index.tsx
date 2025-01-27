@@ -1,13 +1,9 @@
 "use client";
 
+import { ProgressBar } from "../ProgressBar";
 import styles from "./styles.module.scss";
 import { notFound, useParams } from "next/navigation";
-import {
-  DefaultError,
-  LoadingLoop,
-  ProgressBar,
-  Subtitle,
-} from "@/client/components";
+import { DefaultError, LoadingLoop } from "@/client/components";
 import { useGetTestResultQuery } from "@/client/redux";
 import { type FC } from "react";
 
@@ -23,36 +19,19 @@ export const ResultContent: FC = () => {
 
   return (
     <>
-      <Subtitle className={styles.subtitle}>{testResult.title}</Subtitle>
+      <h2 className={styles.subtitle}>{testResult.title}</h2>
       <div className={styles.results}>
-        {testResult.scales.map((el) => {
-          const value =
-            testResult.scaleResults.find((res) => res.id === el.id)?.score ?? 0;
-          const color = el.borders.reduce((acc, el) => {
-            if (value <= el.rightBorder && value >= el.leftBorder) {
-              acc = el.color;
-            }
-            return acc;
-          }, "");
+        {testResult.scales.map((scale) => {
+          const { id } = scale;
+          const result =
+            testResult.scaleResults.find((res) => res.id === id)?.score ?? 0;
 
           return (
-            <div
-              className={styles.result}
-              key={el.id}
-            >
-              <h4
-                className={styles.resultTitle}
-                style={{ backgroundColor: color + "30" }}
-              >
-                {el.title}
-              </h4>
-              <ProgressBar
-                value={value}
-                max={el.max}
-                min={el.min}
-                color={color}
-              />
-            </div>
+            <ProgressBar
+              key={id}
+              scale={scale}
+              result={result}
+            />
           );
         })}
       </div>
