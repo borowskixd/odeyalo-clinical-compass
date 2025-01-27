@@ -23,9 +23,9 @@
 }
 
 .cardTitle {
-  @include bodySBold;
+  @include bodyMBold;
 }
 
 .cardDescription {
-  @include bodyS;
+  @include bodyM;
 }

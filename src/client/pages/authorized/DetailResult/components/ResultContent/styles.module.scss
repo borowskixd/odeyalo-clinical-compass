@@ -1,0 +1,48 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.subtitle {
+  margin-bottom: 30px;
+  @include titleXS;
+}
+
+.results {
+  margin-bottom: 34px;
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+}
+
+.resultsDescription {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.resultItem {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.resultItemContent {
+  padding: 16px;
+  background-color: $color-white70;
+  border-radius: 20px;
+}
+
+.resultItemTitle {
+  @include bodyXLBold;
+}
+
+.resultItemScore {
+  margin-bottom: 10px;
+  @include bodyMBold;
+}
+
+.resultItemDescription {
+  @include bodyM;
+}

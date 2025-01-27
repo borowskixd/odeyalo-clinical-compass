@@ -1,0 +1,10 @@
+@use "@/client/styles/fontStyles" as *;
+
+.content {
+  margin-top: 32px;
+  display: flex;
+  flex-flow: column;
+  gap: 24px;
+
+  @include bodyM;
+}

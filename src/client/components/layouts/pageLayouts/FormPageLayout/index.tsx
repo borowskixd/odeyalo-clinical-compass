@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import { ArrowIcon } from "@/client/assets/icons";
-import { Container, PageTitle } from "@/client/components";
+import { Container, ContentWrapper, PageTitle } from "@/client/components";
 import { FormBackground } from "@/client/components/backgrounds";
 import { type FC, type ReactNode } from "react";
 
@@ -32,10 +32,10 @@ export const FormPageLayout: FC<FormPageLayoutProps> = ({
             </Link>
           </div>
         )}
-        <div className={styles.formContainer}>
+        <ContentWrapper className={styles.formContainer}>
           <PageTitle className={styles.title}>{title}</PageTitle>
           {children}
-        </div>
+        </ContentWrapper>
       </div>
     </Container>
   );

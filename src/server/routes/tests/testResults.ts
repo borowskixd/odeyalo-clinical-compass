@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   mapGetTestResultsResponse,
   mapSendTestResultRequest,
+  mapSendTestResultResponse,
 } from "@/server/mappers";
 import { createRequest } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
@@ -9,8 +10,8 @@ import {
   type GetTestApiResponseData,
   type GetTestResultsApiResponseData,
   type GetTestResultsResponseData,
-  ResponseSuccessInfo,
   type SendTestResultApiRequestData,
+  type SendTestResultApiResponseData,
   type SendTestResultRequestData,
 } from "@/shared/types";
 
@@ -42,15 +43,12 @@ const getTestResults = createRequest<{ id: string }>(
 const sendTestResult = createRequest(async (request, serverFetch) => {
   const body: SendTestResultRequestData = await request.json();
 
-  await serverFetch.post<any, SendTestResultApiRequestData>(
-    "/test/save_test_result",
-    mapSendTestResultRequest(body),
-  );
+  const { data } = await serverFetch.post<
+    SendTestResultApiResponseData,
+    SendTestResultApiRequestData
+  >("/test/save_test_result", mapSendTestResultRequest(body));
 
-  return NextResponse.json(
-    new ResponseSuccessInfo("Результат успешно отправлен"),
-    httpStatuses.ok,
-  );
+  return NextResponse.json(mapSendTestResultResponse(data), httpStatuses.ok);
 });
 
 export const TestResultsRoutes = {

@@ -2,7 +2,7 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 
   @media screen and (max-width: 450px) {
     font-size: 24px;
@@ -12,7 +12,7 @@
 }
 
 .question {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   @include bodyXL;
 }
 
@@ -33,7 +33,7 @@
 
 .button {
   color: $color-blue80;
-  @include bodyS;
+  @include bodyM;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -49,13 +49,6 @@
     & path {
       stroke: $color-blue60;
     }
-  }
-}
-
-.endTestButton {
-  @media screen and (max-width: 450px) {
-    width: 100%;
-    order: 1;
   }
 }
 
