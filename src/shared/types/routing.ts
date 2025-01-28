@@ -75,6 +75,7 @@ export interface Pages {
   psychologistSurvey: Page;
   articles: Page;
   article: Page<{ id: string }>;
+  notes: Page;
   usersAcitivity: Page;
   usersFeedbacks: Page;
   usersResults: Page;

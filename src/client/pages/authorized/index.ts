@@ -1,3 +1,4 @@
+export * from "./admin";
 export * from "./Cabinet";
 export * from "./Application";
 export * from "./Client";
@@ -12,4 +13,4 @@ export * from "./Articles";
 export * from "./Article";
 export * from "./HrSurvey";
 export * from "./PsychologistSurvey";
-export * from "./admin";
+export * from "./Notes";
