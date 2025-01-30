@@ -2,7 +2,7 @@ services:
   frontend:
     container_name: odeyalo-frontend
     build:
-      dockerfile: ./deploy/docker/dockerfile/Dockerfile
+      dockerfile: ./deploy/docker/dockerfile/Dockerfile.${OPERATION:-default}
       context: ../../
     restart: on-failure
     volumes:
