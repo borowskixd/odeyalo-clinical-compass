@@ -10,7 +10,7 @@ services:
     expose:
       - "3000"
     networks:
-      - demo
+      - odeyalo
     mac_address: 02:42:ac:18:06:01
 
   nginx:
@@ -22,11 +22,11 @@ services:
     expose:
       - "80"
     networks:
-      - demo
+      - odeyalo
     depends_on:
       - frontend
     mac_address: 02:42:ac:18:06:02
 
 networks:
-  demo:
-    external: true
+  odeyalo:
+    driver: bridge
