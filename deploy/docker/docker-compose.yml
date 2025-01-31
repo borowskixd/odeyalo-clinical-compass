@@ -22,8 +22,6 @@ services:
     restart: on-failure
     expose:
       - "80"
-    ports:
-      - "80:80"
     networks:
       - odeyalo-network
     depends_on:
