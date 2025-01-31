@@ -18,7 +18,7 @@ services:
     image: nginx:latest
     restart: on-failure
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/default.conf:/var/lib/docker/overlay2/248e865f720ec7563e2c587ae77084e8a38665df470d9583d5f0d401cb3555de/merged/etc/nginx/conf.d/default.conf
     expose:
       - "80"
     ports:
