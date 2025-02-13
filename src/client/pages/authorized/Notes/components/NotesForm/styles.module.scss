@@ -1,0 +1,10 @@
+@use "@/client/styles/fontStyles" as *;
+
+.title {
+  @include titleCygre;
+  margin-bottom: 10px;
+}
+
+.button {
+  margin-top: 20px;
+}

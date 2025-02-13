@@ -1,3 +1,14 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
 .title {
-  margin-bottom: 30px;
+  @include titleCygre;
+}
+
+.calendar {
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
+  background-color: $color-white70;
+  border-radius: 12px;
 }
