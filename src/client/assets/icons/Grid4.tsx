@@ -1,16 +1,13 @@
+import type { IconProps } from "@/client/assets/icons/types";
 import { type FC } from "react";
 
-interface Props {
-  className: string;
-}
-
-export const Grid4: FC<Props> = ({ className }) => {
+export const Grid4: FC<IconProps> = (props) => {
   return (
     <svg
-      className={className}
       viewBox="0 0 25 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         d="M2.83008 4.25C2.83008 3.00736 3.83744 2 5.08008 2H9.25008C10.4927 2 11.5001 3.00736 11.5001 4.25V6.42C11.5001 7.66264 10.4927 8.67 9.25008 8.67H5.08008C3.83744 8.67 2.83008 7.66264 2.83008 6.42V4.25Z"

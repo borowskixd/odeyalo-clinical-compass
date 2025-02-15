@@ -1,4 +1,7 @@
-export const NextIcon = () => {
+import { type IconProps } from "@/client/assets/icons/types";
+import { type FC } from "react";
+
+export const NextIcon: FC<IconProps> = (props) => {
   return (
     <svg
       width="24"
@@ -6,6 +9,7 @@ export const NextIcon = () => {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         d="M10.5223 6L9 7.41L13.9447 12L9 16.59L10.5223 18L17 12L10.5223 6Z"
