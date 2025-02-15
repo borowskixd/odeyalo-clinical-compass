@@ -1,10 +1,6 @@
 @use "@/client/styles/colors" as *;
 @use "@/client/styles/fontStyles" as *;
 
-.title {
-  @include titleCygre;
-}
-
 .calendar {
   width: 100%;
   height: fit-content;

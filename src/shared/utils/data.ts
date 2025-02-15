@@ -1,19 +1,19 @@
-const monthes = [
-  "января",
-  "февраля",
-  "марта",
-  "апреля",
-  "мая",
-  "июня",
-  "июля",
-  "августа",
-  "сентября",
-  "октября",
-  "ноябра",
-  "декабря",
+export const months = [
+  "январь",
+  "февраль",
+  "март",
+  "апрель",
+  "май",
+  "июнь",
+  "июль",
+  "август",
+  "сентябрь",
+  "октябрь",
+  "ноябрь",
+  "декабрь",
 ];
 
-const days = [
+export const days = [
   "воскресенье",
   "понедельник",
   "вторник",
@@ -75,7 +75,7 @@ export const mapDatetimeToText = (datetime: string): string => {
   minutes = minutes.length === 1 ? "0" + minutes : minutes;
 
   const result = `${date.getDate()} ${
-    monthes[date.getMonth()]
+    months[date.getMonth()]
   } ${date.getFullYear()}, ${hours}:${minutes}`;
   return result;
 };
@@ -86,6 +86,6 @@ export const getCurrentDay = (): string => {
   const day = days[date.getDay()];
   const mappedDay = day.charAt(0).toUpperCase() + day.slice(1);
 
-  const result = `${mappedDay}, ${date.getDate()} ${monthes[date.getMonth()]}`;
+  const result = `${mappedDay}, ${date.getDate()} ${months[date.getMonth()]}`;
   return result;
 };
