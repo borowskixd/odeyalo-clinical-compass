@@ -1,0 +1,22 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.moodContainer {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 16px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  color: $color-blue80;
+  text-transform: lowercase;
+  background-color: $color-blue20;
+  border-radius: 12px;
+}
+
+.mood {
+  width: 100%;
+  @include titleCygre;
+  text-align: center;
+}

@@ -14,3 +14,4 @@ export * from "./Leaderboard";
 export * from "./TextSnippet";
 export * from "./ArrowLeft";
 export * from "./ArrowRight";
+export * from "./AddCircle";

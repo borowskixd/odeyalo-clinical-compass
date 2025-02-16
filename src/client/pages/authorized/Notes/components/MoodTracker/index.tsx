@@ -1,38 +1,46 @@
 "use client";
 
+import { MoodForm, MoodList } from "./components";
 import styles from "./styles.module.scss";
-import { PrimaryButton } from "@/client/components";
-import { type CSSProperties, type ChangeEvent, type FC, useState } from "react";
+import { AddCircle } from "@/client/assets/icons";
+import { Button } from "@/client/components";
+import { type FC, useState } from "react";
 
 export const MoodTracker: FC = () => {
-  const [mood, setMood] = useState(50);
+  const [formOpened, setFormOpened] = useState<boolean>(false);
 
-  const handleMoodChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setMood(Number(e.target.value));
+  const openFormHandler = () => {
+    setFormOpened(true);
   };
 
-  const progress = `${(mood / 100) * 100}%`;
+  const closeFormHandler = () => {
+    setFormOpened(false);
+  };
+
+  const moods = [
+    {
+      mood: "нормально",
+      time: "9:28",
+    },
+  ];
+
+  const isFormOpened = formOpened || !moods.length;
 
   return (
     <div className={styles.mood}>
-      <h3 className={styles.title}>Настроение</h3>
-      <div className={styles.moodTrackerContainer}>
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={mood}
-          onChange={handleMoodChange}
-          className={styles.moodTracker}
-          style={{ "--progress": progress } as CSSProperties}
-        />
+      <div className={styles.moodHeader}>
+        <h3 className={styles.title}>Настроение</h3>
+        {!isFormOpened && (
+          <Button
+            onClick={openFormHandler}
+            className={styles.addButton}
+          >
+            <AddCircle />
+          </Button>
+        )}
       </div>
-      <div className={styles.moodValueContainer}>
-        <div className={styles.moodValue}>
-          {mood >= 70 ? "Отлично" : mood >= 40 ? "Нормально" : "Плохо"}
-        </div>
-      </div>
-      <PrimaryButton className={styles.button}>Сохранить</PrimaryButton>
+      {isFormOpened && <MoodForm onSubmit={closeFormHandler} />}
+      <MoodList moods={moods} />
     </div>
   );
 };

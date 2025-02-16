@@ -1,94 +1,25 @@
-@use "@/client/styles/colors" as *;
 @use "@/client/styles/fontStyles" as *;
 
 .title {
   @include titleCygre;
+}
+
+.moodHeader {
   margin-bottom: 20px;
-}
-
-.moodTrackerContainer {
-  width: 100%;
-  height: 44px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-.moodTracker {
-  position: relative;
-  width: 100%;
-  height: 16px;
-  background: $color-blue30;
-  border-radius: 8px;
-  outline: none;
-  -webkit-appearance: none;
-  appearance: none;
-  background: linear-gradient(
-    to right,
-    #2f52ff var(--progress),
-    #ddd var(--progress)
-  );
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 6px;
-    right: 4px;
-    width: 4px;
-    height: 4px;
-    background-color: $color-blue80;
-    border-radius: 2px;
-    z-index: 0;
-  }
-
-  &::-webkit-slider-thumb {
-    display: block;
-    position: relative;
-    -webkit-appearance: none;
-    appearance: none;
-    width: 4px;
-    height: 44px;
-    background: $color-blue80;
-    border-radius: 2px;
-    cursor: pointer;
-    outline: 6px solid $color-white100;
-    z-index: 1;
-  }
-
-  &::-moz-range-thumb {
-    width: 4px;
-    height: 44px;
-    background-color: $color-blue80;
-    border-radius: 2px;
-    cursor: pointer;
-  }
-
-  &::-ms-thumb {
-    width: 4px;
-    height: 44px;
-    background: $color-blue80;
-    border-radius: 2px;
-    cursor: pointer;
-  }
-}
-
-.moodValueContainer {
+.addButton {
+  height: 30px;
+  width: 30px;
   display: flex;
   justify-content: center;
-}
-
-.moodValue {
-  height: 32px;
-  padding: 0 10px;
-  margin-top: 10px;
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  @include bodyS;
-  color: $color-blue80;
-  background-color: $color-blue30;
-  border-radius: 12px;
-}
 
-.button {
-  margin-top: 20px;
+  & > svg {
+    width: 100%;
+    height: 100%;
+  }
 }

@@ -1,0 +1,66 @@
+@use "@/client/styles/colors" as *;
+
+.rangeInput {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  background: $color-blue30;
+  border-radius: 8px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(
+    to right,
+    $color-blue80 var(--progress),
+    $color-blue30 var(--progress)
+  );
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    right: 4px;
+    width: 4px;
+    height: 4px;
+    background-color: $color-blue80;
+    border-radius: 2px;
+    z-index: 0;
+  }
+
+  &::-webkit-slider-thumb {
+    display: block;
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 4px;
+    height: 44px;
+    background: $color-blue80;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: 6px solid $color-white100;
+    z-index: 1;
+  }
+
+  &::-moz-range-thumb {
+    width: 4px;
+    height: 44px;
+    background-color: $color-blue80;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  &::-ms-thumb {
+    width: 4px;
+    height: 44px;
+    background: $color-blue80;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+}
