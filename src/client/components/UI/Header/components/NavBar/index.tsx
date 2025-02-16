@@ -19,26 +19,26 @@ type Nav = Record<keyof typeof ACCESS, NavLink[]>;
 
 const rolesNav: Nav = {
   admin: [
-    { href: pages.usersAcitivity.path, title: "Активность пользователей" },
+    { href: pages.usersActivity.path, title: "Активность пользователей" },
     { href: pages.usersFeedbacks.path, title: "Обратная связь" },
     { href: pages.usersResults.path, title: "Результаты тестов" },
   ],
   client: [
     { href: pages.main.path, title: "План", Icon: Grid4 },
     { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
-    { href: pages.psychologist.path, title: "Психологи", Icon: Flame },
+    { href: pages.practice.path, title: "Практика", Icon: Flame },
     { href: pages.exercises.path, title: "Тесты", Icon: Leaderboard },
   ],
   hr: [
     { href: pages.main.path, title: "План", Icon: Grid4 },
     { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
-    { href: pages.psychologist.path, title: "Психологи", Icon: Flame },
+    { href: pages.practice.path, title: "Практика", Icon: Flame },
     { href: pages.exercises.path, title: "Тесты", Icon: Leaderboard },
   ],
   psychologist: [
     { href: pages.main.path, title: "План", Icon: Grid4 },
     { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
-    { href: pages.psychologist.path, title: "Психологи", Icon: Flame },
+    { href: pages.practice.path, title: "Практика", Icon: Flame },
     { href: pages.exercises.path, title: "Тесты", Icon: Leaderboard },
   ],
   unauthorized: [],

@@ -1,0 +1,6 @@
+@use "@/client/styles/fontStyles" as *;
+
+.title {
+  @include titleXS;
+  margin-bottom: 16px;
+}

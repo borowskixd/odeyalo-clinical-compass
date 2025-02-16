@@ -14,3 +14,4 @@ export * from "./Article";
 export * from "./HrSurvey";
 export * from "./PsychologistSurvey";
 export * from "./Notes";
+export * from "./Practice";

@@ -80,6 +80,12 @@ export const ProfileButton: FC = () => {
           )}
           <Button
             className={styles.popupItem}
+            href={pages.psychologist.path}
+          >
+            Психологи
+          </Button>
+          <Button
+            className={styles.popupItem}
             onClick={logoutHandler}
           >
             Выйти

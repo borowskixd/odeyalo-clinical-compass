@@ -15,3 +15,4 @@ export * from "./TextSnippet";
 export * from "./ArrowLeft";
 export * from "./ArrowRight";
 export * from "./AddCircle";
+export * from "./ArrowForward";

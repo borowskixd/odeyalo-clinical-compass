@@ -76,7 +76,8 @@ export interface Pages {
   articles: Page;
   article: Page<{ id: string }>;
   notes: Page;
-  usersAcitivity: Page;
+  practice: Page;
+  usersActivity: Page;
   usersFeedbacks: Page;
   usersResults: Page;
 }
