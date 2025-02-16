@@ -22,7 +22,7 @@ const notesApi = api.injectEndpoints({
           }
           return "/moods";
         },
-        providesTags: ["Auth"],
+        providesTags: ["Auth", "Moods"],
       }),
       saveMood: builder.mutation<ResponseSuccessInfo, SaveMoodRequestData>({
         query: (body: SaveMoodRequestData) => ({

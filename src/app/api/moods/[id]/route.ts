@@ -1,3 +1,3 @@
 import { MoodRoutes } from "@/server/routes";
 
-export const { GET, POST } = MoodRoutes;
+export const { GET } = MoodRoutes;

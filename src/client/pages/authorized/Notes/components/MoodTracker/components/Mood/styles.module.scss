@@ -17,6 +17,7 @@
   width: 100%;
   @include titleCygre;
   text-align: center;
+  text-transform: lowercase;
 }
 
 .time {

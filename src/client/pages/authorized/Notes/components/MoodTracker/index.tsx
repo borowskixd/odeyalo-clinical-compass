@@ -49,7 +49,7 @@ export const MoodTracker: FC = () => {
           </Button>
         )}
       </div>
-      {isFormOpened && <MoodForm onSubmit={closeFormHandler} />}
+      {isFormOpened && <MoodForm onSubmitAction={closeFormHandler} />}
       <MoodList moods={moods} />
     </div>
   );

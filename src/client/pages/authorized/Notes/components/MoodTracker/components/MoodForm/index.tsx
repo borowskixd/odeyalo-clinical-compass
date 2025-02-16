@@ -1,24 +1,46 @@
+"use client";
+
 import { MoodTrackerValue } from "./components";
 import styles from "./styles.module.scss";
 import { FormikForm, PrimaryButton } from "@/client/components";
+import { useAppSelector } from "@/client/hooks";
+import { selectNotesCalendarDate, useSaveMoodMutation } from "@/client/redux";
+import { compareDates, mapDateToApiDateFormat } from "@/shared/utils";
 import { type FC } from "react";
 
 interface Props {
-  onSubmit: () => void;
+  onSubmitAction: () => void;
 }
 
 interface InitialValues {
-  tracker: number;
+  score: number;
 }
 
 const initialValues: InitialValues = {
-  tracker: 50,
+  score: 50,
 };
 
-export const MoodForm: FC<Props> = ({ onSubmit }) => {
+export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
+  const [saveMood] = useSaveMoodMutation();
+  const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
+
   const submitHandler = (values: InitialValues) => {
-    console.log(values);
-    onSubmit();
+    if (
+      compareDates(notesCalendarDate, "current", {
+        fullYear: true,
+        month: true,
+        date: true,
+      })
+    ) {
+      saveMood(values);
+    } else {
+      saveMood({
+        ...values,
+        date: mapDateToApiDateFormat(notesCalendarDate),
+      });
+    }
+
+    onSubmitAction();
   };
 
   return (
@@ -29,7 +51,7 @@ export const MoodForm: FC<Props> = ({ onSubmit }) => {
     >
       <MoodTrackerValue />
       <FormikForm.RangeInput
-        name="tracker"
+        name="score"
         min="0"
         max="100"
       />

@@ -1,4 +1,5 @@
 import styles from "./styles.module.scss";
+import { mapMoodTrackerScoreToMoodStatus } from "@/client/utils";
 import { type FC } from "react";
 
 interface MoodProps {
@@ -14,7 +15,9 @@ export const Mood: FC<MoodProps> = ({ score, date }) => {
 
   return (
     <div className={styles.moodContainer}>
-      <div className={styles.mood}>{score}</div>
+      <div className={styles.mood}>
+        {mapMoodTrackerScoreToMoodStatus(score)}
+      </div>
       <div className={styles.time}>{`${hoursStr}:${minutesStr}`}</div>
     </div>
   );

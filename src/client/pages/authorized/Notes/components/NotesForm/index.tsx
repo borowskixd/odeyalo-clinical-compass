@@ -1,6 +1,5 @@
 import { NoteList } from "./components/NoteList";
 import styles from "./styles.module.scss";
-import { PrimaryButton } from "@/client/components";
 import { type FC } from "react";
 
 export const NotesForm: FC = () => {
@@ -8,7 +7,7 @@ export const NotesForm: FC = () => {
     <div className={styles.notes}>
       <h2 className={styles.title}>Заметки</h2>
       <NoteList />
-      <PrimaryButton className={styles.button}>Написать заметку</PrimaryButton>
+      {/*<PrimaryButton className={styles.button}>Написать заметку</PrimaryButton>*/}
     </div>
   );
 };

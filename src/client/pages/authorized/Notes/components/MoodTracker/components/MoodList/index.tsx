@@ -10,10 +10,10 @@ interface Props {
 export const MoodList: FC<Props> = ({ moods }) => {
   return (
     <div className={styles.list}>
-      {moods.map((mood, index) => {
+      {moods.map((mood) => {
         return (
           <Mood
-            key={index}
+            key={mood.id}
             score={mood.score}
             date={new Date(mood.date)}
           />
