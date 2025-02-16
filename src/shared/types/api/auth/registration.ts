@@ -12,6 +12,10 @@ export interface RegistrationApiRequestData {
   email: string;
   password: string;
   confirm_password: string;
+  birth_date: string;
+  gender: string;
+  city: string;
+  phone_number: string;
 }
 
 export interface RegistrationResponseData {
