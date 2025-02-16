@@ -2,35 +2,50 @@
 
 import { Day, Header, WeekDays } from "./components";
 import styles from "./styles.module.scss";
-import { type FC, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/client/hooks";
+import { notesActions, selectNotesCalendarDate } from "@/client/redux";
+import { type FC } from "react";
 
 export const Calendar: FC = () => {
-  const [date, setDate] = useState<Date>(new Date());
-  const [selectedDate, setSelectedDate] = useState<number>(date.getDate());
+  const currentDate = useAppSelector(selectNotesCalendarDate);
+  const dispatch = useAppDispatch();
 
   const prevMonthHandler = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
-    setSelectedDate(1);
+    const date = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() - 1,
+      1,
+    );
+    dispatch(notesActions.setNotesCalendarDate(date));
   };
 
   const nextMonthHandler = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
-    setSelectedDate(1);
+    const date = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1,
+      1,
+    );
+    dispatch(notesActions.setNotesCalendarDate(date));
   };
 
-  const dayClickHandler = (date: number) => {
-    setSelectedDate(date);
+  const dayClickHandler = (dateDay: number) => {
+    const date = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      dateDay,
+    );
+    dispatch(notesActions.setNotesCalendarDate(date));
   };
 
   const renderDays = () => {
     const daysInMonth = new Date(
-      date.getFullYear(),
-      date.getMonth() + 1,
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1,
       0,
     ).getDate();
     const firstMonthDay = new Date(
-      date.getFullYear(),
-      date.getMonth(),
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
       1,
     ).getDay();
     const firstWeekDay = firstMonthDay === 0 ? 6 : firstMonthDay - 1;
@@ -54,7 +69,7 @@ export const Calendar: FC = () => {
           <Day
             key={`${index} ${date}`}
             date={date}
-            selected={selectedDate === date}
+            selected={currentDate.getDate() === date}
             onClick={dayClickHandler}
           />
         );
@@ -65,7 +80,7 @@ export const Calendar: FC = () => {
   return (
     <div className={styles.calendar}>
       <Header
-        date={date}
+        date={currentDate}
         prevMonthHandler={prevMonthHandler}
         nextMonthHandler={nextMonthHandler}
       />
