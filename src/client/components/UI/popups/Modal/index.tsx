@@ -7,12 +7,12 @@ import { type FC, type MouseEvent, type ReactNode, useEffect } from "react";
 
 interface Props {
   isOpen: boolean;
-  onClose: () => void;
+  onCloseAction: () => void;
   title: string;
   content: ReactNode;
 }
 
-export const Modal: FC<Props> = ({ isOpen, title, onClose, content }) => {
+export const Modal: FC<Props> = ({ isOpen, title, onCloseAction, content }) => {
   const modalsPortal = document.getElementById("modals");
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export const Modal: FC<Props> = ({ isOpen, title, onClose, content }) => {
 
   const clickContainerHandler = (event: MouseEvent<HTMLElement>) => {
     if (event.target === event.currentTarget) {
-      onClose();
+      onCloseAction();
     }
   };
 
@@ -43,7 +43,7 @@ export const Modal: FC<Props> = ({ isOpen, title, onClose, content }) => {
           <div className={styles.header}>
             <h4 className={styles.title}>{title}</h4>
             <button
-              onClick={onClose}
+              onClick={onCloseAction}
               className={styles.closeButton}
             >
               <CloseIcon className={styles.closeIcon} />

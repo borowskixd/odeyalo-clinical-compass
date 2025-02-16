@@ -1,0 +1,56 @@
+"use client";
+
+import { MoodForm, MoodList } from "./components";
+import styles from "./styles.module.scss";
+import { AddCircle } from "@/client/assets/icons";
+import { Button, DefaultError, LoadingLoop } from "@/client/components";
+import { useAppSelector } from "@/client/hooks";
+import { selectNotesCalendarDate } from "@/client/redux";
+import { useGetMoodsQuery } from "@/client/redux/features/notes/api";
+import { type FC, useEffect, useState } from "react";
+
+export const MoodTracker: FC = () => {
+  const [formOpened, setFormOpened] = useState<boolean>(false);
+  const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
+  const {
+    data: moods,
+    isLoading,
+    isError,
+    error,
+  } = useGetMoodsQuery(notesCalendarDate);
+
+  useEffect(() => {
+    setFormOpened(false);
+  }, [notesCalendarDate, setFormOpened]);
+
+  if (isLoading) return <LoadingLoop />;
+  if (isError || !moods) return <DefaultError error={error} />;
+
+  const openFormHandler = () => {
+    setFormOpened(true);
+  };
+
+  const closeFormHandler = () => {
+    setFormOpened(false);
+  };
+
+  const isFormOpened = formOpened || !moods.length;
+
+  return (
+    <div className={styles.mood}>
+      <div className={styles.moodHeader}>
+        <h3 className={styles.title}>Настроение</h3>
+        {!isFormOpened && (
+          <Button
+            onClick={openFormHandler}
+            className={styles.addButton}
+          >
+            <AddCircle />
+          </Button>
+        )}
+      </div>
+      {isFormOpened && <MoodForm onSubmitAction={closeFormHandler} />}
+      <MoodList moods={moods} />
+    </div>
+  );
+};

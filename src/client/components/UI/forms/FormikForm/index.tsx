@@ -1,6 +1,12 @@
 "use client";
 
-import { FileInput, Input, MaskedInput, Textarea } from "./components";
+import {
+  FileInput,
+  Input,
+  MaskedInput,
+  RangeInput,
+  Textarea,
+} from "./components";
 import styles from "./styles.module.scss";
 import { Form, Formik, type FormikConfig, type FormikValues } from "formik";
 import React, { type ReactNode } from "react";
@@ -31,3 +37,4 @@ FormikForm.Input = Input;
 FormikForm.Textarea = Textarea;
 FormikForm.MaskedInput = MaskedInput;
 FormikForm.FileInput = FileInput;
+FormikForm.RangeInput = RangeInput;

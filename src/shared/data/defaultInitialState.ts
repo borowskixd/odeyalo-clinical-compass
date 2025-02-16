@@ -4,6 +4,7 @@ import { type InitialState, type ReducersNames } from "../types";
 export const reducers: ReducersNames = {
   authReducer: "auth",
   popupsReducer: "popups",
+  notesReducer: "notes",
 };
 
 export const defaultInitialState: InitialState = {
@@ -27,5 +28,8 @@ export const defaultInitialState: InitialState = {
       isOpen: false,
       label: "",
     },
+  },
+  notesReducer: {
+    calendarDate: new Date(),
   },
 };

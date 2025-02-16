@@ -1,5 +1,5 @@
 import { api } from "../api";
-import { authReducer, popupsReducer } from "../features";
+import { authReducer, notesReducer, popupsReducer } from "../features";
 import { type InitialState } from "@/shared/types";
 import {
   type Store,
@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,
   authReducer,
   popupsReducer,
+  notesReducer,
 });
 
 export const createStore = (initialState: InitialState): Store => {
@@ -20,7 +21,9 @@ export const createStore = (initialState: InitialState): Store => {
     reducer: rootReducer,
     preloadedState: initialState,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(api.middleware),
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }).concat(api.middleware),
     devTools: true,
   });
 };

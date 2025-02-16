@@ -1,19 +1,19 @@
-const monthes = [
-  "января",
-  "февраля",
-  "марта",
-  "апреля",
-  "мая",
-  "июня",
-  "июля",
-  "августа",
-  "сентября",
-  "октября",
-  "ноябра",
-  "декабря",
+export const months = [
+  "январь",
+  "февраль",
+  "март",
+  "апрель",
+  "май",
+  "июнь",
+  "июль",
+  "август",
+  "сентябрь",
+  "октябрь",
+  "ноябрь",
+  "декабрь",
 ];
 
-const days = [
+export const days = [
   "воскресенье",
   "понедельник",
   "вторник",
@@ -75,7 +75,7 @@ export const mapDatetimeToText = (datetime: string): string => {
   minutes = minutes.length === 1 ? "0" + minutes : minutes;
 
   const result = `${date.getDate()} ${
-    monthes[date.getMonth()]
+    months[date.getMonth()]
   } ${date.getFullYear()}, ${hours}:${minutes}`;
   return result;
 };
@@ -86,6 +86,83 @@ export const getCurrentDay = (): string => {
   const day = days[date.getDay()];
   const mappedDay = day.charAt(0).toUpperCase() + day.slice(1);
 
-  const result = `${mappedDay}, ${date.getDate()} ${monthes[date.getMonth()]}`;
+  const result = `${mappedDay}, ${date.getDate()} ${months[date.getMonth()]}`;
+  return result;
+};
+
+export const mapDateToApiDateFormat = (date: Date) => {
+  const month =
+    date.getMonth() + 1 < 10
+      ? "0" + (date.getMonth() + 1)
+      : date.getMonth() + 1;
+  const dateDay = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+  return `${date.getFullYear()}-${month}-${dateDay}`;
+};
+
+export const compareDates = (
+  date1: Date,
+  date2: Date | "current",
+  config?: {
+    date?: boolean;
+    day?: boolean;
+    month?: boolean;
+    fullYear?: boolean;
+    hours?: boolean;
+    minutes?: boolean;
+    seconds?: boolean;
+    milliseconds?: boolean;
+    time?: boolean;
+    timezoneOffset?: boolean;
+  },
+) => {
+  let hasConfig = false;
+  let result = true;
+
+  if (!config) return date1 === date2;
+
+  if (date2 === "current") date2 = new Date();
+
+  if (config.date) {
+    result = result && date1.getDate() === date2.getDate();
+    hasConfig = true;
+  }
+  if (config.day) {
+    result = result && date1.getDay() === date2.getDay();
+    hasConfig = true;
+  }
+  if (config.month) {
+    result = result && date1.getMonth() === date2.getMonth();
+    hasConfig = true;
+  }
+  if (config.fullYear) {
+    result = result && date1.getFullYear() === date2.getFullYear();
+    hasConfig = true;
+  }
+  if (config.hours) {
+    result = result && date1.getHours() === date2.getHours();
+    hasConfig = true;
+  }
+  if (config.minutes) {
+    result = result && date1.getMinutes() === date2.getMinutes();
+    hasConfig = true;
+  }
+  if (config.seconds) {
+    result = result && date1.getSeconds() === date2.getSeconds();
+    hasConfig = true;
+  }
+  if (config.milliseconds) {
+    result = result && date1.getMilliseconds() === date2.getMilliseconds();
+    hasConfig = true;
+  }
+  if (config.time) {
+    result = result && date1.getTime() === date2.getTime();
+    hasConfig = true;
+  }
+  if (config.timezoneOffset) {
+    result = result && date1.getTimezoneOffset() === date2.getTimezoneOffset();
+    hasConfig = true;
+  }
+
+  if (!hasConfig) return date1 === date2;
   return result;
 };

@@ -1,6 +1,7 @@
+import { type IconProps } from "@/client/assets/icons/types";
 import { type FC } from "react";
 
-export const ArrowIcon: FC<any> = (props) => {
+export const ArrowIcon: FC<IconProps> = (props) => {
   return (
     <svg
       width="20"

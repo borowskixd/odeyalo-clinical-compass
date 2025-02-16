@@ -1,6 +1,7 @@
+import { type IconProps } from "@/client/assets/icons/types";
 import { type FC } from "react";
 
-export const CloseIcon: FC<any> = (props) => {
+export const CloseIcon: FC<IconProps> = (props) => {
   return (
     <svg
       width="24"

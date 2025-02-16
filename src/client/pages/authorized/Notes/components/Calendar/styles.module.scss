@@ -1,0 +1,10 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.calendar {
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
+  background-color: $color-white70;
+  border-radius: 12px;
+}

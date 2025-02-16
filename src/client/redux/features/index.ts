@@ -8,3 +8,4 @@ export * from "./tests";
 export * from "./hr";
 export * from "./feedbacks";
 export * from "./dailyTasks";
+export * from "./notes";

@@ -36,9 +36,14 @@ export interface AuthState {
   ua: UserAgent;
 }
 
+export interface NotesState {
+  calendarDate: Date;
+}
+
 export interface InitialState {
   authReducer: AuthState;
   popupsReducer: PopupsState;
+  notesReducer: NotesState;
 }
 
 export type ReducersNames = Record<keyof InitialState, string>;

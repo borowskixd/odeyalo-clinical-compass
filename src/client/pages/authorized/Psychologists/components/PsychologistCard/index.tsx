@@ -28,7 +28,7 @@ export const PsychologistCard: FC<Props> = ({ psychologist }) => {
       </div>
       <Modal
         title="Заявка психологу"
-        onClose={closeModal}
+        onCloseAction={closeModal}
         isOpen={modalIsOpen}
         content={
           <SendApplicationForm
