@@ -27,4 +27,8 @@
     height: 32px;
     width: 32px;
   }
+
+  &:disabled {
+    opacity: 0.6;
+  }
 }

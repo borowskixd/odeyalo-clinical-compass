@@ -14,10 +14,13 @@ const notesApi = api.injectEndpoints({
         query: (id) => `/moods/${id}`,
         providesTags: ["Auth"],
       }),
-      getMoods: builder.query<GetMoodsResponseData, Date | undefined>({
-        query: (date: Date) => {
-          const dateString = mapDateToApiDateFormat(date);
-          return `/moods${date ? `?date=${dateString}` : ""}`;
+      getMoods: builder.query<GetMoodsResponseData, Date | void>({
+        query: (date?: Date) => {
+          if (date) {
+            const dateString = mapDateToApiDateFormat(date);
+            return `/moods?date=${dateString}`;
+          }
+          return "/moods";
         },
         providesTags: ["Auth"],
       }),

@@ -3,12 +3,18 @@
 import { Day, Header, WeekDays } from "./components";
 import styles from "./styles.module.scss";
 import { useAppDispatch, useAppSelector } from "@/client/hooks";
-import { notesActions, selectNotesCalendarDate } from "@/client/redux";
+import {
+  notesActions,
+  selectNotesCalendarDate,
+  useGetMoodsQuery,
+} from "@/client/redux";
+import { compareDates } from "@/shared/utils";
 import { type FC } from "react";
 
 export const Calendar: FC = () => {
   const currentDate = useAppSelector(selectNotesCalendarDate);
   const dispatch = useAppDispatch();
+  const { data: moods } = useGetMoodsQuery();
 
   const prevMonthHandler = () => {
     const date = new Date(
@@ -28,12 +34,7 @@ export const Calendar: FC = () => {
     dispatch(notesActions.setNotesCalendarDate(date));
   };
 
-  const dayClickHandler = (dateDay: number) => {
-    const date = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      dateDay,
-    );
+  const dayClickHandler = (date: Date) => {
     dispatch(notesActions.setNotesCalendarDate(date));
   };
 
@@ -64,13 +65,29 @@ export const Calendar: FC = () => {
     }
 
     return days.map((el, index) =>
-      el.map((date) => {
+      el.map((dateDay) => {
+        const date = dateDay
+          ? new Date(currentDate.getFullYear(), currentDate.getMonth(), dateDay)
+          : null;
+
+        const marked =
+          !!moods &&
+          !!date &&
+          !!moods.find((mood) =>
+            compareDates(new Date(mood.date), date, {
+              fullYear: true,
+              month: true,
+              date: true,
+            }),
+          );
+
         return (
           <Day
             key={`${index} ${date}`}
             date={date}
-            selected={currentDate.getDate() === date}
+            selected={currentDate.getDate() === dateDay}
             onClick={dayClickHandler}
+            marked={marked}
           />
         );
       }),

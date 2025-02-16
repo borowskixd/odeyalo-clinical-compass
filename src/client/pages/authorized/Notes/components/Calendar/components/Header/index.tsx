@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 import { ArrowLeft, ArrowRight } from "@/client/assets/icons";
 import { Button } from "@/client/components";
-import { months } from "@/shared/utils";
+import { compareDates, months } from "@/shared/utils";
 import { type FC } from "react";
 
 interface HeaderProps {
@@ -15,6 +15,11 @@ export const Header: FC<HeaderProps> = ({
   prevMonthHandler,
   nextMonthHandler,
 }) => {
+  const isCurrentMonth = compareDates(date, "current", {
+    fullYear: true,
+    month: true,
+  });
+
   return (
     <div className={styles.header}>
       <h2 className={styles.title}>
@@ -30,6 +35,7 @@ export const Header: FC<HeaderProps> = ({
         <Button
           className={styles.button}
           onClick={nextMonthHandler}
+          disabled={isCurrentMonth}
         >
           <ArrowRight />
         </Button>

@@ -10,8 +10,6 @@ const getMoods = createRequest(async (request, serverFetch) => {
 
   const { data } = serverRequest;
 
-  console.log(data);
-
   return NextResponse.json(mapGetMoodsResponse(data));
 });
 

@@ -47,4 +47,8 @@
       background-color: $color-black20;
     }
   }
+
+  &:disabled {
+    opacity: 0.6;
+  }
 }

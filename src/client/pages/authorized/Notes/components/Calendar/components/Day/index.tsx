@@ -1,11 +1,12 @@
 import styles from "./styles.module.scss";
+import { Button } from "@/client/components";
 import { type FC } from "react";
 
 interface WeekDaysProps {
-  date?: number | null;
+  date?: Date | null;
   selected?: boolean;
   marked?: boolean;
-  onClick: (date: number) => void;
+  onClick: (date: Date) => void;
 }
 
 export const Day: FC<WeekDaysProps> = ({
@@ -14,14 +15,17 @@ export const Day: FC<WeekDaysProps> = ({
   marked = false,
   onClick,
 }) => {
+  const isDisabled = !!date && date > new Date();
+
   return (
-    <div
+    <Button
       className={`${styles.day} ${date && selected && styles.selected} ${date && marked && styles.marked}`}
       onClick={() => {
         if (date) onClick(date);
       }}
+      disabled={isDisabled}
     >
-      {date}
-    </div>
+      {date && date.getDate()}
+    </Button>
   );
 };
