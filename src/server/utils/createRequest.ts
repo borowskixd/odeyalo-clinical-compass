@@ -1,6 +1,7 @@
 import { type AxiosRequestConfig, type AxiosResponse } from "axios";
 import { type NextRequest, NextResponse } from "next/server";
 import { mapErrorResponse } from "@/server/mappers";
+import { addSearchParams } from "@/server/utils";
 import { serverAxios } from "@/shared/config/api";
 import { type ResponseError } from "@/shared/types";
 
@@ -48,7 +49,7 @@ const createServerFetch = (request: NextRequest): ServerFetch => {
     ) => {
       const newConfig: AxiosRequestConfig<D> = {
         ...config,
-        url,
+        url: addSearchParams(url, request),
         data,
         method,
         headers: {
@@ -85,13 +86,16 @@ export const createRequest = <P extends Record<string, string> = any>(
 
       return response;
     } catch (error) {
-      const errorRespose = mapErrorResponse(error);
+      const errorResponse = mapErrorResponse(error);
 
-      let response: NextResponse = NextResponse.json(errorRespose.serialize(), {
-        status: errorRespose.status,
-      });
+      let response: NextResponse = NextResponse.json(
+        errorResponse.serialize(),
+        {
+          status: errorResponse.status,
+        },
+      );
 
-      if (reject) response = reject(response, errorRespose);
+      if (reject) response = reject(response, errorResponse);
 
       return response;
     }

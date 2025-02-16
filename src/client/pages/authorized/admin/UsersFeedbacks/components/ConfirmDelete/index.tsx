@@ -16,7 +16,7 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onCancel}
+      onCloseAction={onCancel}
       title="Вы уверены, что хотите удалить этот отзыв?"
       content={
         <>

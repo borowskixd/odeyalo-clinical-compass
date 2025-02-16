@@ -56,7 +56,7 @@ export const ExerciseCard: FC<Props> = ({ exercise }) => {
       <Modal
         isOpen={isOpen}
         title={exercise.title}
-        onClose={handleClose}
+        onCloseAction={handleClose}
         content={renderModalContent()}
       />
     </>

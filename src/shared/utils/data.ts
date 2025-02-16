@@ -90,6 +90,15 @@ export const getCurrentDay = (): string => {
   return result;
 };
 
+export const mapDateToApiDateFormat = (date: Date) => {
+  const month =
+    date.getMonth() + 1 < 10
+      ? "0" + (date.getMonth() + 1)
+      : date.getMonth() + 1;
+  const dateDay = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+  return `${date.getFullYear()}-${month}-${dateDay}`;
+};
+
 export const compareDates = (
   date1: Date,
   date2: Date | "current",
