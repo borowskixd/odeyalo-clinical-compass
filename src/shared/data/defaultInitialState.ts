@@ -30,6 +30,6 @@ export const defaultInitialState: InitialState = {
     },
   },
   notesReducer: {
-    calendarDate: new Date(),
+    calendarDate: null,
   },
 };

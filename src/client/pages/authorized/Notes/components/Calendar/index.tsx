@@ -12,14 +12,14 @@ import { compareDates } from "@/shared/utils";
 import { type FC } from "react";
 
 export const Calendar: FC = () => {
-  const currentDate = useAppSelector(selectNotesCalendarDate);
+  const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
   const dispatch = useAppDispatch();
   const { data: moods } = useGetMoodsQuery();
 
   const prevMonthHandler = () => {
     const date = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() - 1,
+      notesCalendarDate.getFullYear(),
+      notesCalendarDate.getMonth() - 1,
       1,
     );
     dispatch(notesActions.setNotesCalendarDate(date));
@@ -27,8 +27,8 @@ export const Calendar: FC = () => {
 
   const nextMonthHandler = () => {
     const date = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() + 1,
+      notesCalendarDate.getFullYear(),
+      notesCalendarDate.getMonth() + 1,
       1,
     );
     dispatch(notesActions.setNotesCalendarDate(date));
@@ -40,13 +40,13 @@ export const Calendar: FC = () => {
 
   const renderDays = () => {
     const daysInMonth = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() + 1,
+      notesCalendarDate.getFullYear(),
+      notesCalendarDate.getMonth() + 1,
       0,
     ).getDate();
     const firstMonthDay = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
+      notesCalendarDate.getFullYear(),
+      notesCalendarDate.getMonth(),
       1,
     ).getDay();
     const firstWeekDay = firstMonthDay === 0 ? 6 : firstMonthDay - 1;
@@ -67,7 +67,11 @@ export const Calendar: FC = () => {
     return days.map((el, index) =>
       el.map((dateDay) => {
         const date = dateDay
-          ? new Date(currentDate.getFullYear(), currentDate.getMonth(), dateDay)
+          ? new Date(
+              notesCalendarDate.getFullYear(),
+              notesCalendarDate.getMonth(),
+              dateDay,
+            )
           : null;
 
         const marked =
@@ -85,7 +89,7 @@ export const Calendar: FC = () => {
           <Day
             key={`${index} ${date}`}
             date={date}
-            selected={currentDate.getDate() === dateDay}
+            selected={notesCalendarDate.getDate() === dateDay}
             onClick={dayClickHandler}
             marked={marked}
           />
@@ -97,7 +101,7 @@ export const Calendar: FC = () => {
   return (
     <div className={styles.calendar}>
       <Header
-        date={currentDate}
+        date={notesCalendarDate}
         prevMonthHandler={prevMonthHandler}
         nextMonthHandler={nextMonthHandler}
       />

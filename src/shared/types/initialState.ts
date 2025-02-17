@@ -37,7 +37,7 @@ export interface AuthState {
 }
 
 export interface NotesState {
-  calendarDate: Date;
+  calendarDate: Date | null;
 }
 
 export interface InitialState {
