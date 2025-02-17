@@ -1,0 +1,13 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.date {
+  margin: 10px 0 30px;
+  @include bodyLBold;
+}
+
+.note {
+  padding: 20px;
+  background-color: $color-white70;
+  border-radius: 12px;
+}
