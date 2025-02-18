@@ -5,7 +5,7 @@ import type {
 } from "@/shared/types";
 import { mapDateToApiDateFormat } from "@/shared/utils";
 
-export const GetNotesCalendarFilledDatesResponse = (
+export const mapGetNotesCalendarFilledDatesResponse = (
   notesData: GetNotesApiResponseData,
   moodTrackerData: GetMoodsApiResponseData,
 ): GetNotesCalendarFilledDatesResponseData => {

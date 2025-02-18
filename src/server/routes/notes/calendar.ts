@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { GetNotesCalendarFilledDatesResponse } from "@/server/mappers";
+import { mapGetNotesCalendarFilledDatesResponse } from "@/server/mappers";
 import { createRequest } from "@/server/utils";
 import {
   type GetMoodsApiResponseData,
@@ -21,7 +21,7 @@ const getNotesCalendarFilledDates = createRequest(
     ]);
 
     return NextResponse.json(
-      GetNotesCalendarFilledDatesResponse(
+      mapGetNotesCalendarFilledDatesResponse(
         notesRequest.data,
         moodTrackerRequest.data,
       ),
