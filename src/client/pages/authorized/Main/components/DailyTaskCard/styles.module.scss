@@ -10,8 +10,7 @@
   background-color: $color-white70;
   border-radius: 12px;
 
-  &.completed,
-  &.notExist {
+  &.completed {
     color: $color-blue60;
     background-color: $color-blue30;
   }
