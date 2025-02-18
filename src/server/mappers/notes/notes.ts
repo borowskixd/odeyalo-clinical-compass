@@ -1,3 +1,4 @@
+import { mapGetNoteResponse } from "./note";
 import {
   type CreateNoteApiRequestData,
   type CreateNoteRequestData,
@@ -19,13 +20,5 @@ export const mapCreateNoteRequest = (
 export const mapGetNotesResponse = (
   data: GetNotesApiResponseData,
 ): GetNotesResponseData => {
-  return data.map((note) => {
-    const { text, free_diary_id, created_at } = note;
-
-    return {
-      id: free_diary_id,
-      note: text,
-      date: created_at,
-    };
-  });
+  return data.map((note) => mapGetNoteResponse(note));
 };
