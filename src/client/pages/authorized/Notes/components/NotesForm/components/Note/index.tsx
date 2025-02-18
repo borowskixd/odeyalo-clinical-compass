@@ -1,16 +1,26 @@
 import styles from "./styles.module.scss";
+import { pages } from "@/shared/data";
 import { type FC } from "react";
 
 interface NoteProps {
-  text: string;
-  time: string;
+  id: string;
+  note: string;
+  date: Date;
 }
 
-export const Note: FC<NoteProps> = ({ text, time }) => {
+export const Note: FC<NoteProps> = ({ id, note, date }) => {
+  const minutes =
+    date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+
+  const time = `${date.getHours()}:${minutes}`;
+
   return (
-    <div className={styles.note}>
-      <div className={styles.text}>{text}</div>
+    <a
+      className={styles.note}
+      href={pages.note.getLink({ params: { id } })}
+    >
+      <div className={styles.text}>{note}</div>
       <div className={styles.time}>{time}</div>
-    </div>
+    </a>
   );
 };

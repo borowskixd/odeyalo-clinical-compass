@@ -19,11 +19,12 @@ export const DailyTaskCard: FC<DailyTasks> = ({
 
   const taskLink = getDailyTaskLink(taskType, taskId);
 
+  if (!isExist) return null;
+
   return (
     <Link
       href={taskLink ?? "#"}
-      className={`${styles.card} ${completed ? styles.completed : ""} ${isActive ? styles.active : ""} ${isExist ? "" : styles.notExist}`}
-      title={isExist ? undefined : "Данное упражнение пока недоступно"}
+      className={`${styles.card} ${completed ? styles.completed : ""} ${isActive ? styles.active : ""}`}
     >
       <h4 className={styles.cardTitle}>{title}</h4>
       <p className={styles.cardDescription}>{description}</p>

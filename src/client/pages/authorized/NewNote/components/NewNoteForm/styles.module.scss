@@ -1,0 +1,14 @@
+@use "@/client/styles/fontStyles" as *;
+
+.form {
+  gap: 20px;
+}
+
+.noteInput {
+  min-height: 220px;
+  @include bodyL;
+
+  &::placeholder {
+    @include bodyL;
+  }
+}

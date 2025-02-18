@@ -16,7 +16,7 @@ export interface GetTestResultApiResponseData {
 interface TestScaleResultData {
   id: string;
   score: number;
-  recomendations: string;
+  recommendations: string;
 }
 
 export interface TestResultData {

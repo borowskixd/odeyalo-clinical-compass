@@ -55,7 +55,7 @@ export const ResultContent: FC = () => {
                   {score}, {border?.title}
                 </h5>
                 <p className={styles.resultItemDescription}>
-                  {scale?.recomendations}
+                  {scale?.recommendations}
                 </p>
               </div>
             </div>

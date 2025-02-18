@@ -62,6 +62,9 @@ export const getDailyTaskLink = (
     case "test": {
       return pages.exercise.getLink(getLinkConfig);
     }
+    case "moodTracker": {
+      return pages.notes.path;
+    }
   }
 
   return null;

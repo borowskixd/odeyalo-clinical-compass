@@ -66,6 +66,16 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
+  note: new Page<{ id: string }>("/practice/notes/:id", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
+  createNote: new Page("/practice/notes/new", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
   usersActivity: new Page("/admin/users/activity", [ACCESS.admin]),
   usersFeedbacks: new Page("/admin/users/feedbacks", [ACCESS.admin]),
   usersResults: new Page("/admin/users/results", [ACCESS.admin]),
