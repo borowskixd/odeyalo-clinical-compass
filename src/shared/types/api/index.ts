@@ -10,3 +10,4 @@ export * from "./tests";
 export * from "./feedbacks";
 export * from "./dailyTasks";
 export * from "./moods";
+export * from "./notes";

@@ -26,7 +26,7 @@ export const mapTestResultResponse = (
       ({ scale_id, score, user_recommendation }) => ({
         id: scale_id,
         score,
-        recomendations: user_recommendation,
+        recommendations: user_recommendation,
       }),
     ),
   };
