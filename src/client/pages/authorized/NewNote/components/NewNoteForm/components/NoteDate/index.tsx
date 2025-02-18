@@ -1,22 +1,15 @@
 "use client";
 
 import styles from "./styles.module.scss";
-import { useSearchParams } from "next/navigation";
 import { PageTitle } from "@/client/components";
 import { days, months } from "@/shared/utils";
 import { type FC } from "react";
 
-export const NoteDate: FC = () => {
-  const searchParams = useSearchParams();
+interface Props {
+  date: Date;
+}
 
-  const dateParam = searchParams.get("date");
-
-  let date: Date = new Date();
-
-  if (dateParam && !isNaN(new Date(dateParam).valueOf())) {
-    date = new Date(dateParam);
-  }
-
+export const NoteDate: FC<Props> = ({ date }) => {
   const minutes =
     date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
 
