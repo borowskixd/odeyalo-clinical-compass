@@ -9,10 +9,14 @@ interface FormValues {
   note: string;
 }
 
-export const SubmitButton: FC = () => {
+interface Props {
+  disabled: boolean;
+}
+
+export const SubmitButton: FC<Props> = ({ disabled }) => {
   const { values } = useFormikContext<FormValues>();
 
-  const isButtonDisabled = values.note === "";
+  const isButtonDisabled = values.note === "" || disabled;
 
   return (
     <PrimaryButton

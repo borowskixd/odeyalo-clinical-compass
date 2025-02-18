@@ -2,10 +2,13 @@
 
 import { NoteDate, SubmitButton } from "./components";
 import styles from "./styles.module.scss";
-import { useSearchParams } from "next/navigation";
-import { FormikForm } from "@/client/components";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FormErrorLabel, FormikForm } from "@/client/components";
+import { useCreateNoteMutation } from "@/client/redux";
+import { mapApiErrorMessage } from "@/client/utils";
+import { pages } from "@/shared/data";
 import { compareDates, mapDateToApiDateFormat } from "@/shared/utils";
-import { type FC } from "react";
+import { type FC, useEffect } from "react";
 
 interface InitialValues {
   note: string;
@@ -17,6 +20,15 @@ const initialValues: InitialValues = {
 
 export const NewNoteForm: FC = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const [createNote, { isLoading, isSuccess, isError, error }] =
+    useCreateNoteMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      router.push(pages.notes.path);
+    }
+  }, [isSuccess, router]);
 
   const dateParam = searchParams.get("date");
 
@@ -25,7 +37,12 @@ export const NewNoteForm: FC = () => {
   if (
     dateParam &&
     !isNaN(new Date(dateParam).valueOf()) &&
-    new Date() > new Date(dateParam)
+    new Date() > new Date(dateParam) &&
+    !compareDates(new Date(dateParam), "current", {
+      fullYear: true,
+      month: true,
+      date: true,
+    })
   ) {
     date = new Date(dateParam);
   }
@@ -34,9 +51,9 @@ export const NewNoteForm: FC = () => {
     if (
       compareDates(date, "current", { fullYear: true, month: true, date: true })
     ) {
-      console.log(values);
+      createNote(values);
     } else {
-      console.log({
+      createNote({
         ...values,
         date: mapDateToApiDateFormat(date),
       });
@@ -55,8 +72,12 @@ export const NewNoteForm: FC = () => {
           name="note"
           placeholder="Напишите сюда что-нибудь..."
           className={styles.noteInput}
+          disabled={isLoading || isSuccess}
         />
-        <SubmitButton />
+        {isError && !!error && (
+          <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>
+        )}
+        <SubmitButton disabled={isLoading || isSuccess} />
       </FormikForm>
     </>
   );

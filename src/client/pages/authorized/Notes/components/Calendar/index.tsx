@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/client/hooks";
 import {
   notesActions,
   selectNotesCalendarDate,
-  useGetMoodsQuery,
+  useGetNotesCalendarFilledDatesQuery,
 } from "@/client/redux";
 import { compareDates } from "@/shared/utils";
 import { type FC } from "react";
@@ -14,7 +14,7 @@ import { type FC } from "react";
 export const Calendar: FC = () => {
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
   const dispatch = useAppDispatch();
-  const { data: moods } = useGetMoodsQuery();
+  const { data: calendarFilledDates } = useGetNotesCalendarFilledDatesQuery();
 
   const prevMonthHandler = () => {
     const date = new Date(
@@ -75,10 +75,10 @@ export const Calendar: FC = () => {
           : null;
 
         const marked =
-          !!moods &&
+          !!calendarFilledDates &&
           !!date &&
-          !!moods.find((mood) =>
-            compareDates(new Date(mood.date), date, {
+          !!calendarFilledDates.find((calendarFilledDate) =>
+            compareDates(new Date(calendarFilledDate), date, {
               fullYear: true,
               month: true,
               date: true,

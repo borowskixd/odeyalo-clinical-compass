@@ -6,6 +6,7 @@
 
 .sidebar {
   width: 100%;
+  max-width: calc(50% - 8px);
   display: flex;
   flex-flow: column;
   gap: 40px;
