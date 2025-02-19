@@ -6,6 +6,13 @@
   max-width: calc(50% - 8px);
   height: fit-content;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   background-color: $color-white70;
   border-radius: 12px;
+
+  @media screen and (max-width: 900px) {
+    gap: 10px;
+  }
 }

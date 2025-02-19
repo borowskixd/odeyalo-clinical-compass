@@ -3,6 +3,10 @@
 .title {
   @include titleCygre;
   text-transform: capitalize;
+
+  @media screen and (max-width: 900px) {
+    @include titleXS;
+  }
 }
 
 .header {
@@ -14,6 +18,10 @@
 .buttons {
   display: flex;
   gap: 14px;
+
+  @media screen and (max-width: 900px) {
+    gap: 10px;
+  }
 }
 
 .button {
@@ -30,5 +38,15 @@
 
   &:disabled {
     opacity: 0.6;
+  }
+
+  @media screen and (max-width: 900px) {
+    height: 24px;
+    width: 24px;
+
+    & > svg {
+      height: 24px;
+      width: 24px;
+    }
   }
 }

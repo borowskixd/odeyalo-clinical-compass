@@ -105,9 +105,7 @@ export const Calendar: FC = () => {
         prevMonthHandler={prevMonthHandler}
         nextMonthHandler={nextMonthHandler}
       />
-      <div className={styles.weekDays}>
-        <WeekDays days={renderDays()} />
-      </div>
+      <WeekDays days={renderDays()} />
     </div>
   );
 };

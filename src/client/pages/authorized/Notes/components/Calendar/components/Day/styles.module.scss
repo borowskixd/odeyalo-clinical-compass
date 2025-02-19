@@ -1,4 +1,5 @@
 @use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
 
 .day {
   position: relative;
@@ -50,5 +51,22 @@
 
   &:disabled {
     opacity: 0.6;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 24px;
+    height: 24px;
+    @include bodyXL;
+
+    &::before {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+    }
+
+    &::after {
+      bottom: -6px;
+      width: 12px;
+    }
   }
 }

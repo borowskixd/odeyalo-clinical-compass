@@ -3,28 +3,19 @@
 import { MoodForm, MoodList } from "./components";
 import styles from "./styles.module.scss";
 import { AddCircle } from "@/client/assets/icons";
-import { Button, DefaultError, LoadingLoop } from "@/client/components";
+import { Button } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
-import { selectNotesCalendarDate } from "@/client/redux";
-import { useGetMoodsQuery } from "@/client/redux/features/notes/api";
+import { selectNotesCalendarDate, useGetMoodsQuery } from "@/client/redux";
 import { type FC, useEffect, useState } from "react";
 
 export const MoodTracker: FC = () => {
   const [formOpened, setFormOpened] = useState<boolean>(false);
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
-  const {
-    data: moods,
-    isLoading,
-    isError,
-    error,
-  } = useGetMoodsQuery(notesCalendarDate);
+  const { data: moods } = useGetMoodsQuery(notesCalendarDate);
 
   useEffect(() => {
     setFormOpened(false);
   }, [notesCalendarDate, setFormOpened]);
-
-  if (isLoading) return <LoadingLoop />;
-  if (isError || !moods) return <DefaultError error={error} />;
 
   const openFormHandler = () => {
     setFormOpened(true);
@@ -34,7 +25,7 @@ export const MoodTracker: FC = () => {
     setFormOpened(false);
   };
 
-  const isFormOpened = formOpened || !moods.length;
+  const isFormOpened = formOpened || !moods?.length;
 
   return (
     <div className={styles.mood}>
@@ -50,7 +41,7 @@ export const MoodTracker: FC = () => {
         )}
       </div>
       {isFormOpened && <MoodForm onSubmitAction={closeFormHandler} />}
-      <MoodList moods={moods} />
+      <MoodList />
     </div>
   );
 };
