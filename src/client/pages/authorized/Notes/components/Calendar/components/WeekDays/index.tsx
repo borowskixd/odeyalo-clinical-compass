@@ -1,11 +1,9 @@
 "use client";
 
-import { Day } from "../Day";
-import { WeekDay } from "./components";
+import { Day, WeekDay } from "./components";
 import styles from "./styles.module.scss";
-import { useAppDispatch, useAppSelector } from "@/client/hooks";
+import { useAppSelector } from "@/client/hooks";
 import {
-  notesActions,
   selectNotesCalendarDate,
   useGetNotesCalendarFilledDatesQuery,
 } from "@/client/redux";
@@ -15,11 +13,6 @@ import { type FC } from "react";
 export const WeekDays: FC = () => {
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
   const { data: calendarFilledDates } = useGetNotesCalendarFilledDatesQuery();
-  const dispatch = useAppDispatch();
-
-  const dayClickHandler = (date: Date) => {
-    dispatch(notesActions.setNotesCalendarDate(date));
-  };
 
   const renderDays = () => {
     const daysInMonth = new Date(
@@ -73,7 +66,6 @@ export const WeekDays: FC = () => {
             key={`${index} ${date}`}
             date={date}
             selected={notesCalendarDate.getDate() === dateDay}
-            onClick={dayClickHandler}
             marked={marked}
           />
         );
