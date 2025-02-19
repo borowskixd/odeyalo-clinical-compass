@@ -2,6 +2,10 @@
 
 .title {
   @include titleCygre;
+
+  @media screen and (max-width: 900px) {
+    @include titleXS;
+  }
 }
 
 .moodHeader {

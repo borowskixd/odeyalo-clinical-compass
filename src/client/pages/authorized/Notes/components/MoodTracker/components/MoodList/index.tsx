@@ -1,13 +1,24 @@
+"use client";
+
 import { Mood } from "../Mood";
 import styles from "./styles.module.scss";
-import { type GetMoodsResponseData } from "@/shared/types";
+import { DefaultError, LoadingLoop } from "@/client/components";
+import { useAppSelector } from "@/client/hooks";
+import { selectNotesCalendarDate, useGetMoodsQuery } from "@/client/redux";
 import { type FC } from "react";
 
-interface Props {
-  moods: GetMoodsResponseData;
-}
+export const MoodList: FC = () => {
+  const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
+  const {
+    data: moods,
+    isLoading,
+    isError,
+    error,
+  } = useGetMoodsQuery(notesCalendarDate);
 
-export const MoodList: FC<Props> = ({ moods }) => {
+  if (isLoading) return <LoadingLoop />;
+  if (isError || !moods) return <DefaultError error={error} />;
+
   return (
     <div className={styles.list}>
       {moods.map((mood) => {

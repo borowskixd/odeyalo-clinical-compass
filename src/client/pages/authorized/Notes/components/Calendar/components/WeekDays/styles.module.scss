@@ -5,14 +5,8 @@
   justify-content: space-between;
   align-items: flex-start;
   @include titleXS;
-  margin: 20px 0 0;
-}
 
-.weekDay {
-  min-width: 36px;
-  max-width: 36px;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  gap: 20px;
+  @media screen and (max-width: 900px) {
+    @include bodyXLBold;
+  }
 }

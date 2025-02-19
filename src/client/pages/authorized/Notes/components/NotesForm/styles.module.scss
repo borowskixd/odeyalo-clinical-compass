@@ -3,11 +3,8 @@
 .title {
   @include titleCygre;
   margin-bottom: 10px;
-}
 
-.button {
-  width: 100%;
-  height: 46px !important;
-  margin-top: 20px;
-  font-weight: 700 !important;
+  @media screen and (max-width: 900px) {
+    @include titleXS;
+  }
 }
