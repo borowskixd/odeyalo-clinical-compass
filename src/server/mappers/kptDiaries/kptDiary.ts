@@ -1,10 +1,10 @@
 import {
   type GetDiaryApiResponseData,
   type GetDiaryResponseData,
-  type SendReadingThinkApiRequestData,
   type GetReadingThinkApiResponseData,
-  type SendReadingThinkRequestData,
   type GetReadingThinkResponseData,
+  type SendReadingThinkApiRequestData,
+  type SendReadingThinkRequestData,
   type SendWritingThinkApiRequestData,
   type SendWritingThinkRequestData,
 } from "@/shared/types";
