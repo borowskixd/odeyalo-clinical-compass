@@ -10,20 +10,20 @@ export type GetDiaryResponseData = {
   createdAt: string;
 }[];
 
-export interface WritingThinkDiaryRequestData {
+export interface SendWritingThinkRequestData {
   situation: string;
   mood: string;
-  level: 0;
-  autoThought: string;
-  proofs: string;
-  refutations: string;
+  moodLevel: 0;
+  thoughts: string;
+  confirmThoughts: string;
+  refuteThoughts: string;
   newMood: string;
-  alternativeThought: string;
-  newLevel: 0;
-  behavioral: string;
+  newThoughts: string;
+  newMoodLevel: 0;
+  behavior: string;
 }
 
-export interface WritingThinkDiaryApiRequestData {
+export interface SendWritingThinkApiRequestData {
   situation: string;
   mood: string;
   level: 0;
@@ -36,20 +36,20 @@ export interface WritingThinkDiaryApiRequestData {
   behavioral: string;
 }
 
-export type ReadingThinkDiaryApiRequestData = {
+export type SendReadingThinkApiRequestData = {
   think_diary_id: string;
 };
 
-export type ReadingThinkDiaryRequestData = {
-  thinkDiaryId: string;
+export type SendReadingThinkRequestData = {
+  id: string;
 };
 
-export interface ReadingThinkDiaryApiResponseData
-  extends WritingThinkDiaryApiRequestData {
+export interface GetReadingThinkApiResponseData
+  extends SendWritingThinkApiRequestData {
   created_at: string;
 }
 
-export interface ReadingThinkDiaryResponseData
-  extends WritingThinkDiaryRequestData {
+export interface GetReadingThinkResponseData
+  extends SendWritingThinkRequestData {
   createdAt: string;
 }
