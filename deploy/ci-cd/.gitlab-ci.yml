@@ -17,6 +17,7 @@ default:
 #    - .standart-rules
 #  script:
 #    - docker compose -f ./deploy/docker/docker-compose.yml run --rm -e OPERATION=lint frontend
+#  cache: []
 
 build-job:
   stage: build
@@ -24,6 +25,7 @@ build-job:
     - .standart-rules
   script:
     - docker compose -f ./deploy/docker/docker-compose.yml run --rm -e OPERATION=build frontend
+  cache: []
 
 deploy-job:
   stage: deploy
