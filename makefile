@@ -1,2 +1,2 @@
-prod:
-	docker compose -f ./deploy/docker/docker-compose.yml -p odeyalo up -d --build
+up:
+  docker compose -f ./deploy/docker/docker-compose.yml -p odeyalo-frontend up -d --build

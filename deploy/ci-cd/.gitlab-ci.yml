@@ -1,28 +1,33 @@
 stages:
-  - test
   - build
+  - test
+  - deploy
 
 default:
-  image: node:20.5.1-alpine
   interruptible: true
 
-.standart-rules:
+.standard-rules:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
-lint-job:
-  stage: test
-  extends:
-    - .standart-rules
-  script:
-    - npm install
-    - npm run lint
-
 build-job:
   stage: build
   extends:
-    - .standart-rules
+    - .standard-rules
   script:
-    - npm install
-    - npm run build
+    - docker build -f ./deploy/docker/Dockerfile -t odeyalo-frontend-image .
+
+lint-job:
+  stage: test
+  extends:
+    - .standard-rules
+  script:
+    - docker run --rm odeyalo-frontend-image npm run lint
+
+deploy-job:
+  stage: deploy
+  script:
+    - docker compose -f ./deploy/docker/docker-compose.yml -p odeyalo-frontend up -d --build
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
