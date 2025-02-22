@@ -2,8 +2,9 @@ services:
   frontend:
     container_name: odeyalo-frontend
     build:
-      dockerfile: ./deploy/docker/dockerfile/Dockerfile.${OPERATION:-deploy}
+      dockerfile: ./deploy/docker/dockerfile/Dockerfile
       context: ../../
+    command: npm start
     restart: on-failure
     volumes:
       - /app/app
