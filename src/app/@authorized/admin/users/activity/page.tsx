@@ -1,1 +1,1 @@
-export { UsersActivityPage as default } from "@/client/pages";
+export { Fake as default } from "@/client/pages";
