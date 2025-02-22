@@ -1,3 +1,5 @@
+cache: {}
+
 stages:
   - test
   - build
