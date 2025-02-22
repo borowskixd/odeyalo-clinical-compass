@@ -36,6 +36,6 @@ deploy-job:
   extends:
     - .standart-rules
   script:
-    - make deploy
+    - OPERATION=deploy docker compose -f ./deploy/docker/docker-compose.yml -p odeyalo-frontend up -d --build
 #  rules:
 #    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
