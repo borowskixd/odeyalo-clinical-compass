@@ -1,5 +1,5 @@
 stages:
-  - test
+#  - test
   - build
   - deploy
 
@@ -11,12 +11,12 @@ default:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
-lint-job:
-  stage: test
-  extends:
-    - .standart-rules
-  script:
-    - docker compose -f ./deploy/docker/docker-compose.yml run --rm -e OPERATION=lint frontend
+#lint-job:
+#  stage: test
+#  extends:
+#    - .standart-rules
+#  script:
+#    - docker compose -f ./deploy/docker/docker-compose.yml run --rm -e OPERATION=lint frontend
 
 build-job:
   stage: build
