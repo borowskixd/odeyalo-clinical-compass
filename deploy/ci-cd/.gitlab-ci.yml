@@ -16,14 +16,14 @@ lint-job:
   extends:
     - .standart-rules
   script:
-    - OPERATION=ci docker compose -f ./deploy/docker/docker-compose.yml run --rm frontend npm run lint
+    - OPERATION=lint docker compose -f ./deploy/docker/docker-compose.yml run --rm frontend
 
 build-job:
   stage: build
   extends:
     - .standart-rules
   script:
-    - OPERATION=ci docker compose -f ./deploy/docker/docker-compose.yml run --rm frontend npm run build
+    - OPERATION=build docker compose -f ./deploy/docker/docker-compose.yml run --rm frontend
 
 deploy-job:
   stage: deploy
