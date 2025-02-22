@@ -2,7 +2,7 @@ services:
   frontend:
     container_name: odeyalo-frontend
     build:
-      dockerfile: ./deploy/docker/dockerfile/Dockerfile
+      dockerfile: ./deploy/docker/Dockerfile
       context: ../../
     command: npm start
     restart: on-failure
@@ -18,7 +18,7 @@ services:
     container_name: odeyalo-frontend-nginx
     image: nginx:latest
     build:
-      dockerfile: ./deploy/docker/dockerfile/Dockerfile.nginx
+      dockerfile: ./deploy/docker/nginx/Dockerfile
       context: ../../
     restart: on-failure
     expose:

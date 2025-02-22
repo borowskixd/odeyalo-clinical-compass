@@ -16,7 +16,7 @@ build-job:
   extends:
     - .standard-rules
   script:
-    - docker build -f ./deploy/docker/dockerfile/Dockerfile -t odeyalo-frontend-image .
+    - docker build -f ./deploy/docker/Dockerfile -t odeyalo-frontend-image .
 
 lint-job:
   stage: test
