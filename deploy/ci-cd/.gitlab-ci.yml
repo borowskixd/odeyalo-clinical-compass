@@ -16,7 +16,7 @@ default:
 #  extends:
 #    - .standart-rules
 #  script:
-#    - docker compose -f ./deploy/docker/docker-compose.yml run --rm -e OPERATION=lint frontend --no-cache
+#    - docker compose -f ./deploy/docker/docker-compose.yml run --rm -e OPERATION=lint frontend
 #  cache: []
 
 build-job:
@@ -24,7 +24,7 @@ build-job:
   extends:
     - .standart-rules
   script:
-    - docker compose -f ./deploy/docker/docker-compose.yml run --rm -e OPERATION=build frontend --no-cache
+    - docker compose -f ./deploy/docker/docker-compose.yml run --rm -e OPERATION=build frontend
   cache: []
 
 deploy-job:
