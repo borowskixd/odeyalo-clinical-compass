@@ -24,6 +24,7 @@ build-job:
   extends:
     - .standart-rules
   script:
+    - docker compose -f ./deploy/docker/docker-compose.yml build --no-cache frontend
     - docker compose -f ./deploy/docker/docker-compose.yml run --rm -e OPERATION=build frontend
   cache: []
 
