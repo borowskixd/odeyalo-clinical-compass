@@ -1,5 +1,7 @@
 FROM node:20.5.1-alpine
 
+RUN echo "OPERATION is set to: $OPERATION"
+
 WORKDIR /app
 
 COPY ./package*.json ./
