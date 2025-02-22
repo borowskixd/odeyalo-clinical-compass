@@ -30,4 +30,5 @@ services:
 
 networks:
   odeyalo-network:
-    external: true
+    name: odeyalo-network
+    driver: bridge
