@@ -1,5 +1,13 @@
 cache: {}
 
+before_script:
+  - docker compose version
+  - docker info
+  - ls -la ./deploy/docker/docker-compose.yml
+  - pwd
+  - ls -la
+  - ls -la ./deploy/docker/
+
 stages:
   - test
   - build
