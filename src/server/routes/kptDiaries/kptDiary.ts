@@ -1,29 +1,27 @@
 import { NextResponse } from "next/server";
-import { mapReadingThinkDiaryResponse } from "@/server/mappers";
+import { mapGetKptDiaryResponse } from "@/server/mappers";
 import { createRequest } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
 import {
-  type GetReadingThinkApiResponseData,
-  type GetReadingThinkResponseData,
+  type GetKptDiaryApiResponseData,
+  type GetKptDiaryResponseData,
 } from "@/shared/types";
 
-const getReadingThinkDiary = createRequest<{ id: string }>(
+const getKptDiary = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
-    const response = await serverFetch.post<GetReadingThinkApiResponseData>(
+    const response = await serverFetch.post<GetKptDiaryApiResponseData>(
       "/diary/reading_think_diary",
       {
         think_diary_id: id,
       },
     );
 
-    const data: GetReadingThinkResponseData = mapReadingThinkDiaryResponse(
-      response.data,
-    );
+    const data: GetKptDiaryResponseData = mapGetKptDiaryResponse(response.data);
 
     return NextResponse.json(data, httpStatuses.ok);
   },
 );
 
-export const DiaryRoutes = {
-  GET: getReadingThinkDiary,
+export const KptDiaryRoutes = {
+  GET: getKptDiary,
 };

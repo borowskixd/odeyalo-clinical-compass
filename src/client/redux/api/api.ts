@@ -12,6 +12,7 @@ export const api = createApi({
     "Articles",
     "Moods",
     "Notes",
+    "Diaries",
   ],
   baseQuery: fetchBaseQuery({ baseUrl: BFF_API_URL }),
   endpoints: () => ({}),

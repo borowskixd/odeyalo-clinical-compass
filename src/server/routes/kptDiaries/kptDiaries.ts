@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import {
-  mapGetDiaryResponse,
-  mapWritingThinkDiaryRequest,
+  mapGetKptDiariesResponse,
+  mapSendKptDiaryRequest,
 } from "@/server/mappers";
 import {
   createRequest,
@@ -10,20 +10,20 @@ import {
 } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
 import {
-  type GetDiaryApiResponseData,
-  type GetDiaryResponseData,
+  type GetKptDiariesApiResponseData,
+  type GetKptDiariesResponseData,
   ResponseError,
   ResponseSuccessInfo,
-  type SendWritingThinkApiRequestData,
-  type SendWritingThinkRequestData,
+  type SendKptDiaryApiRequestData,
+  type SendKptDiaryRequestData,
 } from "@/shared/types";
 
-const sendWritingThinkDiary = createRequest(async (request, serverFetch) => {
-  const body: SendWritingThinkRequestData = await request.json();
+const sendKptDiary = createRequest(async (request, serverFetch) => {
+  const body: SendKptDiaryRequestData = await request.json();
 
-  await serverFetch.post<any, SendWritingThinkApiRequestData>(
+  await serverFetch.post<any, SendKptDiaryApiRequestData>(
     "/diary/writing_think_diary",
-    mapWritingThinkDiaryRequest(body),
+    mapSendKptDiaryRequest(body),
   );
 
   return NextResponse.json(
@@ -32,7 +32,7 @@ const sendWritingThinkDiary = createRequest(async (request, serverFetch) => {
   );
 });
 
-const getAllThinkDiary = createRequest(async (request, serverFetch) => {
+const getKptDiaries = createRequest(async (request, serverFetch) => {
   const accessToken = getRequestAccessToken(request);
   const loginByTokenResponse = await loginByToken(accessToken);
 
@@ -45,16 +45,18 @@ const getAllThinkDiary = createRequest(async (request, serverFetch) => {
       httpStatuses.unauthorized,
     );
   }
-  const response = await serverFetch.get<GetDiaryApiResponseData>(
-    `/problem/get_all_think_diary`,
+  const response = await serverFetch.get<GetKptDiariesApiResponseData>(
+    `/problem/get_all_think_diary/{loginByTokenResponse.userData.userId}`,
   );
 
-  const data: GetDiaryResponseData = mapGetDiaryResponse(response.data);
+  const data: GetKptDiariesResponseData = mapGetKptDiariesResponse(
+    response.data,
+  );
 
   return NextResponse.json(data, httpStatuses.ok);
 });
 
-export const writingDiaryRoutes = {
-  POST: sendWritingThinkDiary,
-  GET: getAllThinkDiary,
+export const KptDiariesRoutes = {
+  POST: sendKptDiary,
+  GET: getKptDiaries,
 };

@@ -1,17 +1,15 @@
 import {
-  type GetDiaryApiResponseData,
-  type GetDiaryResponseData,
-  type GetReadingThinkApiResponseData,
-  type GetReadingThinkResponseData,
-  type SendReadingThinkApiRequestData,
-  type SendReadingThinkRequestData,
-  type SendWritingThinkApiRequestData,
-  type SendWritingThinkRequestData,
+  type GetKptDiariesApiResponseData,
+  type GetKptDiariesResponseData,
+  type GetKptDiaryApiResponseData,
+  type GetKptDiaryResponseData,
+  type SendKptDiaryApiRequestData,
+  type SendKptDiaryRequestData,
 } from "@/shared/types";
 
-export const mapGetDiaryResponse = (
-  data: GetDiaryApiResponseData,
-): GetDiaryResponseData => {
+export const mapGetKptDiariesResponse = (
+  data: GetKptDiariesApiResponseData,
+): GetKptDiariesResponseData => {
   return data.map(({ id, situation, created_at }) => ({
     id,
     situation,
@@ -19,9 +17,9 @@ export const mapGetDiaryResponse = (
   }));
 };
 
-export const mapWritingThinkDiaryRequest = (
-  data: SendWritingThinkRequestData,
-): SendWritingThinkApiRequestData => {
+export const mapSendKptDiaryRequest = (
+  data: SendKptDiaryRequestData,
+): SendKptDiaryApiRequestData => {
   const {
     situation,
     mood,
@@ -49,18 +47,9 @@ export const mapWritingThinkDiaryRequest = (
   };
 };
 
-export const mapReadingThinkDiaryRequest = (
-  data: SendReadingThinkRequestData,
-): SendReadingThinkApiRequestData => {
-  const { id } = data;
-  return {
-    think_diary_id: id,
-  };
-};
-
-export const mapReadingThinkDiaryResponse = (
-  data: GetReadingThinkApiResponseData,
-): GetReadingThinkResponseData => {
+export const mapGetKptDiaryResponse = (
+  data: GetKptDiaryApiResponseData,
+): GetKptDiaryResponseData => {
   const {
     situation,
     mood,

@@ -1,16 +1,16 @@
-export type GetDiaryApiResponseData = {
+export type GetKptDiariesApiResponseData = {
   id: string;
   situation: string;
   created_at: string;
 }[];
 
-export type GetDiaryResponseData = {
+export type GetKptDiariesResponseData = {
   id: string;
   situation: string;
   createdAt: string;
 }[];
 
-export interface SendWritingThinkRequestData {
+export interface SendKptDiaryRequestData {
   situation: string;
   mood: string;
   moodLevel: 0;
@@ -23,7 +23,7 @@ export interface SendWritingThinkRequestData {
   behavior: string;
 }
 
-export interface SendWritingThinkApiRequestData {
+export interface SendKptDiaryApiRequestData {
   situation: string;
   mood: string;
   level: 0;
@@ -36,20 +36,10 @@ export interface SendWritingThinkApiRequestData {
   behavioral: string;
 }
 
-export type SendReadingThinkApiRequestData = {
-  think_diary_id: string;
-};
-
-export type SendReadingThinkRequestData = {
-  id: string;
-};
-
-export interface GetReadingThinkApiResponseData
-  extends SendWritingThinkApiRequestData {
+export interface GetKptDiaryApiResponseData extends SendKptDiaryApiRequestData {
   created_at: string;
 }
 
-export interface GetReadingThinkResponseData
-  extends SendWritingThinkRequestData {
+export interface GetKptDiaryResponseData extends SendKptDiaryRequestData {
   createdAt: string;
 }
