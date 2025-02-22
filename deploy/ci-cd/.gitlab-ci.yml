@@ -16,20 +16,20 @@ lint-job:
   extends:
     - .standart-rules
   script:
-    - docker compose -f ./deploy/docker/docker-compose.yml run --rm frontend npm run lint
+    - make lint
 
 build-job:
   stage: build
   extends:
     - .standart-rules
   script:
-    - docker compose -f ./deploy/docker/docker-compose.yml run --rm frontend npm run build
+    - make build
 
 deploy-job:
   stage: deploy
   extends:
     - .standart-rules
   script:
-    - OPERATION=deploy docker compose -f ./deploy/docker/docker-compose.yml -p odeyalo up -d --build
+    - make deploy
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
