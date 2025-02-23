@@ -1,6 +1,6 @@
 services:
-  frontend:
-    container_name: odeyalo-frontend
+  app:
+    container_name: odeyalo-frontend-app
     build:
       dockerfile: ./deploy/docker/Dockerfile
       context: ../../
@@ -26,7 +26,7 @@ services:
     networks:
       - odeyalo-network
     depends_on:
-      - frontend
+      - app
     mac_address: 02:42:ac:18:06:02
 
 networks:
