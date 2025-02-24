@@ -16,13 +16,15 @@ services:
 
   nginx:
     container_name: odeyalo-frontend-nginx
-    image: nginx:latest
+    image: public.ecr.aws/nginx/nginx:latest
     build:
       dockerfile: ./deploy/docker/nginx/Dockerfile
       context: ../../
     restart: on-failure
     expose:
       - "80"
+    ports:
+      - "80:80"
     networks:
       - odeyalo-network
     depends_on:
