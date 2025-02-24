@@ -16,7 +16,7 @@ services:
 
   nginx:
     container_name: odeyalo-frontend-nginx
-    image: nginx:latest
+    image: public.ecr.aws/nginx/nginx:latest
     build:
       dockerfile: ./deploy/docker/nginx/Dockerfile
       context: ../../
