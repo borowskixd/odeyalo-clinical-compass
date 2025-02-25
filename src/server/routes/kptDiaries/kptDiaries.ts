@@ -46,7 +46,7 @@ const getKptDiaries = createRequest(async (request, serverFetch) => {
     );
   }
   const response = await serverFetch.get<GetKptDiariesApiResponseData>(
-    `/problem/get_all_think_diary/{loginByTokenResponse.userData.userId}`,
+    `/problem/get_all_think_diary/${loginByTokenResponse.userData.userId}`,
   );
 
   const data: GetKptDiariesResponseData = mapGetKptDiariesResponse(

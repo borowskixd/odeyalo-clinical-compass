@@ -1,0 +1,126 @@
+@use "@/client/styles/textStyles" as *;
+@use "@/client/styles/variables" as *;
+@use "@/client/styles/colors" as *;
+
+.title {
+    @include headlineLarge;
+    width: 536px;
+    height: 40px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 40px;
+    color: $color-black100;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.text {
+    width: 536px;
+    height: 40px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: $color-black100;
+    padding: 0px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    width: 536px;
+    height: 156px;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.button {
+    display: block;
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 128px;
+    width: 536px;
+    height: 46px;
+    border-radius: 12px;
+    flex: none;
+    flex-grow: 0;
+    margin-top: 10px;
+}
+
+.historyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    margin-top: 40px;
+
+    width: 536px;
+
+    flex: 1;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.hText {
+    width: 103px;
+    height: 30px;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    color: $color-black100;
+
+    order: 0;
+    flex-grow: 0;
+}
+
+.diaryList {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.diaryContainer {
+    background-color: $color-white70;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    justify-content: center;
+
+    width: 536px;
+    border-radius: 12px;
+    gap: 6px;
+    word-wrap: break-word;
+}
+
+.DiaryText {
+    height: auto;
+    font-style: normal;
+    font-weight: 700;
+    max-width: 100%;
+    max-height: 100%;
+    font-size: 16px;
+    color: $color-black100;
+}
+

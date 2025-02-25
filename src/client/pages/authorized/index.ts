@@ -18,3 +18,4 @@ export * from "./Notes";
 export * from "./Note";
 export * from "./NewNote";
 export * from "./KptDiary";
+export * from "./KptDiaryForm";

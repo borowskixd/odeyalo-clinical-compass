@@ -1,5 +1,22 @@
+import { StartAndHistory } from "./components";
+import styles from "./styles.module.scss";
+import kptDiaryImage from "@/client/assets/webp/pictures/kptDiaryImage.webp";
+import { Container, ContentWrapper } from "@/client/components";
 import { type FC } from "react";
 
+const imageUrl = kptDiaryImage.src;
+
 export const KptDiaryPage: FC = () => {
-  return <div>diary</div>;
+  return (
+    <Container>
+      <ContentWrapper className={styles.wrapper}>
+        <div className={styles.main}>
+          <section>
+          <img src={imageUrl} className={styles.picture}/>
+          </section>
+          <StartAndHistory></StartAndHistory>
+        </div>
+      </ContentWrapper>
+    </Container>
+  );
 };

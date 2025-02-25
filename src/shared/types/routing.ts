@@ -83,6 +83,7 @@ export interface Pages {
   usersFeedbacks: Page;
   usersResults: Page;
   kptDiary: Page;
+  kptDiaryForm: Page;
 }
 
 interface Route {

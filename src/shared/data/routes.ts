@@ -76,7 +76,12 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  kptDiary: new Page("/kptDiaries", [
+  kptDiary: new Page("/kptDiary", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
+  kptDiaryForm: new Page("/kptDiary/kptDiaryForm", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,

@@ -1,0 +1,77 @@
+@use "@/client/styles/textStyles" as *;
+@use "@/client/styles/variables" as *;
+@use "@/client/styles/colors" as *;
+
+.title {
+    @include headlineLarge;
+    width: 536px;
+    height: 40px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 40px;
+    color: $color-black100;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.text {
+    width: 536px;
+    height: 40px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: $color-black100;
+    padding: 0px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    width: 536px;
+    height: 156px;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+}
+
+.objContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 12px;
+    gap: 8px;
+    isolation: isolate;
+
+    width: 536px;
+    height: 52px;
+
+    background: #F3F5FF;
+    border-radius: 12px;
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}

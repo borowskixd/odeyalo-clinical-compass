@@ -1,3 +1,3 @@
-import { KptDiaryRoutes } from "@/server/routes";
+import { KptDiariesRoutes } from "@/server/routes";
 
-export const { GET } = KptDiaryRoutes;
+export const { GET, POST } = KptDiariesRoutes;
