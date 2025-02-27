@@ -7,18 +7,24 @@ import {
 export const mapGetArticleResponse = (
   articleContent: GetArticleApiResponseData,
 ): GetArticleResponseData => {
-  const { materials, theme } = articleContent;
+  const { subtopics, theme } = articleContent;
 
   return {
     title: theme,
-    content: materials.map((el) => {
-      const { id, text } = el;
+    content: subtopics.reduce((acc: GetArticleResponseData["content"], el) => {
+      const { cards } = el;
 
-      return {
-        id,
-        content: text,
-      };
-    }),
+      cards.forEach((el) => {
+        const { id, text } = el;
+
+        acc.push({
+          id,
+          content: text,
+        });
+      });
+
+      return acc;
+    }, []),
   };
 };
 
