@@ -5,6 +5,7 @@
   display: flex;
   flex-flow: column;
   gap: 24px;
+  white-space: pre-wrap;
 
   @include bodyM;
 }
