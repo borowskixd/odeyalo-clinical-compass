@@ -6,7 +6,7 @@ import { type FC } from "react";
 
 const imageUrl = kptDiaryImage.src;
 
-export const KptDiaryPage: FC = () => {
+export const KptDiariesPage: FC = () => {
   return (
     <Container>
       <ContentWrapper className={styles.wrapper}>

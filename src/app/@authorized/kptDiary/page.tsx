@@ -1,1 +1,1 @@
-export { KptDiaryPage as default } from "@/client/pages";
+export { KptDiariesPage as default } from "@/client/pages";

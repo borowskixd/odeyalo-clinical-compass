@@ -17,5 +17,5 @@ export * from "./Practice";
 export * from "./Notes";
 export * from "./Note";
 export * from "./NewNote";
-export * from "./KptDiary";
+export * from "./KptDiaries";
 export * from "./KptDiaryForm";
