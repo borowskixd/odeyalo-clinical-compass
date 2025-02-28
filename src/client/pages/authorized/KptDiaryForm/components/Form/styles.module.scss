@@ -98,7 +98,11 @@
 
 .button.active {
   background: $color-blue80;
-  color: $color-blue20;
+  color: $color-white100;
+}
+
+.iconActive path{
+  fill: $color-white100;
 }
 
 .form {

@@ -77,7 +77,7 @@ export const Form: FC = () => {
               }
               onClick={changeState}
             >
-              <QuestionMark />
+              <QuestionMark className={hint ? `${styles.iconActive}` : ""} />
               Подсказки
             </SecondaryButton>
           </section>

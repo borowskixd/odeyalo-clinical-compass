@@ -12,7 +12,10 @@ export const KptDiaryPage: FC = () => {
       <ContentWrapper className={styles.wrapper}>
         <div className={styles.main}>
           <section>
-            <img src={imageUrl} className={styles.picture}/>
+            <img
+              src={imageUrl}
+              className={styles.picture}
+            />
           </section>
           <StartAndHistory></StartAndHistory>
         </div>
