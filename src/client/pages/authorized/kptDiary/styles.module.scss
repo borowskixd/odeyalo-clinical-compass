@@ -1,7 +1,6 @@
 @use "@/client/styles/textStyles" as *;
 @use "@/client/styles/variables" as *;
 
-
 .main {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -15,7 +14,6 @@
 .picture {
     width: 536px;
     height: 460px;
-
     border-radius: 12px;
 }
 

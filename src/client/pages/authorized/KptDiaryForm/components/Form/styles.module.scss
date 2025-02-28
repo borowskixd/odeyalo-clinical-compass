@@ -1,77 +1,126 @@
 @use "@/client/styles/textStyles" as *;
 @use "@/client/styles/variables" as *;
 @use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
 
 .title {
-    @include headlineLarge;
-    width: 536px;
+    font-family: var(--font-cygre);
     height: 40px;
+    width: 300px;
     font-style: normal;
     font-weight: 600;
     font-size: 32px;
     line-height: 40px;
     color: $color-black100;
-
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
 }
 
 .text {
-    width: 536px;
-    height: 40px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    color: $color-black100;
-    padding: 0px;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
+  font-family: var(--font-inter);
+  width: 536px;
+  height: 40px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: $color-black100;
+}
+
+.Text {
+  font-family: var(--font-inter);
+  font-style: normal;
+  font-weight: 500;
+  width: 100%;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-black100;
+  margin-bottom: 10px;
+}
+
+.leftText {
+  height: 20px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-black100;
+}
+
+.rightText {
+  text-align: right;
+  height: 20px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-black100;
+}
+
+.grid {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.gridForTitle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.altText {
+  height: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-black100;
+
+  margin-bottom: 10px;
 }
 
 .textContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
 
-    width: 536px;
-    height: 156px;
-
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
+  width: 536px;
+  height: 110px;
 }
 
-.formContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 20px;
+.button {
+  gap: 10px;
+  float: right;
+  padding: 10px;
+  background-color: $color-blue20;
+  border-radius: 12px;
 }
 
-.objContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 16px 12px;
-    gap: 8px;
-    isolation: isolate;
+.button.active {
+  background: $color-blue80;
+  color: $color-blue20;
+}
 
-    width: 536px;
-    height: 52px;
+.form {
+  gap: 10px;
+}
 
-    background: #F3F5FF;
-    border-radius: 12px;
+.noteInput {
+  min-height: 52px;
+  @include bodyL;
 
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
+  &::placeholder {
+    @include bodyL;
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 12px;
+  gap: 8px;
+  isolation: isolate;
+  width: 536px;
+  height: 52px;
+  background: $color-blue20;
+  border-radius: 12px;
+  margin-top: 10px;
 }

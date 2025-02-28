@@ -42,7 +42,7 @@ export const StartAndHistory: FC = () => {
         <PageTitle className={styles.title}>КПТ-Дневник</PageTitle>
         <p className={styles.text}>
           Это способ самоанализа, который позволяет отслеживать эмоции и
-          выявлять взаимосвязи между ситуациями и мыслями.
+          чувства, выявлять взаимосвязи между ситуациями и мыслями.
         </p>
         <PrimaryButton
           href={pages.kptDiaryForm.path}

@@ -1,4 +1,4 @@
-import { StartAndHistory } from "./components";
+import { StartAndHistory } from "./components/StartAndHistory";
 import styles from "./styles.module.scss";
 import kptDiaryImage from "@/client/assets/webp/pictures/kptDiaryImage.webp";
 import { Container, ContentWrapper } from "@/client/components";
@@ -12,7 +12,7 @@ export const KptDiaryPage: FC = () => {
       <ContentWrapper className={styles.wrapper}>
         <div className={styles.main}>
           <section>
-          <img src={imageUrl} className={styles.picture}/>
+            <img src={imageUrl} className={styles.picture}/>
           </section>
           <StartAndHistory></StartAndHistory>
         </div>

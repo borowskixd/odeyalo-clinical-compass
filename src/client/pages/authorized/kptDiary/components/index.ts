@@ -1,1 +1,1 @@
-export * from "./StartAndHistory";
+export * from ".";
