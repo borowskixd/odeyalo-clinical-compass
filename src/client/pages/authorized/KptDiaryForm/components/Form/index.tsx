@@ -3,6 +3,7 @@
 import { SubmitButton } from "./components";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/navigation";
+import * as Yup from "yup";
 import { QuestionMark } from "@/client/assets/icons";
 import {
   Container,
@@ -49,7 +50,7 @@ export const Form: FC = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      router.push(pages.kptDiary.path);
+      router.push(pages.kptDiaries.path);
     }
   }, [isSuccess, router]);
 
@@ -63,9 +64,39 @@ export const Form: FC = () => {
     setHint(!hint);
   };
 
+  const createFieldSchema = () => {
+    return Yup.string()
+      .required("Данное поле обязательно")
+      .test(
+        "not-only-spaces",
+        "Поле не может состоять только из пробелов",
+        (value) => {
+          return value.trim() !== "";
+        },
+      )
+      .test(
+        "not-only-digits",
+        "Поле не может состоять только из цифр",
+        (value) => {
+          return !/^\d+$/.test(value);
+        },
+      );
+  };
+
+  const validationSchema = Yup.object().shape({
+    situation: createFieldSchema(),
+    mood: createFieldSchema(),
+    thoughts: createFieldSchema(),
+    confirmThoughts: createFieldSchema(),
+    refuteThoughts: createFieldSchema(),
+    newMood: createFieldSchema(),
+    newThoughts: createFieldSchema(),
+    behavior: createFieldSchema(),
+  });
+
   return (
-    <section>
-      <Container className={styles.textContainer}>
+    <section className={styles.sectionStyle}>
+      <div className={styles.textContainer}>
         <div className={styles.gridForTitle}>
           <section>
             <PageTitle className={styles.title}>КПТ-Дневник</PageTitle>
@@ -86,9 +117,10 @@ export const Form: FC = () => {
           Это способ самоанализа, который позволяет отслеживать эмоции и
           чувства, выявлять взаимосвязи между ситуациями и мыслями.
         </p>
-      </Container>
+      </div>
       <FormikForm<InitialValues>
         initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={onSubmitHandler}
         className={styles.form}
       >
@@ -111,7 +143,7 @@ export const Form: FC = () => {
         <FormikForm.Textarea
           name="mood"
           className={styles.noteInput}
-          placeholder="Как ты себя повел?..."
+          placeholder="Какие чувства вызвала эта ситуация?..."
           disabled={isLoading || isSuccess}
         />
         {hint && (
@@ -134,7 +166,7 @@ export const Form: FC = () => {
         <FormikForm.Textarea
           name="thoughts"
           className={styles.noteInput}
-          placeholder="Какие чувства вызвала эта ситуация?..."
+          placeholder="Какие были мысли в этот момент?..."
           disabled={isLoading || isSuccess}
         />
         {hint && (

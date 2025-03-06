@@ -6,7 +6,16 @@ import { PrimaryButton } from "@/client/components";
 import { type FC } from "react";
 
 interface FormValues {
-  note: string;
+  situation: string;
+  mood: string;
+  moodLevel: number;
+  thoughts: string;
+  confirmThoughts: string;
+  refuteThoughts: string;
+  newMood: string;
+  newThoughts: string;
+  newMoodLevel: number;
+  behavior: string;
 }
 
 interface Props {
@@ -16,7 +25,16 @@ interface Props {
 export const SubmitButton: FC<Props> = ({ disabled }) => {
   const { values } = useFormikContext<FormValues>();
 
-  const isButtonDisabled = values.note === "" || disabled;
+  const isButtonDisabled =
+    values.situation === "" ||
+    values.mood === "" ||
+    values.thoughts === "" ||
+    values.confirmThoughts === "" ||
+    values.refuteThoughts === "" ||
+    values.newMood === "" ||
+    values.newThoughts === "" ||
+    values.behavior === "" ||
+    disabled;
 
   return (
     <PrimaryButton

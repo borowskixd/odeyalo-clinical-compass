@@ -5,8 +5,8 @@
 
 .title {
     font-family: var(--font-cygre);
-    height: 40px;
-    width: 300px;
+    min-height: 40px;
+    max-width: 300px;
     font-style: normal;
     font-weight: 600;
     font-size: 32px;
@@ -16,8 +16,7 @@
 
 .text {
   font-family: var(--font-inter);
-  width: 536px;
-  height: 40px;
+  min-height: 40px;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
@@ -28,7 +27,7 @@
   font-family: var(--font-inter);
   font-style: normal;
   font-weight: 500;
-  width: 100%;
+  max-width: 100%;
   font-size: 14px;
   line-height: 20px;
   color: $color-black100;
@@ -36,7 +35,7 @@
 }
 
 .leftText {
-  height: 20px;
+  min-height: 20px;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -46,7 +45,7 @@
 
 .rightText {
   text-align: right;
-  height: 20px;
+  min-height: 20px;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -61,12 +60,13 @@
 }
 
 .gridForTitle {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
 .altText {
-  height: 20px;
+  min-height: 20px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
@@ -83,9 +83,7 @@
   align-items: flex-start;
   padding: 0px;
   gap: 10px;
-
-  width: 536px;
-  height: 110px;
+  min-height: 110px;
 }
 
 .button {
@@ -107,6 +105,11 @@
 
 .form {
   gap: 10px;
+  align-items: start;
+}
+
+.sectionStyle {
+  width: 100%;
 }
 
 .noteInput {
@@ -122,9 +125,11 @@
   padding: 16px 12px;
   gap: 8px;
   isolation: isolate;
-  width: 536px;
-  height: 52px;
   background: $color-blue20;
   border-radius: 12px;
   margin-top: 10px;
+
+  @media screen and (max-width: 800px) {
+    min-height: 80px;
+  }
 }

@@ -9,15 +9,15 @@ const imageUrl = kptDiaryImage.src;
 export const KptDiariesPage: FC = () => {
   return (
     <Container>
-      <ContentWrapper className={styles.wrapper}>
+      <ContentWrapper>
         <div className={styles.main}>
-          <section>
+          <div className={styles.pictureContainer}>
             <img
               src={imageUrl}
               className={styles.picture}
             />
-          </section>
-          <StartAndHistory></StartAndHistory>
+          </div>
+          <StartAndHistory />
         </div>
       </ContentWrapper>
     </Container>
