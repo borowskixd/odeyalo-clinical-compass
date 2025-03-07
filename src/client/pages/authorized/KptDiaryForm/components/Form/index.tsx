@@ -1,17 +1,15 @@
 "use client";
 
-import { SubmitButton } from "./components";
+import {
+  Header,
+  MoodRangeInput,
+  SubmitButton,
+  TextareaWithHint,
+} from "./components";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/navigation";
 import * as Yup from "yup";
-import { QuestionMark } from "@/client/assets/icons";
-import {
-  Container,
-  FormErrorLabel,
-  FormikForm,
-  PageTitle,
-  SecondaryButton,
-} from "@/client/components";
+import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useSendKptDiaryMutation } from "@/client/redux";
 import { mapApiErrorMessage } from "@/client/utils";
 import { pages } from "@/shared/data";
@@ -43,7 +41,38 @@ const initialValues: InitialValues = {
   behavior: "",
 };
 
+const createFieldSchema = () => {
+  return Yup.string()
+    .required("Данное поле обязательно")
+    .test(
+      "not-only-spaces",
+      "Поле не может состоять только из пробелов",
+      (value) => {
+        return value.trim() !== "";
+      },
+    )
+    .test(
+      "not-only-digits",
+      "Поле не может состоять только из цифр",
+      (value) => {
+        return !/^\d+$/.test(value);
+      },
+    );
+};
+
+const validationSchema = Yup.object().shape({
+  situation: createFieldSchema(),
+  mood: createFieldSchema(),
+  thoughts: createFieldSchema(),
+  confirmThoughts: createFieldSchema(),
+  refuteThoughts: createFieldSchema(),
+  newMood: createFieldSchema(),
+  newThoughts: createFieldSchema(),
+  behavior: createFieldSchema(),
+});
+
 export const Form: FC = () => {
+  const [hint, setHint] = useState(false);
   const router = useRouter();
   const [createKptDiary, { isLoading, isSuccess, isError, error }] =
     useSendKptDiaryMutation();
@@ -54,186 +83,96 @@ export const Form: FC = () => {
     }
   }, [isSuccess, router]);
 
+  const toggleHint = () => {
+    setHint(!hint);
+  };
+
   const onSubmitHandler = (values: InitialValues) => {
     createKptDiary({ ...values });
   };
 
-  const [hint, setHint] = useState(false);
-
-  const changeState = () => {
-    setHint(!hint);
-  };
-
-  const createFieldSchema = () => {
-    return Yup.string()
-      .required("Данное поле обязательно")
-      .test(
-        "not-only-spaces",
-        "Поле не может состоять только из пробелов",
-        (value) => {
-          return value.trim() !== "";
-        },
-      )
-      .test(
-        "not-only-digits",
-        "Поле не может состоять только из цифр",
-        (value) => {
-          return !/^\d+$/.test(value);
-        },
-      );
-  };
-
-  const validationSchema = Yup.object().shape({
-    situation: createFieldSchema(),
-    mood: createFieldSchema(),
-    thoughts: createFieldSchema(),
-    confirmThoughts: createFieldSchema(),
-    refuteThoughts: createFieldSchema(),
-    newMood: createFieldSchema(),
-    newThoughts: createFieldSchema(),
-    behavior: createFieldSchema(),
-  });
+  const disabled = isLoading || isSuccess;
 
   return (
-    <section className={styles.sectionStyle}>
-      <div className={styles.textContainer}>
-        <div className={styles.gridForTitle}>
-          <section>
-            <PageTitle className={styles.title}>КПТ-Дневник</PageTitle>
-          </section>
-          <section>
-            <SecondaryButton
-              className={
-                hint ? `${styles.button} ${styles.active}` : styles.button
-              }
-              onClick={changeState}
-            >
-              <QuestionMark className={hint ? `${styles.iconActive}` : ""} />
-              Подсказки
-            </SecondaryButton>
-          </section>
-        </div>
-        <p className={styles.text}>
-          Это способ самоанализа, который позволяет отслеживать эмоции и
-          чувства, выявлять взаимосвязи между ситуациями и мыслями.
-        </p>
-      </div>
+    <section className={styles.formContainer}>
+      <Header
+        hint={hint}
+        toggleHintAction={toggleHint}
+      />
       <FormikForm<InitialValues>
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmitHandler}
         className={styles.form}
       >
-        <FormikForm.Textarea
+        <TextareaWithHint
           name="situation"
-          className={styles.noteInput}
           placeholder="Опиши ситуацию..."
-          disabled={isLoading || isSuccess}
+          disabled={disabled}
+          hint={hint}
+          hintText={"Запишите факты, без мыслей и эмоций"}
         />
-        {hint && (
-          <p className={styles.Text}>Запишите факты, без мыслей и эмоций</p>
-        )}
-        <FormikForm.Textarea
+        <TextareaWithHint
           name="behavior"
-          className={styles.noteInput}
           placeholder="Как ты себя повел?..."
-          disabled={isLoading || isSuccess}
+          disabled={disabled}
+          hint={hint}
+          hintText={"Запишите сами действия"}
         />
-        {hint && <p className={styles.Text}>Запишите сами действия</p>}
-        <FormikForm.Textarea
+        <TextareaWithHint
           name="mood"
-          className={styles.noteInput}
           placeholder="Какие чувства вызвала эта ситуация?..."
-          disabled={isLoading || isSuccess}
+          disabled={disabled}
+          hint={hint}
+          hintText={
+            "Опишите все чувства, которые возникли. Не забывай про настроение"
+          }
         />
-        {hint && (
-          <p className={styles.Text}>
-            Опишите все чувства, которые возникли. Не забывай про настроение
-          </p>
-        )}
-        <Container>
-          <p className={styles.altText}>Уровень настроения</p>
-          <FormikForm.RangeInput
-            name="moodLevel"
-            min="0"
-            max="100"
-          />
-          <div className={styles.grid}>
-            <p className={styles.leftText}>Ужасно</p>
-            <p className={styles.rightText}>Потрясающе</p>
-          </div>
-        </Container>
-        <FormikForm.Textarea
+        <MoodRangeInput name="moodLevel" />
+        <TextareaWithHint
           name="thoughts"
-          className={styles.noteInput}
           placeholder="Какие были мысли в этот момент?..."
-          disabled={isLoading || isSuccess}
+          disabled={disabled}
+          hint={hint}
+          hintText={
+            "Опишите все чувства, которые возникли. Не забывай про настроение"
+          }
         />
-        {hint && (
-          <p className={styles.Text}>
-            Опишите все чувства, которые возникли. Не забывай про настроение
-          </p>
-        )}
-        <FormikForm.Textarea
+        <TextareaWithHint
           name="confirmThoughts"
-          className={styles.noteInput}
           placeholder="Как ты подтверждаешь эту мысль?..."
-          disabled={isLoading || isSuccess}
+          disabled={disabled}
+          hint={hint}
+          hintText={"Запишите аргументы, почему эти мысли имеют место"}
         />
-        {hint && (
-          <p className={styles.Text}>
-            Запишите аргументы, почему эти мысли имеют место
-          </p>
-        )}
-        <FormikForm.Textarea
+        <TextareaWithHint
           name="refuteThoughts"
-          className={styles.noteInput}
           placeholder="Как ты опровергаешь эту мысль?..."
-          disabled={isLoading || isSuccess}
+          disabled={disabled}
+          hint={hint}
+          hintText={
+            "Запишите контраргументы, почему эти мысли потенциально опасны"
+          }
         />
-        {hint && (
-          <p className={styles.Text}>
-            Запишите контраргументы, почему эти мысли потенциально опасны
-          </p>
-        )}
-        <FormikForm.Textarea
+        <TextareaWithHint
           name="newThoughts"
-          className={styles.noteInput}
           placeholder="Что ты думаешь об этой ситуации сейчас?..."
-          disabled={isLoading || isSuccess}
+          disabled={disabled}
+          hint={hint}
+          hintText={"Напишите, как бы вы поступили сейчас и что бы изменили"}
         />
-        {hint && (
-          <p className={styles.Text}>
-            Напишите, как бы вы поступили сейчас и что бы изменили
-          </p>
-        )}
-        <FormikForm.Textarea
+        <TextareaWithHint
           name="newMood"
-          className={styles.noteInput}
           placeholder="Какое у тебя сейчас настроение?..."
-          disabled={isLoading || isSuccess}
+          disabled={disabled}
+          hint={hint}
+          hintText={"Опишите, как чувствуете себя после заполнения дневника"}
         />
-        {hint && (
-          <p className={styles.Text}>
-            Опишите, как чувствуете себя после заполнения дневника
-          </p>
-        )}
-        <Container>
-          <p className={styles.altText}>Уровень настроения</p>
-          <FormikForm.RangeInput
-            name="newMoodLevel"
-            min="0"
-            max="100"
-          />
-          <div className={styles.grid}>
-            <p className={styles.leftText}>Ужасно</p>
-            <p className={styles.rightText}>Потрясающе</p>
-          </div>
-        </Container>
+        <MoodRangeInput name="newMoodLevel" />
         {isError && !!error && (
           <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>
         )}
-        <SubmitButton disabled={isLoading || isSuccess} />
+        <SubmitButton disabled={disabled} />
       </FormikForm>
     </section>
   );

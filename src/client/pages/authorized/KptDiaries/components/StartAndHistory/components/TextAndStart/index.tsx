@@ -6,7 +6,7 @@ import { type FC } from "react";
 export const TextAndStart: FC = () => {
   return (
     <div className={styles.textContainer}>
-      <PageTitle className={styles.title}>КПТ-Дневник</PageTitle>
+      <PageTitle>КПТ-Дневник</PageTitle>
       <p className={styles.text}>
         Это способ самоанализа, который позволяет отслеживать эмоции и чувства,
         выявлять взаимосвязи между ситуациями и мыслями.

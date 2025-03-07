@@ -1,23 +1,25 @@
-import { Form } from "./components";
 import styles from "./styles.module.scss";
 import kptDiaryImage from "@/client/assets/webp/pictures/kptDiaryImage.webp";
 import { Container, ContentWrapper } from "@/client/components";
-import { type FC } from "react";
+import { type FC, type ReactNode } from "react";
 
-const imageUrl = kptDiaryImage.src;
+interface Props {
+  children: ReactNode;
+  imageUrl?: string;
+}
 
-export const KptDiaryResultsPage: FC = () => {
+export const ExercisePageLayout: FC<Props> = ({ imageUrl, children }) => {
   return (
     <Container>
       <ContentWrapper>
         <div className={styles.main}>
           <div className={styles.pictureContainer}>
             <img
-              src={imageUrl}
+              src={imageUrl ?? kptDiaryImage.src}
               className={styles.picture}
             />
           </div>
-          <Form />
+          <div className={styles.content}>{children}</div>
         </div>
       </ContentWrapper>
     </Container>

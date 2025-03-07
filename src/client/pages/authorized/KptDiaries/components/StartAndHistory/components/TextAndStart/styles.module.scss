@@ -1,43 +1,20 @@
 @use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
 
 .textContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 10px;
-    min-height: 156px;
-}
-
-.title {
-    font-family: var(--font-cygre);
-    min-height: 40px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 40px;
-    color: $color-black100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .text {
-    font-family: var(--font-inter);
-    min-height: 40px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    color: $color-black100;
+  @include bodyL;
 }
 
 .button {
-    display: block;
-    order: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 13px 128px;
-    width: 100%;
-    min-height: 46px;
-    border-radius: 12px;
-    margin-top: 10px;
+  margin-top: 10px;
+  width: 100%;
+  min-height: 46px;
+  @include bodyMBold;
+  border-radius: 12px;
 }
