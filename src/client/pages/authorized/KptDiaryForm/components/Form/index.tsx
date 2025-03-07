@@ -79,7 +79,7 @@ export const Form: FC = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      router.push(pages.kptDiaries.path);
+      router.push(pages.kptDiary.path);
     }
   }, [isSuccess, router]);
 
