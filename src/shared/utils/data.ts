@@ -166,3 +166,21 @@ export const compareDates = (
   if (!hasConfig) return date1 === date2;
   return result;
 };
+
+export function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  const now = new Date();
+
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const year = date.getFullYear();
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+
+  const currentYear = now.getFullYear();
+  if (year === currentYear) {
+    return `${day}.${month} ${hours}:${minutes}`;
+  } else {
+    return `${day}.${month}.${year} ${hours}:${minutes}`;
+  }
+}

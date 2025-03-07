@@ -76,6 +76,21 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
+  kptDiary: new Page("/kptDiary", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
+  kptDiaryResults: new Page<{ id: string }>("/kptDiary/results/:id", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
+  kptDiaryForm: new Page("/kptDiary/form", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
   usersActivity: new Page("/admin/users/activity", [ACCESS.admin]),
   usersFeedbacks: new Page("/admin/users/feedbacks", [ACCESS.admin]),
   usersResults: new Page("/admin/users/results", [ACCESS.admin]),

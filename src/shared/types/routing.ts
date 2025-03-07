@@ -82,6 +82,9 @@ export interface Pages {
   usersActivity: Page;
   usersFeedbacks: Page;
   usersResults: Page;
+  kptDiary: Page;
+  kptDiaryForm: Page;
+  kptDiaryResults: Page<{ id: string }>;
 }
 
 interface Route {

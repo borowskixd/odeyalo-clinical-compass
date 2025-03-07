@@ -14,7 +14,7 @@ export const Textarea: FC<Props> = ({ labelText, exampleText, ...props }) => {
   const [field, meta] = useField(props.name);
 
   const onChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    event.target.style.height = "56px";
+    event.target.style.height = "52px";
     event.target.style.height = `${event.target.scrollHeight}px`;
     if (field.onChange) {
       field.onChange(event);
