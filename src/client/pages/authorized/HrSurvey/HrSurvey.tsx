@@ -1,13 +1,11 @@
 import { HrSurveyForm } from "./components";
-import styles from "./styles.module.scss";
-import { Container, PageTitle } from "@/client/components";
+import { FormPageLayout } from "@/client/components/layouts";
 import { type FC } from "react";
 
 export const HrSurveyPage: FC = () => {
   return (
-    <Container>
-      <PageTitle className={styles.title}>Анкета HR</PageTitle>
+    <FormPageLayout title="Анкета HR">
       <HrSurveyForm />
-    </Container>
+    </FormPageLayout>
   );
 };

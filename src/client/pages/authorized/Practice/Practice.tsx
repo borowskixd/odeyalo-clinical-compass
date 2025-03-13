@@ -5,7 +5,7 @@ import { type FC } from "react";
 export const PracticePage: FC = () => {
   return (
     <ExercisePageLayout>
-      <PageTitle>Упражнение!</PageTitle>
+      <PageTitle>Тут будут упражнения...</PageTitle>
     </ExercisePageLayout>
   );
 };
