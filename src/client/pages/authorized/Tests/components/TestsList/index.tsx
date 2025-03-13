@@ -1,12 +1,12 @@
 "use client";
 
-import { ExerciseCard } from "../ExerciseCard";
+import { TestCard } from "../TestCard";
 import styles from "./styles.module.scss";
 import { DefaultError, LoadingLoop, Subtitle } from "@/client/components";
 import { useGetTestsQuery } from "@/client/redux";
 import { type FC } from "react";
 
-export const ExercisesList: FC = () => {
+export const TestsList: FC = () => {
   const { data: tests, ...getTestsState } = useGetTestsQuery();
 
   if (getTestsState.isLoading) return <LoadingLoop />;
@@ -19,7 +19,7 @@ export const ExercisesList: FC = () => {
     <div className={styles.list}>
       {tests.map((test) => {
         return (
-          <ExerciseCard
+          <TestCard
             key={test.id}
             exercise={test}
           />

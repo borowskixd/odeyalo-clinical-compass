@@ -31,13 +31,13 @@ interface InitialValues {
 const initialValues: InitialValues = {
   situation: "",
   mood: "",
-  moodLevel: 0,
+  moodLevel: 50,
   thoughts: "",
   confirmThoughts: "",
   refuteThoughts: "",
   newMood: "",
   newThoughts: "",
-  newMoodLevel: 0,
+  newMoodLevel: 50,
   behavior: "",
 };
 

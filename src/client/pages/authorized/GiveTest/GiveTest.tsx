@@ -13,7 +13,7 @@ import {
 import { useGetTestsQuery } from "@/client/redux";
 import { type FC } from "react";
 
-export const GiveExercisePage: FC = () => {
+export const GiveTestPage: FC = () => {
   const searchParams = useSearchParams();
 
   const { data: tests, ...getTestsState } = useGetTestsQuery();

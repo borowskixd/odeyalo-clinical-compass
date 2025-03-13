@@ -10,7 +10,7 @@ interface Props {
   exercise: GetTestsResponseData[number];
 }
 
-export const ExerciseCard: FC<Props> = ({ exercise }) => {
+export const TestCard: FC<Props> = ({ exercise }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -32,7 +32,7 @@ export const ExerciseCard: FC<Props> = ({ exercise }) => {
             История
           </SecondaryButton>
           <PrimaryButton
-            href={pages.exercise.getLink({ params: { id: exercise.id } })}
+            href={pages.test.getLink({ params: { id: exercise.id } })}
           >
             Пройти
           </PrimaryButton>
