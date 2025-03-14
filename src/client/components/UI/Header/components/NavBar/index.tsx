@@ -26,20 +26,20 @@ const rolesNav: Nav = {
   client: [
     { href: pages.main.path, title: "План", Icon: Grid4 },
     { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
-    { href: pages.practice.path, title: "Практика", Icon: Flame },
-    { href: pages.exercises.path, title: "Тесты", Icon: Leaderboard },
+    { href: pages.practices.path, title: "Практика", Icon: Flame },
+    { href: pages.tests.path, title: "Тесты", Icon: Leaderboard },
   ],
   hr: [
     { href: pages.main.path, title: "План", Icon: Grid4 },
     { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
-    { href: pages.practice.path, title: "Практика", Icon: Flame },
-    { href: pages.exercises.path, title: "Тесты", Icon: Leaderboard },
+    { href: pages.practices.path, title: "Практика", Icon: Flame },
+    { href: pages.tests.path, title: "Тесты", Icon: Leaderboard },
   ],
   psychologist: [
     { href: pages.main.path, title: "План", Icon: Grid4 },
     { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
-    { href: pages.practice.path, title: "Практика", Icon: Flame },
-    { href: pages.exercises.path, title: "Тесты", Icon: Leaderboard },
+    { href: pages.practices.path, title: "Практика", Icon: Flame },
+    { href: pages.tests.path, title: "Тесты", Icon: Leaderboard },
   ],
   unauthorized: [],
 };

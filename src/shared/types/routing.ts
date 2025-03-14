@@ -63,9 +63,9 @@ export interface Pages {
   cabinet: Page;
   application: Page<{ id: string }>;
   client: Page<{ id: string }>;
-  exercises: Page;
-  exercise: Page<{ id: string }>;
-  giveExercise: Page;
+  tests: Page;
+  test: Page<{ id: string }>;
+  giveTest: Page;
   changePassword: Page;
   resetPassword: Page;
   psychologist: Page;
@@ -78,7 +78,8 @@ export interface Pages {
   notes: Page;
   note: Page<{ id: string }>;
   createNote: Page;
-  practice: Page;
+  practices: Page;
+  practice: Page<{ id: string }>;
   usersActivity: Page;
   usersFeedbacks: Page;
   usersResults: Page;

@@ -90,6 +90,12 @@ export const ProfileButton: FC = () => {
           >
             Выйти
           </Button>
+          <Button
+            className={styles.popupItem}
+            href={pages.hrSurvey.path}
+          >
+            Анкета HR
+          </Button>
         </div>
       )}
     </div>

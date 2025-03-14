@@ -65,7 +65,7 @@ export const ClientPage: FC = () => {
           )}
           <div className={styles.buttons}>
             <PrimaryButton
-              href={pages.giveExercise.getLink({
+              href={pages.giveTest.getLink({
                 queryParams: {
                   userId: id,
                 },

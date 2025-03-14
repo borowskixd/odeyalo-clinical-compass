@@ -60,10 +60,13 @@ export const getDailyTaskLink = (
       return pages.article.getLink(getLinkConfig);
     }
     case "test": {
-      return pages.exercise.getLink(getLinkConfig);
+      return pages.test.getLink(getLinkConfig);
     }
     case "moodTracker": {
       return pages.notes.path;
+    }
+    case "kptDiary": {
+      return pages.kptDiary.path;
     }
   }
 
