@@ -12,6 +12,7 @@ const EXISTING_DAILY_TASKS: DailyTaskType[] = [
   DAILY_TASK_TYPES.theory,
   DAILY_TASK_TYPES.test,
   DAILY_TASK_TYPES.moodTracker,
+  DAILY_TASK_TYPES.kptDiary,
 ];
 
 export const DailyTasks: FC = () => {
