@@ -27,6 +27,8 @@ lint-job:
 
 deploy-job:
   stage: deploy
+  extends:
+    - .standard-rules
   script:
     - docker compose -f ./deploy/docker/docker-compose.yml -p odeyalo-frontend up -d --build
 #  rules:
