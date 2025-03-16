@@ -1,11 +1,35 @@
 @use "@/client/styles/fontStyles" as *;
 
 .content {
+  max-width: 648px;
   margin-top: 32px;
-  display: flex;
-  flex-flow: column;
   gap: 24px;
   white-space: pre-wrap;
-
   @include bodyM;
+}
+
+.main {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 60% 40%;
+
+  @media screen and (max-width: 707px){
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+}
+
+.imageContainer {
+  max-width: 1128px;
+  width: 100%;
+  height: 460px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

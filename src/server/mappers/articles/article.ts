@@ -1,3 +1,4 @@
+import { SEVER_API_URL } from "@/shared/config/api";
 import {
   type GetArticleApiResponseData,
   type GetArticleResponseData,
@@ -7,24 +8,27 @@ import {
 export const mapGetArticleResponse = (
   articleContent: GetArticleApiResponseData,
 ): GetArticleResponseData => {
-  const { subtopics, theme } = articleContent;
+  const { theme, id, link_to_picture, related_topics, subtopics } =
+    articleContent;
 
   return {
     title: theme,
-    content: subtopics.reduce((acc: GetArticleResponseData["content"], el) => {
-      const { cards } = el;
-
-      cards.forEach((el) => {
-        const { id, text } = el;
-
-        acc.push({
-          id,
-          content: text,
-        });
-      });
-
-      return acc;
-    }, []),
+    id,
+    linkToPicture: `${SEVER_API_URL}${link_to_picture}`,
+    recomendations: related_topics.map((topic) => ({
+      id: topic.id,
+      theme: topic.theme,
+      linkToPicture: `${SEVER_API_URL}${topic.link_to_picture}`,
+      maxScore: topic.max_score,
+    })),
+    subtopics: subtopics.map((subtopic) => ({
+      subtitle: subtopic.subtitle,
+      cards: subtopic.cards.map((card) => ({
+        id: card.id,
+        text: card.text,
+        linkToPicture: `${SEVER_API_URL}${card.link_to_picture}`,
+      })),
+    })),
   };
 };
 

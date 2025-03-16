@@ -1,8 +1,20 @@
 export interface GetArticleResponseData {
   title: string;
-  content: {
+  id: string;
+  linkToPicture: string;
+  recomendations: {
     id: string;
-    content: string;
+    theme: string;
+    linkToPicture: string;
+    maxScore: number;
+  }[];
+  subtopics: {
+    subtitle: string;
+    cards: {
+      id: string;
+      text: string;
+      linkToPicture: string;
+    }[];
   }[];
 }
 

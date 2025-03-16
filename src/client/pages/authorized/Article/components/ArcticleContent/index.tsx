@@ -1,5 +1,6 @@
 "use client";
 
+import { Recomendation, Subtopic } from "./components";
 import styles from "./styles.module.scss";
 import { useParams } from "next/navigation";
 import { DefaultError, LoadingLoop, PageTitle } from "@/client/components";
@@ -13,11 +14,10 @@ export const ArticleContent: FC = () => {
   const [readArticle] = useReadArticleMutation();
 
   useEffect(() => {
-    if (article?.content.length) {
-      const id = article.content[0].id;
+    if (article?.subtopics.length) {
       readArticle(id);
     }
-  }, [readArticle, article]);
+  }, [readArticle, article, id]);
 
   if (getArticleState.isLoading) return <LoadingLoop />;
   if (getArticleState.isError)
@@ -25,9 +25,16 @@ export const ArticleContent: FC = () => {
 
   return (
     <>
+      <div className={styles.imageContainer}>
+        <img
+          src={article.linkToPicture}
+          className={styles.image}
+        />
+      </div>
       <PageTitle>{article?.title}</PageTitle>
-      <div className={styles.content}>
-        {article?.content.map((el) => <p key={el.id}>{el.content}</p>)}
+      <div className={styles.main}>
+        <Subtopic />
+        <Recomendation />
       </div>
     </>
   );
