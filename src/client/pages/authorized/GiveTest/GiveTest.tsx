@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import { useSearchParams } from "next/navigation";
 import {
   Container,
+  ContentWrapper,
   DefaultError,
   GiveExerciseCard,
   LoadingLoop,
@@ -24,25 +25,27 @@ export const GiveTestPage: FC = () => {
 
   return (
     <Container>
-      <PageTitle>Задания для клиента</PageTitle>
-      <div className={styles.section}>
-        <Subtitle>
-          {!!tests && !!tests.length ? "Тесты" : "Нет доступных тестов"}
-        </Subtitle>
-        {!!tests && !!tests.length && (
-          <div className={styles.list}>
-            {tests.map((test) => {
-              return (
-                <GiveExerciseCard
-                  key={test.id}
-                  exercise={test}
-                  userId={searchParams.get("userId") ?? ""}
-                />
-              );
-            })}
-          </div>
-        )}
-      </div>
+      <ContentWrapper>
+        <PageTitle>Задания для клиента</PageTitle>
+        <div className={styles.section}>
+          <Subtitle>
+            {!!tests && !!tests.length ? "Тесты" : "Нет доступных тестов"}
+          </Subtitle>
+          {!!tests && !!tests.length && (
+            <div className={styles.list}>
+              {tests.map((test) => {
+                return (
+                  <GiveExerciseCard
+                    key={test.id}
+                    exercise={test}
+                    userId={searchParams.get("userId") ?? ""}
+                  />
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </ContentWrapper>
     </Container>
   );
 };

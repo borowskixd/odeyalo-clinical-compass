@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import {
   ApplicationProfileCard,
   Container,
+  ContentWrapper,
   DefaultError,
   LoadingLoop,
   PageTitle,
@@ -65,42 +66,44 @@ export const ApplicationPage: FC = () => {
 
   return (
     <Container>
-      <PageTitle className={styles.title}>
-        Профиль {role === ACCESS.psychologist ? "клиента" : "сотрудника"}
-      </PageTitle>
-      <div className={styles.main}>
-        {application && <ApplicationProfileCard profile={application} />}
-        <div>
-          <Subtitle>
-            {!!passedTests && !!passedTests.length
-              ? "Пройденные тесты"
-              : "Нет пройденных тестов"}
-          </Subtitle>
-          {!!passedTests && !!passedTests.length && !!application && (
-            <div className={styles.tests}>
-              {passedTests.map((el) => {
-                return (
-                  <TestCard
-                    key={el.id}
-                    test={el}
-                    params={{ userId: application?.userId }}
-                  />
-                );
-              })}
-            </div>
-          )}
-          {!!application && (
-            <div className={styles.buttons}>
-              <PrimaryButton onClick={() => onClickHandler(true)}>
-                Принять заявку
-              </PrimaryButton>
-              <SecondaryButton onClick={() => onClickHandler(false)}>
-                Отклонить
-              </SecondaryButton>
-            </div>
-          )}
+      <ContentWrapper>
+        <PageTitle className={styles.title}>
+          Профиль {role === ACCESS.psychologist ? "клиента" : "сотрудника"}
+        </PageTitle>
+        <div className={styles.main}>
+          {application && <ApplicationProfileCard profile={application} />}
+          <div>
+            <Subtitle>
+              {!!passedTests && !!passedTests.length
+                ? "Пройденные тесты"
+                : "Нет пройденных тестов"}
+            </Subtitle>
+            {!!passedTests && !!passedTests.length && !!application && (
+              <div className={styles.tests}>
+                {passedTests.map((el) => {
+                  return (
+                    <TestCard
+                      key={el.id}
+                      test={el}
+                      params={{ userId: application?.userId }}
+                    />
+                  );
+                })}
+              </div>
+            )}
+            {!!application && (
+              <div className={styles.buttons}>
+                <PrimaryButton onClick={() => onClickHandler(true)}>
+                  Принять заявку
+                </PrimaryButton>
+                <SecondaryButton onClick={() => onClickHandler(false)}>
+                  Отклонить
+                </SecondaryButton>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </ContentWrapper>
     </Container>
   );
 };

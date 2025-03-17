@@ -5,6 +5,7 @@ import {
   ApplicationCard,
   ClientCard,
   Container,
+  ContentWrapper,
   DefaultError,
   LoadingLoop,
   PageTitle,
@@ -29,44 +30,46 @@ export const CabinetPage: FC = () => {
 
   return (
     <Container>
-      <PageTitle className={styles.title}>
-        Кабинет {role === ACCESS.psychologist ? "психолога" : "HR-менеджера"}
-      </PageTitle>
-      {!!applicationsQuery.data && !!applicationsQuery.data.length && (
+      <ContentWrapper>
+        <PageTitle className={styles.title}>
+          Кабинет {role === ACCESS.psychologist ? "психолога" : "HR-менеджера"}
+        </PageTitle>
+        {!!applicationsQuery.data && !!applicationsQuery.data.length && (
+          <div>
+            <h2 className={styles.subtitle}>Заявки</h2>
+            <div className={styles.list}>
+              {applicationsQuery.data.map((application) => {
+                return (
+                  <ApplicationCard
+                    key={application.userId}
+                    application={application}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        )}
         <div>
-          <h2 className={styles.subtitle}>Заявки</h2>
+          <h2 className={`${styles.subtitle} ${styles.clientsSubtitle}`}>
+            {!!clientsQuery.data && clientsQuery.data.length
+              ? `Мои ${role === ACCESS.psychologist ? "клиенты" : "сотрудники"}`
+              : `У вас нет ${
+                  role === ACCESS.psychologist ? "клиентов" : "сотрудников"
+                }`}
+          </h2>
           <div className={styles.list}>
-            {applicationsQuery.data.map((application) => {
-              return (
-                <ApplicationCard
-                  key={application.userId}
-                  application={application}
-                />
-              );
-            })}
+            {clientsQuery.data &&
+              clientsQuery.data.map((client) => {
+                return (
+                  <ClientCard
+                    key={client.userId}
+                    client={client}
+                  />
+                );
+              })}
           </div>
         </div>
-      )}
-      <div>
-        <h2 className={`${styles.subtitle} ${styles.clientsSubtitle}`}>
-          {!!clientsQuery.data && clientsQuery.data.length
-            ? `Мои ${role === ACCESS.psychologist ? "клиенты" : "сотрудники"}`
-            : `У вас нет ${
-                role === ACCESS.psychologist ? "клиентов" : "сотрудников"
-              }`}
-        </h2>
-        <div className={styles.list}>
-          {clientsQuery.data &&
-            clientsQuery.data.map((client) => {
-              return (
-                <ClientCard
-                  key={client.userId}
-                  client={client}
-                />
-              );
-            })}
-        </div>
-      </div>
+      </ContentWrapper>
     </Container>
   );
 };
