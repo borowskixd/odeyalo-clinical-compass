@@ -20,7 +20,6 @@ export type GetApplicationsApiResponseData = {
 export interface SendApplicationRequestData {
   psychologistId: string;
   request: string;
-  username: string;
 }
 
 export interface SendApplicationApiRequestData {

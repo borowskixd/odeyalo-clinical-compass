@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import { useParams } from "next/navigation";
 import {
   Container,
+  ContentWrapper,
   DefaultError,
   LoadingLoop,
   PageTitle,
@@ -39,43 +40,45 @@ export const ClientPage: FC = () => {
 
   return (
     <Container>
-      <PageTitle className={styles.title}>
-        Профиль {role === ACCESS.psychologist ? "клиента" : "сотрудника"}
-      </PageTitle>
-      <div className={styles.main}>
-        {client && <ProfileCard profile={client} />}
-        <div>
-          <Subtitle>
-            {!!passedTests && !!passedTests.length
-              ? "Пройденные тесты"
-              : "Нет пройденных тестов"}
-          </Subtitle>
-          {!!passedTests && !!passedTests.length && (
-            <div className={styles.tests}>
-              {passedTests.map((el) => {
-                return (
-                  <TestCard
-                    key={el.id}
-                    test={el}
-                    params={{ userId: id }}
-                  />
-                );
-              })}
+      <ContentWrapper>
+        <PageTitle className={styles.title}>
+          Профиль {role === ACCESS.psychologist ? "клиента" : "сотрудника"}
+        </PageTitle>
+        <div className={styles.main}>
+          {client && <ProfileCard profile={client} />}
+          <div>
+            <Subtitle>
+              {!!passedTests && !!passedTests.length
+                ? "Пройденные тесты"
+                : "Нет пройденных тестов"}
+            </Subtitle>
+            {!!passedTests && !!passedTests.length && (
+              <div className={styles.tests}>
+                {passedTests.map((el) => {
+                  return (
+                    <TestCard
+                      key={el.id}
+                      test={el}
+                      params={{ userId: id }}
+                    />
+                  );
+                })}
+              </div>
+            )}
+            <div className={styles.buttons}>
+              <PrimaryButton
+                href={pages.giveTest.getLink({
+                  queryParams: {
+                    userId: id,
+                  },
+                })}
+              >
+                Назначить задание
+              </PrimaryButton>
             </div>
-          )}
-          <div className={styles.buttons}>
-            <PrimaryButton
-              href={pages.giveTest.getLink({
-                queryParams: {
-                  userId: id,
-                },
-              })}
-            >
-              Назначить задание
-            </PrimaryButton>
           </div>
         </div>
-      </div>
+      </ContentWrapper>
     </Container>
   );
 };
