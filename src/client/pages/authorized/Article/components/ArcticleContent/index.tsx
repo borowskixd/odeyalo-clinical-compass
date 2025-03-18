@@ -27,7 +27,7 @@ export const ArticleContent: FC = () => {
     <>
       <div className={styles.imageContainer}>
         <img
-          src={article.linkToPicture}
+          src={article?.linkToPicture}
           className={styles.image}
         />
       </div>
