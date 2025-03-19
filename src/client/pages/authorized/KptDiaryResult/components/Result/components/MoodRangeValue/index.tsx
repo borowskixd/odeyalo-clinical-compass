@@ -10,7 +10,7 @@ type Props = FieldConfig & InputHTMLAttributes<HTMLInputElement>;
 export const MoodRangeValue: FC<Props> = ({ ...props }) => {
   return (
     <div className={styles.container}>
-      <h6 className={styles.title}>Уровень настроения</h6>
+      <h6 className={styles.title}>Уровень этой эмоции</h6>
       <RangeInput
         min="0"
         max="100"
