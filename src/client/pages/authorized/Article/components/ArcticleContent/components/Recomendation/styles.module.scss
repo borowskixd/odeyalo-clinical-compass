@@ -2,52 +2,56 @@
 @use "@/client/styles/fontStyles" as *;
 
 .content {
-    max-width: 420px;
-    display: flex;
-    flex-flow: column;
-    gap: 24px;
-    white-space: pre-wrap;
-    justify-content: flex-start;
-  
-    @include bodyM;
+  max-width: 420px;
+  display: flex;
+  flex-flow: column;
+  gap: 24px;
+  white-space: pre-wrap;
+  justify-content: flex-start;
+
+  @include bodyM;
+}
+
+.card {
+  display: block;
 }
 
 .imageContainer {
-    max-width: 420px;
-    width: 100%;
-    height: 300px;
-    border-radius: 12px;
-    overflow: hidden;
+  max-width: 420px;
+  width: 100%;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .title {
-    margin-top: 10px;
-    @include bodyLBold;
+  margin-top: 10px;
+  @include bodyLBold;
 }
 
 .time {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 6px 16px;
-    gap: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 16px;
+  gap: 10px;
 
-    max-width: 100px;
+  max-width: 100px;
 
-    background: #F1F3F6;
-    border-radius: 12px;
+  background: #f1f3f6;
+  border-radius: 12px;
 }
 
 .header {
-    @include bodyXLBold;
-    margin-bottom: 20px;
-    height: 24px;
-  }
+  @include bodyXLBold;
+  margin-bottom: 20px;
+  height: 24px;
+}

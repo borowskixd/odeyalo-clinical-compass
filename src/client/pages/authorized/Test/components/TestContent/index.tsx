@@ -58,6 +58,10 @@ export const TestContent: FC = () => {
 
   const currentQuestion = test.questions[currentQuestionNumber];
 
+  const nextButtonDisabled =
+    currentQuestionNumber + 1 >= test.questions.length ||
+    typeof answers[currentQuestionNumber] !== "number";
+
   return (
     <>
       <PageTitle className={styles.title}>{test.title}</PageTitle>
@@ -95,7 +99,7 @@ export const TestContent: FC = () => {
         <Button
           className={styles.button}
           onClick={nextQuestion}
-          disabled={currentQuestionNumber + 1 >= test.questions.length}
+          disabled={nextButtonDisabled}
         >
           Далее
           <ArrowIcon />
