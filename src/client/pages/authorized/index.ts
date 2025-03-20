@@ -13,7 +13,6 @@ export * from "./Articles";
 export * from "./Article";
 export * from "./HrSurvey";
 export * from "./PsychologistSurvey";
-export * from "./Practice";
 export * from "./Practices";
 export * from "./Notes";
 export * from "./Note";

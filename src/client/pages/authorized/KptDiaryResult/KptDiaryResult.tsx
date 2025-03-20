@@ -1,12 +1,13 @@
 import { Header, Result } from "./components";
-import { ExercisePageLayout } from "@/client/components/layouts";
+import kptDiaryImage from "@/client/assets/webp/pictures/kptDiaryImage.webp";
+import { ImageContentLayout } from "@/client/components/layouts";
 import { type FC } from "react";
 
 export const KptDiaryResultPage: FC = () => {
   return (
-    <ExercisePageLayout>
+    <ImageContentLayout imageSrc={kptDiaryImage.src}>
       <Header />
       <Result />
-    </ExercisePageLayout>
+    </ImageContentLayout>
   );
 };

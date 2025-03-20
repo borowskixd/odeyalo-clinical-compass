@@ -1,11 +1,12 @@
 import { Form } from "./components";
-import { ExercisePageLayout } from "@/client/components/layouts";
+import kptDiaryImage from "@/client/assets/webp/pictures/kptDiaryImage.webp";
+import { ImageContentLayout } from "@/client/components/layouts";
 import { type FC } from "react";
 
 export const KptDiaryFormPage: FC = () => {
   return (
-    <ExercisePageLayout>
+    <ImageContentLayout imageSrc={kptDiaryImage.src}>
       <Form />
-    </ExercisePageLayout>
+    </ImageContentLayout>
   );
 };
