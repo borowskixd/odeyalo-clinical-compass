@@ -1,6 +1,6 @@
 "use client";
 
-import { Recomendation, Subtopic } from "./components";
+import { Recomendation, Subtopics } from "./components";
 import styles from "./styles.module.scss";
 import { useParams } from "next/navigation";
 import { DefaultError, LoadingLoop, PageTitle } from "@/client/components";
@@ -14,7 +14,7 @@ export const ArticleContent: FC = () => {
   const [readArticle] = useReadArticleMutation();
 
   useEffect(() => {
-    if (article?.subtopics.length) {
+    if (article) {
       readArticle(id);
     }
   }, [readArticle, article, id]);
@@ -22,6 +22,8 @@ export const ArticleContent: FC = () => {
   if (getArticleState.isLoading) return <LoadingLoop />;
   if (getArticleState.isError)
     return <DefaultError error={getArticleState.error} />;
+
+  if (!article) return <div>Статья не найдена</div>;
 
   return (
     <>
@@ -33,8 +35,8 @@ export const ArticleContent: FC = () => {
       </div>
       <PageTitle>{article?.title}</PageTitle>
       <div className={styles.main}>
-        <Subtopic />
-        <Recomendation />
+        <Subtopics article={article} />
+        <Recomendation article={article} />
       </div>
     </>
   );
