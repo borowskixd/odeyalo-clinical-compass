@@ -11,7 +11,7 @@
 .main {
   display: grid;
   gap: 20px;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 6fr 4fr;
 
   @media screen and (max-width: 707px){
     grid-template-columns: 1fr;
@@ -22,7 +22,7 @@
 .imageContainer {
   max-width: 1128px;
   width: 100%;
-  aspect-ratio: 4.5/2; 
+  aspect-ratio: 4.5/2;
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 30px;
