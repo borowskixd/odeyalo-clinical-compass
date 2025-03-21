@@ -1,18 +1,22 @@
 @use "@/client/styles/fontStyles" as *;
 
 .content {
-    max-width: 420px;
-    display: flex;
-    flex-flow: column;
-    gap: 24px;
-    white-space: pre-wrap;
-    justify-content: flex-start;
-  
-    @include bodyM;
+  max-width: 420px;
+  display: flex;
+  flex-flow: column;
+  gap: 24px;
+  white-space: pre-wrap;
+  justify-content: flex-start;
+
+  @include bodyM;
+}
+
+.card {
+  display: block;
 }
 
 .header {
-    @include bodyXLBold;
-    margin-bottom: 20px;
-    height: 24px;
-  }
+  @include bodyXLBold;
+  margin-bottom: 20px;
+  height: 24px;
+}

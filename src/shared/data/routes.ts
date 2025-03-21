@@ -14,17 +14,13 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  exercises: new Page("/exercises", [
+  tests: new Page("/tests", [ACCESS.client, ACCESS.psychologist, ACCESS.hr]),
+  test: new Page<{ id: string }>("/tests/:id", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  exercise: new Page<{ id: string }>("/exercises/:id", [
-    ACCESS.client,
-    ACCESS.psychologist,
-    ACCESS.hr,
-  ]),
-  giveExercise: new Page("/exercises/give", [ACCESS.psychologist, ACCESS.hr]),
+  giveTest: new Page("/tests/give", [ACCESS.psychologist, ACCESS.hr]),
   changePassword: new Page<{ token: string }>("/password/change/:token", [
     ACCESS.unauthorized,
   ]),
@@ -56,22 +52,42 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  practice: new Page("/practice", [
+  practices: new Page("/practices", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  notes: new Page("/practice/notes", [
+  practice: new Page<{ id: string }>("/practices/:id", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  note: new Page<{ id: string }>("/practice/notes/:id", [
+  notes: new Page("/practices/notes", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  createNote: new Page("/practice/notes/new", [
+  note: new Page<{ id: string }>("/practices/notes/:id", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
+  createNote: new Page("/practices/notes/new", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
+  kptDiary: new Page("/practices/kptDiary", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
+  kptDiaryResults: new Page<{ id: string }>("/practices/kptDiary/results/:id", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
+  kptDiaryForm: new Page("/practices/kptDiary/form", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,

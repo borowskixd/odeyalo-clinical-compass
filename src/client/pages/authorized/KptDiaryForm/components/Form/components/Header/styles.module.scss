@@ -1,0 +1,39 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 10px;
+}
+
+.formHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  gap: 10px;
+  height: 32px;
+  padding: 6px 10px;
+  @include bodyM;
+  background-color: $color-blue20;
+  border-radius: 12px;
+
+  &.active {
+    background-color: $color-blue80;
+    color: $color-white100;
+
+    & path {
+      fill: $color-white100;
+    }
+  }
+}
+
+.text {
+  @include bodyL;
+}

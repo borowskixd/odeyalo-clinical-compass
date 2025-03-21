@@ -23,7 +23,7 @@ const initialValues: RegistrationRequestData = {
 };
 
 const validationSchema = Yup.object().shape({
-  username: Yup.string(),
+  username: Yup.string().required("Данное поле обязательно"),
   email: Yup.string()
     .required("Данное поле обязательно")
     .email("Введите корректный email"),
@@ -55,7 +55,7 @@ export const RegistrationForm: FC = () => {
       onSubmit={onSubmit}
     >
       <FormikForm.Input
-        name="name"
+        name="username"
         type="text"
         placeholder="Имя"
         disabled={isLoading}

@@ -90,6 +90,14 @@ export const ProfileButton: FC = () => {
           >
             Выйти
           </Button>
+          {profile.role === ACCESS.client && (
+            <Button
+              className={styles.popupItem}
+              href={pages.hrSurvey.path}
+            >
+              Анкета HR
+            </Button>
+          )}
         </div>
       )}
     </div>

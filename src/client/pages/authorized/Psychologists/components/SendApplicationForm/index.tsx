@@ -17,12 +17,10 @@ interface Props {
 }
 
 interface SendApplicationFormFields {
-  username: string;
   request: string;
 }
 
 const validationSchema = Yup.object().shape({
-  username: Yup.string().required("Данное поле обязательно"),
   request: Yup.string(),
 });
 
@@ -61,14 +59,6 @@ export const SendApplicationForm: FC<Props> = ({
       onSubmit={onSubmit}
       className={styles.form}
     >
-      <FormikForm.Input
-        name="username"
-        type="text"
-        placeholder="Введите Ваше имя"
-        labelText="Ваши Фамилия Имя"
-        disabled={isLoading}
-        required
-      />
       <FormikForm.Input
         name="request"
         type="text"

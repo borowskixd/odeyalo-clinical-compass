@@ -1,0 +1,14 @@
+.title {
+  margin-bottom: 30px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
