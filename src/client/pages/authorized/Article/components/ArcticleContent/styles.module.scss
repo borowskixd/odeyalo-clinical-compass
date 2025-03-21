@@ -22,10 +22,13 @@
 .imageContainer {
   max-width: 1128px;
   width: 100%;
-  height: 460px;
+  aspect-ratio: 4.5/2; 
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 30px;
+  @media screen and (max-width: 707px){
+    display: none;
+  }
 }
 
 .image {

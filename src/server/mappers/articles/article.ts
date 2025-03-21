@@ -26,7 +26,10 @@ export const mapGetArticleResponse = (
       cards: subtopic.cards.map((card) => ({
         id: card.id,
         text: card.text,
-        linkToPicture: `${SEVER_API_URL}${card.link_to_picture}`,
+        linkToPicture:
+          card.link_to_picture === ""
+            ? ""
+            : `${SEVER_API_URL}${card.link_to_picture}`,
       })),
     })),
   };

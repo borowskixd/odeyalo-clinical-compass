@@ -1,0 +1,19 @@
+@use "@/client/styles/fontStyles" as *;
+@use "@/client/styles/colors" as *;
+
+.content {
+  max-width: 648px;
+  margin-top: 32px;
+  display: flex;
+  flex-flow: column;
+  gap: 5px;
+  white-space: pre-wrap;
+  justify-content: flex-end;
+
+  @include bodyM;
+}
+
+.subtitle {
+    @include bodyXLBold;
+    margin-bottom: 10px;
+}

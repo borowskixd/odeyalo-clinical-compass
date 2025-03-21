@@ -1,2 +1,2 @@
 export * from "./Recomendation";
-export * from "./Subtopic";
+export * from "./Subtopics";
