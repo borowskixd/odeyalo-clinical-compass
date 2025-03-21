@@ -11,7 +11,7 @@
 .main {
   display: grid;
   gap: 20px;
-  grid-template-columns: 6fr 4fr;
+  grid-template-columns: 3fr 2fr;
 
   @media screen and (max-width: 707px){
     grid-template-columns: 1fr;
