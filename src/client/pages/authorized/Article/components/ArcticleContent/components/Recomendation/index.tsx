@@ -6,15 +6,15 @@ import { type GetArticleResponseData } from "@/shared/types";
 import { type FC } from "react";
 
 interface Props {
-  article: GetArticleResponseData;
+  recomendations: GetArticleResponseData["recomendations"];
 }
 
-export const Recomendation: FC<Props> = ({ article }) => {
+export const Recomendation: FC<Props> = ({ recomendations }) => {
   return (
     <div>
       <p className={styles.header}>Рекомендуем</p>
       <div className={styles.content}>
-        {article.recomendations.map((recomendation) => (
+        {recomendations.map((recomendation) => (
           <RecomendationCard
             key={recomendation.id}
             recomendation={recomendation}

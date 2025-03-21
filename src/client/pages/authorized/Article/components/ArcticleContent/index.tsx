@@ -35,8 +35,8 @@ export const ArticleContent: FC = () => {
       </div>
       <PageTitle>{article?.title}</PageTitle>
       <div className={styles.main}>
-        <Subtopics article={article} />
-        <Recomendation article={article} />
+        <Subtopics subtopics={article.subtopics} />
+        <Recomendation recomendations={article.recomendations} />
       </div>
     </>
   );
