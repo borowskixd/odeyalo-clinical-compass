@@ -1,0 +1,15 @@
+@use "@/client/styles/fontStyles" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.button {
+  margin-top: -20px;
+  width: 100%;
+  height: 46px !important;
+  @include bodyMBold;
+  border-radius: 12px;
+}
