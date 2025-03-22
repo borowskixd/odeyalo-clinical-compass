@@ -47,10 +47,15 @@ export const TestCard: FC<Props> = ({ exercise }) => {
         className={styles.card}
         onClick={handleOpen}
       >
-        <div
-          style={{ backgroundImage: `url("${exercise.image}")` }}
-          className={styles.image}
-        />
+        <div className={styles.imageContainer}>
+          <img
+            src={exercise.image}
+            alt={exercise.title}
+            width={260}
+            height={165}
+            className={styles.image}
+          />
+        </div>
         <h5 className={styles.title}>{exercise.title}</h5>
       </div>
       <Modal

@@ -14,7 +14,7 @@ export const RangeInput: FC<Props> = ({ ...props }) => {
       <input
         {...props}
         type="range"
-        className={`${styles.input} ${props.className}`}
+        className={`${styles.input} ${props.className ?? ""}`}
         style={{ "--progress": progress, ...props.style } as CSSProperties}
       />
     </div>

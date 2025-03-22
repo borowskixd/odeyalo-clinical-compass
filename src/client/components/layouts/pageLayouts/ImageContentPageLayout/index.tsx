@@ -1,4 +1,5 @@
 import styles from "./styles.module.scss";
+import Image from "next/image";
 import { Container, ContentWrapper } from "@/client/components";
 import { type FC, type ReactNode } from "react";
 
@@ -7,15 +8,18 @@ interface Props {
   children: ReactNode;
 }
 
-export const ImageContentLayout: FC<Props> = ({ imageSrc, children }) => {
+export const ImageContentPageLayout: FC<Props> = ({ imageSrc, children }) => {
   return (
     <Container>
       <ContentWrapper>
         <div className={styles.main}>
           <div className={styles.pictureContainer}>
-            <img
+            <Image
               src={imageSrc}
+              alt={""}
               className={styles.picture}
+              width={536}
+              height={460}
             />
           </div>
           <div className={styles.content}>{children}</div>

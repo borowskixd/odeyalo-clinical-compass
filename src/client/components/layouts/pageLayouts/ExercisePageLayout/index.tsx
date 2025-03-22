@@ -1,5 +1,5 @@
 import { Header, History } from "./components";
-import { ImageContentLayout } from "@/client/components/layouts";
+import { ImageContentPageLayout } from "@/client/components/layouts";
 import { type FC } from "react";
 
 interface Props {
@@ -23,13 +23,13 @@ export const ExercisePageLayout: FC<Props> = ({
   history,
 }) => {
   return (
-    <ImageContentLayout imageSrc={imageSrc}>
+    <ImageContentPageLayout imageSrc={imageSrc}>
       <Header
         title={exerciseTitle}
         description={exerciseDescription}
         startLink={exerciseStartLink}
       />
       <History history={history} />
-    </ImageContentLayout>
+    </ImageContentPageLayout>
   );
 };

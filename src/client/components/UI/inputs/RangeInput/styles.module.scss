@@ -22,6 +22,16 @@
     $color-blue30 var(--progress)
   );
 
+  &:disabled::-webkit-slider-thumb {
+    cursor: default;
+  }
+  &:disabled::-moz-range-thumb {
+    cursor: default;
+  }
+  &:disabled::-ms-thumb {
+    cursor: default;
+  }
+
   &::after {
     content: "";
     position: absolute;
