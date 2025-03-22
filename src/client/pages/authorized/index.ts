@@ -1,4 +1,5 @@
 export * from "./admin";
+export * from "./exercises";
 export * from "./Cabinet";
 export * from "./Application";
 export * from "./Client";
