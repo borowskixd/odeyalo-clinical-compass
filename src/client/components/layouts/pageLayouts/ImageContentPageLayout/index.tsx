@@ -6,9 +6,14 @@ import { type FC, type ReactNode } from "react";
 interface Props {
   imageSrc: string;
   children: ReactNode;
+  className?: string;
 }
 
-export const ImageContentPageLayout: FC<Props> = ({ imageSrc, children }) => {
+export const ImageContentPageLayout: FC<Props> = ({
+  imageSrc,
+  children,
+  className = "",
+}) => {
   return (
     <Container>
       <ContentWrapper>
@@ -22,7 +27,7 @@ export const ImageContentPageLayout: FC<Props> = ({ imageSrc, children }) => {
               height={460}
             />
           </div>
-          <div className={styles.content}>{children}</div>
+          <div className={className}>{children}</div>
         </div>
       </ContentWrapper>
     </Container>
