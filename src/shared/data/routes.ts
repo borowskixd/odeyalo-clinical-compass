@@ -82,12 +82,26 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  kptDiaryResults: new Page<{ id: string }>("/practices/kptDiary/results/:id", [
+  kptDiaryResult: new Page<{ id: string }>("/practices/kptDiary/results/:id", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
   kptDiaryForm: new Page("/practices/kptDiary/form", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
+  problemDefinition: new Page("/practices/problemDefinition", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
+  problemDefinitionResult: new Page<{ id: string }>(
+    "/practices/problemDefinition/results/:id",
+    [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
+  ),
+  problemDefinitionForm: new Page("/practices/problemDefinition/form", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,

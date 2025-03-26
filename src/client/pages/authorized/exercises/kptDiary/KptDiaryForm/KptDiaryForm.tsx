@@ -1,7 +1,6 @@
 "use client";
 
-import { Header } from "./components";
-import { Form } from "./components/Form";
+import { Form, Header } from "./components";
 import styles from "./styles.module.scss";
 import kptDiaryImage from "@/client/assets/webp/pictures/kptDiaryImage.webp";
 import { ImageContentPageLayout } from "@/client/components/layouts";

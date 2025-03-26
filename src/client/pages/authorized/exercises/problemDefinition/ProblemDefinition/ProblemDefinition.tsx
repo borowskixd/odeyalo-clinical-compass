@@ -1,5 +1,6 @@
 import problemDefinition from "@/client/assets/webp/pictures/problemDefinition.webp";
 import { ExercisePageLayout } from "@/client/components/layouts";
+import { pages } from "@/shared/data";
 import { type FC } from "react";
 
 export const ProblemDefinitionPage: FC = () => {
@@ -7,7 +8,7 @@ export const ProblemDefinitionPage: FC = () => {
     <ExercisePageLayout
       imageSrc={problemDefinition.src}
       exerciseTitle={"Определение групп (категорий) проблем"}
-      exerciseStartLink={"/"}
+      exerciseStartLink={pages.problemDefinitionForm.path}
       history={[]}
     />
   );

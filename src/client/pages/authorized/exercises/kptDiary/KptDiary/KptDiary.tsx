@@ -28,7 +28,7 @@ export const KptDiaryPage: FC = () => {
           id,
           title: situation,
           date: formatDate(createdAt),
-          link: pages.kptDiaryResults.getLink({ params: { id } }),
+          link: pages.kptDiaryResult.getLink({ params: { id } }),
         };
       })}
     />
