@@ -1,4 +1,5 @@
 import { Header, History } from "./components";
+import styles from "./styles.module.scss";
 import { ImageContentPageLayout } from "@/client/components/layouts";
 import { type FC } from "react";
 
@@ -23,7 +24,10 @@ export const ExercisePageLayout: FC<Props> = ({
   history,
 }) => {
   return (
-    <ImageContentPageLayout imageSrc={imageSrc}>
+    <ImageContentPageLayout
+      imageSrc={imageSrc}
+      className={styles.content}
+    >
       <Header
         title={exerciseTitle}
         description={exerciseDescription}
