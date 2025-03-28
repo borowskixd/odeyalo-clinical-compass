@@ -89,6 +89,9 @@ export interface Pages {
   problemDefinition: Page;
   problemDefinitionForm: Page;
   problemDefinitionResult: Page<{ id: string }>;
+  problemAnalysis: Page;
+  problemAnalysisForm: Page;
+  problemAnalysisResult: Page<{ id: string }>;
 }
 
 interface Route {
