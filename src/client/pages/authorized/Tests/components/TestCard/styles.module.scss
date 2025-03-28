@@ -12,15 +12,19 @@
   }
 }
 
-.image {
+.imageContainer {
   width: 100%;
-  height: 165px;
+  max-height: 165px;
   border-radius: 12px;
   background-color: $color-white70;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   overflow: hidden;
+  aspect-ratio: 260 / 165;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .title {

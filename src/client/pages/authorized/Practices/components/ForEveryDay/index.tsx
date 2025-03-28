@@ -1,4 +1,5 @@
 import styles from "./styles.module.scss";
+import Image from "next/image";
 import { ArrowForward } from "@/client/assets/icons";
 import practiceKptDiaryImage from "@/client/assets/webp/pictures/practiceKptDiary.webp";
 import { Button } from "@/client/components";
@@ -14,9 +15,12 @@ export const ForEveryDay: FC = () => {
         className={styles.kptDiary}
       >
         <div className={styles.imageContainer}>
-          <img
+          <Image
             src={practiceKptDiaryImage.src}
+            alt={"КПТ-дневник"}
             className={styles.image}
+            width={536}
+            height={400}
           />
         </div>
         <h5 className={styles.practiceTitle}>КПТ-дневник</h5>

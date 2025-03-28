@@ -1,27 +1,39 @@
+import { Header, History } from "./components";
 import styles from "./styles.module.scss";
-import kptDiaryImage from "@/client/assets/webp/pictures/kptDiaryImage.webp";
-import { Container, ContentWrapper } from "@/client/components";
-import { type FC, type ReactNode } from "react";
+import { ImageContentPageLayout } from "@/client/components/layouts";
+import { type FC } from "react";
 
 interface Props {
-  children: ReactNode;
-  imageUrl?: string;
+  imageSrc: string;
+  exerciseTitle: string;
+  exerciseDescription?: string;
+  exerciseStartLink: string;
+  history: {
+    id: string;
+    title: string;
+    date: string;
+    link: string;
+  }[];
 }
 
-export const ExercisePageLayout: FC<Props> = ({ imageUrl, children }) => {
+export const ExercisePageLayout: FC<Props> = ({
+  imageSrc,
+  exerciseTitle,
+  exerciseDescription,
+  exerciseStartLink,
+  history,
+}) => {
   return (
-    <Container>
-      <ContentWrapper>
-        <div className={styles.main}>
-          <div className={styles.pictureContainer}>
-            <img
-              src={imageUrl ?? kptDiaryImage.src}
-              className={styles.picture}
-            />
-          </div>
-          <div className={styles.content}>{children}</div>
-        </div>
-      </ContentWrapper>
-    </Container>
+    <ImageContentPageLayout
+      imageSrc={imageSrc}
+      className={styles.content}
+    >
+      <Header
+        title={exerciseTitle}
+        description={exerciseDescription}
+        startLink={exerciseStartLink}
+      />
+      <History history={history} />
+    </ImageContentPageLayout>
   );
 };
