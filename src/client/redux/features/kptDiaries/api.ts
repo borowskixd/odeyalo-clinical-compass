@@ -9,11 +9,11 @@ import {
 const kptDiaryApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getKptDiaries: builder.query<GetKptDiariesResponseData, void>({
-      query: () => "/kptDiary",
-      providesTags: ["Auth", "Diaries"],
+      query: () => "/exercises/kptDiary",
+      providesTags: ["Auth", "KptDiaries"],
     }),
     getKptDiary: builder.query<GetKptDiaryResponseData, string>({
-      query: (id) => `/kptDiary/${id}`,
+      query: (id) => `/exercises/kptDiary/${id}`,
       providesTags: ["Auth"],
     }),
     sendKptDiary: builder.mutation<
@@ -21,11 +21,11 @@ const kptDiaryApi = api.injectEndpoints({
       SendKptDiaryRequestData
     >({
       query: (body) => ({
-        url: `/kptDiary`,
+        url: `/exercises/kptDiary`,
         method: "POST",
         body,
       }),
-      invalidatesTags: ["Diaries"],
+      invalidatesTags: ["KptDiaries"],
     }),
   }),
 });

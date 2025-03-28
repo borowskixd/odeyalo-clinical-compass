@@ -8,13 +8,13 @@ import { ExerciseTextarea } from "@/client/pages/authorized/exercises/components
 import { type FC } from "react";
 
 interface InitialValues {
-  area: string;
+  sphere: string;
   emotion: string;
   target: string;
 }
 
 const initialValues: InitialValues = {
-  area: "",
+  sphere: "",
   emotion: "",
   target: "",
 };
@@ -35,7 +35,7 @@ export const ProblemDefinitionFormPage: FC = () => {
         className={styles.form}
       >
         <ExerciseTextarea
-          name="area"
+          name="sphere"
           placeholder={"Укажите сферу"}
           labelText={"В какой сфере вы испытываете трудности?"}
           hintText={"Например, работа или личная жизнь"}
