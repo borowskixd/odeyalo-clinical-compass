@@ -5,7 +5,8 @@
 .main {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-column-gap: 16px;
+  grid-row-gap: 20px;
 
   @media screen and (max-width: 800px) {
     grid-template-columns: 1fr;
