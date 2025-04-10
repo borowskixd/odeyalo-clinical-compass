@@ -9,10 +9,9 @@ import {
 
 const getProblemDefinition = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
-    const response =
-      await serverFetch.post<GetProblemDefinitionApiResponseData>(
-        `/defining_problem_groups/get_exercise/${id}`,
-      );
+    const response = await serverFetch.get<GetProblemDefinitionApiResponseData>(
+      `/defining_problem_groups/get_exercise?exercise_id=${id}`,
+    );
 
     const data: GetProblemDefinitionResponseData =
       mapGetProblemDefinitionResponse(response.data);
