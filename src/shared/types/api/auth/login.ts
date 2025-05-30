@@ -1,4 +1,4 @@
-import { type AccessRole } from "@/shared/config/access";
+//import { type AccessRole } from "@/shared/config/access";
 
 export interface LoginRequestData {
   email: string;
@@ -11,16 +11,15 @@ export interface LoginApiRequestData {
 }
 
 export interface LoginResponseData {
-  userId: string;
-  role: AccessRole;
+  id: string;
   email: string;
   username: string;
+  birthDate: string;
+  gender: string;
+  city: string;
+  phoneNumber: string;
 }
 
 export interface LoginApiResponseData {
-  token: string;
-  user_id: string;
-  role: number;
-  email: string;
-  username: string;
+  access_token: string;
 }

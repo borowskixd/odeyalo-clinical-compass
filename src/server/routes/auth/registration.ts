@@ -3,7 +3,7 @@ import {
   mapRegistrationRequest,
   mapRegistrationResponse,
 } from "@/server/mappers/auth";
-import { createRequest, setAuthCookies } from "@/server/utils";
+import { createRequest } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
 import {
   type RegistrationApiRequestData,
@@ -24,12 +24,9 @@ const registration = createRequest(async (request, serverFetch) => {
 
   const responseData = mapRegistrationResponse(data);
 
-  const response = setAuthCookies(
-    NextResponse.json<RegistrationResponseData>(
-      responseData,
-      httpStatuses.created,
-    ),
-    data.token,
+  const response = NextResponse.json<RegistrationResponseData>(
+    responseData,
+    httpStatuses.created,
   );
 
   return response;

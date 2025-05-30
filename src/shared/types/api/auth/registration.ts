@@ -8,27 +8,36 @@ export interface RegistrationRequestData {
 }
 
 export interface RegistrationApiRequestData {
-  username: string;
   email: string;
-  password: string;
-  confirm_password: string;
+  username: string;
   birth_date: string;
   gender: string;
   city: string;
   phone_number: string;
+  password: string;
+  confirm_password: string;
 }
 
 export interface RegistrationResponseData {
-  userId: string;
-  role: AccessRole;
   email: string;
   username: string;
+  birthDate: string;
+  gender: string;
+  city: string;
+  phoneNumber: string;
+  hashedPassword: string;
+  roleId: AccessRole;
+  id: string;
 }
 
 export interface RegistrationApiResponseData {
-  token: string;
-  user_id: string;
-  role: number;
   email: string;
   username: string;
+  birth_date: string;
+  gender: string;
+  city: string;
+  phone_number: string;
+  hashed_password: string;
+  role_id: number;
+  id: string;
 }

@@ -26,12 +26,26 @@ export const mapRegistrationRequest = (
 export const mapRegistrationResponse = (
   data: RegistrationApiResponseData,
 ): RegistrationResponseData => {
-  const { user_id, role, email, username } = data;
-
-  return {
-    userId: user_id,
-    role: getRole(role),
+  const {
     email,
     username,
+    birth_date,
+    gender,
+    city,
+    phone_number,
+    hashed_password,
+    id,
+  } = data;
+
+  return {
+    email,
+    username,
+    birthDate: birth_date,
+    gender,
+    city,
+    phoneNumber: phone_number,
+    hashedPassword: hashed_password,
+    roleId: getRole(1),
+    id,
   };
 };
