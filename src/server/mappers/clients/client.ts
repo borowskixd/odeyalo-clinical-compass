@@ -7,13 +7,13 @@ import { calculateAge } from "@/shared/utils";
 export const mapGetClientResponse = (
   data: GetClientApiResponseData,
 ): GetClientResponseData => {
-  const { client_id, username, is_active, request, birth_date } = data;
+  const { id, username, inquiry, birth_date } = data;
 
   return {
-    userId: client_id,
+    userId: id,
     username,
-    isOnline: is_active,
-    problems: request,
+    isOnline: false,
+    problems: inquiry,
     profileImage: "",
     age: calculateAge(birth_date),
   };

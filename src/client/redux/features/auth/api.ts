@@ -2,7 +2,6 @@ import { api } from "../../api";
 import {
   type ChangePasswordRequestData,
   type LoginRequestData,
-  type LoginResponseData,
   type RegistrationRequestData,
   type RegistrationResponseData,
   type ResetPasswordRequestData,
@@ -11,7 +10,7 @@ import {
 
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<LoginResponseData, LoginRequestData>({
+    login: builder.mutation<ResponseSuccessInfo, LoginRequestData>({
       query: (body) => ({
         url: "auth/login",
         method: "POST",
