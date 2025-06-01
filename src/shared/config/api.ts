@@ -7,3 +7,8 @@ export const serverAxios = axios.create({
   baseURL: SEVER_API_URL,
   withCredentials: true,
 });
+
+export const bffAxios = axios.create({
+  baseURL: BFF_API_URL,
+  withCredentials: true,
+});
