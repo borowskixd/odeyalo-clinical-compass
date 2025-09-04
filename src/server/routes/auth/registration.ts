@@ -18,7 +18,7 @@ const registration = createRequest(async (request, serverFetch) => {
   const serverResponse = await serverFetch.post<
     RegistrationApiResponseData,
     RegistrationApiRequestData
-  >("/users/reg", mapRegistrationRequest(body));
+  >("/auth/register", mapRegistrationRequest(body));
 
   const data = serverResponse.data;
 

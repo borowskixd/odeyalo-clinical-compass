@@ -40,7 +40,7 @@ export const RegistrationForm: FC = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      redirectWithReload(pages.main.path);
+      redirectWithReload(pages.login.path);
     }
   }, [isSuccess, dispatch, data]);
 

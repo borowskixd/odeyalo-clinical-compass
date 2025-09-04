@@ -10,4 +10,5 @@ export interface LoginApiRequestData {
 
 export interface LoginApiResponseData {
   access_token: string;
+  refresh_token: string;
 }
