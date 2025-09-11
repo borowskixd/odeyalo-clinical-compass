@@ -12,7 +12,7 @@ const changePassword = createRequest(async (request, serverFetch) => {
   const body: ChangePasswordRequestData = await request.json();
 
   await serverFetch.post<ChangePasswordApiRequestData>(
-    "/users/reset_password",
+    "/auth/password-reset",
     mapChangePasswordRequest(body),
   );
 
