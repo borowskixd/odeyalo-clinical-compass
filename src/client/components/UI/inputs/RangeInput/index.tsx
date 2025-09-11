@@ -7,7 +7,7 @@ type Props = InputHTMLAttributes<HTMLInputElement>;
 
 export const RangeInput: FC<Props> = ({ ...props }) => {
   const value = Number(props?.value ?? props?.min ?? 0);
-  const progress = `${(value / 100) * 100}%`;
+  const progress = `${(value / +(props?.max ?? 100)) * 100}%`;
 
   return (
     <div className={styles.rangeInput}>

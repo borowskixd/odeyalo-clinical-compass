@@ -1,6 +1,6 @@
 export type SaveMoodRequestData = {
   score: number;
-  date?: string;
+  date: string;
   freeDiaryId?: string;
   thinkDiaryId?: string;
   diaryType?: number;
@@ -8,10 +8,7 @@ export type SaveMoodRequestData = {
 
 export type SaveMoodApiRequestData = {
   score: number;
-  date?: string;
-  free_diary_id?: string;
-  think_diary_id?: string;
-  diary_type?: number;
+  day: string;
 };
 
 export type GetMoodResponseData = {

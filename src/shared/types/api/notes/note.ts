@@ -5,7 +5,8 @@ export type GetNoteResponseData = {
 };
 
 export type GetNoteApiResponseData = {
-  free_diary_id: string;
+  id: string;
   text: string;
   created_at: string;
+  user_id: string;
 };

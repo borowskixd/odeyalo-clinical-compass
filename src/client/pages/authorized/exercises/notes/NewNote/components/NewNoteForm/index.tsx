@@ -48,16 +48,10 @@ export const NewNoteForm: FC = () => {
   }
 
   const onSubmitHandler = (values: InitialValues) => {
-    if (
-      compareDates(date, "current", { fullYear: true, month: true, date: true })
-    ) {
-      createNote(values);
-    } else {
-      createNote({
-        ...values,
-        date: mapDateToApiDateFormat(date),
-      });
-    }
+    createNote({
+      ...values,
+      date: mapDateToApiDateFormat(date),
+    });
   };
 
   return (

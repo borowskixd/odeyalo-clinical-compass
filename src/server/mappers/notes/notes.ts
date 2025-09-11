@@ -13,7 +13,7 @@ export const mapCreateNoteRequest = (
 
   return {
     text: note,
-    created_at: date,
+    day: date,
   };
 };
 

@@ -8,14 +8,11 @@ import {
 export const mapSaveMoodRequest = (
   data: SaveMoodRequestData,
 ): SaveMoodApiRequestData => {
-  const { diaryType, freeDiaryId, thinkDiaryId, score, date } = data;
+  const { score, date } = data;
 
   return {
-    date,
-    think_diary_id: thinkDiaryId,
-    diary_type: diaryType,
-    free_diary_id: freeDiaryId,
     score,
+    day: date,
   };
 };
 

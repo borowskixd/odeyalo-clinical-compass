@@ -5,12 +5,12 @@ import {
 
 export type CreateNoteRequestData = {
   note: string;
-  date?: string;
+  date: string;
 };
 
 export type CreateNoteApiRequestData = {
   text: string;
-  created_at?: string;
+  day: string;
 };
 
 export type GetNotesResponseData = GetNoteResponseData[];

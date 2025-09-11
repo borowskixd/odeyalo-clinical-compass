@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { mapGetMoodsResponse, mapSaveMoodRequest } from "@/server/mappers";
-import { addSearchParams, createRequest } from "@/server/utils";
+import { createRequest } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
 import {
   type GetMoodsApiResponseData,
@@ -9,8 +9,10 @@ import {
 } from "@/shared/types";
 
 const getMoods = createRequest(async (request, serverFetch) => {
+  const date = request.nextUrl.searchParams.get("date");
+
   const serverRequest = await serverFetch.get<GetMoodsApiResponseData>(
-    addSearchParams("/mood_tracker/get_all_mood_tracker", request, "date"),
+    `/mood_tracker?day=${date}`,
   );
 
   const { data } = serverRequest;
@@ -22,7 +24,7 @@ const saveMood = createRequest(async (request, serverFetch) => {
   const body = await request.json();
 
   await serverFetch.post<any, SaveMoodApiRequestData>(
-    `/mood_tracker/save_mood_tracker`,
+    `/mood_tracker`,
     mapSaveMoodRequest(body),
   );
 

@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 import { FormikForm, PrimaryButton } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
 import { selectNotesCalendarDate, useSaveMoodMutation } from "@/client/redux";
-import { compareDates, mapDateToApiDateFormat } from "@/shared/utils";
+import { mapDateToApiDateFormat } from "@/shared/utils";
 import { type FC } from "react";
 
 interface Props {
@@ -25,20 +25,10 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
 
   const submitHandler = (values: InitialValues) => {
-    if (
-      compareDates(notesCalendarDate, "current", {
-        fullYear: true,
-        month: true,
-        date: true,
-      })
-    ) {
-      saveMood(values);
-    } else {
-      saveMood({
-        ...values,
-        date: mapDateToApiDateFormat(notesCalendarDate),
-      });
-    }
+    saveMood({
+      ...values,
+      date: mapDateToApiDateFormat(notesCalendarDate),
+    });
 
     onSubmitAction();
   };
@@ -53,7 +43,7 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
       <FormikForm.RangeInput
         name="score"
         min="0"
-        max="100"
+        max="4"
       />
       <PrimaryButton
         type="submit"

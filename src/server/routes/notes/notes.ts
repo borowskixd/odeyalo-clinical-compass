@@ -3,7 +3,7 @@ import {
   mapCreateNoteRequest,
   mapGetNotesResponse,
 } from "@/server/mappers/notes";
-import { addSearchParams, createRequest } from "@/server/utils";
+import { createRequest } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
 import {
   type CreateNoteApiRequestData,
@@ -15,17 +15,10 @@ import {
 const createNote = createRequest(async (request, serverFetch) => {
   const body: CreateNoteRequestData = await request.json();
 
-  if (body.date && !isNaN(new Date(body.date).valueOf())) {
-    await serverFetch.post<any, CreateNoteApiRequestData>(
-      "/diary/writing_free_diary_with_date",
-      mapCreateNoteRequest(body),
-    );
-  } else {
-    await serverFetch.post<any, CreateNoteApiRequestData>(
-      "/diary/writing_free_diary",
-      mapCreateNoteRequest(body),
-    );
-  }
+  await serverFetch.post<any, CreateNoteApiRequestData>(
+    "/diary",
+    mapCreateNoteRequest(body),
+  );
 
   return NextResponse.json({
     body: new ResponseSuccessInfo("success"),
@@ -34,8 +27,10 @@ const createNote = createRequest(async (request, serverFetch) => {
 });
 
 const getNotesByDate = createRequest(async (request, serverFetch) => {
+  const date = request.nextUrl.searchParams.get("date");
+
   const { data } = await serverFetch.get<GetNotesApiResponseData>(
-    addSearchParams("/diary/reading_free_diary_with_date", request, "date"),
+    `/diary?day=${date}`,
   );
 
   return NextResponse.json(mapGetNotesResponse(data));
