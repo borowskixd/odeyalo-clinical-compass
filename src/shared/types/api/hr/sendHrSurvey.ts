@@ -11,4 +11,7 @@ export interface SendHrSurveyApiRequestData {
   online: boolean;
   gender: string;
   birth_date: string;
+  is_active: boolean;
+  department: string;
+  face_to_face: boolean;
 }

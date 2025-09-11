@@ -11,15 +11,29 @@ export const mapSendHrSurveyRequest = (
   const { username, company } = hrSurveyData;
   const { description, city, gender, birth_date } = userData;
 
-  return {
+  console.log({
     username,
-    description,
+    description: description ?? "",
     city,
     company,
     online: false,
     gender,
     birth_date: new Date(birth_date).toJSON(),
+    is_active: false,
+    department: company,
+    face_to_face: false,
+  });
+
+  return {
+    username,
+    description: description ?? "",
+    city,
+    company,
+    online: false,
+    gender,
+    birth_date: new Date(birth_date).toJSON(),
+    is_active: false,
+    department: company,
+    face_to_face: false,
   };
 };
-
-export const mapSendHrSurveyResponse = () => {};
