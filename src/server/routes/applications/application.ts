@@ -5,12 +5,13 @@ import { httpStatuses } from "@/shared/data";
 import {
   type GetApplicationApiResponseData,
   type GetApplicationResponseData,
+  ResponseSuccessInfo,
 } from "@/shared/types";
 
 const getApplication = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
     const response = await serverFetch.get<GetApplicationApiResponseData>(
-      `/application/watch_application/${id}`,
+      `/applications/${id}`,
     );
 
     const data: GetApplicationResponseData = mapGetApplicationResponse(
@@ -21,6 +22,18 @@ const getApplication = createRequest<{ id: string }>(
   },
 );
 
+const confirmApplication = createRequest<{ id: string }>(
+  async (request, serverFetch, { id }) => {
+    await serverFetch.patch(`/applications/${id}/confirm`);
+
+    return NextResponse.json(
+      new ResponseSuccessInfo("Статус заявки обновлен"),
+      httpStatuses.ok,
+    );
+  },
+);
+
 export const ApplicationRoutes = {
   GET: getApplication,
+  POST: confirmApplication,
 };

@@ -1,6 +1,5 @@
 import { api } from "../../api";
 import {
-  type ConfirmApplicationRequestData,
   type GetApplicationResponseData,
   type GetApplicationsResponseData,
   type ResponseSuccessInfo,
@@ -30,14 +29,10 @@ const applicationsApi = api.injectEndpoints({
       }),
     }),
 
-    confirmApplication: builder.mutation<
-      ResponseSuccessInfo,
-      ConfirmApplicationRequestData
-    >({
-      query: (body) => ({
-        url: "/applications/confirm",
+    confirmApplication: builder.mutation<ResponseSuccessInfo, string>({
+      query: (id) => ({
+        url: `/applications/${id}`,
         method: "POST",
-        body,
       }),
       invalidatesTags: ["Applications", "Clients"],
     }),

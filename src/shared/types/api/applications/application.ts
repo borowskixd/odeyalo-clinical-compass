@@ -9,11 +9,11 @@ export type GetApplicationResponseData = {
 };
 
 export type GetApplicationApiResponseData = {
-  app_id: string;
+  id: string;
   client_id: string;
-  username: string;
+  manager_id: string;
   text: string;
-  is_active: true;
-  birth_date: string;
-  gender: string;
+  status: true;
+  created_at: string;
+  inquiry: [];
 };

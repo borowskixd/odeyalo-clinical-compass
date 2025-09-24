@@ -14,9 +14,8 @@ import {
 } from "@/shared/types";
 
 const getApplications = createRequest(async (request, serverFetch) => {
-  const response = await serverFetch.get<GetApplicationsApiResponseData>(
-    "/application/get_list_applications",
-  );
+  const response =
+    await serverFetch.get<GetApplicationsApiResponseData>("/applications");
 
   const data: GetApplicationsResponseData = mapGetApplicationsResponse(
     response.data,
@@ -29,7 +28,7 @@ const sendApplication = createRequest(async (request, serverFetch) => {
   const body: SendApplicationRequestData = await request.json();
 
   await serverFetch.post<any, SendApplicationApiRequestData>(
-    "/client/send_application",
+    "/applications",
     mapSendApplicationRequest(body),
   );
 

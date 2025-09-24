@@ -8,13 +8,13 @@ export type GetApplicationsResponseData = {
 }[];
 
 export type GetApplicationsApiResponseData = {
-  app_id: string;
+  id: string;
   client_id: string;
-  username: string;
+  manager_id: string;
   text: string;
-  online: true;
-  problem_id: string;
-  problem: string;
+  status: true;
+  inquiry: number[];
+  created_at: string;
 }[];
 
 export interface SendApplicationRequestData {
@@ -23,6 +23,7 @@ export interface SendApplicationRequestData {
 }
 
 export interface SendApplicationApiRequestData {
-  user_id: string;
+  manager_id: string;
   text: string;
+  inquiry: number[];
 }

@@ -23,14 +23,11 @@ const getPsychologists = createRequest(async (request, serverFetch) => {
     );
   }
 
-  const psychologistsPromise = serverFetch.get<GetPsychologistsApiResponseData>(
-    "/manager/get_all_manager",
-  );
+  const psychologistsPromise =
+    serverFetch.get<GetPsychologistsApiResponseData>("/managers");
 
   const myPsychologistsPromise =
-    serverFetch.get<GetPsychologistsApiResponseData>(
-      "/client/get_your_psychologist",
-    );
+    serverFetch.get<GetPsychologistsApiResponseData>("/client/my-psychologist");
 
   const [psychologistsResponse, myPsychologistsResponse] = await Promise.all([
     psychologistsPromise,
