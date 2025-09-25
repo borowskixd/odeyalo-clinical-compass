@@ -7,23 +7,16 @@ export const mapGetMoodsResponse = (
   data: GetMoodsApiResponseData,
 ): GetMoodsResponseData => {
   return data.map((mood) => {
-    const {
-      id,
-      diary_type,
-      free_diary_id,
-      think_diary_id,
-      score,
-      user_id,
-      date,
-    } = mood;
+    const { id, score, user_id, emoji_ids, emoji_texts, created_at } = mood;
     return {
       id,
       userId: user_id,
-      date,
+      date: created_at,
       score,
-      diaryType: diary_type,
-      freeDiaryId: free_diary_id,
-      thinkDiaryId: think_diary_id,
+      emojis: emoji_ids.map((el, index) => ({
+        id: el,
+        emoji: emoji_texts[index],
+      })),
     };
   });
 };

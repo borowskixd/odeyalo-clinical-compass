@@ -23,7 +23,7 @@ export const mapGetNotesCalendarFilledDatesResponse = (
   }
 
   for (const moodTracker of moodTrackerData) {
-    const moodTrackerDate = new Date(moodTracker.date);
+    const moodTrackerDate = new Date(moodTracker.created_at);
     const moodTrackerDateStr = mapDateToApiDateFormat(moodTrackerDate);
 
     if (skipDays.has(mapDateToApiDateFormat(moodTrackerDate))) continue;

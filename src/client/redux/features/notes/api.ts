@@ -1,6 +1,7 @@
 import { api } from "../../api";
 import {
   type CreateNoteRequestData,
+  type GetEmojisResponseData,
   type GetMoodResponseData,
   type GetMoodsResponseData,
   type GetNoteResponseData,
@@ -54,6 +55,12 @@ const notesApi = api.injectEndpoints({
         },
         providesTags: ["Auth", "Moods"],
       }),
+      getEmojis: builder.query<GetEmojisResponseData, void>({
+        query: () => {
+          return `/exercises/moods/emojis`;
+        },
+        providesTags: [],
+      }),
       saveMood: builder.mutation<ResponseSuccessInfo, SaveMoodRequestData>({
         query: (body: SaveMoodRequestData) => ({
           url: "/exercises/moods",
@@ -72,6 +79,7 @@ export const {
   useCreateNoteMutation,
   useGetNotesCalendarFilledDatesQuery,
   useGetMoodQuery,
+  useGetEmojisQuery,
   useGetMoodsQuery,
   useSaveMoodMutation,
 } = notesApi;
