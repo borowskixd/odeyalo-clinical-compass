@@ -10,7 +10,7 @@ interface Props {
     id: string;
     theme: string;
     linkToPicture: string;
-    maxScore: number;
+    tags: string[];
   };
 }
 
@@ -26,7 +26,7 @@ export const RecomendationCard: FC<Props> = ({ recomendation }) => {
         )}
       </div>
       <p className={styles.title}>{recomendation.theme}</p>
-      <div className={styles.time}>{recomendation.maxScore} минут</div>
+      <div className={styles.time}>{recomendation.tags}</div>
     </Link>
   );
 };

@@ -2,7 +2,11 @@ import { type TestScaleData } from "./test";
 
 interface TestScaleResultApiData {
   scale_id: string;
+  scale_title: string;
   score: number;
+  max_score: number;
+  conclusion: string;
+  color: string;
   user_recommendation: string;
 }
 
@@ -16,6 +20,7 @@ export interface GetTestResultApiResponseData {
 interface TestScaleResultData {
   id: string;
   score: number;
+  conclusion: string;
   recommendations: string;
 }
 
@@ -54,5 +59,5 @@ export interface SendTestResultResponseData {
 }
 
 export interface SendTestResultApiResponseData {
-  test_result_id: string;
+  result_id: string;
 }

@@ -10,13 +10,11 @@ import {
 
 const getTestQuestions = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
-    const testPromise = serverFetch.get<GetTestApiResponseData>(
-      `/test/get_test_info/${id}`,
-    );
+    const testPromise = serverFetch.get<GetTestApiResponseData>(`/tests/${id}`);
 
     const testQuestionsPromise =
       serverFetch.get<GetTestQuestionsApiResponseData>(
-        `/test/get_test_questions/${id}`,
+        `/tests/${id}/questions/answers`,
       );
 
     const [testResponse, testQuestionsResponse] = await Promise.all([

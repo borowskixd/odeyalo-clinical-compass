@@ -8,18 +8,32 @@ import {
 export const mapGetTestScalesResponse = (
   data: TestScaleApiData[],
 ): TestScaleData[] => {
-  return data.map(({ scale_id, title, min, max, borders }) => ({
-    id: scale_id,
+  return data.map(({ id, test_id, title, min, max, borders }) => ({
+    id: id,
+    testId: test_id,
     title: title,
     min: min,
     max: max,
     borders: borders
-      .map(({ title, left_border, right_border, color }) => ({
-        title: title,
-        leftBorder: left_border,
-        rightBorder: right_border,
-        color: color,
-      }))
+      .map(
+        ({
+          id,
+          right_border,
+          title,
+          scale_id,
+          color,
+          left_border,
+          user_recommendation,
+        }) => ({
+          id: id,
+          title: title,
+          leftBorder: left_border,
+          rightBorder: right_border,
+          color: color,
+          scaleId: scale_id,
+          userRecommendation: user_recommendation,
+        }),
+      )
       .sort((a, b) => a.leftBorder - b.leftBorder),
   }));
 };
@@ -27,13 +41,14 @@ export const mapGetTestScalesResponse = (
 export const mapGetTestResponse = (
   data: GetTestApiResponseData,
 ): GetTestResponseData => {
-  const { test_id, title, description, short_desc, scales } = data;
+  const { id, title, description, short_desc, scale, link } = data;
 
   return {
-    id: test_id,
+    id: id,
     title: title,
     description: description,
     shortDescription: short_desc,
-    scales: mapGetTestScalesResponse(scales),
+    scales: mapGetTestScalesResponse(scale),
+    link,
   };
 };

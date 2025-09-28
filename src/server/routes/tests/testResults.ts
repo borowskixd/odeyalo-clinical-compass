@@ -19,11 +19,11 @@ const getTestResults = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
     const userId = request.nextUrl.searchParams.get("user_id");
     const getTestResultPromise = serverFetch.get<GetTestResultsApiResponseData>(
-      `/test/get_test_results/${id}${userId ? `?user_id=${userId}` : ""}`,
+      `/tests/${id}/results/${userId ? `?user_id=${userId}` : ""}`,
     );
 
     const getTestPromise = serverFetch.get<GetTestApiResponseData>(
-      `/test/get_test_info/${id}`,
+      `/tests/${id}`,
     );
 
     const [getTestResultResponse, getTestResponse] = await Promise.all([
@@ -46,7 +46,7 @@ const sendTestResult = createRequest(async (request, serverFetch) => {
   const { data } = await serverFetch.post<
     SendTestResultApiResponseData,
     SendTestResultApiRequestData
-  >("/test/save_test_result", mapSendTestResultRequest(body));
+  >("/tests/result", mapSendTestResultRequest(body));
 
   return NextResponse.json(mapSendTestResultResponse(data), httpStatuses.ok);
 });
