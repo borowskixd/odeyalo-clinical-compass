@@ -23,9 +23,10 @@ export const mapTestResultResponse = (
     testId: test_id,
     datetime: mapDatetimeToText(datetime),
     scaleResults: scale_results.map(
-      ({ scale_id, score, user_recommendation }) => ({
+      ({ scale_id, score, conclusion, user_recommendation }) => ({
         id: scale_id,
         score,
+        conclusion,
         recommendations: user_recommendation,
       }),
     ),
@@ -36,11 +37,11 @@ export const mapGetTestResultResponse = (
   testData: GetTestApiResponseData,
   testResultData: GetTestResultApiResponseData,
 ): GetTestResultResponseData => {
-  const { title, scales } = testData;
+  const { title, scale } = testData;
 
   return {
     title,
-    scales: mapGetTestScalesResponse(scales),
+    scales: mapGetTestScalesResponse(scale),
     ...mapTestResultResponse(testResultData),
   };
 };
@@ -49,11 +50,11 @@ export const mapGetTestResultsResponse = (
   testData: GetTestApiResponseData,
   testResultsData: GetTestResultsApiResponseData,
 ): GetTestResultsResponseData => {
-  const { title, scales } = testData;
+  const { title, scale } = testData;
 
   return {
     title: title,
-    scales: mapGetTestScalesResponse(scales),
+    scales: mapGetTestScalesResponse(scale),
     results: testResultsData.map(mapTestResultResponse),
   };
 };
@@ -73,9 +74,9 @@ export const mapSendTestResultRequest = (
 export const mapSendTestResultResponse = (
   data: SendTestResultApiResponseData,
 ): SendTestResultResponseData => {
-  const { test_result_id } = data;
+  const { result_id } = data;
 
   return {
-    testResultId: test_result_id,
+    testResultId: result_id,
   };
 };

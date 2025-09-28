@@ -6,7 +6,7 @@ export interface GetArticleResponseData {
     id: string;
     theme: string;
     linkToPicture: string;
-    maxScore: number;
+    tags: string[];
   }[];
   subtopics: {
     subtitle: string;
@@ -19,21 +19,26 @@ export interface GetArticleResponseData {
 }
 
 export type GetArticleApiResponseData = {
-  theme: string;
   id: string;
-  max_score: number;
-  link_to_picture: string;
-  related_topics: {
+  theme: string;
+  link: string;
+  recommendations: {
     id: string;
     theme: string;
-    link_to_picture: string;
-    max_score: number;
+    link: string;
+    tags: string[];
   }[];
-  subtopics: {
+  education_materials: {
+    id: string;
+    type: number;
+    number: number;
+    title: string;
+    link_to_picture: string;
     subtitle: string;
     cards: {
       id: string;
       text: string;
+      number: number;
       link_to_picture: string;
     }[];
   }[];

@@ -9,7 +9,7 @@ import {
 
 const getArticles = createRequest(async (request, serverFetch) => {
   const response = await serverFetch.get<GetArticlesApiResponseData>(
-    "/education/get_all_theme",
+    "/education/themes/all",
   );
 
   const data: GetArticlesResponseData = mapGetArticlesResponse(response.data);

@@ -1,12 +1,16 @@
 export interface TestBorderApiData {
+  id: string;
+  title: string;
   left_border: number;
   right_border: number;
   color: string;
-  title: string;
+  user_recommendation: string;
+  scale_id: string;
 }
 
 export interface TestScaleApiData {
-  scale_id: string;
+  id: string;
+  test_id: string;
   title: string;
   min: number;
   max: number;
@@ -14,22 +18,27 @@ export interface TestScaleApiData {
 }
 
 export interface GetTestApiResponseData {
-  test_id: string;
-  title: string;
+  id: string;
   description: string;
+  link: string;
+  title: string;
   short_desc: string;
-  scales: TestScaleApiData[];
+  scale: TestScaleApiData[];
 }
 
 export interface TestBorderData {
+  id: string;
   title: string;
   leftBorder: number;
   rightBorder: number;
   color: string;
+  userRecommendation: string;
+  scaleId: string;
 }
 
 export interface TestScaleData {
   id: string;
+  testId: string;
   title: string;
   min: number;
   max: number;
@@ -38,8 +47,9 @@ export interface TestScaleData {
 
 export interface GetTestResponseData {
   id: string;
-  title: string;
   description: string;
+  link: string;
+  title: string;
   shortDescription: string;
   scales: TestScaleData[];
 }

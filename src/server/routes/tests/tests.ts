@@ -8,9 +8,7 @@ import {
 } from "@/shared/types";
 
 const getTests = createRequest(async (request, serverFetch) => {
-  const response = await serverFetch.get<GetTestsApiResponseData>(
-    "/test/get_all_tests",
-  );
+  const response = await serverFetch.get<GetTestsApiResponseData>("/tests");
 
   const data: GetTestsResponseData = mapGetTestsResponse(response.data);
 

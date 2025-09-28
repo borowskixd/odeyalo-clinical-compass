@@ -65,9 +65,9 @@ export const TestContent: FC = () => {
   return (
     <>
       <PageTitle className={styles.title}>{test.title}</PageTitle>
-      <h4 className={styles.question}>{currentQuestion.title}</h4>
+      <h4 className={styles.question}>{currentQuestion.text}</h4>
       <div className={styles.radioButtons}>
-        {currentQuestion.answers.map((answer) => {
+        {currentQuestion.answerChoices.map((answer) => {
           return (
             <Radio
               key={answer.id}
