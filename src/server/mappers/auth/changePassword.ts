@@ -10,7 +10,7 @@ export const mapChangePasswordRequest = (
 
   return {
     token,
-    new_password: newPassword,
+    password: newPassword,
     confirm_new_password: confirmNewPassword,
   };
 };

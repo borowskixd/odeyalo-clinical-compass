@@ -10,7 +10,7 @@ import {
 const getClient = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
     const response = await serverFetch.get<GetClientApiResponseData>(
-      `/psychologist/get_client/${id}`,
+      `/client?client_id=${id}`,
     );
 
     const data: GetClientResponseData = mapGetClientResponse(response.data);

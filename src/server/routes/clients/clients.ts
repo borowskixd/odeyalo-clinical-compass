@@ -8,9 +8,7 @@ import {
 } from "@/shared/types";
 
 const getClients = createRequest(async (request, serverFetch) => {
-  const response = await serverFetch.get<GetClientsApiResponseData>(
-    "/psychologist/get_list_client",
-  );
+  const response = await serverFetch.get<GetClientsApiResponseData>("/client");
 
   const data: GetClientsResponseData = mapGetClientsResponse(response.data);
 

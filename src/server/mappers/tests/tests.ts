@@ -8,13 +8,13 @@ export const mapGetTestsResponse = (
   data: GetTestsApiResponseData,
 ): GetTestsResponseData => {
   return data.map((el) => {
-    const { test_id, title, description, link_to_picture } = el;
+    const { id, title, description, link } = el;
 
     return {
-      id: test_id,
+      id,
       title,
       description,
-      image: `${SEVER_API_URL}${link_to_picture}`,
+      image: `${SEVER_API_URL}${link}`,
     };
   });
 };

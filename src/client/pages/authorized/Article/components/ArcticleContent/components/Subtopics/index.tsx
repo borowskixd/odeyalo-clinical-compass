@@ -13,7 +13,7 @@ export const Subtopics: FC<Props> = ({ subtopics }) => {
   return (
     <div className={styles.content}>
       {subtopics.map((subtopic) => (
-        <>
+        <div key={subtopic.subtitle}>
           <p className={styles.subtitle}>{subtopic.subtitle}</p>
           {subtopic.cards.map((card) => (
             <Card
@@ -21,7 +21,7 @@ export const Subtopics: FC<Props> = ({ subtopics }) => {
               card={card}
             />
           ))}
-        </>
+        </div>
       ))}
     </div>
   );

@@ -7,8 +7,10 @@ export type GetClientsResponseData = {
 }[];
 
 export type GetClientsApiResponseData = {
-  client_id: string;
+  id: string;
   username: string;
-  is_active: boolean;
-  request: string[];
+  birth_date: string;
+  text: string;
+  gender: string;
+  inquiry: string[];
 }[];

@@ -12,11 +12,11 @@ const getTestResult = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
     const testResultResponse =
       await serverFetch.get<GetTestResultApiResponseData>(
-        `/test/get_test_result/${id}`,
+        `/tests/test_result/${id}`,
       );
 
     const testResponse = await serverFetch.get<GetTestApiResponseData>(
-      `/test/get_test_info/${testResultResponse.data.test_id}`,
+      `/tests/${testResultResponse.data.test_id}`,
     );
 
     const data: GetTestResultResponseData = mapGetTestResultResponse(

@@ -12,7 +12,7 @@ import {
 const getArticle = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
     const articleResponse = await serverFetch.get<GetArticleApiResponseData>(
-      `/education/get_all_education_material/${id}`,
+      `/education/themes/${id}/materials/list`,
     );
 
     const data: GetArticleResponseData = mapGetArticleResponse(
@@ -26,12 +26,12 @@ const getArticle = createRequest<{ id: string }>(
 const readArticle = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
     await serverFetch.post<any, ReadArticleApiRequestData>(
-      `/education/complete_education_material`,
+      `/education/materials/complete`,
       mapReadArticleRequest(id),
     );
 
     return NextResponse.json(
-      new ResponseSuccessInfo("Article successful readed"),
+      new ResponseSuccessInfo("Article successful read"),
       httpStatuses.ok,
     );
   },

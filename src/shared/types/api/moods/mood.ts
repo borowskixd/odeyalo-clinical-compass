@@ -1,35 +1,31 @@
 export type SaveMoodRequestData = {
   score: number;
-  date?: string;
-  freeDiaryId?: string;
-  thinkDiaryId?: string;
-  diaryType?: number;
+  date: string | null;
+  emojiIds: number[];
 };
 
 export type SaveMoodApiRequestData = {
   score: number;
-  date?: string;
-  free_diary_id?: string;
-  think_diary_id?: string;
-  diary_type?: number;
+  day: string | null;
+  emoji_ids: number[];
 };
 
 export type GetMoodResponseData = {
   id: string;
-  userId: string;
   score: number;
+  userId: string;
   date: string;
-  freeDiaryId: string | null;
-  thinkDiaryId: string | null;
-  diaryType: number | null;
+  emojis: {
+    id: number;
+    emoji: string;
+  }[];
 };
 
 export type GetMoodApiResponseData = {
   id: string;
-  user_id: string;
   score: number;
-  date: string;
-  free_diary_id: string | null;
-  think_diary_id: string | null;
-  diary_type: number | null;
+  created_at: string;
+  user_id: string;
+  emoji_ids: number[];
+  emoji_texts: string[];
 };

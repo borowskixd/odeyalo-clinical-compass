@@ -8,20 +8,20 @@ import {
 export const mapGetArticleResponse = (
   articleContent: GetArticleApiResponseData,
 ): GetArticleResponseData => {
-  const { theme, id, link_to_picture, related_topics, subtopics } =
+  const { theme, id, link, recommendations, education_materials } =
     articleContent;
 
   return {
     title: theme,
     id,
-    linkToPicture: `${SEVER_API_URL}${link_to_picture}`,
-    recomendations: related_topics.map((topic) => ({
+    linkToPicture: `${SEVER_API_URL}${link}`,
+    recommendations: recommendations.map((topic) => ({
       id: topic.id,
       theme: topic.theme,
-      linkToPicture: `${SEVER_API_URL}${topic.link_to_picture}`,
-      maxScore: topic.max_score,
+      linkToPicture: `${SEVER_API_URL}${topic.link}`,
+      tags: topic.tags,
     })),
-    subtopics: subtopics.map((subtopic) => ({
+    subtopics: education_materials.map((subtopic) => ({
       subtitle: subtopic.subtitle,
       cards: subtopic.cards.map((card) => ({
         id: card.id,

@@ -6,7 +6,8 @@ import { type ResponseError } from "@/shared/types";
 
 type Method = "get" | "delete" | "head" | "options" | "post" | "put" | "patch";
 
-type Cfg<D> = AxiosRequestConfig<D>;
+type Cookies = Record<string, string | number>;
+type Cfg<D> = AxiosRequestConfig<D> & { cookies?: Cookies };
 type Res<T> = Promise<AxiosResponse<T>>;
 
 interface ServerFetch {
@@ -41,11 +42,14 @@ type CreatedRequest<P> = (
 const createServerFetch = (request: NextRequest): ServerFetch => {
   const createServerFetchMethod =
     (method: Method) =>
-    async <T = any, D = any>(
-      url: string,
-      data?: D,
-      config?: AxiosRequestConfig<D>,
-    ) => {
+    async <T = any, D = any>(url: string, data?: D, config?: Cfg<D>) => {
+      if (config?.cookies) {
+        for (const key in config.cookies) {
+          const value = String(config.cookies[key]);
+          request.cookies.set(key, value);
+        }
+      }
+
       const newConfig: AxiosRequestConfig<D> = {
         ...config,
         url,

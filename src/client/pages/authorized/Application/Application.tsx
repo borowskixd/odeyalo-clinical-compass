@@ -10,17 +10,14 @@ import {
   LoadingLoop,
   PageTitle,
   PrimaryButton,
-  SecondaryButton,
-  Subtitle,
-  TestCard,
 } from "@/client/components";
 import { useAppDispatch, useAppSelector } from "@/client/hooks";
+import { PassedTests } from "@/client/pages/authorized/Application/components";
 import {
   PopupsService,
   selectRole,
   useConfirmApplicationMutation,
   useGetApplicationQuery,
-  useGetUserPassedTestsQuery,
 } from "@/client/redux";
 import { ACCESS } from "@/shared/config/access";
 import { pages } from "@/shared/data";
@@ -34,8 +31,6 @@ export const ApplicationPage: FC = () => {
 
   const { data: application, ...getApplicationState } =
     useGetApplicationQuery(id);
-  const { data: passedTests, ...getUserPassedTestsState } =
-    useGetUserPassedTestsQuery(id);
   const [confirmApplication, confirmApplicationState] =
     useConfirmApplicationMutation();
 
@@ -48,21 +43,15 @@ export const ApplicationPage: FC = () => {
     }
   }, [confirmApplicationState.isSuccess, dispatch, router]);
 
-  const onClickHandler = (confirmed: boolean) => {
+  const onClickHandler = () => {
     if (application) {
-      confirmApplication({
-        userId: application.userId,
-        confirmed,
-      });
+      confirmApplication(application.id);
     }
   };
 
-  if (getApplicationState.isLoading || getUserPassedTestsState.isLoading)
-    return <LoadingLoop />;
+  if (getApplicationState.isLoading) return <LoadingLoop />;
   if (getApplicationState.isError)
     return <DefaultError error={getApplicationState.error} />;
-  if (getUserPassedTestsState.isError)
-    return <DefaultError error={getUserPassedTestsState.error} />;
 
   return (
     <Container>
@@ -73,33 +62,15 @@ export const ApplicationPage: FC = () => {
         <div className={styles.main}>
           {application && <ApplicationProfileCard profile={application} />}
           <div>
-            <Subtitle>
-              {!!passedTests && !!passedTests.length
-                ? "Пройденные тесты"
-                : "Нет пройденных тестов"}
-            </Subtitle>
-            {!!passedTests && !!passedTests.length && !!application && (
-              <div className={styles.tests}>
-                {passedTests.map((el) => {
-                  return (
-                    <TestCard
-                      key={el.id}
-                      test={el}
-                      params={{ userId: application?.userId }}
-                    />
-                  );
-                })}
-              </div>
-            )}
             {!!application && (
-              <div className={styles.buttons}>
-                <PrimaryButton onClick={() => onClickHandler(true)}>
-                  Принять заявку
-                </PrimaryButton>
-                <SecondaryButton onClick={() => onClickHandler(false)}>
-                  Отклонить
-                </SecondaryButton>
-              </div>
+              <>
+                <PassedTests userId={application.userId} />
+                <div className={styles.buttons}>
+                  <PrimaryButton onClick={onClickHandler}>
+                    Принять заявку
+                  </PrimaryButton>
+                </div>
+              </>
             )}
           </div>
         </div>

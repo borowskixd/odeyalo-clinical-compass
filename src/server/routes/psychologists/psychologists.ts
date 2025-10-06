@@ -1,22 +1,19 @@
 import { NextResponse } from "next/server";
 import { mapGetPsychologistsResponse } from "@/server/mappers";
-import {
-  createRequest,
-  getRequestAccessToken,
-  loginByToken,
-} from "@/server/utils";
+import { createRequest, getRequestTokens } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
 import {
   type GetPsychologistsApiResponseData,
   type GetPsychologistsResponseData,
   ResponseError,
 } from "@/shared/types";
+import { parseAccessJWT } from "@/shared/utils";
 
 const getPsychologists = createRequest(async (request, serverFetch) => {
-  const accessToken = getRequestAccessToken(request);
-  const loginByTokenResponse = await loginByToken(accessToken);
+  const { accessToken } = getRequestTokens(request);
+  const tokenData = parseAccessJWT(accessToken);
 
-  if (!loginByTokenResponse) {
+  if (!tokenData) {
     return NextResponse.json(
       new ResponseError(
         httpStatuses.unauthorized.status,
@@ -26,14 +23,11 @@ const getPsychologists = createRequest(async (request, serverFetch) => {
     );
   }
 
-  const psychologistsPromise = serverFetch.get<GetPsychologistsApiResponseData>(
-    "/manager/get_all_manager",
-  );
+  const psychologistsPromise =
+    serverFetch.get<GetPsychologistsApiResponseData>("/managers");
 
   const myPsychologistsPromise =
-    serverFetch.get<GetPsychologistsApiResponseData>(
-      "/client/get_your_psychologist",
-    );
+    serverFetch.get<GetPsychologistsApiResponseData>("/client/my-psychologist");
 
   const [psychologistsResponse, myPsychologistsResponse] = await Promise.all([
     psychologistsPromise,
@@ -43,7 +37,7 @@ const getPsychologists = createRequest(async (request, serverFetch) => {
   const filteredPsychologists = psychologistsResponse.data.filter(
     (el) =>
       myPsychologistsResponse.data.findIndex((val) => el.id === val.id) ===
-        -1 && el.id !== loginByTokenResponse.userData.userId,
+        -1 && el.id !== tokenData.payload.userId,
   );
 
   const psychologistsResponseData: GetPsychologistsResponseData =

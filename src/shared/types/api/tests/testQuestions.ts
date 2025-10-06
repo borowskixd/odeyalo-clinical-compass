@@ -4,16 +4,15 @@ type TestQuestionAnswersApiData = {
   score: number;
 }[];
 
-export type GetTestQuestionsApiResponseData = {
-  title: string;
-  description: string;
-  short_desc: string;
-  questions: {
-    number: number;
-    text: string;
-    answer_options: TestQuestionAnswersApiData;
-  }[];
+export type TestQuestionsApiData = {
+  id: string;
+  test_id: string;
+  number: number;
+  text: string;
+  answer_choices: TestQuestionAnswersApiData;
 };
+
+export type GetTestQuestionsApiResponseData = TestQuestionsApiData[];
 
 type TestQuestionAnswersData = {
   id: string;
@@ -22,9 +21,11 @@ type TestQuestionAnswersData = {
 }[];
 
 type TestQuestionsData = {
+  id: string;
+  testId: string;
   number: number;
-  title: string;
-  answers: TestQuestionAnswersData;
+  text: string;
+  answerChoices: TestQuestionAnswersData;
 }[];
 
 export interface GetTestQuestionsResponseData {

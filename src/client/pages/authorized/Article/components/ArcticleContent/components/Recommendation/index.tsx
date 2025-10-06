@@ -1,23 +1,23 @@
 "use client";
 
-import { RecomendationCard } from "./components";
+import { RecommendationCard } from "./components";
 import styles from "./styles.module.scss";
 import { type GetArticleResponseData } from "@/shared/types";
 import { type FC } from "react";
 
 interface Props {
-  recomendations: GetArticleResponseData["recomendations"];
+  recommendations: GetArticleResponseData["recommendations"];
 }
 
-export const Recomendation: FC<Props> = ({ recomendations }) => {
+export const Recommendation: FC<Props> = ({ recommendations }) => {
   return (
     <div>
       <p className={styles.header}>Рекомендуем</p>
       <div className={styles.content}>
-        {recomendations.map((recomendation) => (
-          <RecomendationCard
-            key={recomendation.id}
-            recomendation={recomendation}
+        {recommendations.map((recommendation) => (
+          <RecommendationCard
+            key={recommendation.id}
+            recommendation={recommendation}
           />
         ))}
       </div>

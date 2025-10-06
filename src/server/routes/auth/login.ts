@@ -1,29 +1,34 @@
 import { NextResponse } from "next/server";
-import { mapLoginRequest, mapLoginResponse } from "@/server/mappers/auth";
+import { mapLoginRequest } from "@/server/mappers/auth";
 import { createRequest, setAuthCookies } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
 import {
   type LoginApiRequestData,
   type LoginApiResponseData,
   type LoginRequestData,
-  type LoginResponseData,
+  ResponseSuccessInfo,
 } from "@/shared/types";
 
 const login = createRequest(async (request, serverFetch) => {
   const body: LoginRequestData = await request.json();
 
-  const serverResponse = await serverFetch.post<
+  const loginResponse = await serverFetch.post<
     LoginApiResponseData,
     LoginApiRequestData
-  >("/users/auth", mapLoginRequest(body));
+  >("/auth/login", mapLoginRequest(body));
 
-  const data = serverResponse.data;
-
-  const responseData = mapLoginResponse(data);
+  const accessToken = loginResponse.data.access_token;
+  const refreshToken = loginResponse.data.refresh_token;
 
   const response = setAuthCookies(
-    NextResponse.json<LoginResponseData>(responseData, httpStatuses.ok),
-    data.token,
+    NextResponse.json<ResponseSuccessInfo>(
+      new ResponseSuccessInfo("login success"),
+      httpStatuses.ok,
+    ),
+    {
+      accessToken,
+      refreshToken,
+    },
   );
 
   return response;

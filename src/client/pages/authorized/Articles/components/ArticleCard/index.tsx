@@ -9,22 +9,31 @@ interface ArticleCardProps {
 }
 
 export const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
+  const imageSrc = article.educationMaterials?.[0]?.pictureLink || "";
   return (
-    <Link href={pages.article.getLink({ params: { id: article.id } })}>
-      <div className={styles.card}>
+    <Link
+      href={pages.article.getLink({ params: { id: article.id } })}
+      className={styles.card}
+    >
+      {imageSrc && (
         <div className={styles.imageContainer}>
           <img
-            src={article.image}
-            alt={article.title}
+            src={imageSrc}
+            alt={article.theme}
             className={styles.image}
-            width={260}
-            height={165}
           />
         </div>
-        <div className={styles.title}>{article.title}</div>
-        <div className={styles.tags}>
-          <div className={styles.tag}>{article.fullProgress} минут</div>
-        </div>
+      )}
+      <div className={styles.title}>{article.theme}</div>
+      <div className={styles.tags}>
+        {article.tags.map((tag, index) => (
+          <div
+            className={styles.tag}
+            key={index}
+          >
+            {tag}
+          </div>
+        ))}
       </div>
     </Link>
   );

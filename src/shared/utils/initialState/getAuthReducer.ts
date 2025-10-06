@@ -1,37 +1,46 @@
 import { type ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
 import { type ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { userAgent } from "next/server";
-import { loginByToken } from "@/server/utils";
+import { ACCESS } from "@/shared/config/access";
+import { bffAxios } from "@/shared/config/api";
 import { cookies as cookiesData, defaultInitialState } from "@/shared/data";
-import { type InitialState } from "@/shared/types";
+import { type GetMeResponseData, type InitialState } from "@/shared/types";
+import { parseAccessJWT } from "@/shared/utils";
 
 export const getAuthReducer = async (
   headers: ReadonlyHeaders,
   cookies: ReadonlyRequestCookies,
 ) => {
-  const accessToken = cookies.get(cookiesData.accessToken.name)?.value;
   const ua = userAgent({ headers });
 
-  const loginResponse = await loginByToken(accessToken);
+  try {
+    const accessToken = cookies.get(cookiesData.accessToken.name)?.value;
+    const tokenData = parseAccessJWT(accessToken);
+    const userRole = tokenData ? tokenData.payload.role : ACCESS.unauthorized;
 
-  if (loginResponse) {
-    const { userData } = loginResponse;
+    const meResponse = await bffAxios.get<GetMeResponseData>("/auth/me", {
+      headers: {
+        "Cookie": cookies.toString(),
+      },
+    });
+
+    const { id, email, username } = meResponse.data;
     const authReducer: InitialState["authReducer"] = {
       isAuth: true,
       profile: {
-        id: userData.userId,
-        email: userData.email,
-        username: userData.username,
-        role: userData.role,
+        id,
+        email,
+        username,
+        role: userRole,
       },
       ua,
     };
 
     return authReducer;
+  } catch {
+    return {
+      ...defaultInitialState["authReducer"],
+      ua,
+    };
   }
-
-  return {
-    ...defaultInitialState["authReducer"],
-    ua,
-  };
 };

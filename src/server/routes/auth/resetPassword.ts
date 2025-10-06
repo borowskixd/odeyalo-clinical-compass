@@ -10,7 +10,7 @@ const resetPassword = createRequest(async (request, serverFetch) => {
   const body: ResetPasswordRequestData = await request.json();
 
   await serverFetch.post<ResetPasswordRequestData>(
-    "/users/reset_password_request",
+    "/auth/request-password-reset",
     body,
   );
 

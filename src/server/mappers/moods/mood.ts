@@ -8,37 +8,30 @@ import {
 export const mapSaveMoodRequest = (
   data: SaveMoodRequestData,
 ): SaveMoodApiRequestData => {
-  const { diaryType, freeDiaryId, thinkDiaryId, score, date } = data;
+  const { score, date, emojiIds } = data;
 
   return {
-    date,
-    think_diary_id: thinkDiaryId,
-    diary_type: diaryType,
-    free_diary_id: freeDiaryId,
     score,
+    emoji_ids: emojiIds,
+    day: date,
   };
 };
 
 export const mapGetMoodResponse = (
   data: GetMoodApiResponseData,
 ): GetMoodResponseData => {
-  const {
-    id,
-    think_diary_id,
-    diary_type,
-    free_diary_id,
-    user_id,
-    score,
-    date,
-  } = data;
+  const { id, emoji_ids, emoji_texts, user_id, score, created_at } = data;
 
   return {
     id,
-    diaryType: diary_type,
-    date,
+    date: created_at,
     score,
     userId: user_id,
-    freeDiaryId: free_diary_id,
-    thinkDiaryId: think_diary_id,
+    emojis: emoji_ids.map((el, index) => {
+      return {
+        id: el,
+        emoji: emoji_texts[index],
+      };
+    }),
   };
 };

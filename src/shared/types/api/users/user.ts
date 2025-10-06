@@ -17,17 +17,20 @@ export interface UpdateUserApiRequestData {
 }
 
 export interface GetUserApiResponseData {
+  id: string;
+  email: string;
   birth_date: string;
   gender: string;
   username: string;
-  request: {
-    text: string;
-    id: number;
-  }[];
   city: string;
-  description: string;
-  department: string;
-  type: number;
+  description: string | null;
+  department: string | null;
+  company: string | null;
+  online: boolean | null;
+  phone_number: "";
+  is_active: boolean | null;
+  face_to_face: boolean | null;
+  role_id: number;
 }
 
 export interface GetUserResponseData {

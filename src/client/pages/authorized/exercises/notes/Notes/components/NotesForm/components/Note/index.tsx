@@ -9,10 +9,11 @@ interface NoteProps {
 }
 
 export const Note: FC<NoteProps> = ({ id, note, date }) => {
+  const hours = date.getHours() - new Date().getTimezoneOffset() / 60;
   const minutes =
     date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
 
-  const time = `${date.getHours()}:${minutes}`;
+  const time = `${hours}:${minutes}`;
 
   return (
     <a

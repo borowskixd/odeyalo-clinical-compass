@@ -1,9 +1,9 @@
 export type GetTestsApiResponseData = {
-  test_id: string;
+  id: string;
   title: string;
   description: string;
   short_desc: string;
-  link_to_picture: string;
+  link: string;
 }[];
 
 export type GetTestsResponseData = {

@@ -3,11 +3,7 @@ import {
   mapGetKptDiariesResponse,
   mapSendKptDiaryRequest,
 } from "@/server/mappers";
-import {
-  createRequest,
-  getRequestAccessToken,
-  loginByToken,
-} from "@/server/utils";
+import { createRequest, getRequestTokens } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
 import {
   type GetKptDiariesApiResponseData,
@@ -17,6 +13,7 @@ import {
   type SendKptDiaryApiRequestData,
   type SendKptDiaryRequestData,
 } from "@/shared/types";
+import { parseAccessJWT } from "@/shared/utils";
 
 const sendKptDiary = createRequest(async (request, serverFetch) => {
   const body: SendKptDiaryRequestData = await request.json();
@@ -33,10 +30,10 @@ const sendKptDiary = createRequest(async (request, serverFetch) => {
 });
 
 const getKptDiaries = createRequest(async (request, serverFetch) => {
-  const accessToken = getRequestAccessToken(request);
-  const loginByTokenResponse = await loginByToken(accessToken);
+  const { accessToken } = getRequestTokens(request);
+  const tokenData = parseAccessJWT(accessToken);
 
-  if (!loginByTokenResponse) {
+  if (!tokenData) {
     return NextResponse.json(
       new ResponseError(
         httpStatuses.unauthorized.status,
@@ -46,7 +43,7 @@ const getKptDiaries = createRequest(async (request, serverFetch) => {
     );
   }
   const response = await serverFetch.get<GetKptDiariesApiResponseData>(
-    `/problem/get_all_think_diary/${loginByTokenResponse.userData.userId}`,
+    `/problem/get_all_think_diary/${tokenData.payload.userId}`,
   );
 
   const data: GetKptDiariesResponseData = mapGetKptDiariesResponse(

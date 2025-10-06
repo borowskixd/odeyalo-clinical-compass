@@ -6,22 +6,25 @@ import {
 
 export const mapGetTestQuestionsResponse = (
   currentTest: GetTestApiResponseData,
-  testqQuestions: GetTestQuestionsApiResponseData,
+  testQuestions: GetTestQuestionsApiResponseData,
 ): GetTestQuestionsResponseData => {
-  const { test_id, title } = currentTest;
-  const { questions } = testqQuestions;
+  const { id, title } = currentTest;
 
   return {
-    id: test_id,
-    title: title,
-    questions: questions.map(({ number, text, answer_options }) => ({
-      title: text,
-      number,
-      answers: answer_options.map(({ id, score, text }) => ({
+    id,
+    title,
+    questions: testQuestions.map(
+      ({ id, test_id, number, text, answer_choices }) => ({
         id,
+        testId: test_id,
+        number,
         text,
-        score,
-      })),
-    })),
+        answerChoices: answer_choices.map(({ id, text, score }) => ({
+          id,
+          text,
+          score,
+        })),
+      }),
+    ),
   };
 };

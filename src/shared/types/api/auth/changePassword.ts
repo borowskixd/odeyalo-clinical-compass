@@ -6,6 +6,6 @@ export interface ChangePasswordRequestData {
 
 export interface ChangePasswordApiRequestData {
   token: string;
-  new_password: string;
+  password: string;
   confirm_new_password: string;
 }

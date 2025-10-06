@@ -7,6 +7,7 @@ interface Cookie {
 
 interface Cookies {
   accessToken: Cookie;
+  refreshToken: Cookie;
 }
 
 export const cookies: Cookies = {
@@ -14,6 +15,14 @@ export const cookies: Cookies = {
     name: "access_token",
     params: {
       httpOnly: true,
+      maxAge: 60 * 30,
+    },
+  },
+  refreshToken: {
+    name: "refresh_token",
+    params: {
+      httpOnly: true,
+      maxAge: 60 * 60 * 24 * 30,
     },
   },
 };

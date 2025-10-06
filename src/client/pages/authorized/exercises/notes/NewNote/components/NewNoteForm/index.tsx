@@ -32,7 +32,7 @@ export const NewNoteForm: FC = () => {
 
   const dateParam = searchParams.get("date");
 
-  let date: Date = new Date();
+  let date: Date | null = null;
 
   if (
     dateParam &&
@@ -48,21 +48,17 @@ export const NewNoteForm: FC = () => {
   }
 
   const onSubmitHandler = (values: InitialValues) => {
-    if (
-      compareDates(date, "current", { fullYear: true, month: true, date: true })
-    ) {
-      createNote(values);
-    } else {
-      createNote({
-        ...values,
-        date: mapDateToApiDateFormat(date),
-      });
-    }
+    const dateValue = date ? mapDateToApiDateFormat(date) : null;
+
+    createNote({
+      ...values,
+      date: dateValue,
+    });
   };
 
   return (
     <>
-      <NoteDate date={date} />
+      <NoteDate date={date ?? new Date()} />
       <FormikForm<InitialValues>
         initialValues={initialValues}
         onSubmit={onSubmitHandler}

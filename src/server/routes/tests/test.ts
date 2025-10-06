@@ -10,7 +10,7 @@ import {
 const getTest = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
     const response = await serverFetch.get<GetTestApiResponseData>(
-      `/test/get_test_info/${id}`,
+      `/tests/${id}`,
     );
 
     const data: GetTestResponseData = mapGetTestResponse(response.data);

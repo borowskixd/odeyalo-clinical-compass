@@ -6,10 +6,10 @@ import type {
 export const mapGetNoteResponse = (
   data: GetNoteApiResponseData,
 ): GetNoteResponseData => {
-  const { text, free_diary_id, created_at } = data;
+  const { text, id, created_at } = data;
 
   return {
-    id: free_diary_id,
+    id,
     note: text,
     date: created_at,
   };
