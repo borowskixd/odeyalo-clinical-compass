@@ -31,7 +31,7 @@ const readArticle = createRequest<{ id: string }>(
     );
 
     return NextResponse.json(
-      new ResponseSuccessInfo("Article successful readed"),
+      new ResponseSuccessInfo("Article successful read"),
       httpStatuses.ok,
     );
   },

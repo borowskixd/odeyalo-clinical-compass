@@ -17,14 +17,18 @@ const login = createRequest(async (request, serverFetch) => {
     LoginApiRequestData
   >("/auth/login", mapLoginRequest(body));
 
-  const token = loginResponse.data.access_token;
+  const accessToken = loginResponse.data.access_token;
+  const refreshToken = loginResponse.data.refresh_token;
 
   const response = setAuthCookies(
     NextResponse.json<ResponseSuccessInfo>(
       new ResponseSuccessInfo("login success"),
       httpStatuses.ok,
     ),
-    token,
+    {
+      accessToken,
+      refreshToken,
+    },
   );
 
   return response;

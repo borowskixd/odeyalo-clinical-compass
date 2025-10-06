@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { mapGetPsychologistsResponse } from "@/server/mappers";
-import { createRequest, getRequestAccessToken } from "@/server/utils";
+import { createRequest, getRequestTokens } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
 import {
   type GetPsychologistsApiResponseData,
@@ -10,7 +10,7 @@ import {
 import { parseAccessJWT } from "@/shared/utils";
 
 const getPsychologists = createRequest(async (request, serverFetch) => {
-  const accessToken = getRequestAccessToken(request);
+  const { accessToken } = getRequestTokens(request);
   const tokenData = parseAccessJWT(accessToken);
 
   if (!tokenData) {

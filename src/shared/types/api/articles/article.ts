@@ -2,7 +2,7 @@ export interface GetArticleResponseData {
   title: string;
   id: string;
   linkToPicture: string;
-  recomendations: {
+  recommendations: {
     id: string;
     theme: string;
     linkToPicture: string;
