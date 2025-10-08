@@ -9,13 +9,13 @@ export const mapGetApplicationsResponse = (
   data: GetApplicationsApiResponseData,
 ): GetApplicationsResponseData => {
   return data.map((el) => {
-    const { app_id, client_id, online, text, username } = el;
+    const { id, client_id, status, text } = el;
 
     return {
-      id: app_id,
+      id,
       userId: client_id,
-      username,
-      isOnline: online,
+      username: "",
+      isOnline: status,
       problem: text,
       profileImage: "",
     };
@@ -28,7 +28,8 @@ export const mapSendApplicationRequest = (
   const { psychologistId, request } = data;
 
   return {
-    user_id: psychologistId,
+    manager_id: psychologistId,
     text: request,
+    inquiry: [],
   };
 };

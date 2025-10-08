@@ -12,11 +12,10 @@ import {
 const sendHrSurvey = createRequest(async (request, serverFetch) => {
   const body: SendHrSurveyRequestData = await request.json();
 
-  const { data } =
-    await serverFetch.get<GetUserApiResponseData>("/users/user_data");
+  const { data } = await serverFetch.get<GetUserApiResponseData>("/auth/me");
 
-  await serverFetch.post<any, SendHrSurveyApiRequestData>(
-    "/manager/send_manager",
+  await serverFetch.patch<any, SendHrSurveyApiRequestData>(
+    "/managers/manager",
     mapSendHrSurveyRequest(data, body),
   );
 

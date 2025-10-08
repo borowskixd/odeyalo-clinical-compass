@@ -3,7 +3,7 @@ import {
   mapGetKptDiariesResponse,
   mapSendKptDiaryRequest,
 } from "@/server/mappers";
-import { createRequest, getRequestAccessToken } from "@/server/utils";
+import { createRequest, getRequestTokens } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
 import {
   type GetKptDiariesApiResponseData,
@@ -30,7 +30,7 @@ const sendKptDiary = createRequest(async (request, serverFetch) => {
 });
 
 const getKptDiaries = createRequest(async (request, serverFetch) => {
-  const accessToken = getRequestAccessToken(request);
+  const { accessToken } = getRequestTokens(request);
   const tokenData = parseAccessJWT(accessToken);
 
   if (!tokenData) {

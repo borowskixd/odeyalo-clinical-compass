@@ -26,7 +26,14 @@ export const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
       )}
       <div className={styles.title}>{article.theme}</div>
       <div className={styles.tags}>
-        <div className={styles.tag}>{article.tags}</div>
+        {article.tags.map((tag, index) => (
+          <div
+            className={styles.tag}
+            key={index}
+          >
+            {tag}
+          </div>
+        ))}
       </div>
     </Link>
   );

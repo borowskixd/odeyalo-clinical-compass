@@ -6,11 +6,10 @@ import type { GetNotesApiResponseData } from "@/shared/types";
 
 const getNote = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
-    const { data: notes } = await serverFetch.get<GetNotesApiResponseData>(
-      "/diary/reading_free_diary",
-    );
+    const { data: notes } =
+      await serverFetch.get<GetNotesApiResponseData>("/diary");
 
-    const data = notes.find((note) => note.free_diary_id === id);
+    const data = notes.find((note) => note.id === id);
 
     if (!data)
       return NextResponse.json({

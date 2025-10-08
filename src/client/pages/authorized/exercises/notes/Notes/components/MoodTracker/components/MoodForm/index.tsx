@@ -2,11 +2,12 @@
 
 import { MoodTrackerValue } from "./components";
 import styles from "./styles.module.scss";
-import { FormikForm, PrimaryButton } from "@/client/components";
+import { FormErrorLabel, FormikForm, PrimaryButton } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
+import { Emojis } from "@/client/pages/authorized/exercises/notes/Notes/components/MoodTracker/components/MoodForm/components/Emojis";
 import { selectNotesCalendarDate, useSaveMoodMutation } from "@/client/redux";
 import { compareDates, mapDateToApiDateFormat } from "@/shared/utils";
-import { type FC } from "react";
+import { type FC, useState } from "react";
 
 interface Props {
   onSubmitAction: () => void;
@@ -21,26 +22,34 @@ const initialValues: InitialValues = {
 };
 
 export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
-  const [saveMood] = useSaveMoodMutation();
+  const [saveMood, { isLoading }] = useSaveMoodMutation();
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
+  const [emojiIds, setEmojiIds] = useState<number[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const submitHandler = (values: InitialValues) => {
-    if (
-      compareDates(notesCalendarDate, "current", {
+    if (emojiIds.length) {
+      const isCurrentDate = compareDates(notesCalendarDate, "current", {
         fullYear: true,
         month: true,
         date: true,
-      })
-    ) {
-      saveMood(values);
-    } else {
+      });
+
       saveMood({
         ...values,
-        date: mapDateToApiDateFormat(notesCalendarDate),
+        emojiIds: emojiIds,
+        date: isCurrentDate ? null : mapDateToApiDateFormat(notesCalendarDate),
       });
-    }
 
-    onSubmitAction();
+      onSubmitAction();
+    } else {
+      setErrorMessage("Необходимо выбрать хотя бы одну эмоцию");
+    }
+  };
+
+  const selectEmojiHandler = (emojiIds: number[]) => {
+    setEmojiIds(emojiIds);
+    setErrorMessage(null);
   };
 
   return (
@@ -55,9 +64,16 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
         min="0"
         max="100"
       />
+      <Emojis onUpdate={selectEmojiHandler} />
+      {errorMessage && (
+        <div style={{ marginTop: "10px" }}>
+          <FormErrorLabel>{errorMessage}</FormErrorLabel>
+        </div>
+      )}
       <PrimaryButton
         type="submit"
         className={styles.button}
+        disabled={isLoading}
       >
         Сохранить
       </PrimaryButton>

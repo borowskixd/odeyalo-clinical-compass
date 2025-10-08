@@ -8,12 +8,9 @@ import {
 
 const getNotesCalendarFilledDates = createRequest(
   async (request, serverFetch) => {
-    const notesPromise = serverFetch.get<GetNotesApiResponseData>(
-      "/diary/reading_free_diary",
-    );
-    const moodTrackerPromise = serverFetch.get<GetMoodsApiResponseData>(
-      "/mood_tracker/get_all_mood_tracker",
-    );
+    const notesPromise = serverFetch.get<GetNotesApiResponseData>("/diary");
+    const moodTrackerPromise =
+      serverFetch.get<GetMoodsApiResponseData>("/mood_tracker");
 
     const [notesRequest, moodTrackerRequest] = await Promise.all([
       notesPromise,

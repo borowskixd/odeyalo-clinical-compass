@@ -6,7 +6,7 @@ import { type GetMoodApiResponseData } from "@/shared/types";
 const getMood = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
     const serverRequest = await serverFetch.get<GetMoodApiResponseData>(
-      `/mood_tracker/get_mood_tracker/${id}`,
+      `/mood_tracker/${id}`,
     );
 
     const { data } = serverRequest;

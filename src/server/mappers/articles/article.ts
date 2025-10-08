@@ -15,7 +15,7 @@ export const mapGetArticleResponse = (
     title: theme,
     id,
     linkToPicture: `${SEVER_API_URL}${link}`,
-    recomendations: recommendations.map((topic) => ({
+    recommendations: recommendations.map((topic) => ({
       id: topic.id,
       theme: topic.theme,
       linkToPicture: `${SEVER_API_URL}${topic.link}`,

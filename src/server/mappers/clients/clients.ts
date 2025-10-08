@@ -7,13 +7,13 @@ export const mapGetClientsResponse = (
   data: GetClientsApiResponseData,
 ): GetClientsResponseData => {
   return data.map((el) => {
-    const { client_id, username, is_active, request } = el;
+    const { id, username, inquiry } = el;
 
     return {
-      userId: client_id,
+      userId: id,
       username,
-      isOnline: is_active,
-      problems: request,
+      isOnline: false,
+      problems: inquiry,
       profileImage: "",
     };
   });

@@ -16,6 +16,7 @@ export const Content: FC = () => {
 
   const date = new Date(note.date);
 
+  const hours = date.getHours() - new Date().getTimezoneOffset() / 60;
   const minutes =
     date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
 
@@ -24,7 +25,7 @@ export const Content: FC = () => {
       <PageTitle>{`${date.getDate()}, ${months[date.getMonth()]}`}</PageTitle>
       <h3
         className={styles.date}
-      >{`${days[date.getDay()]}, ${date.getHours()}:${minutes}`}</h3>
+      >{`${days[date.getDay()]}, ${hours}:${minutes}`}</h3>
       <p className={styles.note}>{note.note}</p>
     </>
   );

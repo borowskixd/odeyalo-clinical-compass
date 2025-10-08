@@ -1,6 +1,6 @@
 "use client";
 
-import { Recomendation, Subtopics } from "./components";
+import { Recommendation, Subtopics } from "./components";
 import styles from "./styles.module.scss";
 import { useParams } from "next/navigation";
 import { DefaultError, LoadingLoop, PageTitle } from "@/client/components";
@@ -36,7 +36,7 @@ export const ArticleContent: FC = () => {
       <PageTitle>{article?.title}</PageTitle>
       <div className={styles.main}>
         <Subtopics subtopics={article.subtopics} />
-        <Recomendation recomendations={article.recomendations} />
+        <Recommendation recommendations={article.recommendations} />
       </div>
     </>
   );

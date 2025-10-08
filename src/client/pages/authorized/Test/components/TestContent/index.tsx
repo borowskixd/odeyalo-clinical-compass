@@ -70,7 +70,7 @@ export const TestContent: FC = () => {
         {currentQuestion.answerChoices.map((answer) => {
           return (
             <Radio
-              key={answer.id}
+              key={`${currentQuestion.number - 1}-${answer.id}`}
               name="question"
               labelText={answer.text}
               onClick={() => selectAnswerHandler(answer.score)}
