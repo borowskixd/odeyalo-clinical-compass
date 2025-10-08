@@ -89,6 +89,7 @@ export interface Pages {
   problemDefinition: Page;
   problemDefinitionForm: Page;
   problemDefinitionResult: Page<{ id: string }>;
+  emotionExercises: Page;
 }
 
 interface Route {

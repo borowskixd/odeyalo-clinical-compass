@@ -106,6 +106,11 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
+  emotionExercises: new Page("/practices/emotionExercises", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
   usersActivity: new Page("/admin/users/activity", [ACCESS.admin]),
   usersFeedbacks: new Page("/admin/users/feedbacks", [ACCESS.admin]),
   usersResults: new Page("/admin/users/results", [ACCESS.admin]),
