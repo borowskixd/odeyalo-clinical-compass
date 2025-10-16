@@ -21,6 +21,7 @@ export const ExercisePageLayout: FC<Props> = ({
   exerciseTitle,
   exerciseDescription,
   exerciseStartLink,
+
   history,
 }) => {
   return (
