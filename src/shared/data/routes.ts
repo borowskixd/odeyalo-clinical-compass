@@ -77,8 +77,17 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
+  exercise: new Page<{ id: string }>("/practices/exercises/:id", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
   exercisePreview: new Page<{ id: string }>(
     "/practices/exercises/:id/preview",
+    [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
+  ),
+  exerciseResult: new Page<{ id: string; result_id: string }>(
+    "/practices/exercises/:id/results/:result_id",
     [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
   ),
   usersActivity: new Page("/admin/users/activity", [ACCESS.admin]),

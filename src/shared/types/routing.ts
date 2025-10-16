@@ -83,7 +83,9 @@ export interface Pages {
   usersActivity: Page;
   usersFeedbacks: Page;
   usersResults: Page;
+  exercise: Page<{ id: string }>;
   exercisePreview: Page<{ id: string }>;
+  exerciseResult: Page<{ id: string; result_id: string }>;
 }
 
 interface Route {
