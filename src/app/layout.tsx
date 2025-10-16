@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
+import "odeyalo-uikit/dist/main.css";
 import { fontVariablesClass } from "@/client/assets/fonts";
 import { ModalsPortal, SnackbarsPortal } from "@/client/components";
 import { AuthLayer, I18nLayer, StoreLayer } from "@/client/components/layers";
