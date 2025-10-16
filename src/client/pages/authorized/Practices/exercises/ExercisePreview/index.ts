@@ -1,1 +1,1 @@
-export * from "./ExercisePreview";
+export { ExercisePreviewPage } from "./ExercisePreview";

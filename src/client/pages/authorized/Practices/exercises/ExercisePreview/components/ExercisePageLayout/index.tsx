@@ -1,6 +1,5 @@
-import { Header, History } from "./components";
+import { Header, History, ImageWrapper } from "./components";
 import styles from "./styles.module.scss";
-import { ImageContentPageLayout } from "@/client/components/layouts";
 import { type FC } from "react";
 
 interface Props {
@@ -21,11 +20,10 @@ export const ExercisePageLayout: FC<Props> = ({
   exerciseTitle,
   exerciseDescription,
   exerciseStartLink,
-
   history,
 }) => {
   return (
-    <ImageContentPageLayout
+    <ImageWrapper
       imageSrc={imageSrc}
       className={styles.content}
     >
@@ -35,6 +33,6 @@ export const ExercisePageLayout: FC<Props> = ({
         startLink={exerciseStartLink}
       />
       <History history={history} />
-    </ImageContentPageLayout>
+    </ImageWrapper>
   );
 };

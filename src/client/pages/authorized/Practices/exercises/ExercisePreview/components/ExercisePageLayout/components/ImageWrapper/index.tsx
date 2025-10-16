@@ -9,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-export const ImageContentPageLayout: FC<Props> = ({
+export const ImageWrapper: FC<Props> = ({
   imageSrc,
   children,
   className = "",

@@ -1,7 +1,7 @@
 "use client";
 
+import { ExercisePageLayout } from "./components";
 import kptDiaryImage from "@/client/assets/webp/pictures/kptDiaryImage.webp";
-import { ExercisePageLayout } from "@/client/components/layouts";
 import { pages } from "@/shared/data";
 import { type FC } from "react";
 
