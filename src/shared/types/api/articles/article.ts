@@ -10,6 +10,7 @@ export interface GetArticleResponseData {
   }[];
   subtopics: {
     subtitle: string;
+    read: boolean;
     cards: {
       id: string;
       text: string;
@@ -43,6 +44,11 @@ export type GetArticleApiResponseData = {
     }[];
   }[];
 };
+
+export type GetArticleProgressApiResponseData = {
+  user_id: string;
+  education_material_id: string;
+}[];
 
 export type ReadArticleApiRequestData = {
   education_material_id: string;
