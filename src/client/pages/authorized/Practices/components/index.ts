@@ -1,4 +1,3 @@
-export * from "./ExerciseTextarea";
-export * from "./ExerciseTextareaResult";
-export * from "./ExerciseMoodRangeInput";
-export * from "./ExerciseMoodRangeInputResult";
+export * from "./ExerciseStructure";
+export * from "./ExerciseHeader";
+export * from "./Grid";
