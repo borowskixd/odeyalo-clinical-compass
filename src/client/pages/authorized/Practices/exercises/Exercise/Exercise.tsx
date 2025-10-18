@@ -1,27 +1,16 @@
 "use client";
 
-import { Text } from "odeyalo-uikit";
-import { Container, ContentWrapper, PageTitle } from "@/client/components";
-import { type FC } from "react";
-
-type ExerciseStructureData = {
-  id: string;
-  title: string;
-  link_to_image: string;
-  description: string;
-  closed: false;
-  pages: {
-    page_number: number;
-    sections: {
-      title: string;
-      view: "default" | "primary";
-      type: "input" | "addable_list";
-      placeholder: string;
-      prompt: string | null;
-      name: string;
-    }[];
-  }[];
-};
+import { ExerciseHeader } from "../../components";
+import { ButtonsContainer, FormGenerator } from "./components";
+import styles from "./styles.module.scss";
+import {
+  type ExerciseStructureData,
+  type FormValuesType,
+  type ValueType,
+} from "./types";
+import { generateInitialValue } from "./utils";
+import { Container, ContentWrapper } from "@/client/components";
+import { type FC, type FormEventHandler, useCallback, useState } from "react";
 
 const exerciseStructureData: ExerciseStructureData = {
   id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -40,15 +29,15 @@ const exerciseStructureData: ExerciseStructureData = {
           type: "input",
           placeholder: "Брать ипотеку или просить повышения...",
           prompt: null,
-          name: "what_i_dont_wanna_do",
+          id: "what_i_dont_wanna_do",
         },
         {
           title: "Почему я не хочу это делать?",
           view: "default",
           type: "input",
-          placeholder: "Мне кажется....",
+          placeholder: "Мне кажется...",
           prompt: null,
-          name: "why_i_dont_wanna_do",
+          id: "why_i_dont_wanna_do",
         },
       ],
     },
@@ -61,7 +50,7 @@ const exerciseStructureData: ExerciseStructureData = {
           type: "addable_list",
           placeholder: "Нужно много об этом думать...",
           prompt: null,
-          name: "minuses",
+          id: "minuses",
         },
         {
           title: "Плюсы этого",
@@ -69,7 +58,7 @@ const exerciseStructureData: ExerciseStructureData = {
           type: "addable_list",
           placeholder: "У меня будет своё жильё...",
           prompt: null,
-          name: "pluses",
+          id: "pluses",
         },
       ],
     },
@@ -77,11 +66,65 @@ const exerciseStructureData: ExerciseStructureData = {
 };
 
 export const ExercisePage: FC = () => {
+  const [values, setValues] = useState<FormValuesType>(
+    generateInitialValue(exerciseStructureData),
+  );
+  const [pageNumber, setPageNumber] = useState<number>(0);
+
+  const changeHandler = useCallback((name: string, value: ValueType) => {
+    setValues((values) => ({
+      ...values,
+      [name]: value,
+    }));
+  }, []);
+
+  const nextPageHandler = () => {
+    setPageNumber((pageNumber) => {
+      if (pageNumber + 1 < exerciseStructureData.pages.length) {
+        return pageNumber + 1;
+      }
+      return exerciseStructureData.pages.length - 1;
+    });
+  };
+
+  const prevPageHandler = () => {
+    setPageNumber((pageNumber) => {
+      if (pageNumber > 0) {
+        return pageNumber - 1;
+      }
+      return 0;
+    });
+  };
+
+  const submitHandler: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+
+    console.log(values);
+  };
+
   return (
     <Container>
       <ContentWrapper>
-        <PageTitle>{exerciseStructureData.title}</PageTitle>
-        <Text variant="body-l">{exerciseStructureData.description}</Text>
+        <ExerciseHeader
+          title={exerciseStructureData.title}
+          description={exerciseStructureData.description}
+        />
+        <form
+          onSubmit={submitHandler}
+          className={styles.form}
+        >
+          <FormGenerator
+            exerciseStructure={exerciseStructureData}
+            pageNumber={pageNumber}
+            changeHandler={changeHandler}
+          />
+          <ButtonsContainer
+            prevPageHandler={prevPageHandler}
+            nextPageHandler={nextPageHandler}
+            isFirstPage={pageNumber === 0}
+            isLastPage={pageNumber === exerciseStructureData.pages.length - 1}
+          />
+        </form>
       </ContentWrapper>
     </Container>
   );
