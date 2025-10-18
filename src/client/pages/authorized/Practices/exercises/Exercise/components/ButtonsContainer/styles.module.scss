@@ -1,0 +1,9 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 16px;
+
+  &:has(> :nth-child(odd):last-child) > :first-child {
+    grid-column: -2 / -1;
+  }
+}
