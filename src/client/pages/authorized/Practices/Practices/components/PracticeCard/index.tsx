@@ -1,18 +1,18 @@
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { pages } from "@/shared/data";
 import { type FC } from "react";
 
 interface Props {
   title: string;
   src: string;
+  link: string;
 }
 
-export const PracticeCard: FC<Props> = ({ src, title }) => {
+export const PracticeCard: FC<Props> = ({ src, title, link }) => {
   return (
     <Link
-      href={pages.problemDefinition.path}
+      href={link}
       className={styles.card}
     >
       <div className={styles.imageContainer}>
