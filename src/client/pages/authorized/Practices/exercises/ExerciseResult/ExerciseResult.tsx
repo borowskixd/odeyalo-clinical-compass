@@ -1,5 +1,10 @@
 "use client";
 
+import styles from "./styles.module.scss";
+import { Text } from "odeyalo-uikit";
+import { Container, ContentWrapper } from "@/client/components";
+import { ExerciseHeader } from "@/client/pages/authorized/practices/components";
+import { mapDatetimeToText } from "@/shared/utils";
 import { type FC } from "react";
 
 type ExerciseResultData = {
@@ -24,7 +29,7 @@ const exerciseResultData: ExerciseResultData = {
   link_to_image: "images/image.jpg",
   description:
     "Позволяет принять осознанный выбор в пользу\nчего-то полезного, но что может вызывать\nтревогу или неприятные ощущения",
-  date: "2025-10-02",
+  date: "2025-10-02T15:36:00",
   sections: [
     {
       title: "Чем я не хочу заниматься?",
@@ -54,5 +59,21 @@ const exerciseResultData: ExerciseResultData = {
 };
 
 export const ExerciseResultPage: FC = () => {
-  return <div>{exerciseResultData.title}</div>;
+  return (
+    <Container>
+      <ContentWrapper>
+        <ExerciseHeader
+          title={exerciseResultData.title}
+          description={exerciseResultData.description}
+          action={
+            <div className={styles.datetime}>
+              <Text variant="body-s">
+                {mapDatetimeToText(exerciseResultData.date)}
+              </Text>
+            </div>
+          }
+        />
+      </ContentWrapper>
+    </Container>
+  );
 };
