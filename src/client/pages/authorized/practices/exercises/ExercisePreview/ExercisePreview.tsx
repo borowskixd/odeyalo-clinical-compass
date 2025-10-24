@@ -1,9 +1,9 @@
 "use client";
 
 import { ExercisePageLayout } from "./components";
-import { mapDateToTextValue } from "odeyalo-uikit/dist/components/date/DatePicker/utils";
 import kptDiaryImage from "@/client/assets/webp/pictures/kptDiaryImage.webp";
 import { pages } from "@/shared/data";
+import { mapDatetimeToText } from "@/shared/utils";
 import { type FC } from "react";
 
 type ResultData = {
@@ -51,7 +51,7 @@ export const ExercisePreviewPage: FC = () => {
       history={exerciseData.results.map((result) => ({
         id: result.id,
         title: result.preview,
-        date: mapDateToTextValue(new Date(result.date)),
+        date: mapDatetimeToText(result.date),
         link: pages.exerciseResult.getLink({
           params: {
             id: result.exercise_id,
