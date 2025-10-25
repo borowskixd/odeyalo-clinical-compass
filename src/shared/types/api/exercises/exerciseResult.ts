@@ -11,26 +11,24 @@ export type GetExerciseResultApiResponseData = Pick<
 > & {
   exercise_id: string;
   date: string;
-  sections: Pick<
+  sections: (Pick<
     GetExerciseStructureApiResponseData["pages"][number]["sections"][number],
     "title" | "view" | "type"
-  > &
-    {
-      value: string | string[];
-    }[];
+  > & {
+    value: string | string[];
+  })[];
 };
 
 export type GetExerciseResultResponseData = Pick<
   GetExerciseResponseData,
   "id" | "title" | "image" | "description"
 > & {
-  exercise_id: string;
+  exerciseId: string;
   date: string;
-  sections: Pick<
+  sections: (Pick<
     GetExerciseStructureResponseData["pages"][number]["sections"][number],
     "label" | "view" | "type"
-  > &
-    {
-      value: string | string[];
-    }[];
+  > & {
+    value: string | string[];
+  })[];
 };
