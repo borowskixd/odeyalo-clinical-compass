@@ -1,3 +1,4 @@
+import { SEVER_API_URL } from "@/shared/config/api";
 import {
   type GetExerciseStructureApiResponseData,
   type GetExerciseStructureResponseData,
@@ -21,7 +22,7 @@ export const mapGetExerciseStructureResponse = (
     id,
     title,
     description,
-    image: picture_link,
+    image: `${SEVER_API_URL}${picture_link}`,
     closed: !open,
     questionsCount: questions_count,
     timeToRead: time_to_read,

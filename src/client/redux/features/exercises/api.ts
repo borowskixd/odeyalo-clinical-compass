@@ -11,7 +11,7 @@ import {
 
 const exercisesApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getExercises: builder.query<GetExercisesResponseData, null>({
+    getExercises: builder.query<GetExercisesResponseData, void>({
       query: () => "/exercises",
     }),
 
@@ -19,9 +19,10 @@ const exercisesApi = api.injectEndpoints({
       CompleteExerciseResponseData,
       CompleteExerciseRequestData
     >({
-      query: () => ({
+      query: (body) => ({
         url: "/exercises",
         method: "POST",
+        body,
       }),
       invalidatesTags: ["ExerciseResults"],
     }),

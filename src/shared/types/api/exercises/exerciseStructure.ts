@@ -3,7 +3,7 @@ import type {
   GetExerciseResponseData,
 } from "@/shared/types";
 
-export type ExerciseSectionView = "default" | "action";
+export type ExerciseSectionView = "default" | "primary";
 export type ExerciseSectionType = "addable_list" | "input";
 
 export type GetExerciseStructureApiResponseData = GetExerciseApiResponseData & {

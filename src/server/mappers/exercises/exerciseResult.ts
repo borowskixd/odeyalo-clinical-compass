@@ -1,3 +1,4 @@
+import { SEVER_API_URL } from "@/shared/config/api";
 import {
   type GetExerciseResultApiResponseData,
   type GetExerciseResultResponseData,
@@ -14,7 +15,7 @@ export const mapGetExerciseResultResponse = (
     exerciseId: exercise_id,
     title,
     description,
-    image: picture_link,
+    image: `${SEVER_API_URL}${picture_link}`,
     date,
     sections: sections.map((section) => {
       const { value, type, title, view } = section;

@@ -26,7 +26,7 @@ export type CompleteExerciseApiRequestData = {
 };
 
 export type CompleteExerciseRequestData = {
-  exercise_id: string;
+  exerciseId: string;
   values: {
     id: string;
     value: string | string[];
