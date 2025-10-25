@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
+import { mapGetExerciseResponse } from "@/server/mappers";
 import { createRequest } from "@/server/utils";
+import { httpStatuses } from "@/shared/data";
 import { type GetExerciseApiResponseData } from "@/shared/types";
 
 const getExercise = createRequest<{ id: string }>(
@@ -7,7 +9,9 @@ const getExercise = createRequest<{ id: string }>(
     const getExerciseResponse =
       await serverFetch.get<GetExerciseApiResponseData>(`/exercises/${id}`);
 
-    return NextResponse.json(getExerciseResponse.data);
+    const responseData = mapGetExerciseResponse(getExerciseResponse.data);
+
+    return NextResponse.json(responseData, httpStatuses.ok);
   },
 );
 

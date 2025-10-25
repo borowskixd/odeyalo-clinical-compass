@@ -1,15 +1,21 @@
 import { NextResponse } from "next/server";
+import { mapGetExerciseResultsResponse } from "@/server/mappers";
 import { createRequest } from "@/server/utils";
-import { type GetExerciseResultApiResponseData } from "@/shared/types";
+import { httpStatuses } from "@/shared/data";
+import { type GetExerciseResultsApiResponseData } from "@/shared/types";
 
 const getExerciseResults = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
     const getExerciseResultsResponse =
-      await serverFetch.get<GetExerciseResultApiResponseData>(
+      await serverFetch.get<GetExerciseResultsApiResponseData>(
         `/exercises/${id}/results`,
       );
 
-    return NextResponse.json(getExerciseResultsResponse.data);
+    const responseData = mapGetExerciseResultsResponse(
+      getExerciseResultsResponse.data,
+    );
+
+    return NextResponse.json(responseData, httpStatuses.ok);
   },
 );
 

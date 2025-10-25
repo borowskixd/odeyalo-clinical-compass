@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
+import { mapGetExerciseResultResponse } from "@/server/mappers";
 import { createRequest } from "@/server/utils";
+import { httpStatuses } from "@/shared/data";
 import { type GetExerciseResultApiResponseData } from "@/shared/types";
 
 const getExerciseResult = createRequest<{
@@ -11,7 +13,11 @@ const getExerciseResult = createRequest<{
       `/exercises/${id}/results/${result_id}`,
     );
 
-  return NextResponse.json(getExerciseResultResponse.data);
+  const responseData = mapGetExerciseResultResponse(
+    getExerciseResultResponse.data,
+  );
+
+  return NextResponse.json(responseData, httpStatuses.ok);
 });
 
 export const ExerciseResultRoutes = {

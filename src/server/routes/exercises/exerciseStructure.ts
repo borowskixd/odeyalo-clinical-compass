@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
+import { mapGetExerciseStructureResponse } from "@/server/mappers";
 import { createRequest } from "@/server/utils";
+import { httpStatuses } from "@/shared/data";
 import { type GetExerciseStructureApiResponseData } from "@/shared/types";
 
 const getExerciseStructure = createRequest<{ id: string }>(
@@ -9,7 +11,11 @@ const getExerciseStructure = createRequest<{ id: string }>(
         `/exercises/${id}/structure`,
       );
 
-    return NextResponse.json(getExerciseStructureResponse.data);
+    const responseData = mapGetExerciseStructureResponse(
+      getExerciseStructureResponse.data,
+    );
+
+    return NextResponse.json(responseData, httpStatuses.ok);
   },
 );
 
