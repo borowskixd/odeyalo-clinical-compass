@@ -1,12 +1,24 @@
 import { api } from "@/client/redux/api";
+import {
+  type CompleteExerciseRequestData,
+  type CompleteExerciseResponseData,
+  type GetExerciseResponseData,
+  type GetExerciseResultResponseData,
+  type GetExerciseResultsResponseData,
+  type GetExerciseStructureResponseData,
+  type GetExercisesResponseData,
+} from "@/shared/types";
 
 const exercisesApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getExercises: builder.query({
+    getExercises: builder.query<GetExercisesResponseData, null>({
       query: () => "/exercises",
     }),
 
-    completeExercise: builder.mutation({
+    completeExercise: builder.mutation<
+      CompleteExerciseResponseData,
+      CompleteExerciseRequestData
+    >({
       query: () => ({
         url: "/exercises",
         method: "POST",
@@ -14,27 +26,31 @@ const exercisesApi = api.injectEndpoints({
       invalidatesTags: ["ExerciseResults"],
     }),
 
-    getExercise: builder.query({
-      query: (exerciseId: string) => `/exercises/${exerciseId}`,
+    getExercise: builder.query<GetExerciseResponseData, string>({
+      query: (exerciseId) => `/exercises/${exerciseId}`,
     }),
 
-    getExerciseStructure: builder.query({
-      query: (exerciseId: string) => `/exercises/${exerciseId}/structure`,
+    getExerciseStructure: builder.query<
+      GetExerciseStructureResponseData,
+      string
+    >({
+      query: (exerciseId) => `/exercises/${exerciseId}/structure`,
     }),
 
-    getExerciseResults: builder.query({
-      query: (exerciseId: string) => `/exercises/${exerciseId}/results`,
+    getExerciseResults: builder.query<GetExerciseResultsResponseData, string>({
+      query: (exerciseId) => `/exercises/${exerciseId}/results`,
       providesTags: ["Auth", "ExerciseResults"],
     }),
 
-    getExerciseResult: builder.query({
-      query: ({
-        exerciseId,
-        resultId,
-      }: {
+    getExerciseResult: builder.query<
+      GetExerciseResultResponseData,
+      {
         exerciseId: string;
         resultId: string;
-      }) => `/exercises/${exerciseId}/results/${resultId}`,
+      }
+    >({
+      query: ({ exerciseId, resultId }) =>
+        `/exercises/${exerciseId}/results/${resultId}`,
       providesTags: ["Auth", "ExerciseResults"],
     }),
   }),
