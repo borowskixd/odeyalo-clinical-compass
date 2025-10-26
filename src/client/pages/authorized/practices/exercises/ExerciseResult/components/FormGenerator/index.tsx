@@ -2,34 +2,22 @@
 
 import { ExerciseStructure, Grid } from "../../../../components";
 import { AddableInputGroup, TextArea } from "odeyalo-uikit";
+import { type GetExerciseResultResponseData } from "@/shared/types";
 import { type FC } from "react";
 
-type ExerciseResultData = {
-  id: string;
-  exercise_id: string;
-  title: string;
-  link_to_image: string;
-  description: string;
-  date: string;
-  sections: {
-    title: string;
-    view: "primary" | "default";
-    type: "input" | "addable_list";
-    value: string | string[];
-  }[];
+type FormGeneratorProps = {
+  exerciseStructure: GetExerciseResultResponseData;
 };
 
-interface Props {
-  exerciseStructure: ExerciseResultData;
-}
-
-export const FormGenerator: FC<Props> = ({ exerciseStructure }) => {
+export const FormGenerator: FC<FormGeneratorProps> = ({
+  exerciseStructure,
+}) => {
   return (
     <Grid>
       {exerciseStructure.sections.map((section, index) => {
-        const key = `${section.title}-${index}`;
+        const key = `${section.label}-${index}`;
         const commonProps = {
-          labelText: section.title,
+          labelText: section.label,
           value: section.value,
         };
 
