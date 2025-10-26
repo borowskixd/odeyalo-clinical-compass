@@ -1,5 +1,6 @@
 "use client";
 
+import { FormGenerator } from "./components";
 import styles from "./styles.module.scss";
 import { Text } from "odeyalo-uikit";
 import { Container, ContentWrapper } from "@/client/components";
@@ -73,6 +74,7 @@ export const ExerciseResultPage: FC = () => {
             </div>
           }
         />
+        <FormGenerator exerciseStructure={exerciseResultData} />
       </ContentWrapper>
     </Container>
   );
