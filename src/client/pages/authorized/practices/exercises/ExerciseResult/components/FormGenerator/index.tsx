@@ -16,9 +16,10 @@ export const FormGenerator: FC<FormGeneratorProps> = ({
     <Grid>
       {exerciseStructure.sections.map((section, index) => {
         const key = `${section.label}-${index}`;
+
         const commonProps = {
           labelText: section.label,
-          value: section.value,
+          readOnly: true,
         };
 
         if (section.type === "input") {
@@ -26,20 +27,29 @@ export const FormGenerator: FC<FormGeneratorProps> = ({
             <ExerciseStructure
               key={key}
               {...commonProps}
+              value={section.value}
               component={TextArea}
               rows={4}
-              readOnly
-              disabled
             />
           );
         } else if (section.type === "addable_list") {
+          const values = section.value;
+
+          const propsValueAsArray = {
+            initialValues: values as string[],
+          };
+          const propsValueAsString = {
+            value: values,
+          };
+
           return (
             <ExerciseStructure
               key={key}
               {...commonProps}
+              {...(Array.isArray(values)
+                ? propsValueAsArray
+                : propsValueAsString)}
               component={AddableInputGroup}
-              readOnly
-              disabled
             />
           );
         }

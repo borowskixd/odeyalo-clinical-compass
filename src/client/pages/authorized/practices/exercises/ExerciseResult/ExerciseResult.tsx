@@ -18,10 +18,6 @@ import { type FC } from "react";
 export const ExerciseResultPage: FC = () => {
   const { id, result_id } = useParams<{ id: string; result_id: string }>();
 
-
-  console.log("exerciseId:", id);
-  console.log("resultId:", result_id);
-  
   const { data, error, isLoading } = useGetExerciseResultQuery({
     exerciseId: id,
     resultId: result_id,
