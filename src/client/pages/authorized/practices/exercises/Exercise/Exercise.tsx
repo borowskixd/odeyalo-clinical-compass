@@ -3,88 +3,71 @@
 import { ExerciseHeader } from "../../components";
 import { ButtonsContainer, FormGenerator } from "./components";
 import styles from "./styles.module.scss";
+import { type FormValuesType, type ValueType } from "./types";
+import { generateInitialValue, validateExerciseData } from "./utils";
+import { useParams, useRouter } from "next/navigation";
 import {
-  type ExerciseStructureData,
-  type FormValuesType,
-  type ValueType,
-} from "./types";
-import { generateInitialValue } from "./utils";
-import { Container, ContentWrapper } from "@/client/components";
-import { type FC, type FormEventHandler, useCallback, useState } from "react";
-
-const exerciseStructureData: ExerciseStructureData = {
-  id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  title: "Сделать то,\nчего делать не хочется",
-  link_to_image: "images/image.jpg",
-  description:
-    "Позволяет принять осознанный выбор в пользу\nчего-то полезного, но что может вызывать\nтревогу или неприятные ощущения",
-  closed: false,
-  pages: [
-    {
-      page_number: 0,
-      sections: [
-        {
-          title: "Чем я не хочу заниматься?",
-          view: "primary",
-          type: "input",
-          placeholder: "Брать ипотеку или просить повышения...",
-          prompt: null,
-          id: "what_i_dont_wanna_do",
-        },
-        {
-          title: "Почему я не хочу это делать?",
-          view: "default",
-          type: "input",
-          placeholder: "Мне кажется...",
-          prompt: null,
-          id: "why_i_dont_wanna_do",
-        },
-      ],
-    },
-    {
-      page_number: 1,
-      sections: [
-        {
-          title: "Минусы этого",
-          view: "primary",
-          type: "addable_list",
-          placeholder: "Нужно много об этом думать...",
-          prompt: null,
-          id: "minuses",
-        },
-        {
-          title: "Плюсы этого",
-          view: "default",
-          type: "addable_list",
-          placeholder: "У меня будет своё жильё...",
-          prompt: null,
-          id: "pluses",
-        },
-      ],
-    },
-  ],
-};
+  Container,
+  ContentWrapper,
+  FormErrorLabel,
+  LoadingLoop,
+} from "@/client/components";
+import {
+  useCompleteExerciseMutation,
+  useGetExerciseStructureQuery,
+} from "@/client/redux";
+import { pages } from "@/shared/data";
+import { type CompleteExerciseRequestData } from "@/shared/types";
+import {
+  type FC,
+  type FormEventHandler,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 export const ExercisePage: FC = () => {
-  const [values, setValues] = useState<FormValuesType>(
-    generateInitialValue(exerciseStructureData),
+  const router = useRouter();
+  const { id } = useParams<{ id: string }>();
+
+  const { data: exerciseStructure, ...getExerciseStructureState } =
+    useGetExerciseStructureQuery(id);
+  const [completeExercise, completeExerciseState] =
+    useCompleteExerciseMutation();
+
+  const [values, setValues] = useState<FormValuesType | null>(
+    exerciseStructure ? generateInitialValue(exerciseStructure) : null,
   );
   const [pageNumber, setPageNumber] = useState<number>(0);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const changeHandler = useCallback((name: string, value: ValueType) => {
-    setValues((values) => ({
-      ...values,
-      [name]: value,
-    }));
-  }, []);
+  useEffect(() => {
+    if (completeExerciseState.isSuccess) {
+      router.push(pages.exercisePreview.getLink({ params: { id } }));
+    }
+  }, [completeExerciseState.isSuccess, router, id]);
+
+  const changeHandler = useCallback(
+    (name: string, value: ValueType) => {
+      setErrorMessage(validateExerciseData(values));
+
+      setValues((values) => ({
+        ...values,
+        [name]: value,
+      }));
+    },
+    [values],
+  );
 
   const nextPageHandler = () => {
-    setPageNumber((pageNumber) => {
-      if (pageNumber + 1 < exerciseStructureData.pages.length) {
-        return pageNumber + 1;
-      }
-      return exerciseStructureData.pages.length - 1;
-    });
+    if (exerciseStructure) {
+      setPageNumber((pageNumber) => {
+        if (pageNumber + 1 < exerciseStructure.pages.length) {
+          return pageNumber + 1;
+        }
+        return exerciseStructure.pages.length - 1;
+      });
+    }
   };
 
   const prevPageHandler = () => {
@@ -99,33 +82,59 @@ export const ExercisePage: FC = () => {
   const submitHandler: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
-    console.log(values);
+    const validationError = validateExerciseData(values);
+
+    if (validationError === null) {
+      const mappedValues: CompleteExerciseRequestData["values"] = [];
+
+      for (const key in values) {
+        mappedValues.push({
+          id: key,
+          value: values[key],
+        });
+      }
+
+      completeExercise({
+        exerciseId: id,
+        values: mappedValues,
+      });
+    } else {
+      setErrorMessage(validationError);
+    }
   };
+
+  if (getExerciseStructureState.isLoading) return <LoadingLoop />;
 
   return (
     <Container>
-      <ContentWrapper>
-        <ExerciseHeader
-          title={exerciseStructureData.title}
-          description={exerciseStructureData.description}
-        />
-        <form
-          onSubmit={submitHandler}
-          className={styles.form}
-        >
-          <FormGenerator
-            exerciseStructure={exerciseStructureData}
-            pageNumber={pageNumber}
-            changeHandler={changeHandler}
+      {exerciseStructure && (
+        <ContentWrapper>
+          <ExerciseHeader
+            title={exerciseStructure.title}
+            description={exerciseStructure.description}
           />
-          <ButtonsContainer
-            prevPageHandler={prevPageHandler}
-            nextPageHandler={nextPageHandler}
-            isFirstPage={pageNumber === 0}
-            isLastPage={pageNumber === exerciseStructureData.pages.length - 1}
-          />
-        </form>
-      </ContentWrapper>
+          <form
+            onSubmit={submitHandler}
+            className={styles.form}
+          >
+            <FormGenerator
+              exerciseStructure={exerciseStructure}
+              pageNumber={pageNumber}
+              changeHandler={changeHandler}
+            />
+            {errorMessage && <FormErrorLabel>{errorMessage}</FormErrorLabel>}
+            <ButtonsContainer
+              prevPageHandler={prevPageHandler}
+              nextPageHandler={nextPageHandler}
+              disabled={
+                completeExerciseState.isLoading || completeExerciseState.isError
+              }
+              isFirstPage={pageNumber === 0}
+              isLastPage={pageNumber === exerciseStructure.pages.length - 1}
+            />
+          </form>
+        </ContentWrapper>
+      )}
     </Container>
   );
 };

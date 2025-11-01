@@ -1,11 +1,8 @@
-import {
-  type ExerciseStructureData,
-  type FormValuesType,
-  type ValueType,
-} from "./types";
+import { type FormValuesType, type ValueType } from "./types";
+import { type GetExerciseStructureResponseData } from "@/shared/types";
 
 export const generateInitialValue = (
-  exercise: ExerciseStructureData,
+  exercise: GetExerciseStructureResponseData,
 ): FormValuesType => {
   const initialValue: FormValuesType = {};
 
@@ -24,4 +21,27 @@ export const generateInitialValue = (
   });
 
   return initialValue;
+};
+
+export const validateExerciseData = (
+  values: FormValuesType | null,
+): string | null => {
+  const errorMessage: string = "Заполните все поля";
+
+  if (values === null) {
+    return errorMessage;
+  } else {
+    for (const key in values) {
+      const value = values[key];
+
+      if (
+        (typeof value === "string" || Array.isArray(value)) &&
+        value.length === 0
+      ) {
+        return errorMessage;
+      }
+    }
+  }
+
+  return null;
 };

@@ -1,10 +1,11 @@
 import { ExerciseStructure, Grid } from "../../../../components";
-import { type ExerciseStructureData, type ValueType } from "../../types";
+import { type ValueType } from "../../types";
 import { AddableInputGroup, TextArea } from "odeyalo-uikit";
+import { type GetExerciseStructureResponseData } from "@/shared/types";
 import { type ChangeEventHandler, type FC, type ReactNode } from "react";
 
 interface Props {
-  exerciseStructure: ExerciseStructureData;
+  exerciseStructure: GetExerciseStructureResponseData;
   pageNumber: number;
   changeHandler: (name: string, value: ValueType) => void;
 }
@@ -17,15 +18,15 @@ export const FormGenerator: FC<Props> = ({
   return exerciseStructure.pages.map((page) => {
     return (
       <Grid
-        key={page.page_number}
-        hidden={pageNumber !== page.page_number}
+        key={page.number}
+        hidden={pageNumber !== page.number}
       >
         {page.sections.map((section) => {
           let component: ReactNode = null;
 
           const commonProps = {
             name: section.id,
-            labelText: section.title,
+            labelText: section.label,
             placeholder: section.placeholder,
             hintText: section.prompt ? section.prompt : undefined,
           };

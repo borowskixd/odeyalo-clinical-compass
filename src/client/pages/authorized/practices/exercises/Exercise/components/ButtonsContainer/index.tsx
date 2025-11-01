@@ -5,6 +5,7 @@ import { type FC } from "react";
 interface Props {
   prevPageHandler: () => void;
   nextPageHandler: () => void;
+  disabled: boolean;
   isFirstPage: boolean;
   isLastPage: boolean;
 }
@@ -12,6 +13,7 @@ interface Props {
 export const ButtonsContainer: FC<Props> = ({
   prevPageHandler,
   nextPageHandler,
+  disabled,
   isFirstPage,
   isLastPage,
 }) => {
@@ -31,6 +33,7 @@ export const ButtonsContainer: FC<Props> = ({
           view="action"
           width="max"
           type="submit"
+          disabled={disabled}
         >
           Завершить
         </Button>
