@@ -74,9 +74,7 @@ export const TestContent: FC = () => {
               name="question"
               labelText={answer.text}
               onClick={() => selectAnswerHandler(answer.score)}
-              defaultChecked={
-                answers[currentQuestion.number - 1] === answer.score
-              }
+              defaultChecked={answers[currentQuestionNumber] === answer.score}
             />
           );
         })}

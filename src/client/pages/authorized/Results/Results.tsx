@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import { useParams, useSearchParams } from "next/navigation";
 import {
   Container,
+  ContentWrapper,
   DefaultError,
   ListItemWithSwitch,
   LoadingLoop,
@@ -44,52 +45,54 @@ export const ResultsPage: FC = () => {
 
   return (
     <Container>
-      {test && (
-        <>
-          <PageTitle className={styles.title}>
-            История теста: {test.title}
-          </PageTitle>
-          {test.results.length ? (
-            <>
-              {test.scales.length > 2 ? (
-                <RadarChart
-                  results={test.results}
-                  scales={test.scales}
-                  values={datesCheckboxes}
-                  className={styles.radarChart}
-                />
-              ) : (
-                <SimpleBarChart
-                  results={test.results}
-                  scales={test.scales}
-                  values={datesCheckboxes}
-                  className={styles.barChart}
-                />
-              )}
-              <ul>
-                {test.results.map((el) => {
-                  return (
-                    <ListItemWithSwitch
-                      onChange={onChange}
-                      className={styles.listItem}
-                      value={el.id}
-                      key={el.id}
-                      label={el.datetime}
-                      link={pages.detailResult.getLink({
-                        params: { id: el.id },
-                      })}
-                    />
-                  );
-                })}
-              </ul>
-            </>
-          ) : (
-            <div className={styles.errorLabel}>
-              Отсутствует история прохождения теста
-            </div>
-          )}
-        </>
-      )}
+      <ContentWrapper>
+        {test && (
+          <>
+            <PageTitle className={styles.title}>
+              История теста: {test.title}
+            </PageTitle>
+            {test.results.length ? (
+              <>
+                {test.scales.length > 2 ? (
+                  <RadarChart
+                    results={test.results}
+                    scales={test.scales}
+                    values={datesCheckboxes}
+                    className={styles.radarChart}
+                  />
+                ) : (
+                  <SimpleBarChart
+                    results={test.results}
+                    scales={test.scales}
+                    values={datesCheckboxes}
+                    className={styles.barChart}
+                  />
+                )}
+                <ul>
+                  {test.results.map((el) => {
+                    return (
+                      <ListItemWithSwitch
+                        onChange={onChange}
+                        className={styles.listItem}
+                        value={el.id}
+                        key={el.id}
+                        label={el.datetime}
+                        link={pages.detailResult.getLink({
+                          params: { id: el.id },
+                        })}
+                      />
+                    );
+                  })}
+                </ul>
+              </>
+            ) : (
+              <div className={styles.errorLabel}>
+                Отсутствует история прохождения теста
+              </div>
+            )}
+          </>
+        )}
+      </ContentWrapper>
     </Container>
   );
 };

@@ -2,28 +2,39 @@
 
 import { Recommendation, Subtopics } from "./components";
 import styles from "./styles.module.scss";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { Button } from "odeyalo-uikit";
 import { DefaultError, LoadingLoop, PageTitle } from "@/client/components";
 import { useGetArticleByIdQuery, useReadArticleMutation } from "@/client/redux";
+import { pages } from "@/shared/data";
 import { type FC, useEffect } from "react";
 
 export const ArticleContent: FC = () => {
   const { id } = useParams<{ id: string }>();
+  const router = useRouter();
 
   const { data: article, ...getArticleState } = useGetArticleByIdQuery(id);
-  const [readArticle] = useReadArticleMutation();
+  const [readArticle, { isLoading, isSuccess }] = useReadArticleMutation();
 
   useEffect(() => {
+    if (isSuccess) {
+      router.push(pages.articles.path);
+    }
+  }, [isSuccess, router]);
+
+  const readArticleHandler = () => {
     if (article) {
       readArticle(id);
     }
-  }, [readArticle, article, id]);
+  };
 
   if (getArticleState.isLoading) return <LoadingLoop />;
   if (getArticleState.isError)
     return <DefaultError error={getArticleState.error} />;
 
   if (!article) return <div>Статья не найдена</div>;
+
+  const isRead = article.subtopics.findIndex((el) => el.read) !== -1;
 
   return (
     <>
@@ -35,7 +46,17 @@ export const ArticleContent: FC = () => {
       </div>
       <PageTitle>{article?.title}</PageTitle>
       <div className={styles.main}>
-        <Subtopics subtopics={article.subtopics} />
+        <div>
+          <Subtopics subtopics={article.subtopics} />
+          <Button
+            width="max"
+            view={isRead ? "normal" : "action"}
+            onClick={readArticleHandler}
+            disabled={isLoading || isRead}
+          >
+            {isRead ? "Прочитано" : "Все понял!"}
+          </Button>
+        </div>
         <Recommendation recommendations={article.recommendations} />
       </div>
     </>

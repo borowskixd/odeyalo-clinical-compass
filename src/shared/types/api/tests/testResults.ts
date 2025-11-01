@@ -59,5 +59,5 @@ export interface SendTestResultResponseData {
 }
 
 export interface SendTestResultApiResponseData {
-  result_id: string;
+  test_result_id: string;
 }

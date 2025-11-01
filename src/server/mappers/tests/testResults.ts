@@ -74,9 +74,9 @@ export const mapSendTestResultRequest = (
 export const mapSendTestResultResponse = (
   data: SendTestResultApiResponseData,
 ): SendTestResultResponseData => {
-  const { result_id } = data;
+  const { test_result_id } = data;
 
   return {
-    testResultId: result_id,
+    testResultId: test_result_id,
   };
 };
