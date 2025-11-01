@@ -1,0 +1,21 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text {
+  @include bodyL;
+  white-space: pre-wrap;
+}
+
+.button {
+  margin-top: 10px;
+  width: 100%;
+  min-height: 46px;
+  @include bodyMBold;
+  border-radius: 12px;
+}

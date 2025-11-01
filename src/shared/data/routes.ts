@@ -77,35 +77,19 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  kptDiary: new Page("/practices/kptDiary", [
+  exercise: new Page<{ id: string }>("/practices/exercises/:id", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  kptDiaryResult: new Page<{ id: string }>("/practices/kptDiary/results/:id", [
-    ACCESS.client,
-    ACCESS.psychologist,
-    ACCESS.hr,
-  ]),
-  kptDiaryForm: new Page("/practices/kptDiary/form", [
-    ACCESS.client,
-    ACCESS.psychologist,
-    ACCESS.hr,
-  ]),
-  problemDefinition: new Page("/practices/problemDefinition", [
-    ACCESS.client,
-    ACCESS.psychologist,
-    ACCESS.hr,
-  ]),
-  problemDefinitionResult: new Page<{ id: string }>(
-    "/practices/problemDefinition/results/:id",
+  exercisePreview: new Page<{ id: string }>(
+    "/practices/exercises/:id/preview",
     [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
   ),
-  problemDefinitionForm: new Page("/practices/problemDefinition/form", [
-    ACCESS.client,
-    ACCESS.psychologist,
-    ACCESS.hr,
-  ]),
+  exerciseResult: new Page<{ id: string; result_id: string }>(
+    "/practices/exercises/:id/results/:result_id",
+    [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
+  ),
   usersActivity: new Page("/admin/users/activity", [ACCESS.admin]),
   usersFeedbacks: new Page("/admin/users/feedbacks", [ACCESS.admin]),
   usersResults: new Page("/admin/users/results", [ACCESS.admin]),

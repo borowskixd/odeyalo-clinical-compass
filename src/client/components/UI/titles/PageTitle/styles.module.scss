@@ -2,4 +2,5 @@
 
 .title {
   @include titleCygre;
+  white-space: pre-wrap;
 }

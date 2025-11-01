@@ -66,7 +66,7 @@ export const getDailyTaskLink = (
       return pages.notes.path;
     }
     case "kptDiary": {
-      return pages.kptDiary.path;
+      return pages.practices.path;
     }
   }
 

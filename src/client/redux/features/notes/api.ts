@@ -16,13 +16,13 @@ const notesApi = api.injectEndpoints({
   endpoints: (builder) => {
     return {
       getNote: builder.query<GetNoteResponseData, string>({
-        query: (id) => `/exercises/notes/${id}`,
+        query: (id) => `/notes/${id}`,
         providesTags: ["Auth"],
       }),
       getNotesByDate: builder.query<GetNotesResponseData, Date>({
         query: (date) => {
           const dateString = mapDateToApiDateFormat(date);
-          return `/exercises/notes?date=${dateString}`;
+          return `/notes?date=${dateString}`;
         },
         providesTags: ["Auth", "Notes"],
       }),
@@ -30,40 +30,40 @@ const notesApi = api.injectEndpoints({
         GetNotesCalendarFilledDatesResponseData,
         void
       >({
-        query: () => "/exercises/notes/calendar",
+        query: () => "/notes/calendar",
         providesTags: ["Auth", "Notes", "Moods"],
       }),
       createNote: builder.mutation<ResponseSuccessInfo, CreateNoteRequestData>({
         query: (body) => ({
-          url: "/exercises/notes",
+          url: "/notes",
           method: "POST",
           body,
         }),
         invalidatesTags: ["Notes"],
       }),
       getMood: builder.query<GetMoodResponseData, string>({
-        query: (id) => `/exercises/moods/${id}`,
+        query: (id) => `/moods/${id}`,
         providesTags: ["Auth"],
       }),
       getMoods: builder.query<GetMoodsResponseData, Date | void>({
         query: (date?: Date) => {
           if (date) {
             const dateString = mapDateToApiDateFormat(date);
-            return `/exercises/moods?date=${dateString}`;
+            return `/moods?date=${dateString}`;
           }
-          return "/exercises/moods";
+          return "/moods";
         },
         providesTags: ["Auth", "Moods"],
       }),
       getEmojis: builder.query<GetEmojisResponseData, void>({
         query: () => {
-          return `/exercises/moods/emojis`;
+          return `/moods/emojis`;
         },
         providesTags: [],
       }),
       saveMood: builder.mutation<ResponseSuccessInfo, SaveMoodRequestData>({
         query: (body: SaveMoodRequestData) => ({
-          url: "/exercises/moods",
+          url: "/moods",
           method: "POST",
           body,
         }),

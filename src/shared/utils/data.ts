@@ -68,15 +68,14 @@ export const mapDatetimeToText = (datetime: string): string => {
   const offset = -(new Date().getTimezoneOffset() / 60);
   const date = new Date(datetime);
 
-  let hours = String(date.getHours() + offset);
-  hours = hours.length === 1 ? "0" + hours : hours;
+  const hours = String(date.getHours() + offset).padStart(2, "0");
 
-  let minutes = String(date.getMinutes());
-  minutes = minutes.length === 1 ? "0" + minutes : minutes;
+  const minutes = String(date.getMinutes()).padStart(2, "0");
 
-  const result = `${date.getDate()} ${
-    months[date.getMonth()]
-  } ${date.getFullYear()}, ${hours}:${minutes}`;
+  const result = `${date.getDate().toString().padStart(2, "0")}.${String(
+    date.getMonth() + 1,
+  ).padStart(2, "0")}.${date.getFullYear()} ${hours}:${minutes}`;
+
   return result;
 };
 
