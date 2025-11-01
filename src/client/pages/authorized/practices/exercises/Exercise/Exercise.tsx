@@ -40,6 +40,7 @@ export const ExercisePage: FC = () => {
   );
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [showError, setShowError] = useState<boolean>(false);
 
   useEffect(() => {
     if (completeExerciseState.isSuccess) {
@@ -100,6 +101,7 @@ export const ExercisePage: FC = () => {
       });
     } else {
       setErrorMessage(validationError);
+      setShowError(true);
     }
   };
 
@@ -122,7 +124,9 @@ export const ExercisePage: FC = () => {
               pageNumber={pageNumber}
               changeHandler={changeHandler}
             />
-            {errorMessage && <FormErrorLabel>{errorMessage}</FormErrorLabel>}
+            {showError && errorMessage && (
+              <FormErrorLabel>{errorMessage}</FormErrorLabel>
+            )}
             <ButtonsContainer
               prevPageHandler={prevPageHandler}
               nextPageHandler={nextPageHandler}
