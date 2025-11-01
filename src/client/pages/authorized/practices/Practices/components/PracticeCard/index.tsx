@@ -1,5 +1,4 @@
 import styles from "./styles.module.scss";
-import Image from "next/image";
 import Link from "next/link";
 import { type FC } from "react";
 
@@ -16,9 +15,7 @@ export const PracticeCard: FC<Props> = ({ src, title, link }) => {
       className={styles.card}
     >
       <div className={styles.imageContainer}>
-        <Image
-          width={260}
-          height={165}
+        <img
           src={src}
           alt={title}
           className={styles.image}
