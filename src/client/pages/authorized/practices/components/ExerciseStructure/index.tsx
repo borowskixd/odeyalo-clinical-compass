@@ -1,5 +1,5 @@
 import styles from "./styles.module.scss";
-import { Text } from "odeyalo-uikit";
+import { Text } from "@odeyalo/uikit";
 import type { ComponentProps, ElementType } from "react";
 
 type BaseProps<C extends ElementType> = {

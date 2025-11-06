@@ -1,6 +1,6 @@
 import styles from "./styles.module.scss";
-import { Text } from "odeyalo-uikit";
 import { PageTitle } from "@/client/components";
+import { Text } from "@odeyalo/uikit";
 import { type FC, type ReactNode } from "react";
 
 interface Props {
