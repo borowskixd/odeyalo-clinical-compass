@@ -1,5 +1,5 @@
 import styles from "./styles.module.scss";
-import { Button } from "odeyalo-uikit";
+import { Button } from "@odeyalo/uikit";
 import { type FC } from "react";
 
 interface Props {

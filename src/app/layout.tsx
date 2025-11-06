@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
-import "odeyalo-uikit/dist/main.css";
 import { fontVariablesClass } from "@/client/assets/fonts";
 import { ModalsPortal, SnackbarsPortal } from "@/client/components";
 import { AuthLayer, I18nLayer, StoreLayer } from "@/client/components/layers";
 import "@/client/styles/global.scss";
 import "@/client/styles/reset.scss";
+import "@odeyalo/uikit/dist/main.css";
+import "@odeyalo/uikit/styles/fonts.scss";
+import "@odeyalo/uikit/styles/styles.scss";
 import { type FC, type ReactNode } from "react";
 
 export const metadata: Metadata = {

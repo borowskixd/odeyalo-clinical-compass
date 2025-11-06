@@ -3,10 +3,10 @@
 import { Recommendation, Subtopics } from "./components";
 import styles from "./styles.module.scss";
 import { useParams, useRouter } from "next/navigation";
-import { Button } from "odeyalo-uikit";
 import { DefaultError, LoadingLoop, PageTitle } from "@/client/components";
 import { useGetArticleByIdQuery, useReadArticleMutation } from "@/client/redux";
 import { pages } from "@/shared/data";
+import { Button } from "@odeyalo/uikit";
 import { type FC, useEffect } from "react";
 
 export const ArticleContent: FC = () => {

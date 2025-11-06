@@ -1,7 +1,7 @@
 import { ExerciseStructure, Grid } from "../../../../components";
 import { type ValueType } from "../../types";
-import { AddableInputGroup, TextArea } from "odeyalo-uikit";
 import { type GetExerciseStructureResponseData } from "@/shared/types";
+import { AddableInputGroup, TextArea } from "@odeyalo/uikit";
 import { type ChangeEventHandler, type FC, type ReactNode } from "react";
 
 interface Props {

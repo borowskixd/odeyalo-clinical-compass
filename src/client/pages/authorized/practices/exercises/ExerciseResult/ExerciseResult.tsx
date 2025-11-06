@@ -3,7 +3,6 @@
 import { FormGenerator } from "./components";
 import styles from "./styles.module.scss";
 import { useParams } from "next/navigation";
-import { Text } from "odeyalo-uikit";
 import {
   Container,
   ContentWrapper,
@@ -13,6 +12,7 @@ import {
 import { ExerciseHeader } from "@/client/pages/authorized/practices/components";
 import { useGetExerciseResultQuery } from "@/client/redux";
 import { mapDatetimeToText } from "@/shared/utils";
+import { Text } from "@odeyalo/uikit";
 import { type FC } from "react";
 
 export const ExerciseResultPage: FC = () => {
