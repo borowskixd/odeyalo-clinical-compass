@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@odeyalo/uikit": "^0.0.1",
+    "@odeyalo/uikit": "^0.0.5",
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.7.9",
     "formik": "^2.4.6",
