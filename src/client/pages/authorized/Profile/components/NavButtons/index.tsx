@@ -1,18 +1,11 @@
+import { type NavigationButton } from "../../types";
 import styles from "./styles.module.scss";
-import { Button, Icon, type IconProps } from "@odeyalo/uikit";
-import { type FC, type ReactNode } from "react";
-
-type Button = {
-  key: string;
-  title: string;
-  icon: IconProps["data"];
-  component: ReactNode;
-  active: boolean;
-};
+import { Button, Icon } from "@odeyalo/uikit";
+import { type FC } from "react";
 
 interface Props {
-  buttons: Button[];
-  onClick?: (component: ReactNode, key: string) => void;
+  buttons: NavigationButton[];
+  onClick?: (key: string) => void;
 }
 
 export const NavButtons: FC<Props> = ({ buttons, onClick }) => {
@@ -25,7 +18,7 @@ export const NavButtons: FC<Props> = ({ buttons, onClick }) => {
           size="l"
           width="max"
           align="left"
-          onClick={() => onClick?.(button.component, button.key)}
+          onClick={() => onClick?.(button.key)}
         >
           <Icon
             data={button.icon}
