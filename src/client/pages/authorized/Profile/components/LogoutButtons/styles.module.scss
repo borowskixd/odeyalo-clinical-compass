@@ -1,0 +1,26 @@
+@use "@/client/styles/colors" as *;
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.deleteButton {
+  background-color: $color-red100 !important;
+  color: $color-white100 !important;
+
+  &:hover {
+    background-color: $color-red80 !important;
+  }
+
+  &:focus {
+    background-color: $color-red60 !important;
+  }
+}
+
+.modalButtons {
+  display: flex;
+  gap: 16px;
+}
