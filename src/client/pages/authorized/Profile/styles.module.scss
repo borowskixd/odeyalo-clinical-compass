@@ -1,6 +1,13 @@
 @use "@/client/styles/colors" as *;
 @use "@/client/styles/fontStyles" as *;
 
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 .profile {
   max-width: 420px;
 }
