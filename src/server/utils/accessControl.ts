@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { setAuthCookies } from "@/server/utils/cookies";
+import { deleteAuthCookies, setAuthCookies } from "@/server/utils/cookies";
 import { ACCESS } from "@/shared/config/access";
 import { serverAxios } from "@/shared/config/api";
 import { cookies } from "@/shared/data";
@@ -38,20 +38,34 @@ export const checkAuth = async (
     }
   }
 
+  console.log(needToUpdateAccessToken, refreshTokenData);
+
   switch (operationType) {
     case "next": {
-      if (refreshTokenData) {
+      if (refreshTokenData === null) {
+        if (needToUpdateAccessToken) {
+          response = deleteAuthCookies(NextResponse.next());
+        } else {
+          response = NextResponse.next();
+        }
+      } else {
         response = setAuthCookies(NextResponse.next(), {
           accessToken: refreshTokenData.access_token,
           refreshToken: refreshTokenData.refresh_token,
         });
-      } else {
-        response = NextResponse.next();
       }
       break;
     }
     case "redirect": {
-      if (refreshTokenData) {
+      if (refreshTokenData === null) {
+        if (needToUpdateAccessToken) {
+          response = deleteAuthCookies(
+            NextResponse.redirect(new URL(path, request.url)),
+          );
+        } else {
+          response = NextResponse.redirect(new URL(path, request.url));
+        }
+      } else {
         response = setAuthCookies(
           NextResponse.redirect(new URL(path, request.url)),
           {
@@ -59,8 +73,6 @@ export const checkAuth = async (
             refreshToken: refreshTokenData.refresh_token,
           },
         );
-      } else {
-        response = NextResponse.redirect(new URL(path, request.url));
       }
       break;
     }
