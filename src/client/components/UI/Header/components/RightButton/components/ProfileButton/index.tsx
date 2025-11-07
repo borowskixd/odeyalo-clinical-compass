@@ -65,7 +65,7 @@ export const ProfileButton: FC = () => {
         >
           <Button
             className={styles.popupItem}
-            href={pages.main.path}
+            href={pages.profile.path}
           >
             Перейти в профиль
           </Button>
