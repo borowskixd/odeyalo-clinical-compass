@@ -1,0 +1,10 @@
+@use "@/client/styles/colors" as *;
+
+.imageContainer {
+  height: 288px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-blue20;
+  border-radius: 12px;
+}
