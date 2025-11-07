@@ -1,24 +1,15 @@
 "use client";
 
 import styles from "./styles.module.scss";
-import { useRouter } from "next/navigation";
 import { Button, ProfileImage } from "@/client/components";
-import {
-  useAppDispatch,
-  useAppSelector,
-  useClickOutside,
-} from "@/client/hooks";
-import { selectProfile, useLogoutMutation } from "@/client/redux";
-import { redirectWithReload } from "@/client/utils";
+import { useAppSelector, useClickOutside } from "@/client/hooks";
+import { selectProfile } from "@/client/redux";
 import { ACCESS } from "@/shared/config/access";
 import { pages } from "@/shared/data";
-import { type FC, useEffect, useRef, useState } from "react";
+import { type FC, useRef, useState } from "react";
 
 export const ProfileButton: FC = () => {
-  const router = useRouter();
   const profile = useAppSelector(selectProfile);
-  const [logout, { isSuccess }] = useLogoutMutation();
-  const dispatch = useAppDispatch();
   const popupRef = useRef(null);
   const buttonRef = useRef(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -33,16 +24,6 @@ export const ProfileButton: FC = () => {
 
   const togglePopup = () => {
     setIsPopupOpen((value) => !value);
-  };
-
-  useEffect(() => {
-    if (isSuccess) {
-      redirectWithReload(pages.login.path);
-    }
-  }, [isSuccess, dispatch, router]);
-
-  const logoutHandler = () => {
-    logout();
   };
 
   return (
@@ -83,12 +64,6 @@ export const ProfileButton: FC = () => {
             href={pages.psychologist.path}
           >
             Психологи
-          </Button>
-          <Button
-            className={styles.popupItem}
-            onClick={logoutHandler}
-          >
-            Выйти
           </Button>
           {profile.role === ACCESS.client && (
             <Button
