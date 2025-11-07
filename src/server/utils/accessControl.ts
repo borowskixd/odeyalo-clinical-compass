@@ -38,8 +38,6 @@ export const checkAuth = async (
     }
   }
 
-  console.log(needToUpdateAccessToken, refreshTokenData);
-
   switch (operationType) {
     case "next": {
       if (refreshTokenData === null) {
