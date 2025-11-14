@@ -2,6 +2,7 @@
 
 import styles from "./styles.module.scss";
 import { type FieldConfig, useField } from "formik";
+import { mapDateToApiDateFormat } from "@/shared/utils";
 import { DatePicker, type DatePickerProps } from "@odeyalo/uikit";
 import { type FC } from "react";
 
@@ -40,7 +41,7 @@ export const FormikDatePicker: FC<Props> = ({
         {...field}
         {...props}
         onUpdate={(value) => {
-          helpers.setValue(value);
+          helpers.setValue(mapDateToApiDateFormat(value));
         }}
         errorMessage={meta.error && meta.touched ? meta.error : undefined}
       />
