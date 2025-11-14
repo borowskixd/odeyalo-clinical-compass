@@ -48,6 +48,12 @@ export const ExercisePage: FC = () => {
     }
   }, [completeExerciseState.isSuccess, router, id]);
 
+  useEffect(() => {
+    setValues(
+      exerciseStructure ? generateInitialValue(exerciseStructure) : null,
+    );
+  }, [exerciseStructure]);
+
   const changeHandler = useCallback(
     (name: string, value: ValueType) => {
       setErrorMessage(validateExerciseData(values));
