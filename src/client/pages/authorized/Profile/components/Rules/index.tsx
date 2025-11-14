@@ -1,35 +1,48 @@
 import { type SectionProps } from "../../types";
 import { ProfileSection } from "../ProfileSection";
+import { UserAgreement } from "./components";
+import { Modal } from "@/client/components";
 import { Button, Text } from "@odeyalo/uikit";
-import { type FC } from "react";
+import { type FC, useState } from "react";
 
 export const Rules: FC<SectionProps> = (props) => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const openModalHandler = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModalHandler = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <ProfileSection
       title="Правила"
       {...props}
     >
       <Text variant="body-l">
-        {`Это приложение для людей, готовых столкнуться со своими страхами и
-побороть их. В этом могут помочь психологи, использующие приложение.
+        {`Это приложение для людей, готовых столкнуться со своими страхами и побороть их. В этом могут помочь психологи, использующие приложение.
 
-Перед началом работы психологи проходят отбор. Это необходимо для лучшей
-работы сервиса.
+Перед началом работы психологи проходят отбор. Это необходимо для лучшей работы сервиса.
 
 Гарантируем конфиденциальность и неразглашение персональной информации.`}
       </Text>
       <Button
         view="action"
         width="max"
+        onClick={openModalHandler}
       >
         Политика конфиденциальности
       </Button>
-      <Button
-        view="action"
-        width="max"
-      >
-        Оферта
-      </Button>
+      <Modal
+        isOpen={isModalOpen}
+        onCloseAction={closeModalHandler}
+        title={
+          "Пользовательское соглашение и политика конфиденциальности психологического приложения"
+        }
+        content={<UserAgreement />}
+      />
     </ProfileSection>
   );
 };

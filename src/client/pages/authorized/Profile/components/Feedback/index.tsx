@@ -1,13 +1,12 @@
 "use client";
 
+import { FEEDBACK_EMAIL } from "../../constants";
 import { type SectionProps } from "../../types";
 import { ProfileSection } from "../ProfileSection";
 import { useAppDispatch } from "@/client/hooks";
 import { PopupsService } from "@/client/redux";
 import { Button, Text } from "@odeyalo/uikit";
 import { type FC } from "react";
-
-const FEEDBACK_EMAIL = "tim.sim4@yandex.ru";
 
 export const Feedback: FC<SectionProps> = (props) => {
   const dispatch = useAppDispatch();
