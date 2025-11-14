@@ -2,16 +2,16 @@
 
 import styles from "./styles.module.scss";
 import { type FieldConfig, useField } from "formik";
-import InputMask, { type Props as InputMaskProps } from "react-input-mask";
+import { TextArea, type TextAreaProps } from "@odeyalo/uikit";
 import { type FC } from "react";
 
-type Props = FieldConfig &
-  InputMaskProps & {
+type Props = TextAreaProps &
+  FieldConfig & {
     labelText?: string;
     exampleText?: string;
   };
 
-export const MaskedInput: FC<Props> = ({
+export const FormikTextArea: FC<Props> = ({
   labelText,
   exampleText,
   ...props
@@ -36,16 +36,11 @@ export const MaskedInput: FC<Props> = ({
           )}
         </div>
       )}
-      <InputMask
-        {...field}
+      <TextArea
         {...props}
-        className={`${styles.input} ${styles.textInput} ${
-          meta.error && meta.touched ? styles.error : ""
-        } ${props.className ?? ""}`}
-      />
-      {meta.error && meta.touched && (
-        <div className={styles.errorText}>{meta.error}</div>
-      )}
+        {...field}
+        errorMessage={meta.error && meta.touched ? meta.error : undefined}
+      ></TextArea>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import { type FC } from "react";
 
 interface PsychologistSurveyFormFields {
   username: string;
-  birthday: string;
+  birthday: Date | null;
   education: string;
   primaryMethod: string;
   additionalEducation: string;
@@ -26,7 +26,7 @@ interface PsychologistSurveyFormFields {
 
 const initialValues: PsychologistSurveyFormFields = {
   username: "",
-  birthday: "",
+  birthday: null,
   education: "",
   primaryMethod: "",
   additionalEducation: "",
@@ -45,23 +45,7 @@ const initialValues: PsychologistSurveyFormFields = {
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Данное поле обязательно"),
-  birthday: Yup.string()
-    .required("Дата обязательна")
-    .matches(
-      /^(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[0-2]).\d{4}$/,
-      "Введите дату в формате ДД.ММ.ГГГГ",
-    )
-    .test("is-valid-date", "Введите корректную дату", (value) => {
-      if (!value) return false;
-      const [day, month, year] = value.split(".").map(Number);
-      const date = new Date(year, month - 1, day);
-
-      return (
-        date.getFullYear() === year &&
-        date.getMonth() === month - 1 &&
-        date.getDate() === day
-      );
-    }),
+  birthday: Yup.date().required("Дата обязательна"),
   education: Yup.string().required("Данное поле обязательно"),
   primaryMethod: Yup.string().required("Данное поле обязательно"),
   additionalEducation: Yup.string().required("Данное поле обязательно"),
@@ -75,10 +59,7 @@ const validationSchema = Yup.object().shape({
   photos: Yup.mixed().required("Данное поле обязательно"),
   phoneNumber: Yup.string()
     .required("Данное поле обязательно")
-    .matches(
-      /^\+[0-9]\([0-9]{3}\)[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/,
-      "Введите корректный номер телефона",
-    ),
+    .min(11, "Введите корректный номер телефона"),
   about: Yup.string().required("Данное поле обязательно"),
   unacceptableThings: Yup.string().required("Данное поле обязательно"),
 });
@@ -102,15 +83,14 @@ export const PsychologistSurveyForm: FC = () => {
         labelText="Ваши Фамилия Имя Отчество"
         required
       />
-      <FormikForm.MaskedInput
-        mask={"99.99.9999"}
+      <FormikForm.DatePicker
         name="birthday"
         type="text"
         placeholder="Введите ответ"
         labelText="Ваша дата рождения?"
         required
       />
-      <FormikForm.Textarea
+      <FormikForm.TextArea
         name="education"
         type="text"
         placeholder="Введите ответ"
@@ -192,23 +172,21 @@ export const PsychologistSurveyForm: FC = () => {
         multiple
         required
       />
-      <FormikForm.MaskedInput
+      <FormikForm.PhoneInput
         name="phoneNumber"
-        mask="+7(999)999-99-99"
-        type="tel"
-        placeholder="+7(___)___-__-__"
+        placeholder="+7 (000) 000 00 00"
         labelText="Номер телефона для связи."
         exampleText={`Номер должен начинаться с "+" и содержать международный код вашей страны`}
         required
       />
-      <FormikForm.Textarea
+      <FormikForm.TextArea
         name="about"
         type="text"
         placeholder="Введите ответ"
         labelText="Расскажите нам о себе в свободной форме. Что считаете нам нужно узнать о вас, чтобы понять, какой вы специалист?"
         required
       />
-      <FormikForm.Textarea
+      <FormikForm.TextArea
         name="unacceptableThings"
         type="text"
         placeholder="Введите ответ"
