@@ -1,29 +1,30 @@
 import styles from "./styles.module.scss";
 import { Modal } from "@/client/components";
-import { useLogoutMutation } from "@/client/redux";
+import { useDeleteMeMutation, useLogoutMutation } from "@/client/redux";
 import { redirectWithReload } from "@/client/utils";
 import { pages } from "@/shared/data";
 import { Button } from "@odeyalo/uikit";
 import { type FC, useEffect, useState } from "react";
 
 export const LogoutButtons: FC = () => {
-  const [logout, { isSuccess }] = useLogoutMutation();
+  const [logout, logoutState] = useLogoutMutation();
+  const [deleteAccount, deleteAccountState] = useDeleteMeMutation();
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState<boolean>(false);
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] =
     useState<boolean>(false);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (logoutState.isSuccess || deleteAccountState.isSuccess) {
       redirectWithReload(pages.login.path);
     }
-  }, [isSuccess]);
+  }, [logoutState.isSuccess, deleteAccountState.isSuccess]);
 
   const logoutHandler = () => {
     logout();
   };
 
   const deleteAccountHandler = () => {
-    console.log("delete account");
+    deleteAccount();
   };
 
   const openLogoutModalHandler = () => {
@@ -60,6 +61,7 @@ export const LogoutButtons: FC = () => {
               className={styles.deleteButton}
               width="max"
               onClick={logoutHandler}
+              disabled={logoutState.isLoading}
             >
               Выйти
             </Button>
@@ -82,6 +84,7 @@ export const LogoutButtons: FC = () => {
               className={styles.deleteButton}
               width="max"
               onClick={deleteAccountHandler}
+              disabled={deleteAccountState.isLoading}
             >
               Удалить аккаунт
             </Button>
