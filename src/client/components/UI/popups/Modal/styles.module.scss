@@ -9,7 +9,6 @@
   bottom: 0;
   padding: 16px;
   display: flex;
-  align-items: center;
   justify-content: center;
   visibility: hidden;
   opacity: 0;
@@ -17,6 +16,7 @@
     opacity 0.2s,
     visibility 0.2s;
   background-color: rgba($color-black100, 0.32);
+  overflow-x: auto;
 
   &.opened {
     pointer-events: auto;
@@ -27,6 +27,8 @@
 
 .modal {
   width: 456px;
+  height: fit-content;
+  margin: auto;
   padding: 24px 16px;
   @include bodyM;
   background-color: $color-white100;
