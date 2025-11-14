@@ -1,8 +1,8 @@
 "use client";
 
 import styles from "./styles.module.scss";
-import { createPortal } from "react-dom";
 import { CloseIcon } from "@/client/assets/icons";
+import { Portal } from "@odeyalo/uikit";
 import { type FC, type MouseEvent, type ReactNode, useEffect } from "react";
 
 interface Props {
@@ -33,8 +33,8 @@ export const Modal: FC<Props> = ({ isOpen, title, onCloseAction, content }) => {
     }
   };
 
-  const renderModal = () => {
-    return (
+  return (
+    <Portal container={modalsPortal}>
       <div
         className={`${styles.container} ${isOpen ? styles.opened : ""}`}
         onClick={clickContainerHandler}
@@ -52,8 +52,6 @@ export const Modal: FC<Props> = ({ isOpen, title, onCloseAction, content }) => {
           <div className={styles.main}>{content}</div>
         </div>
       </div>
-    );
-  };
-
-  return modalsPortal && createPortal(renderModal(), modalsPortal);
+    </Portal>
+  );
 };
