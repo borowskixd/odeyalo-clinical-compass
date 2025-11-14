@@ -1,5 +1,6 @@
 import { type SectionProps } from "../../types";
 import { ProfileSection } from "../ProfileSection";
+import { EditProfileForm } from "./components";
 import { type FC } from "react";
 
 export const EditProfile: FC<SectionProps> = (props) => {
@@ -7,6 +8,8 @@ export const EditProfile: FC<SectionProps> = (props) => {
     <ProfileSection
       title="Редактирование"
       {...props}
-    ></ProfileSection>
+    >
+      <EditProfileForm />
+    </ProfileSection>
   );
 };
