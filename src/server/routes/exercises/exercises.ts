@@ -15,7 +15,7 @@ import {
 
 const getExercises = createRequest(async (request, serverFetch) => {
   const getExercisesResponse =
-    await serverFetch.get<GetExercisesApiResponseData>("/exercises");
+    await serverFetch.get<GetExercisesApiResponseData>("/exercises/");
 
   const responseData = mapGetExercisesResponse(getExercisesResponse.data);
 
