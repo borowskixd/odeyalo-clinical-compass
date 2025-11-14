@@ -2,18 +2,20 @@ import { type AccessRole } from "@/shared/config/access";
 
 export interface UpdateUserRequestData {
   username: string;
-  role: AccessRole;
+  birthday: string | null;
+  gender: "male" | "female" | null;
+  city: string | null;
 }
 
 export interface UpdateUserApiRequestData {
-  birth_date: string;
+  birth_date: string | null;
   gender: string;
   username: string;
-  request: number[];
   city: string;
   description: string;
-  department: string;
-  type: number;
+  company: string;
+  phone_number: string;
+  online: boolean;
 }
 
 export interface GetUserApiResponseData {

@@ -18,7 +18,7 @@ export const getAuthReducer = async (
     const tokenData = parseAccessJWT(accessToken);
     const userRole = tokenData ? tokenData.payload.role : ACCESS.unauthorized;
 
-    const meResponse = await bffAxios.get<GetMeResponseData>("/auth/me", {
+    const meResponse = await bffAxios.get<GetMeResponseData>("/users/me", {
       headers: {
         "Cookie": cookies.toString(),
       },

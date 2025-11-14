@@ -2,21 +2,20 @@ import {
   type UpdateUserApiRequestData,
   type UpdateUserRequestData,
 } from "@/shared/types";
-import { getRoleId } from "@/shared/utils";
 
 export const mapUpdateUserRequest = (
   data: UpdateUserRequestData,
 ): UpdateUserApiRequestData => {
-  const { username, role } = data;
+  const { username, gender, city, birthday } = data;
 
   return {
-    birth_date: "2000-01-01",
-    gender: "1",
+    birth_date: birthday,
+    gender: gender ?? "",
     username,
-    request: [1],
-    city: "",
+    city: city ?? "",
     description: "",
-    department: "",
-    type: getRoleId(role),
+    company: "",
+    online: false,
+    phone_number: "",
   };
 };
