@@ -16,7 +16,7 @@ export const mapRegistrationRequest = (
     email,
     password,
     confirm_password: confirmPassword,
-    gender: "MALE",
+    gender: "",
     city: "",
     phone_number: "",
     birth_date: "2000-01-01",
