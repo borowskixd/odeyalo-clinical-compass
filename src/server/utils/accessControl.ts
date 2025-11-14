@@ -1,8 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { deleteAuthCookies, setAuthCookies } from "@/server/utils/cookies";
 import { ACCESS } from "@/shared/config/access";
-import { serverAxios } from "@/shared/config/api";
+import { bffAxios, serverAxios } from "@/shared/config/api";
 import { cookies } from "@/shared/data";
+import type { GetMeResponseData } from "@/shared/types";
 import { checkAccess, parseAccessJWT } from "@/shared/utils";
 
 export const checkAuth = async (
@@ -14,13 +15,28 @@ export const checkAuth = async (
   const tokenData = parseAccessJWT(accessToken ?? refreshToken);
   const userRole = tokenData ? tokenData.payload.role : ACCESS.unauthorized;
 
+  let needToUpdateAccessToken = !tokenData && !!refreshToken;
+
+  try {
+    const { data } = await bffAxios.get<GetMeResponseData>("/users/me", {
+      headers: {
+        "Cookie": cookies.toString(),
+      },
+    });
+
+    if (data.id !== tokenData?.payload.userId) {
+      needToUpdateAccessToken = true;
+    }
+  } catch {
+    needToUpdateAccessToken = true;
+  }
+
   const { pathname } = request.nextUrl;
 
   let response: NextResponse;
 
   const { path, operationType } = checkAccess(pathname, userRole);
 
-  const needToUpdateAccessToken = !accessToken && !!refreshToken;
   let refreshTokenData = null;
 
   if (needToUpdateAccessToken) {
