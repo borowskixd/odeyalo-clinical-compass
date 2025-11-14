@@ -45,7 +45,7 @@ const initialValues: PsychologistSurveyFormFields = {
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Данное поле обязательно"),
-  birthday: Yup.date().required("Дата обязательна"),
+  birthday: Yup.string().required("Дата обязательна"),
   education: Yup.string().required("Данное поле обязательно"),
   primaryMethod: Yup.string().required("Данное поле обязательно"),
   additionalEducation: Yup.string().required("Данное поле обязательно"),

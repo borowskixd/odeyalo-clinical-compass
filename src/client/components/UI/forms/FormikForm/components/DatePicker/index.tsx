@@ -40,6 +40,7 @@ export const FormikDatePicker: FC<Props> = ({
       <DatePicker
         {...field}
         {...props}
+        initialValue={new Date(field.value)}
         onUpdate={(value) => {
           helpers.setValue(mapDateToApiDateFormat(value));
         }}
