@@ -1,8 +1,12 @@
-@use "@/client/styles/variables" as *;
+@use "@/client/styles/colors" as *;
 
 .button {
   width: 44px;
   height: 44px;
-  background-color: $color-surface-icon;
-  border-radius: 12px;
+  background-color: $color-blue80;
+  border-radius: 50%;
+
+  & path {
+    fill: $color-white100;
+  }
 }

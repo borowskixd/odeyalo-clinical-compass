@@ -64,7 +64,7 @@ export const NewNoteForm: FC = () => {
         onSubmit={onSubmitHandler}
         className={styles.form}
       >
-        <FormikForm.Textarea
+        <FormikForm.TextArea
           name="note"
           placeholder="Напишите сюда что-нибудь..."
           className={styles.noteInput}

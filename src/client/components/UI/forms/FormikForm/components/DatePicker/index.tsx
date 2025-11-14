@@ -2,21 +2,22 @@
 
 import styles from "./styles.module.scss";
 import { type FieldConfig, useField } from "formik";
-import InputMask, { type Props as InputMaskProps } from "react-input-mask";
+import { mapDateToApiDateFormat } from "@/shared/utils";
+import { DatePicker, type DatePickerProps } from "@odeyalo/uikit";
 import { type FC } from "react";
 
-type Props = FieldConfig &
-  InputMaskProps & {
+type Props = DatePickerProps &
+  FieldConfig & {
     labelText?: string;
     exampleText?: string;
   };
 
-export const MaskedInput: FC<Props> = ({
+export const FormikDatePicker: FC<Props> = ({
   labelText,
   exampleText,
   ...props
 }) => {
-  const [field, meta] = useField(props.name);
+  const [field, meta, helpers] = useField(props.name);
 
   return (
     <div className={styles.label}>
@@ -36,16 +37,15 @@ export const MaskedInput: FC<Props> = ({
           )}
         </div>
       )}
-      <InputMask
+      <DatePicker
         {...field}
         {...props}
-        className={`${styles.input} ${styles.textInput} ${
-          meta.error && meta.touched ? styles.error : ""
-        } ${props.className ?? ""}`}
+        initialValue={new Date(field.value)}
+        onUpdate={(value) => {
+          helpers.setValue(mapDateToApiDateFormat(value));
+        }}
+        errorMessage={meta.error && meta.touched ? meta.error : undefined}
       />
-      {meta.error && meta.touched && (
-        <div className={styles.errorText}>{meta.error}</div>
-      )}
     </div>
   );
 };

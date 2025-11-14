@@ -6,4 +6,8 @@
   &:has(> :nth-child(odd):last-child) > :first-child {
     grid-column: -2 / -1;
   }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
