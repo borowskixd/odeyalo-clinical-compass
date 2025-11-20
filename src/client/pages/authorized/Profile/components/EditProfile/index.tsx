@@ -9,7 +9,7 @@ export const EditProfile: FC<SectionProps> = (props) => {
       title="Редактирование"
       {...props}
     >
-      <EditProfileForm />
+      <EditProfileForm onBack={props.onBack} />
     </ProfileSection>
   );
 };

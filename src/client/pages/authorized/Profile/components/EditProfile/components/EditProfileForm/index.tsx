@@ -1,5 +1,6 @@
 "use client";
 
+import { type SectionProps } from "../../../../types";
 import styles from "./styles.module.scss";
 import * as Yup from "yup";
 import { FormErrorLabel, FormikForm, LoadingLoop } from "@/client/components";
@@ -13,6 +14,8 @@ import { mapApiErrorMessage } from "@/client/utils";
 import { type UpdateUserRequestData } from "@/shared/types";
 import { Button, Text } from "@odeyalo/uikit";
 import { type FC, useEffect } from "react";
+
+type Props = Pick<SectionProps, "onBack">;
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Данное поле обязательно"),
@@ -43,7 +46,7 @@ const validationSchema = Yup.object().shape({
     ),
 });
 
-export const EditProfileForm: FC = () => {
+export const EditProfileForm: FC<Props> = ({ onBack }) => {
   const [updateProfile, updateProfileState] = useUpdateMeMutation();
   const { data: profileData, ...getProfileState } = useGetMeQuery();
   const dispatch = useAppDispatch();
@@ -51,8 +54,9 @@ export const EditProfileForm: FC = () => {
   useEffect(() => {
     if (updateProfileState.isSuccess) {
       dispatch(PopupsService.openSnackbar("Профиль обновлен!"));
+      onBack?.();
     }
-  }, [updateProfileState.isSuccess, dispatch]);
+  }, [onBack, updateProfileState.isSuccess, dispatch]);
 
   if (!profileData || getProfileState.isLoading) return <LoadingLoop />;
 
