@@ -12,3 +12,4 @@ export * from "./dailyTasks";
 export * from "./moods";
 export * from "./notes";
 export * from "./exercises";
+export * from "./gamification";
