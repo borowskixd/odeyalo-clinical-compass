@@ -47,7 +47,7 @@ const deleteMe = createRequest(async (request, serverFetch) => {
   return deleteAuthCookies(
     NextResponse.json(
       new ResponseSuccessInfo("user successfully deleted"),
-      httpStatuses.noContent,
+      httpStatuses.ok,
     ),
   );
 });
