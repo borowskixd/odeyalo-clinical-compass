@@ -8,6 +8,20 @@
 }
 
 .deleteButton {
+  color: $color-red100 !important;
+
+  &:hover {
+    background-color: $color-red100 !important;
+    color: $color-white100 !important;
+  }
+
+  &:focus {
+    background-color: $color-red80 !important;
+    color: $color-white100 !important;
+  }
+}
+
+.acceptDeleteButton {
   background-color: $color-red100 !important;
   color: $color-white100 !important;
 

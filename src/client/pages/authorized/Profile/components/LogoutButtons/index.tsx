@@ -58,7 +58,7 @@ export const LogoutButtons: FC = () => {
               Остаться
             </Button>
             <Button
-              className={styles.deleteButton}
+              className={styles.acceptDeleteButton}
               width="max"
               onClick={logoutHandler}
               disabled={logoutState.isLoading}
@@ -81,7 +81,7 @@ export const LogoutButtons: FC = () => {
               Отмена
             </Button>
             <Button
-              className={styles.deleteButton}
+              className={styles.acceptDeleteButton}
               width="max"
               onClick={deleteAccountHandler}
               disabled={deleteAccountState.isLoading}
