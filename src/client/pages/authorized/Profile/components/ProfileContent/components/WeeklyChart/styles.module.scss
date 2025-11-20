@@ -1,0 +1,38 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.chartContainer {
+  padding: 16px;
+  background-color: $color-white70;
+  border-radius: 28px;
+}
+
+.chartContent {
+  display: flex;
+  gap: 9px;
+}
+
+.chartY {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  @include bodyLBold;
+}
+
+.chart {
+  margin-top: 12px;
+  width: 100%;
+  min-height: 80px;
+  max-height: 80px;
+}
+
+.chartX {
+  margin-left: 30px;
+  margin-top: 7px;
+  padding: 0 4px;
+  width: calc(100% - 30px);
+  display: flex;
+  justify-content: space-between;
+  @include bodyLBold;
+}

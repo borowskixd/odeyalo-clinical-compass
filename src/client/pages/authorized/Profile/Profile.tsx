@@ -1,12 +1,14 @@
-import { AppLink, Container, ContentWrapper } from "@/client/components";
-import { pages } from "@/shared/data";
+"use client";
+
+import { ProfileContent } from "./components";
+import { Container, ContentWrapper } from "@/client/components";
 import { type FC } from "react";
 
 export const ProfilePage: FC = () => {
   return (
     <Container>
       <ContentWrapper>
-        <AppLink href={pages.profileSettings.path}>Настройки</AppLink>
+        <ProfileContent />
       </ContentWrapper>
     </Container>
   );

@@ -1,0 +1,50 @@
+@use "@/client/styles/colors" as *;
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  margin-bottom: 20px;
+}
+
+.pictureContainer {
+  max-width: 536px;
+  width: 100%;
+  max-height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 536 / 360;
+  background-color: $color-blue80;
+
+  & > svg {
+    color: $color-white100;
+  }
+
+  @media screen and (max-width: 800px) {
+    max-width: 100%;
+  }
+}
+
+.content {
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
