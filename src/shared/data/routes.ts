@@ -98,6 +98,11 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
+  profileSettings: new Page("/profile/settings", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
 };
 
 export const routes: Routes = Array.from(Object.values(pages)).toSorted(

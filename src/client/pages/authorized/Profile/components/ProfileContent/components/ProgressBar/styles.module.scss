@@ -1,0 +1,70 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.label {
+  margin-top: 10px;
+  color: $color-black60 !important;
+}
+
+.progressBar {
+  width: 100%;
+  height: 66px;
+  border-radius: 20px;
+  display: flex;
+  @include titleCygre();
+
+  &.red {
+    background-color: $color-red30;
+
+    & > .progressLine {
+      background-color: $color-red80;
+      color: $color-white100;
+    }
+
+    & > .maxScore {
+      color: $color-red100;
+    }
+  }
+
+  &.yellow {
+    background-color: $color-yellow30;
+
+    & > .progressLine {
+      background-color: $color-yellow100;
+      color: $color-black60;
+    }
+
+    & > .maxScore {
+      color: $color-black100;
+    }
+  }
+
+  &.green {
+    background-color: $color-green30;
+
+    & > .progressLine {
+      background-color: $color-green80;
+      color: $color-white100;
+    }
+
+    & > .maxScore {
+      color: $color-green100;
+    }
+  }
+}
+
+.progressLine {
+  min-width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.maxScore {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}

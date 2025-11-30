@@ -19,7 +19,7 @@
     "react-dom": "^19.0.0",
     "react-input-mask": "^2.0.4",
     "react-redux": "^9.2.0",
-    "recharts": "^2.15.0",
+    "recharts": "^2.15.4",
     "swiper": "^11.2.0",
     "yup": "^1.4.0"
   },
