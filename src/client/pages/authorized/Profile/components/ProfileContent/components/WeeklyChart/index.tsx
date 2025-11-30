@@ -1,4 +1,5 @@
 import styles from "./styles.module.scss";
+import { mapApiDataToWeeklyChartData } from "./utils";
 import {
   Area,
   AreaChart,
@@ -11,41 +12,12 @@ import { LoadingLoop } from "@/client/components";
 import { useGetWeeklyGamificationScoreQuery } from "@/client/redux";
 import { type FC } from "react";
 
-const chartData = [
-  {
-    name: "ПН",
-    line: 40,
-  },
-  {
-    name: "ВТ",
-    line: 20,
-  },
-  {
-    name: "СР",
-    line: 40,
-  },
-  {
-    name: "ЧТ",
-    line: 10,
-  },
-  {
-    name: "ПТ",
-    line: 40,
-  },
-  {
-    name: "СБ",
-    line: 40,
-  },
-  {
-    name: "ВС",
-    line: 10,
-  },
-];
-
 export const WeeklyChart: FC = () => {
   const { data, isLoading } = useGetWeeklyGamificationScoreQuery();
 
   if (isLoading || !data) return <LoadingLoop />;
+
+  const chartData = mapApiDataToWeeklyChartData(data);
 
   return (
     <div>
@@ -59,7 +31,7 @@ export const WeeklyChart: FC = () => {
           <ResponsiveContainer className={styles.chart}>
             <AreaChart
               data={chartData}
-              margin={{ right: 4, left: 4, top: 4 }}
+              margin={{ right: 4, left: 4, top: 4, bottom: 4 }}
             >
               {[0, 2, 4].map((entry, index) => (
                 <ReferenceLine
@@ -71,15 +43,18 @@ export const WeeklyChart: FC = () => {
                 />
               ))}
               <XAxis
-                dataKey="name"
+                dataKey="day"
                 hide={true}
                 padding={{ left: 10, right: 10 }}
               />
-              <YAxis hide={true} />
+              <YAxis
+                hide={true}
+                domain={[0, 40]}
+              />
               <Area
                 isAnimationActive={false}
                 type="linear"
-                dataKey="line"
+                dataKey="score"
                 strokeWidth={0}
                 fill="#0C2A9F"
                 fillOpacity={0.3}
@@ -88,8 +63,8 @@ export const WeeklyChart: FC = () => {
                 <ReferenceLine
                   key={`guide-line-${index}`}
                   segment={[
-                    { x: entry.name, y: 0 },
-                    { x: entry.name, y: entry.line },
+                    { x: entry.day, y: 0 },
+                    { x: entry.day, y: entry.score },
                   ]}
                   stroke="#97ACFF"
                   strokeWidth={2}
@@ -98,7 +73,7 @@ export const WeeklyChart: FC = () => {
               <Area
                 isAnimationActive={false}
                 type="linear"
-                dataKey="line"
+                dataKey="score"
                 stroke="#3555D4"
                 strokeWidth={4}
                 fill="#0C2A9F"
@@ -109,13 +84,9 @@ export const WeeklyChart: FC = () => {
           </ResponsiveContainer>
         </div>
         <div className={styles.chartX}>
-          <div>ПН</div>
-          <div>ВТ</div>
-          <div>СР</div>
-          <div>ЧТ</div>
-          <div>ПТ</div>
-          <div>СБ</div>
-          <div>ВС</div>
+          {chartData.map((el) => (
+            <div key={el.day}>{el.day}</div>
+          ))}
         </div>
       </div>
     </div>
