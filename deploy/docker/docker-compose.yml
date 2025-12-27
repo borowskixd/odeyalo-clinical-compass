@@ -6,8 +6,6 @@ services:
       context: ../../
     command: npm start
     restart: on-failure
-    volumes:
-      - /app/app
     expose:
       - "3000"
     networks:
