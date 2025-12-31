@@ -14,7 +14,7 @@ services:
 
   nginx:
     container_name: odeyalo-frontend-nginx
-    image: public.ecr.aws/nginx/nginx:latest
+    image: public.ecr.aws/nginx/nginx:1.25-alpine
     build:
       dockerfile: ./deploy/docker/nginx/Dockerfile
       context: ../../
