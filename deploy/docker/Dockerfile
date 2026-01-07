@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/node:20.5.1-alpine
+FROM public.ecr.aws/docker/library/node:24.12.0-alpine
 
 WORKDIR /app
 
