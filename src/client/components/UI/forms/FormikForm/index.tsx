@@ -10,7 +10,7 @@ import {
 } from "./components";
 import styles from "./styles.module.scss";
 import { Form, Formik, type FormikConfig, type FormikValues } from "formik";
-import React, { type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 interface Props<Values> extends FormikConfig<Values> {
   children: ReactNode;
