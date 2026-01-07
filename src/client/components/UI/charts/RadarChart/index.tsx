@@ -13,7 +13,7 @@ import {
 } from "recharts";
 import { type RadarChartItem, mapToRadarChartData } from "@/client/utils";
 import { type GetTestResponseData, type TestResultData } from "@/shared/types";
-import React, { type FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 
 interface Props {
   results: TestResultData[];

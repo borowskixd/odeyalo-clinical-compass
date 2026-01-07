@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { getLocale } from "next-intl/server";
 import { fontVariablesClass } from "@/client/assets/fonts";
 import { ModalsPortal, SnackbarsPortal } from "@/client/components";
-import { AuthLayer, I18nLayer, StoreLayer } from "@/client/components/layers";
+import { AuthLayer, StoreLayer } from "@/client/components/layers";
 import "@/client/styles/global.scss";
 import "@/client/styles/reset.scss";
 import "@odeyalo/uikit/dist/main.css";
@@ -27,23 +26,19 @@ const RootLayout: FC<RootLayoutProps> = async ({
   authorized,
   unauthorized,
 }) => {
-  const locale = await getLocale();
-
   return (
-    <html lang={locale}>
+    <html lang="ru">
       <body className={fontVariablesClass}>
-        <I18nLayer>
-          <StoreLayer>
-            <AuthLayer
-              authorized={authorized}
-              unauthorized={unauthorized}
-            >
-              {children}
-            </AuthLayer>
-            <SnackbarsPortal />
-            <ModalsPortal />
-          </StoreLayer>
-        </I18nLayer>
+        <StoreLayer>
+          <AuthLayer
+            authorized={authorized}
+            unauthorized={unauthorized}
+          >
+            {children}
+          </AuthLayer>
+          <SnackbarsPortal />
+          <ModalsPortal />
+        </StoreLayer>
       </body>
     </html>
   );
