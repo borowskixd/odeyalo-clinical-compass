@@ -1,62 +1,68 @@
 @use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
 
 .title {
-  font-family: var(--font-cygre);
-  font-weight: 700;
+  @include titleCygre;
+  margin-left: 40px;
+  margin-bottom: 40px;
 }
 
 h3.title {
   font-size: 40px;
   line-height: 44px;
-  text-align: center;
-  margin-bottom: 40px;
 }
 
 .achievements {
-  display: flex;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: 1500px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .achievementCard {
-  min-width: 322px;
-  height: 200px;
-  padding: 40px 23px 50px 30px;
+  width: 100%;
+  min-height: 320px;
+  padding: 50px 30px 60px 40px;
   border-radius: 40px;
   background-color: $color-white100;
   background-repeat: no-repeat;
 }
 
 .achievementCard1 {
-  background-image: url("/static/landing/freedom.webp");
-  background-position-x: calc(100% - 35px);
-  background-position-y: calc(100% - 7px);
-}
-
-.achievementCard2 {
-  background-image: url("/static/landing/comments.webp");
-  background-position-x: 50%;
-  background-position-y: calc(100% - 11px);
-}
-
-.achievementCard3 {
-  background-image: url("/static/landing/wave-2.webp");
-  background-position-x: 50%;
-  background-position-y: 100%;
+  background-image: url("/static/landing/glasses.webp");
+  background-size: 60% auto;
+  background-position-x: calc(100% - 145px);
+  background-position-y: calc(100%);
 }
 
 .achievementCard4 {
-  background-image: url("/static/landing/sunshine.webp");
+  background-image: url("/static/landing/heart.webp");
+  background-size: 35% auto;
   background-position-x: calc(100% - 31px);
-  background-position-y: calc(100% - 18px);
-}
-
-.achievementCard5 {
-  background-image: url("/static/landing/wave.webp");
-  background-position-x: 50%;
-  background-position-y: 100%;
+  background-position-y: calc(100%);
 }
 
 .achievementTitle {
-  font-size: 20px;
-  line-height: 22px;
+  @include titleCygre;
+}
+
+.achievementDescription {
+  @include bodyXL;
+  font-size: 25px;
+  line-height: 30px;
+  color: $color-black100;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .achievements {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  .achievementCard {
+    height: 180px;
+  }
 }

@@ -29,9 +29,9 @@ export const LandingPage: FC = async () => {
         >
           <Hero />
           <Advantages />
-          <Partners />
           <Achievements />
           <Team />
+          <Partners />
         </Container>
       </main>
       <Footer />
