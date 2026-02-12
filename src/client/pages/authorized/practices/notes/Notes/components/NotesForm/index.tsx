@@ -5,7 +5,7 @@ import { type FC } from "react";
 export const NotesForm: FC = () => {
   return (
     <div className={styles.notes}>
-      <h2 className={styles.title}>Заметки</h2>
+      <h2 className={styles.title}>Дневник эмоций</h2>
       <NoteList />
       <CreateNoteButton />
     </div>

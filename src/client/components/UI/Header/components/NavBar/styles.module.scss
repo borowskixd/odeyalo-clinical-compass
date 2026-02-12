@@ -37,6 +37,11 @@
     background-color: transparent;
     border-radius: 0;
   }
+
+  &.active {
+    background-color: $color-blue80;
+    color: $color-white100;
+  }
 }
 
 .iconWrapper {

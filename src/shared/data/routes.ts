@@ -1,104 +1,132 @@
 import { ACCESS } from "@/shared/config/access";
 import { Page, type Pages, type Routes } from "@/shared/types";
 
+export type ActiveNavId =
+  | "usersActivity"
+  | "usersFeedbacks"
+  | "usersResults"
+  | "main"
+  | "articles"
+  | "practices"
+  | "tests"
+  | "login"
+  | "cabinet"
+  | "profile"
+  | null;
+
 export const pages: Pages = {
-  main: new Page("/"),
-  login: new Page("/login", [ACCESS.unauthorized]),
-  registration: new Page("/registration", [ACCESS.unauthorized]),
-  cabinet: new Page("/cabinet", [ACCESS.psychologist, ACCESS.hr]),
-  application: new Page<{ id: string }>("/cabinet/applications/:id", [
+  main: new Page("/", "main"),
+  login: new Page("/login", "login", [ACCESS.unauthorized]),
+  registration: new Page("/registration", "login", [ACCESS.unauthorized]),
+  cabinet: new Page("/cabinet", "cabinet", [ACCESS.psychologist, ACCESS.hr]),
+  application: new Page<{ id: string }>(
+    "/cabinet/applications/:id",
+    "cabinet",
+    [ACCESS.psychologist, ACCESS.hr],
+  ),
+  client: new Page<{ id: string }>("/cabinet/clients/:id", "cabinet", [
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  client: new Page<{ id: string }>("/cabinet/clients/:id", [
-    ACCESS.psychologist,
-    ACCESS.hr,
-  ]),
-  tests: new Page("/tests", [ACCESS.client, ACCESS.psychologist, ACCESS.hr]),
-  test: new Page<{ id: string }>("/tests/:id", [
+  tests: new Page("/tests", "tests", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  giveTest: new Page("/tests/give", [ACCESS.psychologist, ACCESS.hr]),
-  changePassword: new Page<{ token: string }>("/password/change/:token", [
-    ACCESS.unauthorized,
-  ]),
-  resetPassword: new Page("/password/reset", [ACCESS.unauthorized]),
-  psychologist: new Page("/psychologists", [
+  test: new Page<{ id: string }>("/tests/:id", "tests", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  result: new Page<{ id: string }>("/results/:id", [
+  giveTest: new Page("/tests/give", "tests", [ACCESS.psychologist, ACCESS.hr]),
+  changePassword: new Page<{ token: string }>(
+    "/password/change/:token",
+    "main",
+    [ACCESS.unauthorized],
+  ),
+  resetPassword: new Page("/password/reset", "login", [ACCESS.unauthorized]),
+  psychologist: new Page("/psychologists", null, [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  detailResult: new Page<{ id: string }>("/results/detail/:id", [
+  result: new Page<{ id: string }>("/results/:id", "tests", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  hrSurvey: new Page("/survey/hr", [ACCESS.client]),
-  psychologistSurvey: new Page("/survey/psychologist", [ACCESS.client]),
-  articles: new Page("/articles", [
+  detailResult: new Page<{ id: string }>("/results/detail/:id", "tests", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  article: new Page<{ id: string }>("/articles/:id", [
+  hrSurvey: new Page("/survey/hr", null, [ACCESS.client]),
+  psychologistSurvey: new Page("/survey/psychologist", null, [ACCESS.client]),
+  articles: new Page("/articles", "articles", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  practices: new Page("/practices", [
+  article: new Page<{ id: string }>("/articles/:id", "articles", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  practice: new Page<{ id: string }>("/practices/:id", [
+  practices: new Page("/practices", "practices", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  notes: new Page("/practices/notes", [
+  practice: new Page<{ id: string }>("/practices/:id", "practices", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  note: new Page<{ id: string }>("/practices/notes/:id", [
+  notes: new Page("/practices/notes", "practices", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  createNote: new Page("/practices/notes/new", [
+  note: new Page<{ id: string }>("/practices/notes/:id", "practices", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  exercise: new Page<{ id: string }>("/practices/exercises/:id", [
+  createNote: new Page("/practices/notes/new", "practices", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
+  exercise: new Page<{ id: string }>("/practices/exercises/:id", "practices", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
   exercisePreview: new Page<{ id: string }>(
     "/practices/exercises/:id/preview",
+    "practices",
     [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
   ),
   exerciseResult: new Page<{ id: string; result_id: string }>(
     "/practices/exercises/:id/results/:result_id",
+    "practices",
     [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
   ),
-  usersActivity: new Page("/admin/users/activity", [ACCESS.admin]),
-  usersFeedbacks: new Page("/admin/users/feedbacks", [ACCESS.admin]),
-  usersResults: new Page("/admin/users/results", [ACCESS.admin]),
-  profile: new Page("/profile", [
+  usersActivity: new Page("/admin/users/activity", "usersActivity", [
+    ACCESS.admin,
+  ]),
+  usersFeedbacks: new Page("/admin/users/feedbacks", "usersFeedbacks", [
+    ACCESS.admin,
+  ]),
+  usersResults: new Page("/admin/users/results", "usersResults", [
+    ACCESS.admin,
+  ]),
+  profile: new Page("/profile", "profile", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
-  profileSettings: new Page("/profile/settings", [
+  profileSettings: new Page("/profile/settings", "profile", [
     ACCESS.client,
     ACCESS.psychologist,
     ACCESS.hr,

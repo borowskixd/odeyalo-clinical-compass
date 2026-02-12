@@ -1,4 +1,5 @@
 import { type AccessRole } from "../config/access";
+import { type ActiveNavId } from "@/shared/data";
 
 interface GetLinkConfig<P> {
   params?: P extends never ? undefined : P;
@@ -7,10 +8,12 @@ interface GetLinkConfig<P> {
 
 export class Page<P extends Record<string, any> = never> {
   public readonly path: string;
+  public readonly activeNavId: ActiveNavId;
   public readonly access?: AccessRole[];
 
-  constructor(path: string, access?: AccessRole[]) {
+  constructor(path: string, activeNavId: ActiveNavId, access?: AccessRole[]) {
     this.path = path;
+    this.activeNavId = activeNavId;
     this.access = access;
   }
 
@@ -53,6 +56,33 @@ export class Page<P extends Record<string, any> = never> {
     }
 
     return link;
+  };
+
+  public matchPath = (path: string): boolean => {
+    const pathDivider = "/";
+    const paramStartSymbol = ":";
+
+    const patternParts = this.path.split(pathDivider).filter(Boolean);
+    const urlParts = path.split(pathDivider).filter(Boolean);
+
+    if (patternParts.length !== urlParts.length) {
+      return false;
+    }
+
+    for (let i = 0; i < patternParts.length; i++) {
+      const patternPart = patternParts[i];
+      const urlPart = urlParts[i];
+
+      if (patternPart.startsWith(paramStartSymbol)) {
+        continue;
+      }
+
+      if (patternPart !== urlPart) {
+        return false;
+      }
+    }
+
+    return true;
   };
 }
 

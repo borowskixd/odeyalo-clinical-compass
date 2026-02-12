@@ -10,7 +10,7 @@ export const mapGetArticleResponse = (
   articleContent: GetArticleApiResponseData,
   articleProgress: GetArticleProgressApiResponseData,
 ): GetArticleResponseData => {
-  const { theme, id, link, recommendations, education_materials } =
+  const { theme, id, link_to_picture, recommendations, education_materials } =
     articleContent;
 
   const readMaterialIds = new Set(
@@ -20,11 +20,11 @@ export const mapGetArticleResponse = (
   return {
     title: theme,
     id,
-    linkToPicture: `${SEVER_API_URL}${link}`,
+    linkToPicture: `${SEVER_API_URL}${link_to_picture}`,
     recommendations: recommendations.map((topic) => ({
       id: topic.id,
       theme: topic.theme,
-      linkToPicture: `${SEVER_API_URL}${topic.link}`,
+      linkToPicture: `${SEVER_API_URL}${topic.link_to_picture}`,
       tags: topic.tags,
     })),
     subtopics: education_materials.map((subtopic) => ({

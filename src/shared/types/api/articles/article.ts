@@ -23,10 +23,12 @@ export type GetArticleApiResponseData = {
   id: string;
   theme: string;
   link: string;
+  link_to_picture: string;
   recommendations: {
     id: string;
     theme: string;
     link: string;
+    link_to_picture: string;
     tags: string[];
   }[];
   education_materials: {

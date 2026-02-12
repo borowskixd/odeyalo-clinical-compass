@@ -11,6 +11,7 @@ import {
 import { useAppDispatch } from "@/client/hooks";
 import { useRegistrationMutation } from "@/client/redux";
 import { mapApiErrorMessage, redirectWithReload } from "@/client/utils";
+import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 import { type RegistrationRequestData } from "@/shared/types";
 import { type FC, useEffect } from "react";
@@ -37,12 +38,18 @@ export const RegistrationForm: FC = () => {
   const dispatch = useAppDispatch();
   const [registration, { data, isLoading, isSuccess, isError, error }] =
     useRegistrationMutation();
+  const { logEvent } = useAnalytics();
+
+  useEffect(() => {
+    logEvent("register-page-opened");
+  }, [logEvent]);
 
   useEffect(() => {
     if (isSuccess) {
       redirectWithReload(pages.login.path);
+      logEvent("register-success");
     }
-  }, [isSuccess, dispatch, data]);
+  }, [isSuccess, dispatch, data, logEvent]);
 
   const onSubmit = (values: RegistrationRequestData) => {
     registration(values);

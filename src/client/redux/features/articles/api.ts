@@ -13,6 +13,7 @@ const articlesApi = api.injectEndpoints({
 
     getArticleById: builder.query<GetArticleResponseData, string>({
       query: (articleId: string) => `/articles/${articleId}`,
+      providesTags: ["Articles"],
     }),
 
     readArticle: builder.mutation<ResponseSuccessInfo, string>({
