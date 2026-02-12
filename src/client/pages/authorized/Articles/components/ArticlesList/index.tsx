@@ -4,10 +4,16 @@ import { ArticleCard } from "../ArticleCard";
 import styles from "./styles.module.scss";
 import { DefaultError, LoadingLoop, Subtitle } from "@/client/components";
 import { useGetArticlesQuery } from "@/client/redux";
-import { type FC } from "react";
+import { useAnalytics } from "@/shared/analytics";
+import { type FC, useEffect } from "react";
 
 export const ArticlesList: FC = () => {
   const { data, isError, isLoading, error } = useGetArticlesQuery();
+  const { logEvent } = useAnalytics();
+
+  useEffect(() => {
+    logEvent("theories-page-opened");
+  }, [logEvent]);
 
   if (isLoading) return <LoadingLoop />;
   if (isError) return <DefaultError error={error} />;

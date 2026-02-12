@@ -5,12 +5,18 @@ import styles from "./styles.module.scss";
 import { notFound, useParams } from "next/navigation";
 import { DefaultError, LoadingLoop } from "@/client/components";
 import { useGetTestResultQuery } from "@/client/redux";
-import { type FC } from "react";
+import { useAnalytics } from "@/shared/analytics";
+import { type FC, useEffect } from "react";
 
 export const ResultContent: FC = () => {
   const { id } = useParams<{ id: string }>();
+  const { logEvent } = useAnalytics();
 
   const { data: testResult, ...getTestResultState } = useGetTestResultQuery(id);
+
+  useEffect(() => {
+    logEvent("test-detail-result-page-opened");
+  }, [logEvent]);
 
   if (getTestResultState.isLoading) return <LoadingLoop />;
   if (getTestResultState.isError)

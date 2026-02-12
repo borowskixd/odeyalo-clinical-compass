@@ -12,8 +12,9 @@ import {
   Radio,
 } from "@/client/components";
 import { useGetTestQuestionsQuery } from "@/client/redux";
+import { useAnalytics } from "@/shared/analytics";
 import { type SendTestResultRequestData } from "@/shared/types";
-import { type FC, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 
 export const TestContent: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,8 +23,15 @@ export const TestContent: FC = () => {
   const [answers, setAnswers] = useState<SendTestResultRequestData["answers"]>(
     [],
   );
+  const { logEvent } = useAnalytics();
 
   const { data: test, ...getTestState } = useGetTestQuestionsQuery(id);
+
+  useEffect(() => {
+    logEvent("test-page-opened", {
+      test_id: id,
+    });
+  }, [id, logEvent]);
 
   if (getTestState.isLoading) return <LoadingLoop />;
   if (getTestState.isError) return <DefaultError error={getTestState.error} />;

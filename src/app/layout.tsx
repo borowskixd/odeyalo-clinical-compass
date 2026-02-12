@@ -4,6 +4,7 @@ import { ModalsPortal, SnackbarsPortal } from "@/client/components";
 import { AuthLayer, StoreLayer } from "@/client/components/layers";
 import "@/client/styles/global.scss";
 import "@/client/styles/reset.scss";
+import { AnalyticsProvider } from "@/shared/analytics";
 import "@odeyalo/uikit/dist/main.css";
 import "@odeyalo/uikit/styles/fonts.scss";
 import "@odeyalo/uikit/styles/styles.scss";
@@ -29,16 +30,18 @@ const RootLayout: FC<RootLayoutProps> = async ({
   return (
     <html lang="ru">
       <body className={fontVariablesClass}>
-        <StoreLayer>
-          <AuthLayer
-            authorized={authorized}
-            unauthorized={unauthorized}
-          >
-            {children}
-          </AuthLayer>
-          <SnackbarsPortal />
-          <ModalsPortal />
-        </StoreLayer>
+        <AnalyticsProvider>
+          <StoreLayer>
+            <AuthLayer
+              authorized={authorized}
+              unauthorized={unauthorized}
+            >
+              {children}
+            </AuthLayer>
+            <SnackbarsPortal />
+            <ModalsPortal />
+          </StoreLayer>
+        </AnalyticsProvider>
       </body>
     </html>
   );
