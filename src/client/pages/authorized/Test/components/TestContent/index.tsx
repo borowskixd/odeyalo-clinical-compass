@@ -121,6 +121,7 @@ export const TestContent: FC = () => {
           );
         })}
       </div>
+      <h4 className={styles.question}>{currentQuestion.oppositeText}</h4>
       <div className={styles.buttons}>
         <Button
           className={styles.navButton}
