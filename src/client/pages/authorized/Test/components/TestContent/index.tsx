@@ -4,17 +4,11 @@ import { SendResultButton } from "../SendResultButton";
 import styles from "./styles.module.scss";
 import { notFound, useParams } from "next/navigation";
 import { ArrowIcon } from "@/client/assets/icons";
-import {
-  Button,
-  DefaultError,
-  LoadingLoop,
-  PageTitle,
-  Radio,
-} from "@/client/components";
+import { DefaultError, LoadingLoop, PageTitle } from "@/client/components";
 import { useGetTestQuestionsQuery } from "@/client/redux";
-import { useAnalytics } from "@/shared/analytics";
 import { type SendTestResultRequestData } from "@/shared/types";
-import { type FC, useEffect, useState } from "react";
+import { Button } from "@odeyalo/uikit";
+import { type FC, useEffect, useRef, useState } from "react";
 
 export const TestContent: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,48 +17,81 @@ export const TestContent: FC = () => {
   const [answers, setAnswers] = useState<SendTestResultRequestData["answers"]>(
     [],
   );
-  const { logEvent } = useAnalytics();
 
   const { data: test, ...getTestState } = useGetTestQuestionsQuery(id);
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
-    logEvent("test-page-opened", {
-      test_id: id,
-    });
-  }, [id, logEvent]);
+    if (test) {
+      setAnswers(new Array(test.questions.length).fill(undefined));
+    }
+  }, [test]);
+
+  useEffect(() => {
+    const allAnswersSelected = answers.every((val) => typeof val === "number");
+    setSendButtonDisabled(!allAnswersSelected);
+  }, [answers]);
+
+  useEffect(() => {
+    if (!test) return;
+
+    const currentQuestion = test.questions[currentQuestionNumber];
+    const currentSavedAnswer = answers[currentQuestionNumber];
+
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+
+    if (currentSavedAnswer !== undefined) {
+      const selectedIndex = currentQuestion.answerChoices.findIndex(
+        (answer) => answer.score === currentSavedAnswer,
+      );
+
+      if (selectedIndex !== -1 && buttonRefs.current[selectedIndex]) {
+        buttonRefs.current[selectedIndex]?.focus();
+      }
+    }
+  }, [currentQuestionNumber, answers, test]);
 
   if (getTestState.isLoading) return <LoadingLoop />;
   if (getTestState.isError) return <DefaultError error={getTestState.error} />;
   if (!test) notFound();
 
+  const currentQuestion = test.questions[currentQuestionNumber];
+  const currentSavedAnswer = answers[currentQuestionNumber];
+
+  buttonRefs.current = buttonRefs.current.slice(
+    0,
+    currentQuestion.answerChoices.length,
+  );
+
   const selectAnswerHandler = (score: number) => {
-    setAnswers((answers) => {
-      answers[currentQuestionNumber] = score;
-
-      setSendButtonDisabled(
-        answers.length !== test.questions.length ||
-          !answers.every((val) => typeof val === "number"),
-      );
-
-      return answers;
+    setAnswers((prevAnswers) => {
+      const newAnswers = [...prevAnswers];
+      newAnswers[currentQuestionNumber] = score;
+      return newAnswers;
     });
 
-    if (
-      currentQuestionNumber >= answers.length &&
-      currentQuestionNumber !== test.questions.length - 1
-    )
-      setTimeout(nextQuestion, 500);
+    if (currentQuestionNumber !== test.questions.length - 1) {
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          setCurrentQuestion(currentQuestionNumber + 1);
+        }, 50);
+      });
+    }
   };
 
   const nextQuestion = () => {
-    setCurrentQuestion((currentQuestionNumber) => currentQuestionNumber + 1);
+    setCurrentQuestion((prev) => prev + 1);
   };
 
   const prevQuestion = () => {
-    setCurrentQuestion((currentQuestionNumber) => currentQuestionNumber - 1);
+    setCurrentQuestion((prev) => prev - 1);
   };
-
-  const currentQuestion = test.questions[currentQuestionNumber];
 
   const nextButtonDisabled =
     currentQuestionNumber + 1 >= test.questions.length ||
@@ -74,24 +101,33 @@ export const TestContent: FC = () => {
     <>
       <PageTitle className={styles.title}>{test.title}</PageTitle>
       <h4 className={styles.question}>{currentQuestion.text}</h4>
-      <div className={styles.radioButtons}>
-        {currentQuestion.answerChoices.map((answer) => {
+      <div className={styles.answerButtons}>
+        {currentQuestion.answerChoices.map((answer, index) => {
+          const isSelected = currentSavedAnswer === answer.score;
+
           return (
-            <Radio
-              key={`${currentQuestion.number - 1}-${answer.id}`}
-              name="question"
-              labelText={answer.text}
+            <Button
+              key={answer.id}
+              ref={(el: HTMLButtonElement | null) => {
+                buttonRefs.current[index] = el;
+              }}
+              className={`${styles.answerButton} ${isSelected ? styles.selected : ""}`}
               onClick={() => selectAnswerHandler(answer.score)}
-              defaultChecked={answers[currentQuestionNumber] === answer.score}
-            />
+              view="normal"
+              variant={isSelected ? "primary" : "secondary"}
+            >
+              {answer.text}
+            </Button>
           );
         })}
       </div>
       <div className={styles.buttons}>
         <Button
-          className={styles.button}
+          className={styles.navButton}
           onClick={prevQuestion}
           disabled={currentQuestionNumber <= 0}
+          view="normal"
+          variant="text"
         >
           <ArrowIcon className={styles.backIcon} />
           Назад
@@ -103,9 +139,11 @@ export const TestContent: FC = () => {
           answers={answers}
         />
         <Button
-          className={styles.button}
+          className={styles.navButton}
           onClick={nextQuestion}
           disabled={nextButtonDisabled}
+          view="normal"
+          variant="text"
         >
           Далее
           <ArrowIcon />
