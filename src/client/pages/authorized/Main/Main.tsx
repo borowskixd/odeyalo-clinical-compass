@@ -10,7 +10,7 @@ export const MainPage: FC = () => {
     <Container>
       <ImageBackground />
       <ContentWrapper className={styles.dailyTasks}>
-        <PageTitle className={styles.title}>Сегодня</PageTitle>
+        <PageTitle className={styles.title}>Задачи на сегодня</PageTitle>
         <div className={styles.date}>{getCurrentDay()}</div>
         <DailyTasks />
       </ContentWrapper>

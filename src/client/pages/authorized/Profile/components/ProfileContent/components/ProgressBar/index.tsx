@@ -41,7 +41,8 @@ export const ProgressBar: FC = () => {
         className={styles.label}
         as="p"
       >
-        Нужно набрать ещё {MAX_SCORE - data.score} очков
+        Нужно набрать ещё {MAX_SCORE - data.score} очков. Чтобы набрать очки,
+        читайте теорию, проходите тесты и выполняйте упражнения
       </Text>
     </div>
   );

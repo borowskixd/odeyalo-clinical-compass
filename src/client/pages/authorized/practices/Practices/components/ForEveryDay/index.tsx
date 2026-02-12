@@ -27,7 +27,7 @@ export const ForEveryDay: FC = () => {
         href={pages.notes.path}
         className={styles.button}
       >
-        Заметки <ArrowForward />
+        Дневник эмоций <ArrowForward />
       </Button>
     </section>
   );

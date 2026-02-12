@@ -22,7 +22,7 @@ export const CreateNoteButton: FC = () => {
       className={styles.button}
       href={createNoteLink}
     >
-      Написать заметку
+      Добавить запись
     </PrimaryButton>
   );
 };
