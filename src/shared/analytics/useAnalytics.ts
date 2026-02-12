@@ -33,7 +33,7 @@ export const useAnalytics = () => {
     },
     options?: AnalyticsCallOptions,
   ) => {
-    if (context.analytics) {
+    if (context.analytics && process.env.NEXT_PUBLIC_MODE === "production") {
       logEvent(
         context.analytics,
         eventName,

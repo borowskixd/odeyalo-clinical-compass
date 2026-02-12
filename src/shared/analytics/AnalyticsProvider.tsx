@@ -42,7 +42,7 @@ export const AnalyticsProvider: FC<AnalyticsProviderProps> = ({ children }) => {
 
   useEffect(() => {
     isSupported().then((supported) => {
-      if (supported) {
+      if (supported && process.env.NEXT_PUBLIC_MODE === "production") {
         const analytics = getAnalytics(app);
         setAnalytics(analytics);
       }
