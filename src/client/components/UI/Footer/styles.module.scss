@@ -1,0 +1,84 @@
+@use "@/client/styles/colors" as *;
+
+.footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
+
+  @media screen and (max-width: 900px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    border-radius: 0;
+    background-color: $color-white100;
+    z-index: 100;
+  }
+}
+
+.container {
+  height: 100%;
+  padding: 30px 25px 30px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color-white100;
+  border-radius: 32px; 
+
+  @media screen and (max-width: 900px) {
+    border-radius: 0;
+    padding: 20px;
+  }
+}
+
+.logo {
+  width: 190px;
+}
+
+.contacts {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.contactBlock {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  gap: 10px;
+  
+  .contactTitle {
+    background-color: $color-white70;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+  }
+}
+
+.socials {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  
+  .iconButton {
+    flex: 1;
+    background-color: $color-white70;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

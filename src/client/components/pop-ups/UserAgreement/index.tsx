@@ -1,4 +1,6 @@
-import { FEEDBACK_EMAIL } from "../../../../constants";
+"use client";
+
+import { FEEDBACK_EMAIL } from "../constants";
 import styles from "./styles.module.scss";
 import { Text } from "@odeyalo/uikit";
 import { type FC } from "react";

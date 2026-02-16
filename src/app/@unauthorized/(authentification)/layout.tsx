@@ -1,4 +1,4 @@
-import { Header } from "@/client/components";
+import { Footer, Header } from "@/client/components";
 import { type ReactNode } from "react";
 
 export default function AuthentificationLayout({
@@ -10,6 +10,7 @@ export default function AuthentificationLayout({
     <>
       <Header />
       <main>{children}</main>
+      <Footer />
     </>
   );
 }

@@ -12,3 +12,4 @@ export * from "./popups";
 export * from "./swipers";
 export * from "./Symptom";
 export * from "./titles";
+export * from "./Footer";
