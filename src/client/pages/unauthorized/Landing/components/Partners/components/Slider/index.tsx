@@ -32,7 +32,10 @@ export const Slider = ({ children }: SliderProps) => {
 
     if (swiperRef.current) {
       const swiper = swiperRef.current;
-      const slideIndex = Math.round((value / 100) * (swiper.slides.length - 1));
+      const slideIndex = Math.round(
+        (value / 100) * (swiper.slides.length - swiper.params.slidesPerView),
+      );
+
       swiper.slideTo(slideIndex);
     }
   };
@@ -50,10 +53,10 @@ export const Slider = ({ children }: SliderProps) => {
         pagination={false}
         breakpoints={{
           0: { slidesPerView: 1 },
-          480: { slidesPerView: 2 },
+          360: { slidesPerView: 2 },
           768: { slidesPerView: 3 },
           1024: { slidesPerView: 4 },
-          1280: { slidesPerView: 6 },
+          1440: { slidesPerView: 6 },
         }}
       >
         {children.map((child, index) => (

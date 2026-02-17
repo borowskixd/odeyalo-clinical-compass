@@ -40,7 +40,7 @@ export const team: TeamMember[] = [
     role: "психолог",
   },
   {
-    name: "Софья Скрипникова",
+    name: "София Скрипникова",
     image: SofyaSkripnikova,
     role: "психолог",
   },

@@ -1,7 +1,6 @@
 import {
   Achievements,
   Advantages,
-  Footer,
   Header,
   Hero,
   Partners,
@@ -9,7 +8,7 @@ import {
 } from "./components";
 import styles from "./styles.module.scss";
 import { redirect } from "next/navigation";
-import { Container } from "@/client/components";
+import { Container, Footer } from "@/client/components";
 import { pages } from "@/shared/data";
 import { getIsMobile } from "@/shared/utils";
 import { type FC } from "react";
@@ -23,10 +22,7 @@ export const LandingPage: FC = async () => {
     <>
       <Header />
       <main className={styles.main}>
-        <Container
-          isLarge={true}
-          className={styles.container}
-        >
+        <Container className={styles.container}>
           <Hero />
           <Advantages />
           <Achievements />

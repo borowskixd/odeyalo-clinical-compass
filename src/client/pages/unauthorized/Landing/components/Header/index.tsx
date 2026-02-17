@@ -6,10 +6,7 @@ import { type FC } from "react";
 export const Header: FC = () => {
   return (
     <header className={styles.header}>
-      <Container
-        isLarge
-        className={styles.container}
-      >
+      <Container className={styles.container}>
         <Logo />
         <NavBar />
         <RightButton />

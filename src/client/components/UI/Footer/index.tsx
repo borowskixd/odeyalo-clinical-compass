@@ -38,12 +38,6 @@ export const Footer: FC = () => {
             <div className={styles.contactBlock}>
               <span className={styles.contactTitle}>Связаться с нами</span>
               <div className={styles.socials}>
-                <SecondaryButton
-                  className={styles.privacyButton}
-                  onClick={openModalHandler}
-                >
-                  Политика конфиденциальности
-                </SecondaryButton>
                 <IconButton
                   className={styles.iconButton}
                   href="https://vk.com/discuss_with_cbt"
@@ -60,6 +54,12 @@ export const Footer: FC = () => {
                 </IconButton>
               </div>
             </div>
+            <SecondaryButton
+              className={styles.privacyButton}
+              onClick={openModalHandler}
+            >
+              Политика конфиденциальности
+            </SecondaryButton>
           </div>
         </Container>
       </footer>
