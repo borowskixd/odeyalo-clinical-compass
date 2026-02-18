@@ -3,23 +3,23 @@
 
 .main {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 16px;
+  grid-template-columns: 1fr 1fr;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (width <= 800px) {
     grid-template-columns: 1fr;
   }
 }
 
 .pictureContainer {
-  max-width: 536px;
+  overflow: hidden;
   width: 100%;
+  max-width: 536px;
   max-height: 460px;
   border-radius: 12px;
-  overflow: hidden;
   aspect-ratio: 536 / 460;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (width <= 800px) {
     display: none;
   }
 }

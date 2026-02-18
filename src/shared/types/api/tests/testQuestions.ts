@@ -9,6 +9,7 @@ export type TestQuestionsApiData = {
   test_id: string;
   number: number;
   text: string;
+  opposite_text: string | null;
   answer_choices: TestQuestionAnswersApiData;
 };
 
@@ -25,6 +26,7 @@ type TestQuestionsData = {
   testId: string;
   number: number;
   text: string;
+  oppositeText: string | null;
   answerChoices: TestQuestionAnswersData;
 }[];
 

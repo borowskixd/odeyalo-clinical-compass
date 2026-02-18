@@ -2,9 +2,8 @@
 @use "@/client/styles/fontStyles" as *;
 
 .button {
-  color: $color-black100;
-  @include bodyM;
   background-color: $color-white70;
+  color: $color-black100;
   transition: opacity 0.2s;
 
   &:hover {
@@ -24,4 +23,6 @@
     color: $color-black100;
     pointer-events: none;
   }
+
+  @include bodyM;
 }

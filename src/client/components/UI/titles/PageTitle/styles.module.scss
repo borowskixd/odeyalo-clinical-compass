@@ -1,6 +1,7 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-  @include titleCygre;
   white-space: pre-wrap;
+
+  @include titleCygre;
 }

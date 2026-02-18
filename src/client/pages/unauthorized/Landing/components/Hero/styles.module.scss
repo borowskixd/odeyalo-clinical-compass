@@ -21,24 +21,23 @@ h2.title {
 }
 
 h3.title {
+  margin-bottom: 40px;
   font-size: 40px;
   line-height: 44px;
   text-align: center;
-  margin-bottom: 40px;
 }
 
 .container {
   display: flex;
   flex-flow: column;
-  gap: 140px;
   font-size: 20px;
+  gap: 140px;
 }
 
 .mainSection {
-  height: 520px;
   display: flex;
+  height: 520px;
   align-items: center;
-
   background-image: url("/static/landing/meditation.webp");
   background-position: right center;
   background-repeat: no-repeat;

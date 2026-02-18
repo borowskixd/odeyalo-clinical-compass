@@ -5,27 +5,27 @@
   display: flex;
   gap: 24px;
 
-  @media screen and (max-width: 740px) {
+  @media screen and (width <= 740px) {
     flex-direction: column;
   }
 }
 
 .column {
-  width: 100%;
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 24px;
 
   &.first {
     max-width: 420px;
 
-    @media screen and (max-width: 740px) {
+    @media screen and (width <= 740px) {
       max-width: 100%;
     }
   }
 
   &.second {
-    @media screen and (max-width: 740px) {
+    @media screen and (width <= 740px) {
       flex-direction: column-reverse;
     }
   }
@@ -37,5 +37,6 @@
 
 .date {
   margin: 10px 0 30px;
+
   @include bodyLBold;
 }

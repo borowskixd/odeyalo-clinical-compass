@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-standard-scss",
+    "stylelint-prettier/recommended",
+    "stylelint-config-idiomatic-order"
+  ],
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "prettier/prettier": true,
+    "order/order": [
+      "custom-properties",
+      "dollar-variables",
+      "declarations",
+      "rules",
+      "at-rules"
+    ],
+    "scss/dollar-variable-pattern": null,
+    "scss/at-mixin-pattern": null,
+    "selector-class-pattern": null,
+    "color-named": "never",
+    "color-hex-length": "long",
+    "font-weight-notation": "numeric",
+    "custom-property-empty-line-before": null,
+    "scss/operator-no-newline-after": null
+  }
+}

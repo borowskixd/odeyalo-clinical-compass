@@ -3,13 +3,14 @@
 
 .date {
   margin: 10px 0 30px;
-  @include bodyLBold;
   text-transform: capitalize;
+
+  @include bodyLBold;
 }
 
 .note {
   padding: 20px;
-  white-space: pre-wrap;
-  background-color: $color-white70;
   border-radius: 12px;
+  background-color: $color-white70;
+  white-space: pre-wrap;
 }

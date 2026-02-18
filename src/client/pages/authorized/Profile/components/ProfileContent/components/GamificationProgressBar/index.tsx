@@ -22,6 +22,8 @@ export const GamificationProgressBar: FC = () => {
 
   const progressLineWidth = (data.score / MAX_SCORE) * 100;
 
+  const pointsLeft = MAX_SCORE - data.score;
+
   return (
     <div>
       <div>
@@ -44,8 +46,11 @@ export const GamificationProgressBar: FC = () => {
           className={styles.label}
           as="p"
         >
-          Нужно набрать ещё {MAX_SCORE - data.score} очков. Чтобы набрать очки,
-          читайте теорию, проходите тесты и выполняйте упражнения
+          {pointsLeft === 0
+            ? `Сегодня вы набрали все очки, поздравляем!`
+            : `Нужно набрать ещё ${pointsLeft} очков.`}
+          Чтобы набрать очки, читайте теорию, проходите тесты и выполняйте
+          упражнения
         </Text>
       </div>
     </div>

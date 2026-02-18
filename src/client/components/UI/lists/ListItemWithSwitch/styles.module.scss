@@ -2,13 +2,13 @@
 @use "@/client/styles/textStyles" as *;
 
 .item {
+  display: flex;
   width: 100%;
   max-width: 400px;
-  padding: 12px 16px;
-  display: flex;
   align-items: center;
-  gap: 16px;
+  padding: 12px 16px;
   background-color: $color-surface;
+  gap: 16px;
 }
 
 .switch {
@@ -16,14 +16,16 @@
 }
 
 .label {
-  margin-right: auto;
-  @include bodyLarge;
-  white-space: nowrap;
   overflow: hidden;
+  margin-right: auto;
   text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include bodyLarge;
 }
 
 .link {
   color: $color-primary;
+
   @include labelMedium;
 }

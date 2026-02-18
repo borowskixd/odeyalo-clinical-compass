@@ -14,11 +14,12 @@ export const mapGetTestQuestionsResponse = (
     id,
     title,
     questions: testQuestions.map(
-      ({ id, test_id, number, text, answer_choices }) => ({
+      ({ id, test_id, number, text, opposite_text, answer_choices }) => ({
         id,
         testId: test_id,
         number,
         text,
+        oppositeText: opposite_text,
         answerChoices: answer_choices.map(({ id, text, score }) => ({
           id,
           text,

@@ -2,21 +2,22 @@
 @use "@/client/styles/fontStyles" as *;
 
 .moodContainer {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 16px 6px;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2px;
-  color: $color-blue80;
-  text-transform: lowercase;
-  background-color: $color-blue20;
+  padding: 16px 6px;
   border-radius: 12px;
+  margin-bottom: 10px;
+  background-color: $color-blue20;
+  color: $color-blue80;
+  gap: 2px;
+  text-transform: lowercase;
 }
 
 .mood {
   width: 100%;
-  @include titleCygre;
   text-align: center;
+
+  @include titleCygre;
 }

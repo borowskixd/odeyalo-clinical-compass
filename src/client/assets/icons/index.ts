@@ -1,6 +1,5 @@
 export * from "./AddCircle";
 export * from "./ArrowForward";
-export * from "./ArrowIcon";
 export * from "./ArrowLeft";
 export * from "./ArrowRight";
 export * from "./CloseIcon";

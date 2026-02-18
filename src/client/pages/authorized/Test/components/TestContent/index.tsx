@@ -1,19 +1,12 @@
 "use client";
 
-import { notFound, useParams } from "next/navigation";
-import { type FC, useEffect, useState } from "react";
+import { Button, Icon, Icons24Solid } from "@odeyalo/uikit";
+import { useParams } from "next/navigation";
+import { type FC, useEffect, useRef, useState } from "react";
 import { SendResultButton } from "../SendResultButton";
 import styles from "./styles.module.scss";
-import { ArrowIcon } from "@/client/assets/icons";
-import {
-  Button,
-  DefaultError,
-  LoadingLoop,
-  PageTitle,
-  Radio,
-} from "@/client/components";
+import { DefaultError, LoadingLoop, PageTitle } from "@/client/components";
 import { useGetTestQuestionsQuery } from "@/client/redux";
-import { useAnalytics } from "@/shared/analytics";
 import { type SendTestResultRequestData } from "@/shared/types";
 
 export const TestContent: FC = () => {
@@ -23,48 +16,85 @@ export const TestContent: FC = () => {
   const [answers, setAnswers] = useState<SendTestResultRequestData["answers"]>(
     [],
   );
-  const { logEvent } = useAnalytics();
 
   const { data: test, ...getTestState } = useGetTestQuestionsQuery(id);
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
-    logEvent("test-page-opened", {
-      test_id: id,
-    });
-  }, [id, logEvent]);
+    if (test) {
+      setAnswers(new Array(test.questions.length).fill(undefined));
+    }
+  }, [test]);
 
-  if (getTestState.isLoading) return <LoadingLoop />;
-  if (getTestState.isError) return <DefaultError error={getTestState.error} />;
-  if (!test) notFound();
+  useEffect(() => {
+    const allAnswersSelected = answers.every((val) => typeof val === "number");
+    setSendButtonDisabled(!allAnswersSelected);
+  }, [answers]);
 
-  const selectAnswerHandler = (score: number) => {
-    setAnswers((answers) => {
-      answers[currentQuestionNumber] = score;
+  useEffect(() => {
+    if (!test) return;
 
-      setSendButtonDisabled(
-        answers.length !== test.questions.length ||
-          !answers.every((val) => typeof val === "number"),
+    const currentQuestion = test.questions[currentQuestionNumber];
+    const currentSavedAnswer = answers[currentQuestionNumber];
+
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+
+    if (currentSavedAnswer !== undefined) {
+      const selectedIndex = currentQuestion.answerChoices.findIndex(
+        (answer) => answer.score === currentSavedAnswer,
       );
 
-      return answers;
-    });
+      if (selectedIndex !== -1 && buttonRefs.current[selectedIndex]) {
+        buttonRefs.current[selectedIndex]?.focus();
+      }
+    }
+  }, [currentQuestionNumber, answers, test]);
 
+  if (getTestState.isLoading) return <LoadingLoop />;
+  if (getTestState.isError || !test)
+    return <DefaultError error={getTestState.error} />;
+
+  const currentQuestion = test.questions[currentQuestionNumber];
+  const currentSavedAnswer = answers[currentQuestionNumber];
+
+  const selectAnswerHandler = (score: number) => {
     if (
-      currentQuestionNumber >= answers.length &&
-      currentQuestionNumber !== test.questions.length - 1
-    )
-      setTimeout(nextQuestion, 500);
+      currentQuestionNumber !== test.questions.length - 1 &&
+      !answers[currentQuestionNumber]
+    ) {
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          setCurrentQuestion(currentQuestionNumber + 1);
+
+          setAnswers((prevAnswers) => {
+            const newAnswers = [...prevAnswers];
+            newAnswers[currentQuestionNumber] = score;
+            return newAnswers;
+          });
+        }, 100);
+      });
+    } else {
+      setAnswers((prevAnswers) => {
+        const newAnswers = [...prevAnswers];
+        newAnswers[currentQuestionNumber] = score;
+        return newAnswers;
+      });
+    }
   };
 
   const nextQuestion = () => {
-    setCurrentQuestion((currentQuestionNumber) => currentQuestionNumber + 1);
+    setCurrentQuestion((prev) => prev + 1);
   };
 
   const prevQuestion = () => {
-    setCurrentQuestion((currentQuestionNumber) => currentQuestionNumber - 1);
+    setCurrentQuestion((prev) => prev - 1);
   };
-
-  const currentQuestion = test.questions[currentQuestionNumber];
 
   const nextButtonDisabled =
     currentQuestionNumber + 1 >= test.questions.length ||
@@ -74,26 +104,37 @@ export const TestContent: FC = () => {
     <>
       <PageTitle className={styles.title}>{test.title}</PageTitle>
       <h4 className={styles.question}>{currentQuestion.text}</h4>
-      <div className={styles.radioButtons}>
-        {currentQuestion.answerChoices.map((answer) => {
+      <div className={styles.answerButtons}>
+        {currentQuestion.answerChoices.map((answer, index) => {
+          const isSelected = currentSavedAnswer === answer.score;
+
           return (
-            <Radio
-              key={`${currentQuestion.number - 1}-${answer.id}`}
-              name="question"
-              labelText={answer.text}
+            <Button
+              key={answer.id}
+              ref={(el: HTMLButtonElement | null) => {
+                buttonRefs.current[index] = el;
+              }}
               onClick={() => selectAnswerHandler(answer.score)}
-              defaultChecked={answers[currentQuestionNumber] === answer.score}
-            />
+              align="left"
+              view={isSelected ? "action" : "normal"}
+              width="max"
+            >
+              {answer.text}
+            </Button>
           );
         })}
       </div>
+      <h4 className={styles.question}>{currentQuestion.oppositeText}</h4>
       <div className={styles.buttons}>
         <Button
-          className={styles.button}
+          className={styles.navButton}
           onClick={prevQuestion}
           disabled={currentQuestionNumber <= 0}
         >
-          <ArrowIcon className={styles.backIcon} />
+          <Icon
+            size={24}
+            data={Icons24Solid.ChevronLeftIcon}
+          />
           Назад
         </Button>
         <SendResultButton
@@ -103,12 +144,15 @@ export const TestContent: FC = () => {
           answers={answers}
         />
         <Button
-          className={styles.button}
+          className={styles.navButton}
           onClick={nextQuestion}
           disabled={nextButtonDisabled}
         >
           Далее
-          <ArrowIcon />
+          <Icon
+            size={24}
+            data={Icons24Solid.ChevronRightIcon}
+          />
         </Button>
       </div>
     </>

@@ -2,23 +2,24 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-  @include titleXS;
   margin-bottom: 20px;
+
+  @include titleXS;
 }
 
 .kptDiary {
-  margin-bottom: 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 10px;
 }
 
 .imageContainer {
+  overflow: hidden;
   width: 100%;
   max-height: 400px;
   border-radius: 12px;
-  overflow: hidden;
   aspect-ratio: 536 / 400;
 }
 
@@ -33,19 +34,20 @@
 }
 
 .button {
-  height: 60px;
-  width: 100%;
-  padding: 0 20px;
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  height: 60px;
   align-items: center;
-  @include bodyXLBold;
-  color: $color-white100;
-  background-color: $color-blue80;
+  justify-content: space-between;
+  padding: 0 20px;
   border-radius: 12px;
+  background-color: $color-blue80;
+  color: $color-white100;
 
   & > svg {
-    height: 34px;
     width: 34px;
+    height: 34px;
   }
+
+  @include bodyXLBold;
 }

@@ -1,8 +1,7 @@
 .grid {
   display: grid;
+  gap: 40px 16px;
   grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 16px;
-  grid-row-gap: 40px;
 
   &:has(> :nth-child(odd):last-child) > :last-child {
     grid-column: 1 / -1;
@@ -12,7 +11,7 @@
     display: none;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (width <= 600px) {
     grid-template-columns: repeat(1, 1fr);
   }
 }

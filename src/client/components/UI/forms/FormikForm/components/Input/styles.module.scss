@@ -5,25 +5,27 @@
 
 .label {
   position: relative;
-  width: 100%;
   display: flex;
+  width: 100%;
   flex-flow: column;
   gap: 4px;
 }
 
 .labelText {
   white-space: pre-wrap;
-  @include titleMedium;
 
   &.required::after {
-    content: " *";
     color: $color-error;
+    content: " *";
   }
+
+  @include titleMedium;
 }
 
 .exampleText {
   display: block;
   color: $color-secondary;
   white-space: pre-wrap;
+
   @include bodySmall;
 }

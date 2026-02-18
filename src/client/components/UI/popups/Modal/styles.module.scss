@@ -3,44 +3,42 @@
 
 .container {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 16px;
   display: flex;
   justify-content: center;
-  visibility: hidden;
+  padding: 16px;
+  background-color: rgba($color-black100, 0.32);
+  inset: 0;
   opacity: 0;
+  overflow-x: auto;
   transition:
     opacity 0.2s,
     visibility 0.2s;
-  background-color: rgba($color-black100, 0.32);
-  overflow-x: auto;
+  visibility: hidden;
 
   &.opened {
+    opacity: 1;
     pointer-events: auto;
     visibility: visible;
-    opacity: 1;
   }
 }
 
 .modal {
   width: 456px;
   height: fit-content;
-  margin: auto;
   padding: 24px 16px;
-  @include bodyM;
-  background-color: $color-white100;
   border-radius: 28px;
+  margin: auto;
+  background-color: $color-white100;
+
+  @include bodyM;
 }
 
 .header {
-  min-height: 64px;
-  margin-bottom: 20px;
   display: flex;
+  min-height: 64px;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .title {
@@ -50,12 +48,12 @@
 .closeButton {
   position: relative;
   right: -8px;
-  min-width: 40px;
-  width: 40px;
-  height: 40px;
   display: flex;
-  justify-content: center;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
   align-items: center;
+  justify-content: center;
   border-radius: 50%;
   transition: background-color 0.2s;
 

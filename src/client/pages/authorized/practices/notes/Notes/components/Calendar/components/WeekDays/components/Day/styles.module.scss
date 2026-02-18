@@ -3,36 +3,36 @@
 
 .day {
   position: relative;
+  z-index: 1;
+  display: flex;
   width: 36px;
   height: 36px;
-  display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
-  cursor: pointer;
   border-radius: 8px;
-  z-index: 1;
+  cursor: pointer;
+  font-weight: 500;
 
   &::before {
-    content: "";
     position: absolute;
+    z-index: -1;
     top: -6px;
     left: -6px;
     width: 48px;
     height: 48px;
     border-radius: 16px;
-    z-index: -1;
+    content: "";
   }
 
   &::after {
-    content: "";
     position: absolute;
+    z-index: -2;
     bottom: 0;
     left: 6px;
     width: 24px;
     height: 4px;
     border-radius: 2px;
-    z-index: -2;
+    content: "";
   }
 
   &.selected {
@@ -53,10 +53,9 @@
     opacity: 0.6;
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (width <= 900px) {
     width: 24px;
     height: 24px;
-    @include bodyXL;
 
     &::before {
       width: 36px;
@@ -68,5 +67,7 @@
       bottom: -6px;
       width: 12px;
     }
+
+    @include bodyXL;
   }
 }

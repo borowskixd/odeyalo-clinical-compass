@@ -7,13 +7,13 @@
 
   &::before,
   &::after {
-    content: "";
     position: absolute;
-    top: -25px;
-    height: calc(100% + 50px);
-    width: 50vw;
-    background: $color-white70;
     z-index: 10;
+    top: -25px;
+    width: 50vw;
+    height: calc(100% + 50px);
+    background: $color-white70;
+    content: "";
   }
 
   &::before {
@@ -36,33 +36,35 @@
     );
   }
 }
+
 .swiper {
-  margin: 0;
   width: 100%;
   padding: 0 32px;
+  margin: 0;
 
   &.swiper {
     overflow: visible;
   }
 }
+
 .slide {
   height: 100%;
 }
 
 .button {
   position: absolute;
+  z-index: 15;
   top: calc(50% - 20px);
+  display: flex;
   width: 40px;
   height: 40px;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: $color-blue80;
+  justify-content: center;
   border-radius: 50%;
+  background-color: $color-blue80;
   transition:
     opacity 0.2s,
     visibility 0.2s;
-  z-index: 15;
 
   & path {
     fill: $color-white100;
@@ -70,8 +72,8 @@
 }
 
 .prevButton {
-  transform: rotate(180deg);
   left: 0;
+  transform: rotate(180deg);
 }
 
 .nextButton {

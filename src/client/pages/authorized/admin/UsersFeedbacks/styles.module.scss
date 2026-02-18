@@ -2,23 +2,25 @@
 @use "@/client/styles/variables" as *;
 
 .feedbackItem {
+  padding: 15px;
   border: 1px solid $color-outline-variant;
   border-radius: 5px;
-  padding: 15px;
   margin-bottom: 10px;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .emailText {
-  @include titleLarge;
-  color: $color-landing-primary-text;
   margin-bottom: 20px;
+  color: $color-landing-primary-text;
+
+  @include titleLarge;
 }
 
 .feedbackText {
   margin-bottom: 10px;
-  @include bodyLarge;
   color: $color-landing-black;
+
+  @include bodyLarge;
 }
 
 .feedbackList {
@@ -26,17 +28,18 @@
 }
 
 .title {
-  @include headlineLarge;
   margin-bottom: 40px;
+
+  @include headlineLarge;
 }
 
 .buttons {
-  margin-top: 20px;
   display: flex;
+  margin-top: 20px;
   gap: 8px;
 }
 
 .deleteButton {
-  cursor: pointer;
   margin-left: 10px;
+  cursor: pointer;
 }
