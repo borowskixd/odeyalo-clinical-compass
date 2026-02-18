@@ -1,9 +1,10 @@
 "use client";
 
+import { Button } from "@odeyalo/uikit";
 import { type FC, useEffect, useState } from "react";
 import { Emojis, MoodTrackerValue } from "./components";
 import styles from "./styles.module.scss";
-import { FormErrorLabel, FormikForm, PrimaryButton } from "@/client/components";
+import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
 import { selectNotesCalendarDate, useSaveMoodMutation } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
@@ -77,13 +78,15 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
           <FormErrorLabel>{errorMessage}</FormErrorLabel>
         </div>
       )}
-      <PrimaryButton
+      <Button
         type="submit"
         className={styles.button}
         disabled={isLoading}
+        view="action"
+        width="max"
       >
         Сохранить
-      </PrimaryButton>
+      </Button>
     </FormikForm>
   );
 };

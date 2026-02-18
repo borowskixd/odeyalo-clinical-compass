@@ -1,6 +1,6 @@
 "use client";
 
-import { AddableInputGroup, TextArea } from "@odeyalo/uikit";
+import { AddableInputGroup, RangeInput, TextArea } from "@odeyalo/uikit";
 import { type FC } from "react";
 import { ExerciseStructure, Grid } from "../../../../components";
 import { type GetExerciseResultResponseData } from "@/shared/types";
@@ -50,6 +50,23 @@ export const FormGenerator: FC<FormGeneratorProps> = ({
                 ? propsValueAsArray
                 : propsValueAsString)}
               component={AddableInputGroup}
+            />
+          );
+        } else if (section.type === "slider") {
+          const rangeProps = {
+            min: 1,
+            max: 5,
+            step: 1,
+            defaultValue: 3,
+            labels: ["Ужасно", "Плохо", "Нормально", "Хорошо", "Потрясающе"],
+          };
+
+          return (
+            <ExerciseStructure
+              {...commonProps}
+              key={key}
+              component={RangeInput}
+              {...rangeProps}
             />
           );
         }

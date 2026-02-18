@@ -1,9 +1,9 @@
 "use client";
 
+import { Button } from "@odeyalo/uikit";
 import { type FC, useState } from "react";
 import * as Yup from "yup";
-import styles from "./styles.module.scss";
-import { FormErrorLabel, FormikForm, PrimaryButton } from "@/client/components";
+import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useResetPasswordMutation } from "@/client/redux";
 import { mapApiErrorMessage } from "@/client/utils";
 
@@ -53,14 +53,14 @@ export const ResetPasswordForm: FC = () => {
       {isError && !!error && (
         <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>
       )}
-      <PrimaryButton
-        className={styles.button}
-        isMedium={true}
+      <Button
         type="submit"
         disabled={isLoading}
+        view="action"
+        width="max"
       >
         Сбросить пароль
-      </PrimaryButton>
+      </Button>
     </FormikForm>
   );
 };
