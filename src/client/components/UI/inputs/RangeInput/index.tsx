@@ -1,7 +1,7 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { type CSSProperties, type FC, type InputHTMLAttributes } from "react";
+import styles from "./styles.module.scss";
 
 type Props = InputHTMLAttributes<HTMLInputElement>;
 

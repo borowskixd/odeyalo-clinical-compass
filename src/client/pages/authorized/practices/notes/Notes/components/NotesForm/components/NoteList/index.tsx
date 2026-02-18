@@ -1,5 +1,6 @@
 "use client";
 
+import { type FC } from "react";
 import { Note } from "../Note";
 import styles from "./styles.module.scss";
 import { DefaultError, LoadingLoop } from "@/client/components";
@@ -8,7 +9,6 @@ import {
   selectNotesCalendarDate,
   useGetNotesByDateQuery,
 } from "@/client/redux";
-import { type FC } from "react";
 
 export const NoteList: FC = () => {
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);

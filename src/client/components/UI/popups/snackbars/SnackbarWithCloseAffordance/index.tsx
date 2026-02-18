@@ -1,11 +1,11 @@
 "use client";
 
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import { CloseIcon } from "@/client/assets/icons";
 import { Container } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import { PopupsService } from "@/client/redux";
-import { type FC } from "react";
 
 interface Props {
   isOpen: boolean;

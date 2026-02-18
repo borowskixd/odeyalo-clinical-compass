@@ -1,6 +1,5 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { type FieldConfig, useField } from "formik";
 import {
   type ChangeEvent,
@@ -10,6 +9,7 @@ import {
   type InputHTMLAttributes,
   useState,
 } from "react";
+import styles from "./styles.module.scss";
 
 type Props = FieldConfig &
   InputHTMLAttributes<HTMLInputElement> & {

@@ -1,10 +1,10 @@
 "use client";
 
+import { type FC, useState } from "react";
 import { SendApplicationForm } from "../SendApplicationForm";
 import styles from "./styles.module.scss";
 import { Modal, PrimaryButton, UserCard } from "@/client/components";
 import { type GetPsychologistsResponseData } from "@/shared/types";
-import { type FC, useState } from "react";
 
 interface Props {
   psychologist: GetPsychologistsResponseData[number];

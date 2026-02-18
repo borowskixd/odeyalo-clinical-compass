@@ -1,2 +1,2 @@
-export * from "./weekly";
 export * from "./current";
+export * from "./weekly";

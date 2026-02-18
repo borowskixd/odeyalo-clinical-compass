@@ -1,12 +1,12 @@
 "use client";
 
+import { notFound, useParams } from "next/navigation";
+import { type FC, useEffect } from "react";
 import { ProgressBar } from "../ProgressBar";
 import styles from "./styles.module.scss";
-import { notFound, useParams } from "next/navigation";
 import { DefaultError, LoadingLoop } from "@/client/components";
 import { useGetTestResultQuery } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
-import { type FC, useEffect } from "react";
 
 export const ResultContent: FC = () => {
   const { id } = useParams<{ id: string }>();

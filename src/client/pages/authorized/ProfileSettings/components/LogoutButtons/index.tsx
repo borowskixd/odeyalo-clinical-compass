@@ -1,10 +1,10 @@
+import { Button } from "@odeyalo/uikit";
+import { type FC, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { Modal } from "@/client/components";
 import { useDeleteMeMutation, useLogoutMutation } from "@/client/redux";
 import { redirectWithReload } from "@/client/utils";
 import { pages } from "@/shared/data";
-import { Button } from "@odeyalo/uikit";
-import { type FC, useEffect, useState } from "react";
 
 export const LogoutButtons: FC = () => {
   const [logout, logoutState] = useLogoutMutation();

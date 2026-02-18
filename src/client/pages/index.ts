@@ -1,3 +1,3 @@
 export * from "./authorized";
-export * from "./unauthorized";
 export * from "./errors";
+export * from "./unauthorized";

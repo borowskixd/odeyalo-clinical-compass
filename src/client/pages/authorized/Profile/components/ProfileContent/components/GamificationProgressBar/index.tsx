@@ -1,10 +1,10 @@
 "use client";
 
+import { Text } from "@odeyalo/uikit";
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import { LoadingLoop } from "@/client/components";
 import { useGetCurrentGamificationScoreQuery } from "@/client/redux";
-import { Text } from "@odeyalo/uikit";
-import { type FC } from "react";
 
 const MAX_SCORE = 40;
 

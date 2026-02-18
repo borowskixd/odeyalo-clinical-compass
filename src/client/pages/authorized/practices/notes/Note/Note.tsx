@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import { Content } from "./components";
 import { Container, ContentWrapper } from "@/client/components";
-import { type FC } from "react";
 
 export const NotePage: FC = () => {
   return (

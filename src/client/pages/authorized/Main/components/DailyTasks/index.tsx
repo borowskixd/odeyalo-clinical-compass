@@ -1,5 +1,6 @@
 "use client";
 
+import { type FC, useEffect, useState } from "react";
 import { DailyTaskCard } from "../DailyTaskCard";
 import styles from "./styles.module.scss";
 import { DefaultError, LoadingLoop } from "@/client/components";
@@ -7,7 +8,6 @@ import { useGetDailyTasksQuery } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 import { DAILY_TASK_TYPES } from "@/shared/data";
 import { type DailyTaskType } from "@/shared/types";
-import { type FC, useEffect, useState } from "react";
 
 const EXISTING_DAILY_TASKS: DailyTaskType[] = [
   DAILY_TASK_TYPES.theory,

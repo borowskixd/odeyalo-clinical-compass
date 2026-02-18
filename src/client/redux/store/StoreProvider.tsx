@@ -1,9 +1,9 @@
 "use client";
 
-import { createStore } from "..";
-import { Provider } from "react-redux";
-import { type InitialState } from "@/shared/types";
 import { type FC, type ReactNode } from "react";
+import { Provider } from "react-redux";
+import { createStore } from "..";
+import { type InitialState } from "@/shared/types";
 
 interface Props {
   children: ReactNode;

@@ -1,10 +1,10 @@
 "use client";
 
-import styles from "./styles.module.scss";
-import { type FieldConfig, useField } from "formik";
-import { mapDateToApiDateFormat } from "@/shared/utils";
 import { DatePicker, type DatePickerProps } from "@odeyalo/uikit";
+import { type FieldConfig, useField } from "formik";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
+import { mapDateToApiDateFormat } from "@/shared/utils";
 
 type Props = DatePickerProps &
   FieldConfig & {

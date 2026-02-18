@@ -1,5 +1,5 @@
-import styles from "./styles.module.scss";
 import { type FC, type HTMLAttributes } from "react";
+import styles from "./styles.module.scss";
 
 type ContentWrapperProps = HTMLAttributes<HTMLDivElement>;
 

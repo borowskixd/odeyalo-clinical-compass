@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import { Card } from "./components";
 import styles from "./styles.module.scss";
-import { type FC } from "react";
 
 interface Props {
   history: {

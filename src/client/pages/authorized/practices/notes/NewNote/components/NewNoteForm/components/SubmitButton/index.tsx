@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { useFormikContext } from "formik";
-import { PrimaryButton } from "@/client/components";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
+import { PrimaryButton } from "@/client/components";
 
 interface FormValues {
   note: string;

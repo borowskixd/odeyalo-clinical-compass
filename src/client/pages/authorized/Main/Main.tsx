@@ -1,10 +1,10 @@
+import { type FC } from "react";
 import { DailyTasks, Onboarding } from "./components";
 import styles from "./styles.module.scss";
 import { Container, ContentWrapper, PageTitle } from "@/client/components";
 import { ImageBackground } from "@/client/components/backgrounds";
-import { GamificationProgressBar } from "@/client/pages/authorized/Profile/components/ProfileContent/components";
 import { MoodTracker } from "@/client/pages/authorized/practices/notes/Notes/components";
-import { type FC } from "react";
+import { GamificationProgressBar } from "@/client/pages/authorized/Profile/components/ProfileContent/components";
 
 export const MainPage: FC = () => {
   return (

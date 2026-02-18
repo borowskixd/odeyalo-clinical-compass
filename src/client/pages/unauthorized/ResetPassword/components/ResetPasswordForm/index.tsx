@@ -1,11 +1,11 @@
 "use client";
 
-import styles from "./styles.module.scss";
+import { type FC, useState } from "react";
 import * as Yup from "yup";
+import styles from "./styles.module.scss";
 import { FormErrorLabel, FormikForm, PrimaryButton } from "@/client/components";
 import { useResetPasswordMutation } from "@/client/redux";
 import { mapApiErrorMessage } from "@/client/utils";
-import { type FC, useState } from "react";
 
 interface ResetPasswordFields {
   email: string;

@@ -1,12 +1,13 @@
 {
   "name": "odeyalo",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@odeyalo/uikit": "^0.0.9",
@@ -24,23 +25,19 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/node": "^20",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "@types/react-input-mask": "^3.0.5",
     "@types/react-redux": "^7.1.34",
-    "@typescript-eslint/eslint-plugin": "^8.6.0",
-    "@typescript-eslint/parser": "^8.6.0",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "14.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
+    "@typescript-eslint/parser": "^8.56.0",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.6",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-deprecation": "^3.0.0",
-    "eslint-plugin-import": "^2.30.0",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-react": "^7.36.1",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "prettier": "^3.3.3",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "prettier": "^3.8.1",
     "sass": "^1.71.0",
     "typescript": "^5.7.2"
   }

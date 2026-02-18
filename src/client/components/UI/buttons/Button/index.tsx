@@ -1,8 +1,8 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import Link from "next/link";
 import { type FC, type ReactNode } from "react";
+import styles from "./styles.module.scss";
 
 interface Props {
   children: ReactNode;

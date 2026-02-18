@@ -1,8 +1,8 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { Text } from "@odeyalo/uikit";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
 
 export const Onboarding: FC = () => {
   return (

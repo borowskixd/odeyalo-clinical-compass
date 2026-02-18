@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { useFormikContext } from "formik";
-import { mapMoodTrackerScoreToMoodStatus } from "@/client/utils";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
+import { mapMoodTrackerScoreToMoodStatus } from "@/client/utils";
 
 interface FormValues {
   score: number;

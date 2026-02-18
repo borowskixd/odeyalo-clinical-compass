@@ -1,6 +1,6 @@
+import { type FC, type ReactNode } from "react";
 import styles from "./styles.module.scss";
 import { Container, ContentWrapper } from "@/client/components";
-import { type FC, type ReactNode } from "react";
 
 interface Props {
   imageSrc: string;

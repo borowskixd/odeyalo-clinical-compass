@@ -1,12 +1,12 @@
 "use client";
 
+import { type FC, useEffect, useState } from "react";
 import { MoodForm, MoodList } from "./components";
 import styles from "./styles.module.scss";
 import { AddCircle } from "@/client/assets/icons";
 import { Button } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
 import { selectNotesCalendarDate, useGetMoodsQuery } from "@/client/redux";
-import { type FC, useEffect, useState } from "react";
 
 export const MoodTracker: FC = () => {
   const [formOpened, setFormOpened] = useState<boolean>(false);
@@ -15,7 +15,7 @@ export const MoodTracker: FC = () => {
 
   useEffect(() => {
     setFormOpened(false);
-  }, [notesCalendarDate, setFormOpened]);
+  }, [notesCalendarDate]);
 
   const openFormHandler = () => {
     setFormOpened(true);

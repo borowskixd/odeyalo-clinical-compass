@@ -1,7 +1,7 @@
-import styles from "./styles.module.scss";
 import Image from "next/image";
-import { DefaultAvatar } from "@/client/assets/icons";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
+import { DefaultAvatar } from "@/client/assets/icons";
 
 interface Props {
   src: string;

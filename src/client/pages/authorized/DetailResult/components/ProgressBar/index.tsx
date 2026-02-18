@@ -1,8 +1,8 @@
 "use client";
 
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import { type GetTestResultResponseData } from "@/shared/types";
-import { type FC } from "react";
 
 interface ProgressBarProps {
   scale: GetTestResultResponseData["scales"][number];

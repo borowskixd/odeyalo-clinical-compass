@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import { RegistrationForm } from "./components";
 import { FormPageLayout } from "@/client/components/layouts";
-import { type FC } from "react";
 
 export const RegistrationPage: FC = () => {
   return (

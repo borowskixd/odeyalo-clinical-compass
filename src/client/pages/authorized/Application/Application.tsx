@@ -1,7 +1,8 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { useParams, useRouter } from "next/navigation";
+import { type FC, useEffect } from "react";
+import styles from "./styles.module.scss";
 import {
   ApplicationProfileCard,
   Container,
@@ -21,7 +22,6 @@ import {
 } from "@/client/redux";
 import { ACCESS } from "@/shared/config/access";
 import { pages } from "@/shared/data";
-import { type FC, useEffect } from "react";
 
 export const ApplicationPage: FC = () => {
   const { id } = useParams<{ id: string }>();

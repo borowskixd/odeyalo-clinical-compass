@@ -1,5 +1,6 @@
 "use client";
 
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import {
   ApplicationCard,
@@ -17,7 +18,6 @@ import {
   useGetClientsQuery,
 } from "@/client/redux";
 import { ACCESS } from "@/shared/config/access";
-import { type FC } from "react";
 
 export const CabinetPage: FC = () => {
   const role = useAppSelector(selectRole);

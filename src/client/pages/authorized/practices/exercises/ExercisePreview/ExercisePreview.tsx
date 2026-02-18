@@ -1,7 +1,8 @@
 "use client";
 
-import { ExercisePageLayout } from "./components";
 import { useParams } from "next/navigation";
+import { type FC, useEffect } from "react";
+import { ExercisePageLayout } from "./components";
 import { LoadingLoop } from "@/client/components";
 import {
   useGetExerciseQuery,
@@ -10,7 +11,6 @@ import {
 import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 import { mapDatetimeToText } from "@/shared/utils";
-import { type FC, useEffect } from "react";
 
 export const ExercisePreviewPage: FC = () => {
   const { id } = useParams<{ id: string }>();

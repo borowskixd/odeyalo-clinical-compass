@@ -1,7 +1,7 @@
-import { type NavigationButton } from "../../types";
-import styles from "./styles.module.scss";
 import { Button, Icon } from "@odeyalo/uikit";
 import { type FC } from "react";
+import { type NavigationButton } from "../../types";
+import styles from "./styles.module.scss";
 
 interface Props {
   buttons: NavigationButton[];

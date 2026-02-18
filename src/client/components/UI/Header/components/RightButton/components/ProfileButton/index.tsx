@@ -1,12 +1,12 @@
 "use client";
 
+import { type FC, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { Button, ProfileImage } from "@/client/components";
 import { useAppSelector, useClickOutside } from "@/client/hooks";
 import { selectProfile } from "@/client/redux";
 import { ACCESS } from "@/shared/config/access";
 import { pages } from "@/shared/data";
-import { type FC, useRef, useState } from "react";
 
 export const ProfileButton: FC = () => {
   const profile = useAppSelector(selectProfile);

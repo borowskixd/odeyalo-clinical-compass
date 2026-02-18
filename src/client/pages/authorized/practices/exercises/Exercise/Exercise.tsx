@@ -1,11 +1,18 @@
 "use client";
 
+import { useParams, useRouter } from "next/navigation";
+import {
+  type FC,
+  type FormEventHandler,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { ExerciseHeader } from "../../components";
 import { ButtonsContainer, FormGenerator } from "./components";
 import styles from "./styles.module.scss";
 import { type FormValuesType, type ValueType } from "./types";
 import { generateInitialValue, validateExerciseData } from "./utils";
-import { useParams, useRouter } from "next/navigation";
 import {
   Container,
   ContentWrapper,
@@ -19,13 +26,6 @@ import {
 import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 import { type CompleteExerciseRequestData } from "@/shared/types";
-import {
-  type FC,
-  type FormEventHandler,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
 
 export const ExercisePage: FC = () => {
   const router = useRouter();

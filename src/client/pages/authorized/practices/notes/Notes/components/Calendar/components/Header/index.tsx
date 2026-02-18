@@ -1,12 +1,12 @@
 "use client";
 
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import { ArrowLeft, ArrowRight } from "@/client/assets/icons";
 import { Button } from "@/client/components";
 import { useAppDispatch, useAppSelector } from "@/client/hooks";
 import { notesActions, selectNotesCalendarDate } from "@/client/redux";
 import { compareDates, months } from "@/shared/utils";
-import { type FC } from "react";
 
 export const Header: FC = () => {
   const dispatch = useAppDispatch();

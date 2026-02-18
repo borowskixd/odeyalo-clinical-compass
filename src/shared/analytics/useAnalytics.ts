@@ -1,9 +1,5 @@
 "use client";
 
-import { AnalyticsContext } from "./AnalyticsProvider";
-import { type AnalyticsEventName } from "./types";
-import { useAppSelector } from "@/client/hooks";
-import { selectProfile } from "@/client/redux";
 import {
   type AnalyticsCallOptions,
   type CustomEventName,
@@ -11,6 +7,10 @@ import {
   setUserId,
 } from "@firebase/analytics";
 import { useContext, useEffect } from "react";
+import { AnalyticsContext } from "./AnalyticsProvider";
+import { type AnalyticsEventName } from "./types";
+import { useAppSelector } from "@/client/hooks";
+import { selectProfile } from "@/client/redux";
 
 export const useAnalytics = () => {
   const context = useContext(AnalyticsContext);

@@ -1,11 +1,11 @@
 "use client";
 
+import { type FC } from "react";
 import { Mood } from "../Mood";
 import styles from "./styles.module.scss";
 import { DefaultError, LoadingLoop } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
 import { selectNotesCalendarDate, useGetMoodsQuery } from "@/client/redux";
-import { type FC } from "react";
 
 export const MoodList: FC = () => {
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);

@@ -1,5 +1,6 @@
 "use client";
 
+import { type FC, useEffect, useState } from "react";
 import { Emojis, MoodTrackerValue } from "./components";
 import styles from "./styles.module.scss";
 import { FormErrorLabel, FormikForm, PrimaryButton } from "@/client/components";
@@ -7,7 +8,6 @@ import { useAppSelector } from "@/client/hooks";
 import { selectNotesCalendarDate, useSaveMoodMutation } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 import { compareDates, mapDateToApiDateFormat } from "@/shared/utils";
-import { type FC, useEffect, useState } from "react";
 
 interface Props {
   onSubmitAction: () => void;

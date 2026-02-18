@@ -1,11 +1,11 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import Link from "next/link";
+import { type FC } from "react";
+import styles from "./styles.module.scss";
 import { LogoIcon, TelegramIcon, VkIcon } from "@/client/assets/icons";
 import { AppLink, Container, IconButton } from "@/client/components";
 import { pages } from "@/shared/data";
-import { type FC } from "react";
 
 export const Footer: FC = () => {
   return (

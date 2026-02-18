@@ -1,13 +1,13 @@
-import { api } from "../api";
-import { authReducer, notesReducer, popupsReducer } from "../features";
-import { type InitialState } from "@/shared/types";
 import {
+  combineReducers,
+  configureStore,
   type Store,
   type ThunkDispatch,
   type UnknownAction,
-  combineReducers,
-  configureStore,
 } from "@reduxjs/toolkit";
+import { api } from "../api";
+import { authReducer, notesReducer, popupsReducer } from "../features";
+import { type InitialState } from "@/shared/types";
 
 const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,

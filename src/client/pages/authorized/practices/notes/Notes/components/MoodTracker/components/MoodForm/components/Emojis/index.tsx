@@ -1,7 +1,7 @@
+import { type FC, useState } from "react";
 import styles from "./styles.module.scss";
 import { Button } from "@/client/components";
 import { useGetEmojisQuery } from "@/client/redux";
-import { type FC, useState } from "react";
 
 interface Props {
   onUpdate: (emojiIds: number[]) => void;

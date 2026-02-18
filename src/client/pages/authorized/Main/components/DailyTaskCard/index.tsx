@@ -1,8 +1,8 @@
-import styles from "./styles.module.scss";
 import Link from "next/link";
+import { type FC } from "react";
+import styles from "./styles.module.scss";
 import { type GetDailyTasksResponse } from "@/shared/types";
 import { getDailyTaskLink } from "@/shared/utils";
-import { type FC } from "react";
 
 interface DailyTasks {
   dailyTask: GetDailyTasksResponse[number];

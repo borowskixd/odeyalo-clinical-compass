@@ -1,5 +1,5 @@
-import styles from "./styles.module.scss";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
 
 interface Props {
   id: string;

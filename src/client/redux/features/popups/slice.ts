@@ -1,6 +1,6 @@
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { defaultInitialState, reducers } from "@/shared/data";
 import { type PopupsState } from "@/shared/types";
-import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: PopupsState = defaultInitialState.popupsReducer;
 
