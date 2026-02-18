@@ -2,19 +2,19 @@
 
 import styles from "./styles.module.scss";
 import { usePathname } from "next/navigation";
-import { Flame, Grid4, Leaderboard, TextSnippet } from "@/client/assets/icons";
 import { SecondaryButton } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
 import { selectProfile } from "@/client/redux";
 import { type ACCESS } from "@/shared/config/access";
 import { type ActiveNavId, pages } from "@/shared/data";
+import { Icon, type IconProps, Icons24Solid } from "@odeyalo/uikit";
 import { type FC } from "react";
 
 interface NavLink {
   href: string;
   activeNavId: ActiveNavId;
   title: string;
-  Icon?: FC<any>;
+  icon?: IconProps["data"];
 }
 
 type Nav = Record<keyof typeof ACCESS, NavLink[]>;
@@ -42,25 +42,25 @@ const rolesNav: Nav = {
       href: pages.main.path,
       activeNavId: pages.main.activeNavId,
       title: "План",
-      Icon: Grid4,
+      icon: Icons24Solid.HomeIcon,
     },
     {
       href: pages.articles.path,
       activeNavId: pages.articles.activeNavId,
       title: "Теория",
-      Icon: TextSnippet,
+      icon: Icons24Solid.NewspaperIcon,
     },
     {
       href: pages.practices.path,
       activeNavId: pages.practices.activeNavId,
       title: "Практика",
-      Icon: Flame,
+      icon: Icons24Solid.AcademicCapIcon,
     },
     {
       href: pages.tests.path,
       activeNavId: pages.tests.activeNavId,
       title: "Тесты",
-      Icon: Leaderboard,
+      icon: Icons24Solid.ChartBarIcon,
     },
   ],
   hr: [
@@ -68,25 +68,25 @@ const rolesNav: Nav = {
       href: pages.main.path,
       activeNavId: pages.main.activeNavId,
       title: "План",
-      Icon: Grid4,
+      icon: Icons24Solid.HomeIcon,
     },
     {
       href: pages.articles.path,
       activeNavId: pages.articles.activeNavId,
       title: "Теория",
-      Icon: TextSnippet,
+      icon: Icons24Solid.NewspaperIcon,
     },
     {
       href: pages.practices.path,
       activeNavId: pages.practices.activeNavId,
       title: "Практика",
-      Icon: Flame,
+      icon: Icons24Solid.AcademicCapIcon,
     },
     {
       href: pages.tests.path,
       activeNavId: pages.tests.activeNavId,
       title: "Тесты",
-      Icon: Leaderboard,
+      icon: Icons24Solid.ChartBarIcon,
     },
   ],
   psychologist: [
@@ -94,25 +94,25 @@ const rolesNav: Nav = {
       href: pages.main.path,
       activeNavId: pages.main.activeNavId,
       title: "План",
-      Icon: Grid4,
+      icon: Icons24Solid.HomeIcon,
     },
     {
       href: pages.articles.path,
       activeNavId: pages.articles.activeNavId,
       title: "Теория",
-      Icon: TextSnippet,
+      icon: Icons24Solid.NewspaperIcon,
     },
     {
       href: pages.practices.path,
       activeNavId: pages.practices.activeNavId,
       title: "Практика",
-      Icon: Flame,
+      icon: Icons24Solid.AcademicCapIcon,
     },
     {
       href: pages.tests.path,
       activeNavId: pages.tests.activeNavId,
       title: "Тесты",
-      Icon: Leaderboard,
+      icon: Icons24Solid.ChartBarIcon,
     },
   ],
   unauthorized: [],
@@ -132,15 +132,18 @@ export const NavBar: FC = () => {
 
   return (
     <nav className={styles.nav}>
-      {navList.map(({ title, href, activeNavId, Icon }) => (
+      {navList.map(({ title, href, activeNavId, icon }) => (
         <SecondaryButton
           key={title}
           className={`${styles.navLink} ${activeNavId === currentPage.activeNavId ? styles.active : ""}`}
           href={href}
         >
-          {!!Icon && (
+          {!!icon && (
             <div className={`${styles.iconWrapper}`}>
-              <Icon />
+              <Icon
+                data={icon}
+                size={24}
+              />
             </div>
           )}
           {title}
