@@ -1,12 +1,12 @@
 @use "@/client/styles/fontStyles" as *;
 
 .content {
-  max-width: 420px;
   display: flex;
+  max-width: 420px;
   flex-flow: column;
+  justify-content: flex-start;
   gap: 24px;
   white-space: pre-wrap;
-  justify-content: flex-start;
 
   @include bodyM;
 }
@@ -16,7 +16,8 @@
 }
 
 .header {
-  @include bodyXLBold;
-  margin-bottom: 20px;
   height: 24px;
+  margin-bottom: 20px;
+
+  @include bodyXLBold;
 }

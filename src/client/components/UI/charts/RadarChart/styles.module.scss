@@ -14,9 +14,9 @@
 }
 
 .chartGrid {
+  fill: rgba($color-primary-fixed, 0.3);
   stroke: $color-primary-fixed-dim;
   stroke-width: 4px;
-  fill: rgba($color-primary-fixed, 0.3);
 }
 
 .chartAxis {
@@ -24,18 +24,19 @@
 }
 
 .chartAxisText {
-  font-size: 0px;
+  font-size: 0;
 }
 
 .chartText {
   fill: $color-primary;
+
   @include titleMedium;
 }
 
 .radarField {
+  fill: $color-primary;
   stroke: $color-primary;
   stroke-width: 5px;
-  fill: $color-primary;
 }
 
 .point {
@@ -71,8 +72,8 @@
 
 .activeDot {
   fill: $color-primary-fixed;
-  stroke-width: 3px;
   stroke: $color-primary;
+  stroke-width: 3px;
 }
 
 .maxValuesActiveDot {

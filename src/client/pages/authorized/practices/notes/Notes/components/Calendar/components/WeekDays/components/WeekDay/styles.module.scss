@@ -1,12 +1,12 @@
 .weekDay {
+  display: flex;
   min-width: 36px;
   max-width: 36px;
-  display: flex;
   flex-flow: column;
   justify-content: center;
   gap: 20px;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (width <= 900px) {
     min-width: 24px;
     max-width: 24px;
     gap: 16px;

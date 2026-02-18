@@ -6,14 +6,15 @@
   width: 360px;
   height: fit-content;
   padding: 16px;
+
   @include card;
 }
 
 .cardHeader {
-  margin-bottom: 12px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 .profileInfo {
@@ -27,22 +28,23 @@
 }
 
 .status {
-  @include bodyMedium;
   color: $color-on-primary-fixed-variant;
 
   &.isOnline {
     color: $color-inverse-primary;
   }
+
+  @include bodyMedium;
 }
 
 .moreButton {
   position: relative;
   right: -12px;
+  display: flex;
   width: 48px;
   height: 48px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .profileImage {
@@ -53,15 +55,17 @@
 .info {
   margin-bottom: 8px;
   color: $color-on-surface-variant;
+
   @include bodyMedium;
 }
 
 .problems {
-  @include labelLarge;
-  margin-top: 16px;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 16px;
   gap: 8px;
+
+  @include labelLarge;
 }
 
 .cardButton {

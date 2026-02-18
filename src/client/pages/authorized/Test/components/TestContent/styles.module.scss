@@ -4,7 +4,7 @@
 .title {
   margin-bottom: 30px;
 
-  @media screen and (max-width: 450px) {
+  @media screen and (width <= 450px) {
     font-size: 24px;
     font-weight: 600;
     line-height: 30px;
@@ -13,45 +13,43 @@
 
 .question {
   margin-bottom: 20px;
+
   @include bodyXL;
 }
 
-.radioButtons {
+.answerButtons {
   display: flex;
-  flex-flow: column;
-  gap: 28px;
+  width: 100%;
+  flex-direction: column;
+  margin-bottom: 20px;
+  gap: 16px;
 }
 
 .buttons {
-  margin-top: 62px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 52px;
   gap: 32px;
 }
 
-.button {
+.navButton {
+  height: 36px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
   color: $color-blue80;
-  @include bodyM;
-  display: flex;
-  align-items: center;
-  gap: 8px;
   transition: color 0.2s;
-
-  & path {
-    stroke: $color-blue80;
-  }
 
   &:disabled {
     color: $color-blue60;
-
-    & path {
-      stroke: $color-blue60;
-    }
   }
-}
 
-.backIcon {
-  transform: rotate(180deg);
+  &:hover:not(:disabled) {
+    background-color: transparent;
+    color: $color-blue100;
+  }
+
+  @include bodyM;
 }

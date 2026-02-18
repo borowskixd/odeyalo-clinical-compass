@@ -13,19 +13,20 @@
 }
 
 .diaryList {
-  width: 100%;
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 10px;
 }
 
 .textInfo {
-  width: 100%;
-  padding: 15px;
   display: flex;
-  justify-content: center;
-  @include bodyL;
+  width: 100%;
   align-items: center;
-  background-color: $color-white70;
+  justify-content: center;
+  padding: 15px;
   border-radius: 12px;
+  background-color: $color-white70;
+
+  @include bodyL;
 }

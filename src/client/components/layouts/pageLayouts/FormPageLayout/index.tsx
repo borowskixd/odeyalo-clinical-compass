@@ -1,7 +1,9 @@
+"use client";
+
+import { Icon, Icons24Solid } from "@odeyalo/uikit";
 import Link from "next/link";
 import { type FC, type ReactNode } from "react";
 import styles from "./styles.module.scss";
-import { ArrowIcon } from "@/client/assets/icons";
 import { Container, ContentWrapper, PageTitle } from "@/client/components";
 import { FormBackground } from "@/client/components/backgrounds";
 
@@ -28,7 +30,7 @@ export const FormPageLayout: FC<FormPageLayoutProps> = ({
               href={comeBackLink}
               className={styles.comeBackButton}
             >
-              <ArrowIcon />
+              <Icon data={Icons24Solid.ChevronRightIcon} />
             </Link>
           </div>
         )}

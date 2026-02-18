@@ -12,9 +12,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
-  height: 0;
   width: 0;
+  height: 0;
+  opacity: 0;
 
   &:disabled + .switch {
     border-color: rgba($color-on-surface, 0.12);
@@ -29,8 +29,8 @@
     }
 
     .circle {
-      opacity: 0.38;
       background-color: $color-on-surface;
+      opacity: 0.38;
     }
   }
 
@@ -55,8 +55,8 @@
     }
 
     & > .circle {
-      transform: translateX(26px) scale(1.5);
       background-color: $color-white;
+      transform: translateX(26px) scale(1.5);
     }
 
     &:active {
@@ -65,8 +65,8 @@
       }
 
       & > .circle {
-        transform: translateX(26px) scale(1.75);
         background-color: $color-primary-container;
+        transform: translateX(26px) scale(1.75);
       }
     }
   }
@@ -83,37 +83,37 @@
     }
 
     .circle {
-      opacity: 1;
       background-color: $color-surface;
+      opacity: 1;
     }
   }
 }
 
 .switch {
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
   align-items: center;
-  background-color: $color-surface-container-highest;
   border: 2px solid $color-outline;
   border-radius: 26px;
+  background-color: $color-surface-container-highest;
+  cursor: pointer;
   transition:
     border-color 0.2s,
     background-color 0.2s;
-  cursor: pointer;
 
   &::before {
     position: absolute;
-    transform: translateX(-6px);
-    content: "";
     display: block;
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    content: "";
+    pointer-events: none;
+    transform: translateX(-6px);
     transition:
       transform 0.2s,
       background-color 0.2s;
-    pointer-events: none;
   }
 
   &:hover::before {
@@ -126,8 +126,8 @@
     }
 
     & > .circle {
-      transform: translateX(6px) scale(1.75);
       background-color: $color-on-surface-variant;
+      transform: translateX(6px) scale(1.75);
     }
   }
 }

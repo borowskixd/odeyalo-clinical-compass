@@ -1,21 +1,21 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-  @include titleXS;
   margin-bottom: 16px;
+
+  @include titleXS;
 }
 
 .list {
   display: grid;
+  gap: 20px 16px;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  column-gap: 16px;
-  row-gap: 20px;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (width <= 600px) {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 
-  @media screen and (max-width: 450px) {
+  @media screen and (width <= 450px) {
     grid-template-columns: 1fr;
   }
 }

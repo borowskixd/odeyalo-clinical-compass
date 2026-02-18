@@ -2,11 +2,11 @@
 @use "@/client/styles/colors" as *;
 
 .imageContainer {
-  max-width: 420px;
-  width: 100%;
-  aspect-ratio: 3/2;
-  border-radius: 12px;
   overflow: hidden;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 12px;
+  aspect-ratio: 3/2;
 }
 
 .image {
@@ -17,6 +17,7 @@
 
 .title {
   margin-top: 10px;
+
   @include bodyLBold;
 }
 
@@ -27,16 +28,14 @@
 }
 
 .tag {
-  margin-top: 10px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 6px 16px;
-  gap: 10px;
-
   max-width: 100px;
-
-  background: $color-white70;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
   border-radius: 12px;
+  margin-top: 10px;
+  background: $color-white70;
+  gap: 10px;
 }

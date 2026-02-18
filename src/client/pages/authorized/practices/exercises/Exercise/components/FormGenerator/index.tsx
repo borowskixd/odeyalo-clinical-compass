@@ -1,4 +1,4 @@
-import { AddableInputGroup, TextArea } from "@odeyalo/uikit";
+import { AddableInputGroup, RangeInput, TextArea } from "@odeyalo/uikit";
 import { type ChangeEventHandler, type FC, type ReactNode } from "react";
 import { ExerciseStructure, Grid } from "../../../../components";
 import { type ValueType } from "../../types";
@@ -58,6 +58,28 @@ export const FormGenerator: FC<Props> = ({
                 key={section.id}
                 component={AddableInputGroup}
                 onUpdate={changeHandler}
+              />
+            );
+          } else if (section.type === "slider") {
+            const changeHandler = (value: number) => {
+              handler(commonProps.name, value.toString());
+            };
+
+            const rangeProps = {
+              min: 1,
+              max: 5,
+              step: 1,
+              defaultValue: 3,
+              labels: ["Ужасно", "Плохо", "Нормально", "Хорошо", "Потрясающе"],
+              onUpdate: changeHandler, // Теперь это (value: number) => void
+            };
+
+            component = (
+              <ExerciseStructure
+                {...commonProps}
+                key={section.id}
+                component={RangeInput}
+                {...rangeProps}
               />
             );
           }

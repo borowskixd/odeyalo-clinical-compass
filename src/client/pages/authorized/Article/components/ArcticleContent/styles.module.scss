@@ -5,6 +5,7 @@
   margin-top: 32px;
   gap: 24px;
   white-space: pre-wrap;
+
   @include bodyM;
 }
 
@@ -13,20 +14,21 @@
   gap: 20px;
   grid-template-columns: 3fr 2fr;
 
-  @media screen and (max-width: 707px){
+  @media screen and (width <= 707px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
   }
 }
 
 .imageContainer {
-  max-width: 1128px;
-  width: 100%;
-  aspect-ratio: 4.5/2;
-  border-radius: 12px;
   overflow: hidden;
+  width: 100%;
+  max-width: 1128px;
+  border-radius: 12px;
   margin-bottom: 30px;
-  @media screen and (max-width: 707px){
+  aspect-ratio: 4.5/2;
+
+  @media screen and (width <= 707px) {
     display: none;
   }
 }
