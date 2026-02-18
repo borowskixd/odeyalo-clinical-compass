@@ -1,6 +1,6 @@
 "use client";
 
-import { ProgressBar, WeeklyChart } from "./components";
+import { GamificationProgressBar, WeeklyChart } from "./components";
 import styles from "./styles.module.scss";
 import { PageTitle } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
@@ -37,7 +37,7 @@ export const ProfileContent: FC = () => {
             >
               Ментальное здоровье
             </Text>
-            <ProgressBar />
+            <GamificationProgressBar />
           </div>
           <div>
             <Text

@@ -1,2 +1,2 @@
-export { ProgressBar } from "./ProgressBar";
+export { GamificationProgressBar } from "./GamificationProgressBar";
 export { WeeklyChart } from "./WeeklyChart";
