@@ -2,18 +2,19 @@
 @use "@/client/styles/colors" as *;
 
 .content {
-  max-width: 648px;
-  margin-top: 32px;
   display: flex;
+  max-width: 648px;
   flex-flow: column;
+  justify-content: flex-end;
+  margin-top: 32px;
   gap: 5px;
   white-space: pre-wrap;
-  justify-content: flex-end;
 
   @include bodyM;
 }
 
 .subtitle {
-  @include bodyXLBold;
   margin-bottom: 10px;
+
+  @include bodyXLBold;
 }

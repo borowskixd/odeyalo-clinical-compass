@@ -1,52 +1,53 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-  @include titleCygre;
   text-transform: capitalize;
 
-  @media screen and (max-width: 900px) {
+  @include titleCygre;
+
+  @media screen and (width <= 900px) {
     @include titleXS;
   }
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .buttons {
   display: flex;
   gap: 14px;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (width <= 900px) {
     gap: 10px;
   }
 }
 
 .button {
-  height: 32px;
-  width: 32px;
   display: flex;
-  justify-content: center;
+  width: 32px;
+  height: 32px;
   align-items: center;
+  justify-content: center;
 
   & > svg {
-    height: 32px;
     width: 32px;
+    height: 32px;
   }
 
   &:disabled {
     opacity: 0.6;
   }
 
-  @media screen and (max-width: 900px) {
-    height: 24px;
+  @media screen and (width <= 900px) {
     width: 24px;
+    height: 24px;
 
     & > svg {
-      height: 24px;
       width: 24px;
+      height: 24px;
     }
   }
 }

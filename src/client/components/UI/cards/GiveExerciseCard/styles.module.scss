@@ -3,15 +3,16 @@
 @use "@/client/styles/mixins" as *;
 
 .card {
-  padding: 12px 12px 8px;
   display: flex;
   flex-flow: column;
+  padding: 12px 12px 8px;
   gap: 8px;
-  @include card;
 
   &:hover > .button {
     opacity: 1;
   }
+
+  @include card;
 }
 
 .title {
@@ -20,6 +21,7 @@
 
 .description {
   color: $color-on-surface-variant;
+
   @include bodyMedium;
 }
 
@@ -27,7 +29,8 @@
   margin-top: auto;
   margin-left: auto;
   color: $color-primary;
-  @include labelSmall;
   opacity: 0;
   transition: opacity 0.2s;
+
+  @include labelSmall;
 }

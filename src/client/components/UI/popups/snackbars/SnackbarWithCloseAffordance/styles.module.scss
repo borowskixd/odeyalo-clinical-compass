@@ -6,51 +6,52 @@
 }
 
 .snackbar {
-  width: 344px;
-  padding-left: 16px;
-  margin-left: auto;
   display: flex;
-  justify-content: space-between;
+  width: 344px;
   align-items: center;
-  background-color: $color-inverse-surface;
+  justify-content: space-between;
+  padding-left: 16px;
   border-radius: 4px;
+  margin-left: auto;
+  background-color: $color-inverse-surface;
   box-shadow:
-    0px 1px 3px 0px rgba(0, 0, 0, 0.3),
-    0px 4px 8px 3px rgba(0, 0, 0, 0.15);
-  visibility: hidden;
+    0 1px 3px 0 rgb(0 0 0 / 30%),
+    0 4px 8px 3px rgb(0 0 0 / 15%);
   opacity: 0;
+  pointer-events: auto;
   transition:
     visibility 0.2s,
     opacity 0.2s;
-  pointer-events: auto;
+  visibility: hidden;
 
   &.opened {
-    visibility: visible;
     opacity: 1;
+    visibility: visible;
   }
 }
 
 .label {
   padding: 14px 0;
   color: $color-inverse-on-surface;
+
   @include bodyMedium;
 }
 
 .closeButtonContainer {
+  display: flex;
   min-width: 48px;
   max-width: 48px;
   height: 48px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .closeButton {
+  display: flex;
   width: 40px;
   height: 40px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   border-radius: 50%;
   transition: background-color 0.2s;
 

@@ -3,20 +3,23 @@
 @use "@/client/styles/mixins" as *;
 
 .testCard {
-  width: 360px;
-  padding: 16px;
   display: flex;
+  width: 360px;
   flex-flow: column;
+  padding: 16px;
   gap: 6px;
+
   @include card;
 }
 
 .testTitle {
   color: $color-on-surface-variant;
+
   @include titleSmall;
 }
 
 .testLink {
   color: $color-primary;
+
   @include labelSmall;
 }

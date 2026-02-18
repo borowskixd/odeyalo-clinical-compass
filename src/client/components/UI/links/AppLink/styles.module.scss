@@ -5,11 +5,12 @@
   color: $color-primary;
   text-decoration: underline;
   text-decoration-color: $color-primary;
-  @include labelLarge;
   transition: text-decoration-color 0.2s;
 
   &:hover {
     text-decoration: underline;
     text-decoration-color: transparent;
   }
+
+  @include labelLarge;
 }

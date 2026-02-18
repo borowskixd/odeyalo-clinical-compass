@@ -4,24 +4,24 @@
 }
 
 h3.title {
+  margin-bottom: 40px;
   font-size: 40px;
   line-height: 44px;
   text-align: center;
-  margin-bottom: 40px;
 }
 
 .partners {
   display: flex;
-  gap: 20px;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .partnerLink {
   display: flex;
+  height: 100%;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
 .partnerImage {

@@ -4,7 +4,7 @@
 .title {
   margin-bottom: 30px;
 
-  @media screen and (max-width: 450px) {
+  @media screen and (width <= 450px) {
     font-size: 24px;
     font-weight: 600;
     line-height: 30px;
@@ -13,101 +13,43 @@
 
 .question {
   margin-bottom: 20px;
+
   @include bodyXL;
 }
 
 .answerButtons {
   display: flex;
+  width: 100%;
   flex-direction: column;
-  gap: 16px;
-  width: 100%;
   margin-bottom: 20px;
-}
-
-.answerButton {
-  min-width: 500px;
-  width: 100%;
-  text-align: left;
-  justify-content: flex-start;
-  
-  display: flex;
-  width: 100%;
-
-  & :global(.mantine-Button-label) {
-    justify-content: flex-start;
-    width: 100%;
-    text-align: left;
-  }
-
-  & > * {
-    justify-content: flex-start;
-    text-align: left;
-    width: 100%;
-  }
+  gap: 16px;
 }
 
 .buttons {
-  margin-top: 52px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 52px;
   gap: 32px;
 }
 
 .navButton {
+  height: 36px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
   color: $color-blue80;
-  @include bodyM;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center;
-  gap: 8px;
   transition: color 0.2s;
-  background-color: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  min-width: auto !important;
-  height: 24px !important;
-  line-height: 24px !important;
-
-  & svg {
-    display: block !important;
-    width: 24px !important;
-    height: 24px !important;
-    flex-shrink: 0;
-  }
-
-  & svg,
-  & path {
-    stroke: $color-blue80;
-  }
-
-  & span {
-    display: inline-flex !important;
-    align-items: center !important;
-    line-height: 24px !important;
-    height: 24px !important;
-  }
 
   &:disabled {
     color: $color-blue60;
-
-    & svg,
-    & path {
-      stroke: $color-blue60;
-    }
   }
 
   &:hover:not(:disabled) {
+    background-color: transparent;
     color: $color-blue100;
-    
-    & svg,
-    & path {
-      stroke: $color-blue100;
-    }
   }
-}
 
-.backIcon {
-  transform: rotate(180deg);
+  @include bodyM;
 }

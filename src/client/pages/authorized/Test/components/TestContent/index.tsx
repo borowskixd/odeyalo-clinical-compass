@@ -2,12 +2,11 @@
 
 import { SendResultButton } from "../SendResultButton";
 import styles from "./styles.module.scss";
-import { notFound, useParams } from "next/navigation";
-import { ArrowIcon } from "@/client/assets/icons";
+import { useParams } from "next/navigation";
 import { DefaultError, LoadingLoop, PageTitle } from "@/client/components";
 import { useGetTestQuestionsQuery } from "@/client/redux";
 import { type SendTestResultRequestData } from "@/shared/types";
-import { Button } from "@odeyalo/uikit";
+import { Button, Icon, Icons24Solid } from "@odeyalo/uikit";
 import { type FC, useEffect, useRef, useState } from "react";
 
 export const TestContent: FC = () => {
@@ -54,8 +53,8 @@ export const TestContent: FC = () => {
   }, [currentQuestionNumber, answers, test]);
 
   if (getTestState.isLoading) return <LoadingLoop />;
-  if (getTestState.isError) return <DefaultError error={getTestState.error} />;
-  if (!test) notFound();
+  if (getTestState.isError || !test)
+    return <DefaultError error={getTestState.error} />;
 
   const currentQuestion = test.questions[currentQuestionNumber];
   const currentSavedAnswer = answers[currentQuestionNumber];
@@ -66,13 +65,10 @@ export const TestContent: FC = () => {
   );
 
   const selectAnswerHandler = (score: number) => {
-    setAnswers((prevAnswers) => {
-      const newAnswers = [...prevAnswers];
-      newAnswers[currentQuestionNumber] = score;
-      return newAnswers;
-    });
-
-    if (currentQuestionNumber !== test.questions.length - 1) {
+    if (
+      currentQuestionNumber !== test.questions.length - 1 &&
+      !answers[currentQuestionNumber]
+    ) {
       if (document.activeElement instanceof HTMLElement) {
         document.activeElement.blur();
       }
@@ -80,7 +76,19 @@ export const TestContent: FC = () => {
       requestAnimationFrame(() => {
         setTimeout(() => {
           setCurrentQuestion(currentQuestionNumber + 1);
-        }, 50);
+
+          setAnswers((prevAnswers) => {
+            const newAnswers = [...prevAnswers];
+            newAnswers[currentQuestionNumber] = score;
+            return newAnswers;
+          });
+        }, 100);
+      });
+    } else {
+      setAnswers((prevAnswers) => {
+        const newAnswers = [...prevAnswers];
+        newAnswers[currentQuestionNumber] = score;
+        return newAnswers;
       });
     }
   };
@@ -111,10 +119,10 @@ export const TestContent: FC = () => {
               ref={(el: HTMLButtonElement | null) => {
                 buttonRefs.current[index] = el;
               }}
-              className={`${styles.answerButton} ${isSelected ? styles.selected : ""}`}
               onClick={() => selectAnswerHandler(answer.score)}
-              view="normal"
-              variant={isSelected ? "primary" : "secondary"}
+              align="left"
+              view={isSelected ? "action" : "normal"}
+              width="max"
             >
               {answer.text}
             </Button>
@@ -127,10 +135,11 @@ export const TestContent: FC = () => {
           className={styles.navButton}
           onClick={prevQuestion}
           disabled={currentQuestionNumber <= 0}
-          view="normal"
-          variant="text"
         >
-          <ArrowIcon className={styles.backIcon} />
+          <Icon
+            size={24}
+            data={Icons24Solid.ChevronLeftIcon}
+          />
           Назад
         </Button>
         <SendResultButton
@@ -143,11 +152,12 @@ export const TestContent: FC = () => {
           className={styles.navButton}
           onClick={nextQuestion}
           disabled={nextButtonDisabled}
-          view="normal"
-          variant="text"
         >
           Далее
-          <ArrowIcon />
+          <Icon
+            size={24}
+            data={Icons24Solid.ChevronRightIcon}
+          />
         </Button>
       </div>
     </>

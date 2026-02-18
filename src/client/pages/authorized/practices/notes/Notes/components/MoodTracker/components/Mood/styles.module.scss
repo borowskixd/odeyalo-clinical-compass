@@ -9,17 +9,18 @@
 }
 
 .moodContainer {
+  display: flex;
   width: 100%;
   height: 65px;
-  padding: 0 20px;
-  display: flex;
   align-items: center;
   justify-content: space-between;
-  @include titleCygre;
-  font-size: 20px;
-  color: $color-white100;
-  background-color: $color-blue80;
+  padding: 0 20px;
   border-radius: 28px;
+  background-color: $color-blue80;
+  color: $color-white100;
+  font-size: 20px;
+
+  @include titleCygre;
 }
 
 .mood {
@@ -31,19 +32,19 @@
 }
 
 .emojisContainer {
-  width: 100%;
   display: flex;
+  width: 100%;
   gap: 10px;
 }
 
 .emoji {
-  height: 54px;
+  display: flex;
   width: 100%;
   min-width: 68px;
-  display: flex;
+  height: 54px;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
-  background-color: $color-white70;
   border-radius: 27px;
+  background-color: $color-white70;
+  font-size: 28px;
 }

@@ -1,5 +1,4 @@
 export * from "./types";
-export * from "./ArrowIcon";
 export * from "./CloseIcon";
 export * from "./DefaultAvatarIcon";
 export * from "./LoadingIcon";

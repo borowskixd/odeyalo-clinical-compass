@@ -2,6 +2,7 @@
 
 .date {
   margin: 10px 0 30px;
-  @include bodyLBold;
   text-transform: capitalize;
+
+  @include bodyLBold;
 }

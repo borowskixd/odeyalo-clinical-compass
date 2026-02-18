@@ -2,16 +2,16 @@
 @use "@/client/styles/fontStyles" as *;
 
 .calendar {
+  display: flex;
   width: 100%;
   height: fit-content;
-  padding: 20px;
-  display: flex;
   flex-direction: column;
-  gap: 20px;
-  background-color: $color-white70;
+  padding: 20px;
   border-radius: 12px;
+  background-color: $color-white70;
+  gap: 20px;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (width <= 900px) {
     gap: 10px;
   }
 }

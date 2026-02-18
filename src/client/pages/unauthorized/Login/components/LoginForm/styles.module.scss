@@ -6,12 +6,13 @@
   margin-bottom: -4px;
   margin-left: auto;
   color: $color-black100;
+
   @include bodyM;
 }
 
 .buttons {
-  width: 100%;
   display: flex;
+  width: 100%;
   flex-flow: column;
   gap: 16px;
 }
