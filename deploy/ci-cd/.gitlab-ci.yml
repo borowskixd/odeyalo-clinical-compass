@@ -20,12 +20,19 @@ build-job:
   script:
     - docker build -f ./deploy/docker/Dockerfile -t odeyalo-frontend-image .
 
-lint-job:
+eslint-job:
   stage: test
   extends:
     - .standard-rules
   script:
     - docker run --rm odeyalo-frontend-image npm run lint
+
+stylelint-job:
+  stage: test
+  extends:
+    - .standard-rules
+  script:
+    - docker run --rm odeyalo-frontend-image npm run stylelint
 
 deploy-job:
   stage: deploy
