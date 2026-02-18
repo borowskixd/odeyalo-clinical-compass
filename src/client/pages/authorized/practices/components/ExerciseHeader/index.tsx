@@ -1,7 +1,7 @@
-import styles from "./styles.module.scss";
-import { PageTitle } from "@/client/components";
 import { Text } from "@odeyalo/uikit";
 import { type FC, type ReactNode } from "react";
+import styles from "./styles.module.scss";
+import { PageTitle } from "@/client/components";
 
 interface Props {
   title: ReactNode;

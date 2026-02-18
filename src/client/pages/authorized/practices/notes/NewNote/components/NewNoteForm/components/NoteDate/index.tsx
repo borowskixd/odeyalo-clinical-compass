@@ -1,9 +1,9 @@
 "use client";
 
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import { PageTitle } from "@/client/components";
 import { days, months } from "@/shared/utils";
-import { type FC } from "react";
 
 interface Props {
   date: Date;

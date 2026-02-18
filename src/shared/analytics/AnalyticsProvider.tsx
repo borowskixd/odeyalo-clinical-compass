@@ -3,9 +3,9 @@
 import { getAnalytics, isSupported } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import {
+  createContext,
   type FC,
   type ReactNode,
-  createContext,
   useEffect,
   useState,
 } from "react";

@@ -1,5 +1,6 @@
 "use client";
 
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import {
   DefaultError,
@@ -8,7 +9,6 @@ import {
   TestCard,
 } from "@/client/components";
 import { useGetUserPassedTestsQuery } from "@/client/redux";
-import { type FC } from "react";
 
 interface Props {
   userId: string;

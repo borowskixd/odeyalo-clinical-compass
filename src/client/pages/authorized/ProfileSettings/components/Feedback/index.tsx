@@ -1,12 +1,12 @@
 "use client";
 
+import { Button, Text } from "@odeyalo/uikit";
+import { type FC } from "react";
 import { FEEDBACK_EMAIL } from "../../constants";
 import { type SectionProps } from "../../types";
 import { ProfileSection } from "../ProfileSection";
 import { useAppDispatch } from "@/client/hooks";
 import { PopupsService } from "@/client/redux";
-import { Button, Text } from "@odeyalo/uikit";
-import { type FC } from "react";
 
 export const Feedback: FC<SectionProps> = (props) => {
   const dispatch = useAppDispatch();

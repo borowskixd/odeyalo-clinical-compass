@@ -1,14 +1,14 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { useParams, useRouter } from "next/navigation";
+import { type FC, useEffect } from "react";
+import styles from "./styles.module.scss";
 import { DefaultError, PrimaryButton } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import { PopupsService, useSendTestResultMutation } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 import { type SendTestResultRequestData } from "@/shared/types";
-import { type FC, useEffect } from "react";
 
 interface SendResultButtonProps {
   disabled: boolean;

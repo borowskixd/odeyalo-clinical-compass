@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./styles.module.scss";
+import { type FC, useMemo } from "react";
 import {
   Bar,
   BarChart,
@@ -9,9 +9,9 @@ import {
   Tooltip,
   XAxis,
 } from "recharts";
-import { type BarChartData, mapToBarChartData } from "@/client/utils";
+import styles from "./styles.module.scss";
+import { mapToBarChartData } from "@/client/utils";
 import { type GetTestResponseData, type TestResultData } from "@/shared/types";
-import { type FC, useEffect, useState } from "react";
 
 interface Props {
   results: TestResultData[];
@@ -26,13 +26,11 @@ export const SimpleBarChart: FC<Props> = ({
   values,
   className = "",
 }) => {
-  const [barData, setBarData] = useState<BarChartData>({ data: [], bars: [] });
+  const barData = useMemo(() => {
+    if (!results || !scales) return { data: [], bars: [] };
 
-  useEffect(() => {
-    if (results && scales) {
-      setBarData(mapToBarChartData(results, scales, values));
-    }
-  }, [values, results, scales]);
+    return mapToBarChartData(results, scales, values);
+  }, [results, scales, values]);
 
   const primaryColor = "#2E628C";
   const secondaryColor = "#9BCBFA";

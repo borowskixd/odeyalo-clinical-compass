@@ -1,5 +1,6 @@
 "use client";
 
+import { type FC, useState } from "react";
 import { ConfirmationModal } from "./components";
 import styles from "./styles.module.scss";
 import {
@@ -16,7 +17,6 @@ import {
   useGetFeedbacksQuery,
   useMarkFeedbackAsReadedMutation,
 } from "@/client/redux";
-import { type FC, useState } from "react";
 
 export const UsersFeedbacksPage: FC = () => {
   const { data: feedbacks, ...getFeedbacksStatus } = useGetFeedbacksQuery();

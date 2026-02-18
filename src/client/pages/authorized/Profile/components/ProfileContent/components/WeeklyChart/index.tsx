@@ -1,7 +1,6 @@
 "use client";
 
-import styles from "./styles.module.scss";
-import { mapApiDataToWeeklyChartData } from "./utils";
+import { type FC } from "react";
 import {
   Area,
   AreaChart,
@@ -10,9 +9,10 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import styles from "./styles.module.scss";
+import { mapApiDataToWeeklyChartData } from "./utils";
 import { LoadingLoop } from "@/client/components";
 import { useGetWeeklyGamificationScoreQuery } from "@/client/redux";
-import { type FC } from "react";
 
 export const WeeklyChart: FC = () => {
   const { data, isLoading } = useGetWeeklyGamificationScoreQuery();

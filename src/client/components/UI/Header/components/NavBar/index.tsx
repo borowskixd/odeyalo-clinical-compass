@@ -1,14 +1,14 @@
 "use client";
 
-import styles from "./styles.module.scss";
+import { Icon, type IconProps, Icons24Solid } from "@odeyalo/uikit";
 import { usePathname } from "next/navigation";
+import { type FC } from "react";
+import styles from "./styles.module.scss";
 import { SecondaryButton } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
 import { selectProfile } from "@/client/redux";
 import { type ACCESS } from "@/shared/config/access";
 import { type ActiveNavId, pages } from "@/shared/data";
-import { Icon, type IconProps, Icons24Solid } from "@odeyalo/uikit";
-import { type FC } from "react";
 
 interface NavLink {
   href: string;

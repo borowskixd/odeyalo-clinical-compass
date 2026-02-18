@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import { Header, History, ImageWrapper } from "./components";
 import styles from "./styles.module.scss";
-import { type FC } from "react";
 
 interface Props {
   imageSrc: string;

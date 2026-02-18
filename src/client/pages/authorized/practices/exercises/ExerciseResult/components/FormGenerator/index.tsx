@@ -1,9 +1,9 @@
 "use client";
 
-import { ExerciseStructure, Grid } from "../../../../components";
-import { type GetExerciseResultResponseData } from "@/shared/types";
 import { AddableInputGroup, TextArea } from "@odeyalo/uikit";
 import { type FC } from "react";
+import { ExerciseStructure, Grid } from "../../../../components";
+import { type GetExerciseResultResponseData } from "@/shared/types";
 
 type FormGeneratorProps = {
   exerciseStructure: GetExerciseResultResponseData;

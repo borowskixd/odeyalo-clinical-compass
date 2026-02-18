@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "./styles.module.scss";
-import { type FieldConfig, useField } from "formik";
 import { TextInput, type TextInputProps } from "@odeyalo/uikit";
+import { type FieldConfig, useField } from "formik";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
 
 type FormikInputProps = TextInputProps &
   FieldConfig & {

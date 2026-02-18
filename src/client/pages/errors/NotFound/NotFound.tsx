@@ -1,5 +1,5 @@
-import { Container, Header, PageTitle } from "@/client/components";
 import { type FC } from "react";
+import { Container, Header, PageTitle } from "@/client/components";
 
 export const NotFoundPage: FC = () => {
   return (

@@ -1,6 +1,6 @@
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { defaultInitialState, reducers } from "@/shared/data";
 import { type NotesState } from "@/shared/types";
-import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: NotesState = defaultInitialState.notesReducer;
 

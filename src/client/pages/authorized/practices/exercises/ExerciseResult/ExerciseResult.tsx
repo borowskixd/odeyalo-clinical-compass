@@ -1,8 +1,10 @@
 "use client";
 
+import { Text } from "@odeyalo/uikit";
+import { useParams } from "next/navigation";
+import { type FC, useEffect } from "react";
 import { FormGenerator } from "./components";
 import styles from "./styles.module.scss";
-import { useParams } from "next/navigation";
 import {
   Container,
   ContentWrapper,
@@ -13,8 +15,6 @@ import { ExerciseHeader } from "@/client/pages/authorized/practices/components";
 import { useGetExerciseResultQuery } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 import { mapDatetimeToText } from "@/shared/utils";
-import { Text } from "@odeyalo/uikit";
-import { type FC, useEffect } from "react";
 
 export const ExerciseResultPage: FC = () => {
   const { id, result_id } = useParams<{ id: string; result_id: string }>();

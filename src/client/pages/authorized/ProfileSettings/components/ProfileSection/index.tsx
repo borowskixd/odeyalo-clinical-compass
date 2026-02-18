@@ -1,8 +1,8 @@
+import { Icon, Icons20 } from "@odeyalo/uikit";
+import { type FC, type ReactNode } from "react";
 import { type SectionProps } from "../../types";
 import styles from "./styles.module.scss";
 import { ContentWrapper, IconButton, PageTitle } from "@/client/components";
-import { Icon, Icons20 } from "@odeyalo/uikit";
-import { type FC, type ReactNode } from "react";
 
 interface Props extends SectionProps {
   title: string;

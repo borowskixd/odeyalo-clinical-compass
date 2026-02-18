@@ -1,8 +1,8 @@
 "use client";
 
+import { type FC } from "react";
 import { useAppSelector } from "@/client/hooks";
 import { selectIsMobile } from "@/client/redux";
-import { type FC } from "react";
 
 interface ResponsiveProps {
   [key: string]: any;

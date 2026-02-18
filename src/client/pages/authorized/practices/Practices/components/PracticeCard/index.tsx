@@ -1,6 +1,6 @@
-import styles from "./styles.module.scss";
 import Link from "next/link";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
 
 interface Props {
   title: string;

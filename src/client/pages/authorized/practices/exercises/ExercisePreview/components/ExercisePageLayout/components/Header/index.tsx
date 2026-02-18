@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import { PageTitle, PrimaryButton } from "@/client/components";
-import { type FC } from "react";
 
 interface Props {
   title: string;

@@ -1,11 +1,11 @@
 "use client";
 
+import { type FC, useEffect } from "react";
 import { TestCard } from "../TestCard";
 import styles from "./styles.module.scss";
 import { DefaultError, LoadingLoop, Subtitle } from "@/client/components";
 import { useGetTestsQuery } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
-import { type FC, useEffect } from "react";
 
 export const TestsList: FC = () => {
   const { data: tests, ...getTestsState } = useGetTestsQuery();

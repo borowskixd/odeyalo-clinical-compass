@@ -1,7 +1,7 @@
+import { type FC } from "react";
 import { Logo, NavBar, RightButton } from "./components";
 import styles from "./styles.module.scss";
 import { Container } from "@/client/components";
-import { type FC } from "react";
 
 export const Header: FC = () => {
   return (

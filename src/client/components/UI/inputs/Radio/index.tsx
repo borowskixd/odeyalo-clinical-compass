@@ -1,7 +1,7 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { type FC, type InputHTMLAttributes } from "react";
+import styles from "./styles.module.scss";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   labelText: string;

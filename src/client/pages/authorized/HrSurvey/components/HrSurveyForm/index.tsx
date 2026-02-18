@@ -1,14 +1,14 @@
 "use client";
 
-import styles from "./styles.module.scss";
+import { type FC, useEffect } from "react";
 import * as Yup from "yup";
+import styles from "./styles.module.scss";
 import { FormErrorLabel, FormikForm, PrimaryButton } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import { useSendHrSurveyMutation } from "@/client/redux";
 import { mapApiErrorMessage, redirectWithReload } from "@/client/utils";
 import { pages } from "@/shared/data";
 import { type SendHrSurveyRequestData } from "@/shared/types";
-import { type FC, useEffect } from "react";
 
 const initialValues: SendHrSurveyRequestData = {
   username: "",

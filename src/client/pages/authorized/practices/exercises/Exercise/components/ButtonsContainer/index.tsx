@@ -1,6 +1,6 @@
-import styles from "./styles.module.scss";
 import { Button } from "@odeyalo/uikit";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
 
 interface Props {
   prevPageHandler: () => void;

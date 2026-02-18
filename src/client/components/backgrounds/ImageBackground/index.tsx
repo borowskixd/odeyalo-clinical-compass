@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import main from "@/../public/static/backgrounds/main.webp";
-import { type FC } from "react";
 
 interface ImageBackgroundProps {
   src?: string;

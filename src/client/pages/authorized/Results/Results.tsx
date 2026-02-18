@@ -1,7 +1,8 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { useParams, useSearchParams } from "next/navigation";
+import { type ChangeEvent, type FC, useEffect, useState } from "react";
+import styles from "./styles.module.scss";
 import {
   Container,
   ContentWrapper,
@@ -15,7 +16,6 @@ import {
 import { useGetTestResultsQuery } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
-import { type ChangeEvent, type FC, useEffect, useState } from "react";
 
 export const ResultsPage: FC = () => {
   const { id } = useParams<{ id: string }>();

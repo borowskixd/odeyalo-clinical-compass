@@ -1,10 +1,10 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import { type FC, type ReactNode, useEffect } from "react";
 import { useAppSelector } from "@/client/hooks";
 import { selectIsAuth, selectRole } from "@/client/redux";
 import { checkAccess } from "@/shared/utils";
-import { type FC, type ReactNode, useEffect } from "react";
 
 interface AuthLayoutProps {
   children: ReactNode;

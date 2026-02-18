@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import { CreateNoteButton, NoteList } from "./components";
 import styles from "./styles.module.scss";
-import { type FC } from "react";
 
 export const NotesForm: FC = () => {
   return (

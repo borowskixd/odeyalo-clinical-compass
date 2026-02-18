@@ -1,5 +1,7 @@
 "use client";
 
+import { Button, Icon, Icons20, Text } from "@odeyalo/uikit";
+import { type FC, useEffect } from "react";
 import { GamificationProgressBar, WeeklyChart } from "./components";
 import styles from "./styles.module.scss";
 import { PageTitle } from "@/client/components";
@@ -7,8 +9,6 @@ import { useAppSelector } from "@/client/hooks";
 import { selectProfile } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
-import { Button, Icon, Icons20, Text } from "@odeyalo/uikit";
-import { type FC, useEffect } from "react";
 
 export const ProfileContent: FC = () => {
   const userData = useAppSelector(selectProfile);

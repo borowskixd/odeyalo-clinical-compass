@@ -1,13 +1,13 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { useRouter } from "next/navigation";
+import { type FC } from "react";
+import styles from "./styles.module.scss";
 import { Button } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import { notesActions } from "@/client/redux";
 import { pages } from "@/shared/data";
 import { mapDateToApiDateFormat } from "@/shared/utils";
-import { type FC } from "react";
 
 interface WeekDaysProps {
   date?: Date | null;

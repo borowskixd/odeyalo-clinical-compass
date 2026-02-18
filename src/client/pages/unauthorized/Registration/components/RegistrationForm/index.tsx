@@ -1,7 +1,8 @@
 "use client";
 
-import styles from "./styles.module.scss";
+import { type FC, useEffect } from "react";
 import * as Yup from "yup";
+import styles from "./styles.module.scss";
 import {
   FormErrorLabel,
   FormikForm,
@@ -14,7 +15,6 @@ import { mapApiErrorMessage, redirectWithReload } from "@/client/utils";
 import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 import { type RegistrationRequestData } from "@/shared/types";
-import { type FC, useEffect } from "react";
 
 const initialValues: RegistrationRequestData = {
   username: "",

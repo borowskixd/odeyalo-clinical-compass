@@ -1,7 +1,7 @@
 "use client";
 
-import { UnexpectedPage } from "@/client/pages";
 import { type FC } from "react";
+import { UnexpectedPage } from "@/client/pages";
 
 interface GlobalErrorPageProps {
   reset: () => void;

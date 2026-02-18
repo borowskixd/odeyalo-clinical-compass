@@ -16,9 +16,5 @@
   "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "all",
-  "useTabs": false,
-  "importOrder": ["(^@.*|<THIRD_PARTY_MODULES>)", "react$", "^src($|/.+)"],
-  "importOrderSeparation": false,
-  "importOrderSortSpecifiers": true,
-  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+  "useTabs": false
 }

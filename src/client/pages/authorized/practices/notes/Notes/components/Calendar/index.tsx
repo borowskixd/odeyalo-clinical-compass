@@ -1,13 +1,13 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
+import { type FC, useEffect } from "react";
 import { Header, WeekDays } from "./components";
 import styles from "./styles.module.scss";
-import { useSearchParams } from "next/navigation";
 import { useAppDispatch } from "@/client/hooks";
 import { notesActions } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 import { compareDates } from "@/shared/utils";
-import { type FC, useEffect } from "react";
 
 export const Calendar: FC = () => {
   const { logEvent } = useAnalytics();

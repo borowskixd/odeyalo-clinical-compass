@@ -1,8 +1,9 @@
 "use client";
 
+import { notFound, useParams } from "next/navigation";
+import { type FC, useEffect, useState } from "react";
 import { SendResultButton } from "../SendResultButton";
 import styles from "./styles.module.scss";
-import { notFound, useParams } from "next/navigation";
 import { ArrowIcon } from "@/client/assets/icons";
 import {
   Button,
@@ -14,7 +15,6 @@ import {
 import { useGetTestQuestionsQuery } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 import { type SendTestResultRequestData } from "@/shared/types";
-import { type FC, useEffect, useState } from "react";
 
 export const TestContent: FC = () => {
   const { id } = useParams<{ id: string }>();

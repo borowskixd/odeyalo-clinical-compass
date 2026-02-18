@@ -1,7 +1,8 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { useSearchParams } from "next/navigation";
+import { type FC } from "react";
+import styles from "./styles.module.scss";
 import {
   Container,
   ContentWrapper,
@@ -12,7 +13,6 @@ import {
   Subtitle,
 } from "@/client/components";
 import { useGetTestsQuery } from "@/client/redux";
-import { type FC } from "react";
 
 export const GiveTestPage: FC = () => {
   const searchParams = useSearchParams();

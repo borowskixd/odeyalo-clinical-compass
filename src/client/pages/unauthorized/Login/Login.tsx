@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import { LoginForm } from "./components";
 import { FormPageLayout } from "@/client/components/layouts";
-import { type FC } from "react";
 
 export const LoginPage: FC = () => {
   return (

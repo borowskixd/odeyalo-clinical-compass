@@ -1,9 +1,9 @@
-import styles from "./styles.module.scss";
 import Link from "next/link";
+import { type FC, type ReactNode } from "react";
+import styles from "./styles.module.scss";
 import { ArrowIcon } from "@/client/assets/icons";
 import { Container, ContentWrapper, PageTitle } from "@/client/components";
 import { FormBackground } from "@/client/components/backgrounds";
-import { type FC, type ReactNode } from "react";
 
 interface FormPageLayoutProps {
   title: ReactNode;

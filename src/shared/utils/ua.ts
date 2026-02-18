@@ -1,8 +1,8 @@
 "use server";
 
-import { MOBILE_DEVICE_TYPES } from "../data";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
+import { MOBILE_DEVICE_TYPES } from "../data";
 
 export const getIsMobile = async (): Promise<boolean> => {
   const headersList = await headers();
