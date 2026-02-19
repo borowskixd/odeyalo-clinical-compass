@@ -15,14 +15,23 @@ export const Slider = ({ children }: SliderProps) => {
   const [progress, setProgress] = useState(0);
   const totalSlides = children.length;
 
+  const updateProgress = (swiper: any) => {
+    if (!swiper) return;
+    
+    const slidesPerView = swiper.params.slidesPerView;
+    const maxIndex = Math.max(0, totalSlides - slidesPerView);
+    
+    if (maxIndex > 0) {
+      const newProgress = (swiper.activeIndex / maxIndex) * 100;
+      setProgress(newProgress);
+    } else {
+      setProgress(0);
+    }
+  };
+
   useEffect(() => {
     if (swiperRef.current) {
-      const swiper = swiperRef.current;
-      setProgress((swiper.activeIndex / (swiper.slides.length - 1)) * 100);
-
-      swiper.on("slideChange", () => {
-        setProgress((swiper.activeIndex / (swiper.slides.length - 1)) * 100);
-      });
+      updateProgress(swiperRef.current);
     }
   }, []);
 
@@ -32,12 +41,16 @@ export const Slider = ({ children }: SliderProps) => {
 
     if (swiperRef.current) {
       const swiper = swiperRef.current;
-      const slideIndex = Math.round(
-        (value / 100) * (swiper.slides.length - swiper.params.slidesPerView),
-      );
+      const slidesPerView = swiper.params.slidesPerView;
+      const maxIndex = Math.max(0, totalSlides - slidesPerView);
+      const slideIndex = Math.round((value / 100) * maxIndex);
 
       swiper.slideTo(slideIndex);
     }
+  };
+
+  const handleSlideChange = (swiper: any) => {
+    updateProgress(swiper);
   };
 
   const thumbWidth = Math.max(20, 60 - totalSlides * 2);
@@ -45,18 +58,21 @@ export const Slider = ({ children }: SliderProps) => {
   return (
     <div className={styles.sliderWrapper}>
       <Swiper
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+          updateProgress(swiper);
+        }}
+        onSlideChange={handleSlideChange}
         className={styles.swiper}
         modules={[Pagination]}
         spaceBetween={20}
-        slidesPerView={6}
+        slidesPerView={4}
         pagination={false}
         breakpoints={{
           0: { slidesPerView: 1 },
           360: { slidesPerView: 2 },
           768: { slidesPerView: 3 },
           1024: { slidesPerView: 4 },
-          1440: { slidesPerView: 6 },
         }}
       >
         {children.map((child, index) => (
