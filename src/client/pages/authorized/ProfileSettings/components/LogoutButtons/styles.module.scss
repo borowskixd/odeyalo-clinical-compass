@@ -8,29 +8,29 @@
 }
 
 .deleteButton {
-  color: $color-red100 !important;
+  color: $color-red100;
 
   &:hover {
-    background-color: $color-red100 !important;
-    color: $color-white100 !important;
+    background-color: $color-red100;
+    color: $color-white100;
   }
 
   &:focus {
-    background-color: $color-red80 !important;
-    color: $color-white100 !important;
+    background-color: $color-red80;
+    color: $color-white100;
   }
 }
 
 .acceptDeleteButton {
-  background-color: $color-red100 !important;
-  color: $color-white100 !important;
+  background-color: $color-red100;
+  color: $color-white100;
 
   &:hover {
-    background-color: $color-red80 !important;
+    background-color: $color-red80;
   }
 
   &:focus {
-    background-color: $color-red60 !important;
+    background-color: $color-red60;
   }
 }
 

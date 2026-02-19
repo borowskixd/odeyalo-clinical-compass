@@ -1,2 +1,2 @@
-export * from "./WeekDay";
 export * from "./Day";
+export * from "./WeekDay";

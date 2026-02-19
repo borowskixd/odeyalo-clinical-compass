@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "./styles.module.scss";
-import { CloseIcon } from "@/client/assets/icons";
 import { Portal } from "@odeyalo/uikit";
 import { type FC, type MouseEvent, type ReactNode, useEffect } from "react";
+import styles from "./styles.module.scss";
+import { CloseIcon } from "@/client/assets/icons";
 
 interface Props {
   isOpen: boolean;

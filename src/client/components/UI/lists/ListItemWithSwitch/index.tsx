@@ -1,7 +1,7 @@
-import styles from "./styles.module.scss";
 import Link from "next/link";
-import { Switch } from "@/client/components";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
+import { Switch } from "@/client/components";
 
 interface Props {
   label: string;

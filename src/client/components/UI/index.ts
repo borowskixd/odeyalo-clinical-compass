@@ -1,7 +1,7 @@
 export * from "./buttons";
 export * from "./cards";
 export * from "./charts";
-export * from "./wrappers";
+export * from "./Footer";
 export * from "./forms";
 export * from "./Header";
 export * from "./images";
@@ -12,4 +12,4 @@ export * from "./popups";
 export * from "./swipers";
 export * from "./Symptom";
 export * from "./titles";
-export * from "./Footer";
+export * from "./wrappers";

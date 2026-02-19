@@ -1,7 +1,7 @@
-import { mapApiErrorMessage } from "@/client/utils";
 import { type SerializedError } from "@reduxjs/toolkit";
 import { type FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { type FC } from "react";
+import { mapApiErrorMessage } from "@/client/utils";
 
 interface Props {
   error: FetchBaseQueryError | SerializedError | undefined;

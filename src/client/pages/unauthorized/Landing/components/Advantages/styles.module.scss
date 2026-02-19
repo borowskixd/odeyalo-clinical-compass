@@ -2,8 +2,9 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-  @include titleCygre;
   margin-bottom: 10px;
+
+  @include titleCygre;
 }
 
 h2.title {
@@ -13,25 +14,25 @@ h2.title {
 
 .infoSection {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
   align-items: start;
-  background-color: $color-white100;
   border-radius: 40px;
+  background-color: $color-white100;
+  gap: 30px;
+  grid-template-columns: 1fr 1fr;
 }
 
 .textSide {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   padding: 40px;
+  gap: 20px;
 }
 
 .imageSide {
   display: flex;
+  height: 100%;
   align-items: flex-start;
   justify-content: center;
-  height: 100%;
   padding-top: 40px;
 }
 
@@ -39,23 +40,21 @@ h2.title {
   width: 100%;
   height: 100%;
   min-height: 600px;
-
-  background-image: url("/static/landing/phone-screen.webp");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
   border-radius: 40px;
+  background-image: url("/static/landing/phone-screen.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .infoList {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-
-  font-family: 'Inter';
+  font-family: var(--font-inter);
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
+  gap: 30px;
   line-height: 30px;
 }
 
@@ -65,13 +64,13 @@ h2.title {
 }
 
 .listItemContent {
-  margin-top: 20px;
   display: flex;
   align-items: flex-start;
+  margin-top: 20px;
   gap: 20px;
 }
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
   .infoSection {
     grid-template-columns: 1fr;
   }
@@ -90,7 +89,7 @@ h2.title {
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .phoneImage {
     min-height: 300px;
   }

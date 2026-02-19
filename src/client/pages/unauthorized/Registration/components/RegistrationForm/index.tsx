@@ -1,19 +1,16 @@
 "use client";
 
-import styles from "./styles.module.scss";
+import { Button } from "@odeyalo/uikit";
+import { type FC, useEffect } from "react";
 import * as Yup from "yup";
-import {
-  FormErrorLabel,
-  FormikForm,
-  PrimaryButton,
-  SecondaryButton,
-} from "@/client/components";
+import styles from "./styles.module.scss";
+import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import { useRegistrationMutation } from "@/client/redux";
 import { mapApiErrorMessage, redirectWithReload } from "@/client/utils";
+import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 import { type RegistrationRequestData } from "@/shared/types";
-import { type FC, useEffect } from "react";
 
 const initialValues: RegistrationRequestData = {
   username: "",
@@ -37,12 +34,18 @@ export const RegistrationForm: FC = () => {
   const dispatch = useAppDispatch();
   const [registration, { data, isLoading, isSuccess, isError, error }] =
     useRegistrationMutation();
+  const { logEvent } = useAnalytics();
+
+  useEffect(() => {
+    logEvent("register-page-opened");
+  }, [logEvent]);
 
   useEffect(() => {
     if (isSuccess) {
       redirectWithReload(pages.login.path);
+      logEvent("register-success");
     }
-  }, [isSuccess, dispatch, data]);
+  }, [isSuccess, dispatch, data, logEvent]);
 
   const onSubmit = (values: RegistrationRequestData) => {
     registration(values);
@@ -82,19 +85,21 @@ export const RegistrationForm: FC = () => {
         <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>
       )}
       <div className={styles.buttons}>
-        <PrimaryButton
+        <Button
           type="submit"
+          view="action"
+          width="max"
           disabled={isLoading}
-          className={styles.button}
         >
           Зарегистрироваться
-        </PrimaryButton>
-        <SecondaryButton
-          className={styles.button}
+        </Button>
+        <Button
           href={pages.login.path}
+          view="secondary"
+          width="max"
         >
           Войти
-        </SecondaryButton>
+        </Button>
       </div>
     </FormikForm>
   );

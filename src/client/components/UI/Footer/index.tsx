@@ -1,7 +1,8 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import Link from "next/link";
+import { type FC, useState } from "react";
+import styles from "./styles.module.scss";
 import { LogoIcon, TelegramIcon, VkIcon } from "@/client/assets/icons";
 import {
   Container,
@@ -11,7 +12,6 @@ import {
   UserAgreement,
 } from "@/client/components";
 import { pages } from "@/shared/data";
-import { type FC, useState } from "react";
 
 export const Footer: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

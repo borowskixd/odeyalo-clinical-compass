@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { fontVariablesClass } from "@/client/assets/fonts";
-import { ModalsPortal, SnackbarsPortal } from "@/client/components";
-import { AuthLayer, StoreLayer } from "@/client/components/layers";
+import { type FC, type ReactNode } from "react";
 import "@/client/styles/global.scss";
 import "@/client/styles/reset.scss";
 import "@odeyalo/uikit/dist/main.css";
 import "@odeyalo/uikit/styles/fonts.scss";
 import "@odeyalo/uikit/styles/styles.scss";
-import { type FC, type ReactNode } from "react";
+import { fontVariablesClass } from "@/client/assets/fonts";
+import { ModalsPortal, SnackbarsPortal } from "@/client/components";
+import { AuthLayer, StoreLayer } from "@/client/components/layers";
+import { AnalyticsProvider } from "@/shared/analytics";
 
 export const metadata: Metadata = {
   title: "Одеяло",
@@ -29,16 +30,18 @@ const RootLayout: FC<RootLayoutProps> = async ({
   return (
     <html lang="ru">
       <body className={fontVariablesClass}>
-        <StoreLayer>
-          <AuthLayer
-            authorized={authorized}
-            unauthorized={unauthorized}
-          >
-            {children}
-          </AuthLayer>
-          <SnackbarsPortal />
-          <ModalsPortal />
-        </StoreLayer>
+        <AnalyticsProvider>
+          <StoreLayer>
+            <AuthLayer
+              authorized={authorized}
+              unauthorized={unauthorized}
+            >
+              {children}
+            </AuthLayer>
+            <SnackbarsPortal />
+            <ModalsPortal />
+          </StoreLayer>
+        </AnalyticsProvider>
       </body>
     </html>
   );

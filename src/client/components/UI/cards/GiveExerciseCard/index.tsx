@@ -1,10 +1,10 @@
 "use client";
 
+import { type FC, useEffect } from "react";
 import styles from "./styles.module.scss";
 import { useAppDispatch } from "@/client/hooks";
 import { PopupsService, useGiveTestMutation } from "@/client/redux";
 import { type GetTestsResponseData } from "@/shared/types";
-import { type FC, useEffect } from "react";
 
 interface Props {
   exercise: GetTestsResponseData[number];

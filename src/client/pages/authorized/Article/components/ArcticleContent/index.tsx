@@ -1,26 +1,37 @@
 "use client";
 
+import { Button } from "@odeyalo/uikit";
+import { useParams, useRouter } from "next/navigation";
+import { type FC, useEffect } from "react";
 import { Recommendation, Subtopics } from "./components";
 import styles from "./styles.module.scss";
-import { useParams, useRouter } from "next/navigation";
 import { DefaultError, LoadingLoop, PageTitle } from "@/client/components";
 import { useGetArticleByIdQuery, useReadArticleMutation } from "@/client/redux";
+import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
-import { Button } from "@odeyalo/uikit";
-import { type FC, useEffect } from "react";
 
 export const ArticleContent: FC = () => {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
+  const { logEvent } = useAnalytics();
 
   const { data: article, ...getArticleState } = useGetArticleByIdQuery(id);
   const [readArticle, { isLoading, isSuccess }] = useReadArticleMutation();
 
   useEffect(() => {
+    logEvent("theory-page-opened", {
+      theory_id: id,
+    });
+  }, [id, logEvent]);
+
+  useEffect(() => {
     if (isSuccess) {
       router.push(pages.articles.path);
+      logEvent("theory-read", {
+        theory_id: id,
+      });
     }
-  }, [isSuccess, router]);
+  }, [isSuccess, router, id, logEvent]);
 
   const readArticleHandler = () => {
     if (article) {

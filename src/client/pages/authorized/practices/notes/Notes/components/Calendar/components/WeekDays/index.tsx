@@ -1,5 +1,6 @@
 "use client";
 
+import { type FC } from "react";
 import { Day, WeekDay } from "./components";
 import styles from "./styles.module.scss";
 import { useAppSelector } from "@/client/hooks";
@@ -8,7 +9,6 @@ import {
   useGetNotesCalendarFilledDatesQuery,
 } from "@/client/redux";
 import { compareDates } from "@/shared/utils";
-import { type FC } from "react";
 
 export const WeekDays: FC = () => {
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);

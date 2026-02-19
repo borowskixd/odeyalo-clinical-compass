@@ -1,6 +1,6 @@
+import { type FC, type ReactNode } from "react";
 import { Button } from "../Button";
 import styles from "./styles.module.scss";
-import { type FC, type ReactNode } from "react";
 
 interface Props {
   children: ReactNode;

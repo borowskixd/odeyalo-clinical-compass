@@ -1,15 +1,21 @@
 "use client";
 
+import { type FC, useEffect } from "react";
 import { PracticeCard } from "../PracticeCard";
 import styles from "./styles.module.scss";
 import { FormErrorLabel, LoadingLoop } from "@/client/components";
 import { useGetExercisesQuery } from "@/client/redux";
 import { mapApiErrorMessage } from "@/client/utils";
+import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
-import { type FC } from "react";
 
 export const Practices: FC = () => {
   const { data, isLoading, isError, error } = useGetExercisesQuery();
+  const { logEvent } = useAnalytics();
+
+  useEffect(() => {
+    logEvent("practices-page-opened");
+  }, [logEvent]);
 
   return (
     <section>

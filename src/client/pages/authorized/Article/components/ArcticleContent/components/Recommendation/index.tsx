@@ -1,9 +1,9 @@
 "use client";
 
+import { type FC } from "react";
 import { RecommendationCard } from "./components";
 import styles from "./styles.module.scss";
 import { type GetArticleResponseData } from "@/shared/types";
-import { type FC } from "react";
 
 interface Props {
   recommendations: GetArticleResponseData["recommendations"];

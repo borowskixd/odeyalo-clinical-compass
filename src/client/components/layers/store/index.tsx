@@ -1,7 +1,7 @@
 import { cookies, headers } from "next/headers";
+import { type FC, type ReactNode } from "react";
 import { StoreProvider } from "@/client/redux";
 import { getInitialState } from "@/shared/utils";
-import { type FC, type ReactNode } from "react";
 
 interface StoreLayoutProps {
   children: ReactNode;

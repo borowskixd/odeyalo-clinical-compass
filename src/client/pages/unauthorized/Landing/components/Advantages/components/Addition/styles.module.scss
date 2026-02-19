@@ -2,48 +2,47 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-    @include titleCygre;
+  @include titleCygre;
 }
 
 .container {
-    min-height: 400px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    background-color: $color-white100;
-    border-radius: 40px;
+  display: grid;
+  min-height: 400px;
+  border-radius: 40px;
+  background-color: $color-white100;
+  gap: 50px;
+  grid-template-columns: 1fr 1fr;
 }
 
 .image {
-    width: 100%;
-    height: 100%;
-    min-height: 400px;
-
-    background-image: url("/static/landing/book.webp");
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: 70% auto;
-    border-radius: 40px;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  border-radius: 40px;
+  background-image: url("/static/landing/book.webp");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 70% auto;
 }
 
 .textContent {
-    margin-top: 20px;
-    padding: 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+  margin-top: 20px;
+  gap: 20px;
 }
 
 .description {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
+  font-family: var(--font-inter);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
 }
 
-@media (max-width: 768px) {
-    .gridContainer {
-        grid-template-columns: 1fr;
-    }
+@media (width <= 768px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
 }

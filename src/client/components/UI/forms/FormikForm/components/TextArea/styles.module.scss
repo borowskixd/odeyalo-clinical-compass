@@ -4,33 +4,35 @@
 @use "@/client/styles/fontStyles" as *;
 
 .textarea {
-  resize: none;
   height: 52px;
   max-height: 176px;
+  resize: none;
 }
 
 .label {
   position: relative;
-  width: 100%;
   display: flex;
+  width: 100%;
   flex-flow: column;
   gap: 4px;
 }
 
 .labelText {
   white-space: pre-wrap;
-  @include titleMedium;
 
   &.required::after {
-    content: " *";
     color: $color-error;
+    content: " *";
   }
+
+  @include titleMedium;
 }
 
 .exampleText {
   display: block;
   color: $color-secondary;
   white-space: pre-wrap;
+
   @include bodySmall;
 }
 
@@ -39,22 +41,22 @@
 }
 
 .input {
-  min-height: 52px;
-  width: 100%;
-  padding: 16px;
   display: flex;
+  width: 100%;
+  min-height: 52px;
   align-items: center;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: $color-white70;
   color: $color-black100;
-  @include bodyM;
   transition:
     opacity 0.2s,
     outline-color 0.2s;
-  background-color: $color-white70;
-  border-radius: 12px;
 
   &::placeholder {
-    @include bodyM;
     color: $color-black60;
+
+    @include bodyM;
   }
 
   &:hover {
@@ -81,6 +83,8 @@
     outline: 2px solid $color-error;
     outline-offset: -2px;
   }
+
+  @include bodyM;
 }
 
 .errorText {
@@ -88,5 +92,6 @@
   bottom: -20px;
   padding: 0 16px;
   color: $color-error;
+
   @include bodySmall;
 }

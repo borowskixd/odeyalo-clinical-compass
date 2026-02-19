@@ -1,67 +1,149 @@
 "use client";
 
+import { Icon, type IconProps, Icons24Solid } from "@odeyalo/uikit";
+import { usePathname } from "next/navigation";
+import { type FC } from "react";
 import styles from "./styles.module.scss";
-import { Flame, Grid4, Leaderboard, TextSnippet } from "@/client/assets/icons";
 import { SecondaryButton } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
 import { selectProfile } from "@/client/redux";
 import { type ACCESS } from "@/shared/config/access";
-import { pages } from "@/shared/data";
-import { type FC } from "react";
+import { type ActiveNavId, pages } from "@/shared/data";
 
 interface NavLink {
   href: string;
+  activeNavId: ActiveNavId;
   title: string;
-  Icon?: FC<any>;
+  icon?: IconProps["data"];
 }
 
 type Nav = Record<keyof typeof ACCESS, NavLink[]>;
 
 const rolesNav: Nav = {
   admin: [
-    { href: pages.usersActivity.path, title: "Активность пользователей" },
-    { href: pages.usersFeedbacks.path, title: "Обратная связь" },
-    { href: pages.usersResults.path, title: "Результаты тестов" },
+    {
+      href: pages.usersActivity.path,
+      activeNavId: pages.usersActivity.activeNavId,
+      title: "Активность пользователей",
+    },
+    {
+      href: pages.usersFeedbacks.path,
+      activeNavId: pages.usersFeedbacks.activeNavId,
+      title: "Обратная связь",
+    },
+    {
+      href: pages.usersResults.path,
+      activeNavId: pages.usersResults.activeNavId,
+      title: "Результаты тестов",
+    },
   ],
   client: [
-    { href: pages.main.path, title: "План", Icon: Grid4 },
-    { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
-    { href: pages.practices.path, title: "Практика", Icon: Flame },
-    { href: pages.tests.path, title: "Тесты", Icon: Leaderboard },
+    {
+      href: pages.main.path,
+      activeNavId: pages.main.activeNavId,
+      title: "План",
+      icon: Icons24Solid.HomeIcon,
+    },
+    {
+      href: pages.articles.path,
+      activeNavId: pages.articles.activeNavId,
+      title: "Теория",
+      icon: Icons24Solid.NewspaperIcon,
+    },
+    {
+      href: pages.practices.path,
+      activeNavId: pages.practices.activeNavId,
+      title: "Практика",
+      icon: Icons24Solid.AcademicCapIcon,
+    },
+    {
+      href: pages.tests.path,
+      activeNavId: pages.tests.activeNavId,
+      title: "Тесты",
+      icon: Icons24Solid.ChartBarIcon,
+    },
   ],
   hr: [
-    { href: pages.main.path, title: "План", Icon: Grid4 },
-    { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
-    { href: pages.practices.path, title: "Практика", Icon: Flame },
-    { href: pages.tests.path, title: "Тесты", Icon: Leaderboard },
+    {
+      href: pages.main.path,
+      activeNavId: pages.main.activeNavId,
+      title: "План",
+      icon: Icons24Solid.HomeIcon,
+    },
+    {
+      href: pages.articles.path,
+      activeNavId: pages.articles.activeNavId,
+      title: "Теория",
+      icon: Icons24Solid.NewspaperIcon,
+    },
+    {
+      href: pages.practices.path,
+      activeNavId: pages.practices.activeNavId,
+      title: "Практика",
+      icon: Icons24Solid.AcademicCapIcon,
+    },
+    {
+      href: pages.tests.path,
+      activeNavId: pages.tests.activeNavId,
+      title: "Тесты",
+      icon: Icons24Solid.ChartBarIcon,
+    },
   ],
   psychologist: [
-    { href: pages.main.path, title: "План", Icon: Grid4 },
-    { href: pages.articles.path, title: "Теория", Icon: TextSnippet },
-    { href: pages.practices.path, title: "Практика", Icon: Flame },
-    { href: pages.tests.path, title: "Тесты", Icon: Leaderboard },
+    {
+      href: pages.main.path,
+      activeNavId: pages.main.activeNavId,
+      title: "План",
+      icon: Icons24Solid.HomeIcon,
+    },
+    {
+      href: pages.articles.path,
+      activeNavId: pages.articles.activeNavId,
+      title: "Теория",
+      icon: Icons24Solid.NewspaperIcon,
+    },
+    {
+      href: pages.practices.path,
+      activeNavId: pages.practices.activeNavId,
+      title: "Практика",
+      icon: Icons24Solid.AcademicCapIcon,
+    },
+    {
+      href: pages.tests.path,
+      activeNavId: pages.tests.activeNavId,
+      title: "Тесты",
+      icon: Icons24Solid.ChartBarIcon,
+    },
   ],
   unauthorized: [],
 };
 
 export const NavBar: FC = () => {
   const { role } = useAppSelector(selectProfile);
+  const pathname = usePathname();
 
   const navList = rolesNav[role];
 
   if (!navList.length) return null;
 
+  const currentPage = Object.values(pages).find((page) =>
+    page.matchPath(pathname),
+  );
+
   return (
     <nav className={styles.nav}>
-      {navList.map(({ title, href, Icon }) => (
+      {navList.map(({ title, href, activeNavId, icon }) => (
         <SecondaryButton
           key={title}
-          className={styles.navLink}
+          className={`${styles.navLink} ${activeNavId === currentPage.activeNavId ? styles.active : ""}`}
           href={href}
         >
-          {!!Icon && (
+          {!!icon && (
             <div className={`${styles.iconWrapper}`}>
-              <Icon />
+              <Icon
+                data={icon}
+                size={24}
+              />
             </div>
           )}
           {title}

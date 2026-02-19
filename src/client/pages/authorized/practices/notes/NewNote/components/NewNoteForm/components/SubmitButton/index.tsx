@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "./styles.module.scss";
+import { Button } from "@odeyalo/uikit";
 import { useFormikContext } from "formik";
-import { PrimaryButton } from "@/client/components";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
 
 interface FormValues {
   note: string;
@@ -19,12 +19,14 @@ export const SubmitButton: FC<Props> = ({ disabled }) => {
   const isButtonDisabled = values.note === "" || disabled;
 
   return (
-    <PrimaryButton
+    <Button
       type="submit"
       className={styles.button}
       disabled={isButtonDisabled}
+      view="action"
+      width="max"
     >
       Сохранить
-    </PrimaryButton>
+    </Button>
   );
 };

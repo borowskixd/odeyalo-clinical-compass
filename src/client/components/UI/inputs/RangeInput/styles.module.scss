@@ -1,9 +1,9 @@
 @use "@/client/styles/colors" as *;
 
 .rangeInput {
+  display: flex;
   width: 100%;
   height: 44px;
-  display: flex;
   align-items: center;
 }
 
@@ -11,66 +11,66 @@
   position: relative;
   width: 100%;
   height: 16px;
-  background: $color-blue30;
   border-radius: 8px;
-  outline: none;
-  -webkit-appearance: none;
   appearance: none;
+  background: $color-blue30;
   background: linear-gradient(
     to right,
     $color-blue80 var(--progress),
     $color-blue30 var(--progress)
   );
+  outline: none;
 
   &:disabled::-webkit-slider-thumb {
     cursor: default;
   }
+
   &:disabled::-moz-range-thumb {
     cursor: default;
   }
+
   &:disabled::-ms-thumb {
     cursor: default;
   }
 
   &::after {
-    content: "";
     position: absolute;
+    z-index: 0;
     top: 6px;
     right: 4px;
     width: 4px;
     height: 4px;
-    background-color: $color-blue80;
     border-radius: 2px;
-    z-index: 0;
+    background-color: $color-blue80;
+    content: "";
   }
 
   &::-webkit-slider-thumb {
-    display: block;
     position: relative;
-    -webkit-appearance: none;
-    appearance: none;
+    z-index: 1;
+    display: block;
     width: 4px;
     height: 44px;
-    background: $color-blue80;
     border-radius: 2px;
+    appearance: none;
+    background: $color-blue80;
     cursor: pointer;
     outline: 6px solid $color-white100;
-    z-index: 1;
   }
 
   &::-moz-range-thumb {
     width: 4px;
     height: 44px;
-    background-color: $color-blue80;
     border-radius: 2px;
+    background-color: $color-blue80;
     cursor: pointer;
   }
 
   &::-ms-thumb {
     width: 4px;
     height: 44px;
-    background: $color-blue80;
     border-radius: 2px;
+    background: $color-blue80;
     cursor: pointer;
   }
 }

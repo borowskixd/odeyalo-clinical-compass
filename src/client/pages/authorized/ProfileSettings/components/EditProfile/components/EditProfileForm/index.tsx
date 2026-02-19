@@ -1,8 +1,10 @@
 "use client";
 
+import { Button, Text } from "@odeyalo/uikit";
+import { type FC, useEffect } from "react";
+import * as Yup from "yup";
 import { type SectionProps } from "../../../../types";
 import styles from "./styles.module.scss";
-import * as Yup from "yup";
 import { FormErrorLabel, FormikForm, LoadingLoop } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import {
@@ -12,8 +14,6 @@ import {
 } from "@/client/redux";
 import { mapApiErrorMessage } from "@/client/utils";
 import { type UpdateUserRequestData } from "@/shared/types";
-import { Button, Text } from "@odeyalo/uikit";
-import { type FC, useEffect } from "react";
 
 type Props = Pick<SectionProps, "onBack">;
 

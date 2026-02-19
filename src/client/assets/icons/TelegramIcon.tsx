@@ -1,5 +1,5 @@
-import { type IconProps } from "@/client/assets/icons/types";
 import { type FC } from "react";
+import { type IconProps } from "@/client/assets/icons/types";
 
 export const TelegramIcon: FC<IconProps> = (props) => {
   return (

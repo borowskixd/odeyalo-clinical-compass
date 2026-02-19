@@ -1,10 +1,10 @@
-import { Symptom } from "../../Symptom";
+import { type FC } from "react";
 import { PrimaryButton } from "../../buttons";
 import { ProfileImage } from "../../images";
+import { Symptom } from "../../Symptom";
 import styles from "../styles.module.scss";
 import { pages } from "@/shared/data";
 import { type GetClientsResponseData } from "@/shared/types";
-import { type FC } from "react";
 
 interface Props {
   client: GetClientsResponseData[number];

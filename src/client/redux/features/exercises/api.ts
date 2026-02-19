@@ -5,8 +5,8 @@ import {
   type GetExerciseResponseData,
   type GetExerciseResultResponseData,
   type GetExerciseResultsResponseData,
-  type GetExerciseStructureResponseData,
   type GetExercisesResponseData,
+  type GetExerciseStructureResponseData,
 } from "@/shared/types";
 
 const exercisesApi = api.injectEndpoints({

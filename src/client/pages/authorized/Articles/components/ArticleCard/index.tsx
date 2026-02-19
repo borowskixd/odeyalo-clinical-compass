@@ -1,8 +1,8 @@
-import styles from "./styles.module.scss";
 import Link from "next/link";
+import { type FC } from "react";
+import styles from "./styles.module.scss";
 import { pages } from "@/shared/data";
 import { type GetArticlesResponseData } from "@/shared/types";
-import { type FC } from "react";
 
 interface ArticleCardProps {
   article: GetArticlesResponseData[number];

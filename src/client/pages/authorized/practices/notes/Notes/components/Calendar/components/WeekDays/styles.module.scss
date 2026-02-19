@@ -2,11 +2,12 @@
 
 .weekDays {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
+  justify-content: space-between;
+
   @include titleXS;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (width <= 900px) {
     @include bodyXLBold;
   }
 }

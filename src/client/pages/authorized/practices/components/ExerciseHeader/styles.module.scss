@@ -1,23 +1,23 @@
 .container {
-  margin-bottom: 30px;
   display: flex;
+  margin-bottom: 30px;
   gap: 16px;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (width <= 800px) {
     flex-direction: column-reverse;
   }
 }
 
 .info {
-  width: 100%;
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 10px;
 }
 
 .action {
-  width: 100%;
   display: flex;
+  width: 100%;
   align-items: flex-start;
   justify-content: flex-end;
 }

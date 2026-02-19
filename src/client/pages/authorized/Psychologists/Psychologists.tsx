@@ -1,5 +1,6 @@
 "use client";
 
+import { type FC } from "react";
 import { MyPsychologistCard, PsychologistCard } from "./components";
 import styles from "./styles.module.scss";
 import {
@@ -13,7 +14,6 @@ import {
   useGetMyPsychologistsQuery,
   useGetPsychologistsQuery,
 } from "@/client/redux";
-import { type FC } from "react";
 
 export const PsychologistsPage: FC = () => {
   const { data: psychologists, ...getPsychologistsState } =

@@ -1,8 +1,8 @@
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import { ArrowForward } from "@/client/assets/icons";
 import { Button } from "@/client/components";
 import { pages } from "@/shared/data";
-import { type FC } from "react";
 
 export const ForEveryDay: FC = () => {
   return (
@@ -27,7 +27,7 @@ export const ForEveryDay: FC = () => {
         href={pages.notes.path}
         className={styles.button}
       >
-        Заметки <ArrowForward />
+        Дневник эмоций <ArrowForward />
       </Button>
     </section>
   );

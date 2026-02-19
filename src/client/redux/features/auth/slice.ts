@@ -1,6 +1,6 @@
+import { createSlice } from "@reduxjs/toolkit";
 import { defaultInitialState, reducers } from "@/shared/data";
 import { type AuthState } from "@/shared/types";
-import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: AuthState = defaultInitialState.authReducer;
 

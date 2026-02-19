@@ -3,6 +3,7 @@
 
 .errorLabel {
   color: $color-error;
-  @include labelLarge;
   text-align: center;
+
+  @include labelLarge;
 }

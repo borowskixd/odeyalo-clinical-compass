@@ -2,8 +2,8 @@
 @use "@/client/styles/fontStyles" as *;
 
 .footer {
-  width: 100%;
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
   margin-top: 100px;
@@ -11,18 +11,18 @@
 }
 
 .container {
-  height: 100%;
-  padding: 30px 25px 30px 20px;
   display: flex;
+  height: 100%;
   align-items: flex-start;
   justify-content: space-between;
-  background-color: $color-white100;
+  padding: 30px 25px 30px 20px;
   border-radius: 32px;
+  background-color: $color-white100;
 }
 
 .logo {
-  margin-top: 15px;
   width: 190px;
+  margin-top: 15px;
 }
 
 .contacts {
@@ -39,9 +39,9 @@
   gap: 10px;
 
   .contactTitle {
-    background-color: $color-white70;
-    border-radius: 8px;
     padding: 10px;
+    border-radius: 8px;
+    background-color: $color-white70;
     font-size: 14px;
     line-height: 1;
     text-align: center;
@@ -52,24 +52,24 @@
 
 .socials {
   display: flex;
-  gap: 15px;
   width: 100%;
+  gap: 15px;
 
   .iconButton {
-    flex: 1;
-    background-color: $color-white70;
-    border-radius: 12px;
-    padding: 10px;
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: center;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: $color-white70;
   }
 }
 
 .privacyButton {
   height: auto;
-  background-color: transparent;
-  border: none;
   padding: 0;
+  border: none;
+  background-color: transparent;
   text-decoration: underline;
 }

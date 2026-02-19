@@ -1,6 +1,7 @@
-import styles from "./styles.module.scss";
+import { type FC, useEffect } from "react";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
+import styles from "./styles.module.scss";
 import { FormErrorLabel, FormikForm, PrimaryButton } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import {
@@ -9,7 +10,6 @@ import {
   useSendApplicationMutation,
 } from "@/client/redux";
 import { mapApiErrorMessage } from "@/client/utils";
-import { type FC, useEffect } from "react";
 
 interface Props {
   psychologistId: string;

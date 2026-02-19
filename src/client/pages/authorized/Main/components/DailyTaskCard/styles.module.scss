@@ -2,22 +2,22 @@
 @use "@/client/styles/fontStyles" as *;
 
 .card {
-  width: 100%;
-  padding: 16px;
   display: flex;
+  width: 100%;
   flex-flow: column;
-  gap: 4px;
-  background-color: $color-white70;
+  padding: 16px;
   border-radius: 12px;
+  background-color: $color-white70;
+  gap: 4px;
 
   &.completed {
-    color: $color-blue60;
     background-color: $color-blue30;
+    color: $color-blue60;
   }
 
   &.active {
-    color: $color-white100;
     background-color: $color-blue80;
+    color: $color-white100;
   }
 }
 

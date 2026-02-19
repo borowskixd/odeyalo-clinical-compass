@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import { pages } from "@/shared/data";
-import { type FC } from "react";
 
 interface NoteProps {
   id: string;

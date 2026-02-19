@@ -1,8 +1,8 @@
 "use client";
 
 import { type FieldConfig, useField } from "formik";
-import { RangeInput as DefaultRangeInput } from "@/client/components";
 import { type FC, type InputHTMLAttributes } from "react";
+import { RangeInput as DefaultRangeInput } from "@/client/components";
 
 type Props = FieldConfig & InputHTMLAttributes<HTMLInputElement>;
 

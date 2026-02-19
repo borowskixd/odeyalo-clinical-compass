@@ -1,3 +1,4 @@
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import {
   Container,
@@ -5,7 +6,6 @@ import {
   PageTitle,
   PrimaryButton,
 } from "@/client/components";
-import { type FC } from "react";
 
 interface UnexpectedPageProps {
   reset: () => void;

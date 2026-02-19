@@ -1,19 +1,16 @@
 @use "@/client/styles/colors" as *;
 
 .background {
-  background-color: $color-blue80;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   z-index: -10000;
+  background-color: $color-blue80;
+  inset: 0;
 }
 
 .iconsContainer {
   position: relative;
-  max-width: 1440px;
   width: 100%;
+  max-width: 1440px;
   height: 100%;
   margin: 0 auto;
 }
@@ -22,8 +19,8 @@
   position: absolute;
   top: 10vh;
   right: 0;
-  min-width: 400px;
   width: 40vw;
+  min-width: 400px;
   max-width: 800px;
   transform: rotate(40deg);
 }
@@ -32,8 +29,8 @@
   position: absolute;
   bottom: 10vh;
   left: 0;
-  min-width: 400px;
   width: 40vw;
+  min-width: 400px;
   max-width: 800px;
   transform: scale(1, -1) rotate(120deg);
 }

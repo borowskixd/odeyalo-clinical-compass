@@ -7,14 +7,15 @@
 }
 
 .navigation {
-  margin-bottom: 24px;
   display: flex;
-  gap: 34px;
   justify-content: flex-end;
+  margin-bottom: 24px;
+  gap: 34px;
 }
 
 .subtitle {
   margin-bottom: 20px;
+
   @include titleLarge;
 }
 
@@ -24,8 +25,7 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
   justify-content: space-between;
-  row-gap: 40px;
-  column-gap: 20px;
+  gap: 40px 20px;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
 }

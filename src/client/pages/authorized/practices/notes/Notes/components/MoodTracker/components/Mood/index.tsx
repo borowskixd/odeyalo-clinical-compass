@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import { mapMoodTrackerScoreToMoodStatus } from "@/client/utils";
-import { type FC } from "react";
 
 interface MoodProps {
   score: number;

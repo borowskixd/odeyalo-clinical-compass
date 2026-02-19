@@ -1,14 +1,14 @@
 "use client";
 
-import styles from "./styles.module.scss";
+import { Button } from "@odeyalo/uikit";
 import { useParams, useRouter } from "next/navigation";
+import { type FC, useEffect } from "react";
 import * as Yup from "yup";
-import { FormErrorLabel, FormikForm, PrimaryButton } from "@/client/components";
+import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import { PopupsService, useChangePasswordMutation } from "@/client/redux";
 import { mapApiErrorMessage } from "@/client/utils";
 import { pages } from "@/shared/data";
-import { type FC, useEffect } from "react";
 
 interface ChangePasswordFields {
   newPassword: string;
@@ -27,7 +27,7 @@ const validationSchema = Yup.object().shape({
     .oneOf([Yup.ref("newPassword")], "Пароли не совпадают"),
 });
 
-export const ChangePassowordForm: FC = () => {
+export const ChangePasswordForm: FC = () => {
   const { token } = useParams<{ token: string }>();
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -69,13 +69,14 @@ export const ChangePassowordForm: FC = () => {
       {isError && !!error && (
         <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>
       )}
-      <PrimaryButton
+      <Button
         type="submit"
-        className={styles.button}
         disabled={isLoading}
+        view="action"
+        width="max"
       >
         Сменить пароль
-      </PrimaryButton>
+      </Button>
     </FormikForm>
   );
 };

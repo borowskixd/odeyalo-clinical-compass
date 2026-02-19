@@ -3,27 +3,31 @@
 .title {
   @include titleCygre;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (width <= 900px) {
     @include titleXS;
   }
 }
 
 .moodHeader {
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .addButton {
-  height: 30px;
-  width: 30px;
   display: flex;
-  justify-content: center;
+  width: 30px;
+  height: 30px;
   align-items: center;
+  justify-content: center;
 
   & > svg {
     width: 100%;
     height: 100%;
   }
+}
+
+.redirectButton {
+  margin-bottom: -20px;
 }

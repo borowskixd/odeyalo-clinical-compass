@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import Link from "next/link";
-import { pages } from "@/shared/data";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
+import { pages } from "@/shared/data";
 
 interface Props {
   recommendation: {

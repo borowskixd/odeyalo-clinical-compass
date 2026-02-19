@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import { Button, Modal } from "@/client/components";
-import { type FC } from "react";
 
 interface ConfirmationModalProps {
   isOpen: boolean;

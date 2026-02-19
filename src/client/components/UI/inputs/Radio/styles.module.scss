@@ -2,9 +2,9 @@
 @use "@/client/styles/textStyles" as *;
 
 .radio {
+  display: none;
   width: 24px;
   height: 24px;
-  display: none;
 
   &:checked + .labelText {
     &::before {
@@ -27,10 +27,8 @@
 .labelText {
   display: inline-block;
   padding-left: 34px;
-  @include bodyLarge;
 
   &::before {
-    content: "";
     position: absolute;
     top: 2px;
     left: 2px;
@@ -38,19 +36,22 @@
     height: 20px;
     border: 2px solid $color-outline-variant;
     border-radius: 50%;
+    content: "";
     transition: border-color 0.2s;
   }
 
   &::after {
-    content: "";
     position: absolute;
     top: 7px;
     left: 7px;
     width: 10px;
     height: 10px;
-    background-color: $color-primary;
     border-radius: 50%;
+    background-color: $color-primary;
+    content: "";
     opacity: 0;
     transition: opacity 0.2s;
   }
+
+  @include bodyLarge;
 }

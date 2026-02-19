@@ -1,7 +1,8 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { useParams, useSearchParams } from "next/navigation";
+import { type ChangeEvent, type FC, useEffect, useState } from "react";
+import styles from "./styles.module.scss";
 import {
   Container,
   ContentWrapper,
@@ -13,13 +14,20 @@ import {
   SimpleBarChart,
 } from "@/client/components";
 import { useGetTestResultsQuery } from "@/client/redux";
+import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
-import { type ChangeEvent, type FC, useState } from "react";
 
 export const ResultsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const searchParams = useSearchParams();
   const [datesCheckboxes, setDatesCheckboxes] = useState<string[]>([]);
+  const { logEvent } = useAnalytics();
+
+  useEffect(() => {
+    logEvent("test-results-page-opened", {
+      test_id: id,
+    });
+  }, [id, logEvent]);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue: string = event.target.value;

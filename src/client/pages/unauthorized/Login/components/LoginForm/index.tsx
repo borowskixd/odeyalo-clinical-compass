@@ -1,20 +1,17 @@
 "use client";
 
-import styles from "./styles.module.scss";
+import { Button } from "@odeyalo/uikit";
 import Link from "next/link";
+import { type FC, useEffect } from "react";
 import * as Yup from "yup";
-import {
-  FormErrorLabel,
-  FormikForm,
-  PrimaryButton,
-  SecondaryButton,
-} from "@/client/components";
+import styles from "./styles.module.scss";
+import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import { useLoginMutation } from "@/client/redux";
 import { mapApiErrorMessage, redirectWithReload } from "@/client/utils";
+import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 import { type LoginRequestData } from "@/shared/types";
-import { type FC, useEffect } from "react";
 
 const initialValues: LoginRequestData = {
   email: "",
@@ -32,12 +29,18 @@ export const LoginForm: FC = () => {
   const dispatch = useAppDispatch();
   const [login, { data, isLoading, isSuccess, isError, error }] =
     useLoginMutation();
+  const { logEvent } = useAnalytics();
+
+  useEffect(() => {
+    logEvent("login-page-opened");
+  }, [logEvent]);
 
   useEffect(() => {
     if (isSuccess) {
       redirectWithReload(pages.main.path);
+      logEvent("login-success");
     }
-  }, [isSuccess, data, dispatch]);
+  }, [isSuccess, data, dispatch, logEvent]);
 
   const onSubmit = (values: LoginRequestData) => {
     login(values);
@@ -71,19 +74,21 @@ export const LoginForm: FC = () => {
         <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>
       )}
       <div className={styles.buttons}>
-        <PrimaryButton
+        <Button
           type="submit"
+          view="action"
+          width="max"
           disabled={isLoading}
-          className={styles.button}
         >
           Войти
-        </PrimaryButton>
-        <SecondaryButton
-          className={styles.button}
+        </Button>
+        <Button
           href={pages.registration.path}
+          view="secondary"
+          width="max"
         >
           Зарегистрироваться
-        </SecondaryButton>
+        </Button>
       </div>
     </FormikForm>
   );

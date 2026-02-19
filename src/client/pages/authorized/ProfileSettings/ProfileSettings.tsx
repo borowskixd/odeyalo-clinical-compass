@@ -1,5 +1,7 @@
 "use client";
 
+import { Icons20 } from "@odeyalo/uikit";
+import { type FC, useState } from "react";
 import {
   EditProfile,
   Feedback,
@@ -11,8 +13,6 @@ import {
 import styles from "./styles.module.scss";
 import { Container, ContentWrapper, PageTitle } from "@/client/components";
 import { ImageBackground } from "@/client/components/backgrounds";
-import { Icons20 } from "@odeyalo/uikit";
-import { type FC, useState } from "react";
 
 const buttons = [
   {
@@ -46,15 +46,9 @@ export const ProfileSettingsPage: FC = () => {
     setActiveButtonKey(null);
   };
 
-  const RenderComponent = () => {
-    const el = buttons.find((el) => el.key === activeButtonKey);
+  const activeButton = buttons.find((el) => el.key === activeButtonKey);
 
-    if (!el) return null;
-
-    const Component = el.component;
-
-    return <Component onBack={deleteActiveButtonKey} />;
-  };
+  const ActiveComponent = activeButton?.component;
 
   return (
     <Container className={styles.container}>
@@ -71,7 +65,7 @@ export const ProfileSettingsPage: FC = () => {
         />
         <LogoutButtons />
       </ContentWrapper>
-      <RenderComponent />
+      {ActiveComponent && <ActiveComponent onBack={deleteActiveButtonKey} />}
     </Container>
   );
 };

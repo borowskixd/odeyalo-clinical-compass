@@ -1,8 +1,8 @@
+import { type FC } from "react";
 import { ProfileImage } from "../../images";
 import styles from "./styles.module.scss";
 import { type GetApplicationResponseData } from "@/shared/types";
 import { mapAgeToText } from "@/shared/utils";
-import { type FC } from "react";
 
 interface Props {
   profile: GetApplicationResponseData;

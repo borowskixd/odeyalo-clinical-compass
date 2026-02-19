@@ -1,10 +1,10 @@
 "use client";
 
+import { type FC, useState } from "react";
 import styles from "./styles.module.scss";
 import { Modal, PrimaryButton, SecondaryButton } from "@/client/components";
 import { pages } from "@/shared/data";
 import { type GetTestsResponseData } from "@/shared/types";
-import { type FC, useState } from "react";
 
 interface Props {
   exercise: GetTestsResponseData[number];

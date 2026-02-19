@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./styles.module.scss";
+import { type FC, useMemo } from "react";
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -11,9 +11,9 @@ import {
   Text,
   Tooltip,
 } from "recharts";
-import { type RadarChartItem, mapToRadarChartData } from "@/client/utils";
+import styles from "./styles.module.scss";
+import { mapToRadarChartData } from "@/client/utils";
 import { type GetTestResponseData, type TestResultData } from "@/shared/types";
-import { type FC, useEffect, useState } from "react";
 
 interface Props {
   results: TestResultData[];
@@ -52,13 +52,10 @@ export const RadarChart: FC<Props> = ({
   values,
   className = "",
 }) => {
-  const [radarData, setRadarData] = useState<RadarChartItem[]>([]);
-
-  useEffect(() => {
-    if (results && scales) {
-      setRadarData(mapToRadarChartData(results, scales, values));
-    }
-  }, [values, results, scales]);
+  const radarData = useMemo(() => {
+    if (!results || !scales) return [];
+    return mapToRadarChartData(results, scales, values);
+  }, [results, scales, values]);
 
   const dataSets: string[] = [];
 

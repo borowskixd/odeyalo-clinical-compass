@@ -1,0 +1,58 @@
+"use client";
+
+import { Text } from "@odeyalo/uikit";
+import { type FC } from "react";
+import styles from "./styles.module.scss";
+import { LoadingLoop } from "@/client/components";
+import { useGetCurrentGamificationScoreQuery } from "@/client/redux";
+
+const MAX_SCORE = 40;
+
+export const GamificationProgressBar: FC = () => {
+  const { data, isLoading } = useGetCurrentGamificationScoreQuery();
+
+  if (isLoading || !data) return <LoadingLoop />;
+
+  const progressBarStyle =
+    data.score === 0
+      ? styles.red
+      : data.score >= 30
+        ? styles.green
+        : styles.yellow;
+
+  const progressLineWidth = (data.score / MAX_SCORE) * 100;
+
+  const pointsLeft = MAX_SCORE - data.score;
+
+  return (
+    <div>
+      <div>
+        <div className={`${styles.progressBar} ${progressBarStyle}`}>
+          <div
+            className={styles.progressLine}
+            style={{ width: `${progressLineWidth}%` }}
+          >
+            {data.score}
+          </div>
+          <div
+            className={styles.maxScore}
+            style={{ width: `${100 - progressLineWidth}%` }}
+          >
+            {MAX_SCORE}
+          </div>
+        </div>
+        <Text
+          variant="body-l-bold"
+          className={styles.label}
+          as="p"
+        >
+          {pointsLeft === 0
+            ? `Сегодня вы набрали все очки, поздравляем!`
+            : `Нужно набрать ещё ${pointsLeft} очков.`}
+          Чтобы набрать очки, читайте теорию, проходите тесты и выполняйте
+          упражнения
+        </Text>
+      </div>
+    </div>
+  );
+};

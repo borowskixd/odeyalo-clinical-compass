@@ -2,12 +2,10 @@
 @use "@/client/styles/fontStyles" as *;
 
 .form {
-  display: initial;
+  display: block;
+  margin-bottom: 20px;
 }
 
 .button {
-  width: 100%;
-  height: 46px !important;
   margin-top: 20px;
-  font-weight: 700 !important;
 }

@@ -1,6 +1,6 @@
-import styles from "./styles.module.scss";
 import { Icon, Icons20 } from "@odeyalo/uikit";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
 
 export const ProfileImage: FC = () => {
   return (

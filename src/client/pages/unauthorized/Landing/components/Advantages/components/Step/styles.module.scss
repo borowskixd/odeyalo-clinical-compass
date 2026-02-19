@@ -2,15 +2,15 @@
 @use "@/client/styles/fontStyles" as *;
 
 .step {
-    width: 100px;
-    height: 45px;
-    border-radius: 9px;
-    color: $color-white100;
-    @include bodyXL;
-    background-color: $color-blue80;
-    gap: 10px;
+  display: flex;
+  width: 100px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background-color: $color-blue80;
+  color: $color-white100;
+  gap: 10px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  @include bodyXL;
 }

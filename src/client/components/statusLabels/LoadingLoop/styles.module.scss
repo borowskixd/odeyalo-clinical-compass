@@ -1,15 +1,16 @@
 .loading {
-  width: 100%;
-  padding: 40px 0;
   display: flex;
-  justify-content: center;
+  width: 100%;
   align-items: center;
+  justify-content: center;
+  padding: 40px 0;
 }
 
 @keyframes loop {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -17,8 +18,8 @@
 
 .loadingIcon {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   animation: loop;
   animation-duration: 1s;
   animation-iteration-count: infinite;

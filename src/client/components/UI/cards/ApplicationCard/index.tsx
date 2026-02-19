@@ -1,11 +1,11 @@
 "use client";
 
+import { type FC } from "react";
 import { PrimaryButton } from "../../buttons";
 import { ProfileImage } from "../../images";
 import styles from "../styles.module.scss";
 import { pages } from "@/shared/data";
 import { type GetApplicationsResponseData } from "@/shared/types";
-import { type FC } from "react";
 
 interface Props {
   application: GetApplicationsResponseData[number];

@@ -1,6 +1,6 @@
+import { type FC } from "react";
 import { Addition, Step } from "./components";
 import styles from "./styles.module.scss";
-import { type FC } from "react";
 
 export const Advantages: FC = () => {
   return (

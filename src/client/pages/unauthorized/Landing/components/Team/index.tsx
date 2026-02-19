@@ -1,7 +1,7 @@
-import styles from "./styles.module.scss";
 import Image from "next/image";
-import { team } from "@/shared/data";
 import { type FC } from "react";
+import styles from "./styles.module.scss";
+import { team } from "@/shared/data";
 
 export const Team: FC = () => {
   return (

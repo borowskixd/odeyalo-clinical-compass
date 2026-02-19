@@ -1,9 +1,11 @@
-import styles from "./styles.module.scss";
+"use client";
+
+import { Icon, Icons24Solid } from "@odeyalo/uikit";
 import Link from "next/link";
-import { ArrowIcon } from "@/client/assets/icons";
+import { type FC, type ReactNode } from "react";
+import styles from "./styles.module.scss";
 import { Container, ContentWrapper, PageTitle } from "@/client/components";
 import { FormBackground } from "@/client/components/backgrounds";
-import { type FC, type ReactNode } from "react";
 
 interface FormPageLayoutProps {
   title: ReactNode;
@@ -28,7 +30,10 @@ export const FormPageLayout: FC<FormPageLayoutProps> = ({
               href={comeBackLink}
               className={styles.comeBackButton}
             >
-              <ArrowIcon />
+              <Icon
+                size={24}
+                data={Icons24Solid.ChevronRightIcon}
+              />
             </Link>
           </div>
         )}

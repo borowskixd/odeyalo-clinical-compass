@@ -1,11 +1,18 @@
 "use client";
 
+import { useParams, useRouter } from "next/navigation";
+import {
+  type FC,
+  type FormEventHandler,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { ExerciseHeader } from "../../components";
 import { ButtonsContainer, FormGenerator } from "./components";
 import styles from "./styles.module.scss";
 import { type FormValuesType, type ValueType } from "./types";
 import { generateInitialValue, validateExerciseData } from "./utils";
-import { useParams, useRouter } from "next/navigation";
 import {
   Container,
   ContentWrapper,
@@ -16,19 +23,14 @@ import {
   useCompleteExerciseMutation,
   useGetExerciseStructureQuery,
 } from "@/client/redux";
+import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 import { type CompleteExerciseRequestData } from "@/shared/types";
-import {
-  type FC,
-  type FormEventHandler,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
 
 export const ExercisePage: FC = () => {
   const router = useRouter();
   const { id } = useParams<{ id: string }>();
+  const { logEvent } = useAnalytics();
 
   const { data: exerciseStructure, ...getExerciseStructureState } =
     useGetExerciseStructureQuery(id);
@@ -43,10 +45,20 @@ export const ExercisePage: FC = () => {
   const [showError, setShowError] = useState<boolean>(false);
 
   useEffect(() => {
+    logEvent("exercise-page-opened", {
+      exercise_id: id,
+    });
+  }, [id, logEvent]);
+
+  useEffect(() => {
     if (completeExerciseState.isSuccess) {
       router.push(pages.exercisePreview.getLink({ params: { id } }));
+
+      logEvent("exercise-completed", {
+        exercise_id: id,
+      });
     }
-  }, [completeExerciseState.isSuccess, router, id]);
+  }, [completeExerciseState.isSuccess, router, id, logEvent]);
 
   useEffect(() => {
     setValues(

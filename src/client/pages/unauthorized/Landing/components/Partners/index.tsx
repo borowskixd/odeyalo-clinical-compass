@@ -1,9 +1,9 @@
-import { Slider } from "./components";
-import styles from "./styles.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { partners } from "@/shared/data";
 import { type FC } from "react";
+import { Slider } from "./components";
+import styles from "./styles.module.scss";
+import { partners } from "@/shared/data";
 
 export const Partners: FC = () => {
   return (

@@ -1,7 +1,8 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { useParams } from "next/navigation";
+import { type FC } from "react";
+import styles from "./styles.module.scss";
 import {
   Container,
   ContentWrapper,
@@ -21,7 +22,6 @@ import {
 } from "@/client/redux";
 import { ACCESS } from "@/shared/config/access";
 import { pages } from "@/shared/data";
-import { type FC } from "react";
 
 export const ClientPage: FC = () => {
   const { id } = useParams<{ id: string }>();

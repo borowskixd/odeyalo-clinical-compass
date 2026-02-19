@@ -1,11 +1,11 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { useParams } from "next/navigation";
+import { type FC } from "react";
+import styles from "./styles.module.scss";
 import { DefaultError, LoadingLoop, PageTitle } from "@/client/components";
 import { useGetNoteQuery } from "@/client/redux";
 import { days, months } from "@/shared/utils";
-import { type FC } from "react";
 
 export const Content: FC = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,8 +1,34 @@
 @use "@/client/styles/colors" as *;
 @use "@/client/styles/fontStyles" as *;
 
-.dailyTasks {
-  max-width: 420px;
+.widgets {
+  display: flex;
+  gap: 24px;
+
+  @media screen and (width <= 740px) {
+    flex-direction: column;
+  }
+}
+
+.column {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 24px;
+
+  &.first {
+    max-width: 420px;
+
+    @media screen and (width <= 740px) {
+      max-width: 100%;
+    }
+  }
+
+  &.second {
+    @media screen and (width <= 740px) {
+      flex-direction: column-reverse;
+    }
+  }
 }
 
 .title {
@@ -11,5 +37,6 @@
 
 .date {
   margin: 10px 0 30px;
+
   @include bodyLBold;
 }

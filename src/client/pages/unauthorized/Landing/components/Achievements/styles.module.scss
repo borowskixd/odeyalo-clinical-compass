@@ -2,9 +2,10 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-  @include titleCygre;
-  margin-left: 40px;
   margin-bottom: 40px;
+  margin-left: 40px;
+
+  @include titleCygre;
 }
 
 h3.title {
@@ -14,11 +15,11 @@ h3.title {
 
 .achievements {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  width: 100%;
   max-width: 1500px;
   margin: 0 auto;
-  width: 100%;
+  gap: 40px;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .achievementCard {
@@ -32,16 +33,16 @@ h3.title {
 
 .achievementCard1 {
   background-image: url("/static/landing/glasses.webp");
-  background-size: 60% auto;
   background-position-x: calc(100% - 145px);
   background-position-y: calc(100%);
+  background-size: 60% auto;
 }
 
 .achievementCard4 {
   background-image: url("/static/landing/heart.webp");
-  background-size: 35% auto;
   background-position-x: calc(100% - 31px);
   background-position-y: calc(100%);
+  background-size: 35% auto;
 }
 
 .achievementTitle {
@@ -49,17 +50,18 @@ h3.title {
 }
 
 .achievementDescription {
-  @include bodyXL;
+  margin-top: 20px;
+  color: $color-black100;
   font-size: 25px;
   line-height: 30px;
-  color: $color-black100;
-  margin-top: 20px;
+
+  @include bodyXL;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .achievements {
-    grid-template-columns: 1fr;
     max-width: 100%;
+    grid-template-columns: 1fr;
   }
 
   .achievementCard {

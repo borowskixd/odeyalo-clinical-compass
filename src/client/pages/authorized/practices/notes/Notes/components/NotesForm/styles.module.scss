@@ -1,10 +1,11 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-  @include titleCygre;
   margin-bottom: 10px;
 
-  @media screen and (max-width: 900px) {
+  @include titleCygre;
+
+  @media screen and (width <= 900px) {
     @include titleXS;
   }
 }

@@ -1,14 +1,15 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
+import { type FC, useEffect } from "react";
 import { NoteDate, SubmitButton } from "./components";
 import styles from "./styles.module.scss";
-import { useRouter, useSearchParams } from "next/navigation";
 import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useCreateNoteMutation } from "@/client/redux";
 import { mapApiErrorMessage } from "@/client/utils";
+import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 import { compareDates, mapDateToApiDateFormat } from "@/shared/utils";
-import { type FC, useEffect } from "react";
 
 interface InitialValues {
   note: string;
@@ -23,12 +24,15 @@ export const NewNoteForm: FC = () => {
   const router = useRouter();
   const [createNote, { isLoading, isSuccess, isError, error }] =
     useCreateNoteMutation();
+  const { logEvent } = useAnalytics();
 
   useEffect(() => {
     if (isSuccess) {
       router.push(pages.notes.path);
+
+      logEvent("note-added");
     }
-  }, [isSuccess, router]);
+  }, [isSuccess, router, logEvent]);
 
   const dateParam = searchParams.get("date");
 

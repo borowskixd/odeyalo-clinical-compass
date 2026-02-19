@@ -3,10 +3,11 @@
 .button {
   height: 36px;
   padding: 8px 16px;
-  @include bodyM;
   border-radius: 7px;
 
   &.medium {
     width: 168px;
   }
+
+  @include bodyM;
 }

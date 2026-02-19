@@ -3,60 +3,70 @@
 
 .nav {
   display: flex;
-  gap: 20px;
   align-items: center;
+  gap: 20px;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (width <= 900px) {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    padding: 0 8px;
-    gap: 8px;
-    background-color: $color-blue20;
     z-index: 100;
+    right: 16px;
+    bottom: 6px;
+    left: 16px;
+    height: 75px;
+    padding: 12px;
+    border-radius: 75px;
+    background-color: $color-white100;
+    gap: 10px;
   }
 }
 
 .navLink {
   min-width: 112px;
 
-  @media screen and (max-width: 900px) {
+  &.active {
+    background-color: $color-blue80;
+    color: $color-white100;
+
+    @media screen and (width <= 900px) {
+      background-color: $color-white70;
+      color: $color-blue80;
+    }
+  }
+
+  @media screen and (width <= 900px) {
+    display: flex;
     width: 100%;
     min-width: auto;
     height: 100%;
-    padding: 0;
-    display: flex;
     flex-flow: column;
-    justify-content: center;
     align-items: center;
-    gap: 4px;
-    @include bodySBold;
-    color: $color-blue100;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 50px;
     background-color: transparent;
-    border-radius: 0;
+    color: $color-black100;
+    gap: 5px;
+
+    @include bodySBold;
   }
 }
 
 .iconWrapper {
+  display: none;
   width: 62px;
   height: 32px;
-  display: none;
   align-items: center;
   justify-content: center;
   border-radius: 16px;
 
-  & > svg {
+  & svg,
+  path {
     width: 24px;
     height: 24px;
+    fill: currentcolor;
   }
 
-  &.active {
-    background-color: $color-blue40;
-  }
-
-  @media screen and (max-width: 900px) {
+  @media screen and (width <= 900px) {
     display: flex;
   }
 }

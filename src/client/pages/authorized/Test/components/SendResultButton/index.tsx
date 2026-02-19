@@ -1,13 +1,14 @@
 "use client";
 
-import styles from "./styles.module.scss";
 import { useParams, useRouter } from "next/navigation";
+import { type FC, useEffect } from "react";
+import styles from "./styles.module.scss";
 import { DefaultError, PrimaryButton } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import { PopupsService, useSendTestResultMutation } from "@/client/redux";
+import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 import { type SendTestResultRequestData } from "@/shared/types";
-import { type FC, useEffect } from "react";
 
 interface SendResultButtonProps {
   disabled: boolean;
@@ -25,6 +26,7 @@ export const SendResultButton: FC<SendResultButtonProps> = ({
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { logEvent } = useAnalytics();
 
   const [sendTestResult, sendTestResultState] = useSendTestResultMutation();
 
@@ -33,12 +35,17 @@ export const SendResultButton: FC<SendResultButtonProps> = ({
       const { testResultId } = sendTestResultState.data;
       router.push(pages.detailResult.getLink({ params: { id: testResultId } }));
       dispatch(PopupsService.openSnackbarWithDelay("Тест успешно пройден!"));
+      logEvent("test-passed", {
+        test_id: id,
+      });
     }
   }, [
+    id,
     sendTestResultState.isSuccess,
     sendTestResultState.data,
     dispatch,
     router,
+    logEvent,
   ]);
 
   if (sendTestResultState.isError)

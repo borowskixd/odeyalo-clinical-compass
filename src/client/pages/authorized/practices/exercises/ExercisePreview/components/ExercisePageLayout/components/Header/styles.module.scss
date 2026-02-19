@@ -8,14 +8,16 @@
 }
 
 .text {
-  @include bodyL;
   white-space: pre-wrap;
+
+  @include bodyL;
 }
 
 .button {
-  margin-top: 10px;
   width: 100%;
   min-height: 46px;
-  @include bodyMBold;
   border-radius: 12px;
+  margin-top: 10px;
+
+  @include bodyMBold;
 }

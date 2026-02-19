@@ -1,10 +1,10 @@
 "use client";
 
-import styles from "./styles.module.scss";
-import { Pagination } from "swiper/modules";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import React from "react";
+import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import styles from "./styles.module.scss";
 
 interface SliderProps {
   children: ReactNode[];

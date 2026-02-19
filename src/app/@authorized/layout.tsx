@@ -1,5 +1,5 @@
-import { Footer, Header } from "@/client/components";
 import { type ReactNode } from "react";
+import { Footer, Header } from "@/client/components";
 
 export default function AuthorizedLayout({
   children,

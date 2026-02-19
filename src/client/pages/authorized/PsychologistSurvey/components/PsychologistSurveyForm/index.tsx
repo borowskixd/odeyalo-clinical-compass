@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "./styles.module.scss";
-import * as Yup from "yup";
-import { FormikForm, PrimaryButton } from "@/client/components";
 import { type FC } from "react";
+import * as Yup from "yup";
+import styles from "./styles.module.scss";
+import { FormikForm, PrimaryButton } from "@/client/components";
 
 interface PsychologistSurveyFormFields {
   username: string;

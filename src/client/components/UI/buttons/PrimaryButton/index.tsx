@@ -1,8 +1,8 @@
 "use client";
 
+import { type FC, type ReactNode } from "react";
 import { AppButton } from "../AppButton";
 import styles from "./styles.module.scss";
-import { type FC, type ReactNode } from "react";
 
 interface Props {
   children: ReactNode;

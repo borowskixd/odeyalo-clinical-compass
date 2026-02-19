@@ -1,12 +1,14 @@
 "use client";
 
+import { Button } from "@odeyalo/uikit";
+import { type FC, useEffect, useState } from "react";
 import { Emojis, MoodTrackerValue } from "./components";
 import styles from "./styles.module.scss";
-import { FormErrorLabel, FormikForm, PrimaryButton } from "@/client/components";
+import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
 import { selectNotesCalendarDate, useSaveMoodMutation } from "@/client/redux";
+import { useAnalytics } from "@/shared/analytics";
 import { compareDates, mapDateToApiDateFormat } from "@/shared/utils";
-import { type FC, useState } from "react";
 
 interface Props {
   onSubmitAction: () => void;
@@ -21,10 +23,17 @@ const initialValues: InitialValues = {
 };
 
 export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
-  const [saveMood, { isLoading }] = useSaveMoodMutation();
+  const [saveMood, { isLoading, isSuccess }] = useSaveMoodMutation();
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
   const [emojiIds, setEmojiIds] = useState<number[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const { logEvent } = useAnalytics();
+
+  useEffect(() => {
+    if (isSuccess) {
+      logEvent("mood-added");
+    }
+  }, [isSuccess, logEvent]);
 
   const submitHandler = (values: InitialValues) => {
     if (emojiIds.length) {
@@ -69,13 +78,15 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
           <FormErrorLabel>{errorMessage}</FormErrorLabel>
         </div>
       )}
-      <PrimaryButton
+      <Button
         type="submit"
         className={styles.button}
         disabled={isLoading}
+        view="action"
+        width="max"
       >
         Сохранить
-      </PrimaryButton>
+      </Button>
     </FormikForm>
   );
 };

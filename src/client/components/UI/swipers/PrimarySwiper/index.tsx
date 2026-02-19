@@ -1,11 +1,11 @@
 "use client";
 
-import styles from "./styles.module.scss";
+import { type FC, type ReactNode } from "react";
 import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import styles from "./styles.module.scss";
 import "swiper/scss";
 import { NextIcon } from "@/client/assets/icons";
-import { type FC, type ReactNode } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 interface Props {
   children: ReactNode[];
