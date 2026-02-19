@@ -1,6 +1,8 @@
 .grid {
   display: grid;
-  gap: 40px 16px;
+  align-items: start;
+  gap: 10px 16px;
+  grid-template-areas: var(--grid-template-areas);
   grid-template-columns: repeat(2, 1fr);
 
   &:has(> :nth-child(odd):last-child) > :last-child {
@@ -12,6 +14,7 @@
   }
 
   @media screen and (width <= 600px) {
+    grid-template-areas: initial;
     grid-template-columns: repeat(1, 1fr);
   }
 }

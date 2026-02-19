@@ -1,0 +1,7 @@
+@use "@/client/styles/colors" as *;
+
+.wrapper {
+  padding: 16px;
+  border-radius: 12px;
+  background-color: $color-blue20;
+}
