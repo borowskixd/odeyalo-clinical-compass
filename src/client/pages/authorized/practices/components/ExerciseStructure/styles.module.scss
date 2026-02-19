@@ -1,24 +1,44 @@
 @use "@/client/styles/fontStyles" as *;
 
 .container {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 10px;
+  display: contents;
+
+  & .labelTitle {
+    grid-area: var(--grid-area-title);
+  }
+
+  & .field {
+    grid-area: var(--grid-area-field);
+  }
+
+  & .hint {
+    grid-area: var(--grid-area-hint);
+  }
+
+  @media screen and (width <= 600px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+  }
 }
 
 .label {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
+  display: contents;
 }
 
-.labelText {
+.labelTitle {
+  margin-bottom: 10px;
+
   @include bodyMBold;
 }
 
 .hint {
+  margin-bottom: 30px;
+
+  &:empty {
+    margin-bottom: 20px;
+  }
+
   @include bodyM;
 }

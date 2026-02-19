@@ -1,7 +1,9 @@
-import { AddableInputGroup, RangeInput, TextArea } from "@odeyalo/uikit";
+import { AddableInputGroup, TextArea } from "@odeyalo/uikit";
 import { type ChangeEventHandler, type FC, type ReactNode } from "react";
 import { ExerciseStructure, Grid } from "../../../../components";
+import { toGridTemplateAreas } from "../../../../components/Grid/utils";
 import { type ValueType } from "../../types";
+import { RangeInputWrapper } from "@/client/pages/authorized/practices/exercises/Exercise/components/FormGenerator/components";
 import { type GetExerciseStructureResponseData } from "@/shared/types";
 
 interface Props {
@@ -16,12 +18,19 @@ export const FormGenerator: FC<Props> = ({
   changeHandler: handler,
 }) => {
   return exerciseStructure.pages.map((page) => {
+    const gridStyle = {
+      ["--grid-template-areas" as any]: toGridTemplateAreas(
+        page.sections.length,
+      ),
+    };
+
     return (
       <Grid
         key={page.number}
+        style={{ ...gridStyle }}
         hidden={pageNumber !== page.number}
       >
-        {page.sections.map((section) => {
+        {page.sections.map((section, sectionIndex) => {
           let component: ReactNode = null;
 
           const commonProps = {
@@ -29,6 +38,7 @@ export const FormGenerator: FC<Props> = ({
             labelText: section.label,
             placeholder: section.placeholder,
             hintText: section.prompt ? section.prompt : undefined,
+            sectionIndex,
           };
 
           if (section.type === "input") {
@@ -71,14 +81,14 @@ export const FormGenerator: FC<Props> = ({
               step: 1,
               defaultValue: 3,
               labels: ["Ужасно", "Плохо", "Нормально", "Хорошо", "Потрясающе"],
-              onUpdate: changeHandler, // Теперь это (value: number) => void
+              onUpdate: changeHandler,
             };
 
             component = (
               <ExerciseStructure
                 {...commonProps}
                 key={section.id}
-                component={RangeInput}
+                component={RangeInputWrapper}
                 {...rangeProps}
               />
             );

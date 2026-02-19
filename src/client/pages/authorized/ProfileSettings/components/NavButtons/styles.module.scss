@@ -9,6 +9,11 @@
 }
 
 .active {
-  background-color: $color-blue80 !important;
-  color: $color-white100 !important;
+  background-color: $color-blue80;
+  color: $color-white100;
+
+  &:hover {
+    background-color: $color-blue80;
+    color: $color-white100;
+  }
 }

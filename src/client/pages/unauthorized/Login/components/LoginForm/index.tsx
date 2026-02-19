@@ -1,15 +1,11 @@
 "use client";
 
+import { Button } from "@odeyalo/uikit";
 import Link from "next/link";
 import { type FC, useEffect } from "react";
 import * as Yup from "yup";
 import styles from "./styles.module.scss";
-import {
-  FormErrorLabel,
-  FormikForm,
-  PrimaryButton,
-  SecondaryButton,
-} from "@/client/components";
+import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import { useLoginMutation } from "@/client/redux";
 import { mapApiErrorMessage, redirectWithReload } from "@/client/utils";
@@ -78,19 +74,21 @@ export const LoginForm: FC = () => {
         <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>
       )}
       <div className={styles.buttons}>
-        <PrimaryButton
+        <Button
           type="submit"
+          view="action"
+          width="max"
           disabled={isLoading}
-          className={styles.button}
         >
           Войти
-        </PrimaryButton>
-        <SecondaryButton
-          className={styles.button}
+        </Button>
+        <Button
           href={pages.registration.path}
+          view="secondary"
+          width="max"
         >
           Зарегистрироваться
-        </SecondaryButton>
+        </Button>
       </div>
     </FormikForm>
   );

@@ -3,6 +3,8 @@
 import { AddableInputGroup, TextArea } from "@odeyalo/uikit";
 import { type FC } from "react";
 import { ExerciseStructure, Grid } from "../../../../components";
+import { toGridTemplateAreas } from "@/client/pages/authorized/practices/components/Grid/utils";
+import { RangeInputWrapper } from "@/client/pages/authorized/practices/exercises/Exercise/components/FormGenerator/components";
 import { type GetExerciseResultResponseData } from "@/shared/types";
 
 type FormGeneratorProps = {
@@ -12,14 +14,21 @@ type FormGeneratorProps = {
 export const FormGenerator: FC<FormGeneratorProps> = ({
   exerciseStructure,
 }) => {
+  const gridStyle = {
+    ["--grid-template-areas" as any]: toGridTemplateAreas(
+      exerciseStructure.sections.length,
+    ),
+  };
+
   return (
-    <Grid>
-      {exerciseStructure.sections.map((section, index) => {
-        const key = `${section.label}-${index}`;
+    <Grid style={gridStyle}>
+      {exerciseStructure.sections.map((section, sectionIndex) => {
+        const key = `${section.label}-${sectionIndex}`;
 
         const commonProps = {
           labelText: section.label,
           readOnly: true,
+          sectionIndex,
         };
 
         if (section.type === "input") {
@@ -50,6 +59,23 @@ export const FormGenerator: FC<FormGeneratorProps> = ({
                 ? propsValueAsArray
                 : propsValueAsString)}
               component={AddableInputGroup}
+            />
+          );
+        } else if (section.type === "slider") {
+          const rangeProps = {
+            min: 1,
+            max: 5,
+            step: 1,
+            defaultValue: 3,
+            labels: ["Ужасно", "Плохо", "Нормально", "Хорошо", "Потрясающе"],
+          };
+
+          return (
+            <ExerciseStructure
+              {...commonProps}
+              key={key}
+              component={RangeInputWrapper}
+              {...rangeProps}
             />
           );
         }

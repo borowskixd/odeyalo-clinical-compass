@@ -3,10 +3,9 @@
 
 .title {
   margin-bottom: 20px;
+  font-family: var(--font-cygre);
   font-size: 20px;
   line-height: 22px;
-
-  @include titleCygre;
 }
 
 .list {

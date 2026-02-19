@@ -17,7 +17,7 @@ export const MainPage: FC = () => {
             <DailyTasks />
           </ContentWrapper>
           <ContentWrapper>
-            <MoodTracker />
+            <MoodTracker showRedirectButton />
           </ContentWrapper>
         </div>
         <div className={`${styles.column} ${styles.second}`}>

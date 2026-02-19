@@ -30,7 +30,10 @@ export const FormPageLayout: FC<FormPageLayoutProps> = ({
               href={comeBackLink}
               className={styles.comeBackButton}
             >
-              <Icon data={Icons24Solid.ChevronRightIcon} />
+              <Icon
+                size={24}
+                data={Icons24Solid.ChevronRightIcon}
+              />
             </Link>
           </div>
         )}

@@ -1,14 +1,16 @@
-import { type FC, type ReactNode } from "react";
+import { type FC, HTMLAttributes } from "react";
 import styles from "./styles.module.scss";
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   hidden?: boolean;
-  children: ReactNode;
 }
 
-export const Grid: FC<Props> = ({ hidden, children }) => {
+export const Grid: FC<Props> = ({ hidden, children, ...props }) => {
   return (
-    <div className={`${styles.grid} ${hidden ? styles.hidden : ""}`}>
+    <div
+      className={`${styles.grid} ${hidden ? styles.hidden : ""}`}
+      {...props}
+    >
       {children}
     </div>
   );
