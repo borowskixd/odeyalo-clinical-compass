@@ -1,6 +1,6 @@
 import { type StaticImageData } from "next/image";
 import AlexanderPak from "@/client/assets/webp/team/AlexanderPak.webp";
-import AlinaTisheva from "@/client/assets/webp/team/AlinaTishaeva.webp";
+import AlinaTisheva from "@/client/assets/webp/team/AlinaTishaeva1.webp";
 import DaniilKostin from "@/client/assets/webp/team/DaniilKostin.webp";
 import DmitryBespalov from "@/client/assets/webp/team/DmitryBespalov.webp";
 import IlyaFomin from "@/client/assets/webp/team/IlyaFomin.webp";

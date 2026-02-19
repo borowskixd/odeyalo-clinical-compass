@@ -19,30 +19,32 @@ h3.title {
 }
 
 .team {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   max-width: 1500px;
   padding: 40px;
   gap: 50px 20px;
-  grid-template-columns: repeat(4, 1fr);
+  justify-content: flex-start;
 }
 
 .teamMember {
   display: flex;
-  min-width: 200px;
+  width: 247px;
+  flex: 0 0 auto;
   flex-flow: column;
   gap: 20px;
 }
 
 .teamMemberPhotoContainer {
   overflow: hidden;
-  min-width: 200px;
+  width: 247px;
+  height: 339px;
   border-radius: 12px;
 }
 
 .teamMemberPhoto {
   width: 100%;
   height: 100%;
-  min-height: 400px;
   object-fit: cover;
 }
 
@@ -59,4 +61,62 @@ h3.title {
 
 .teamMemberRole {
   color: $color-black100;
+}
+
+@media (width <= 1160px) {
+  .team {
+    justify-content: center;
+  }
+}
+
+@media (width <= 900px) {
+  h3.title {
+    margin-left: 30px;
+    font-size: 36px;
+    line-height: 40px;
+  }
+  
+  .team {
+    gap: 40px 20px;
+  }
+
+  .teamMember {
+    width: 200px;
+  }
+  
+  .teamMemberPhotoContainer {
+    width: 200px;
+    height: 275px;
+  }
+  
+  .teamMemberInfo {
+    width: 200px;
+  }
+}
+
+@media (width <= 768px) {
+  .team {
+    padding: 30px;
+    gap: 30px 15px;
+  }
+  
+  h3.title {
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: 32px;
+    line-height: 36px;
+  }
+  
+  .teamMember {
+    width: 180px;
+  }
+  
+  .teamMemberPhotoContainer {
+    width: 180px;
+    height: 247px;
+  }
+  
+  .teamMemberInfo {
+    width: 180px;
+  }
 }

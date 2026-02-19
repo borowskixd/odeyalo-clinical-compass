@@ -5,8 +5,68 @@
   display: flex;
   align-items: center;
   gap: 20px;
+
+  @media screen and (width <= 900px) {
+    position: fixed;
+    z-index: 100;
+    right: 16px;
+    bottom: 6px;
+    left: 16px;
+    height: 75px;
+    padding: 12px;
+    border-radius: 75px;
+    background-color: $color-white100;
+    gap: 10px;
+  }
 }
 
 .navLink {
   min-width: 112px;
+
+  &.active {
+    background-color: $color-blue80;
+    color: $color-white100;
+
+    @media screen and (width <= 900px) {
+      background-color: $color-white70;
+      color: $color-blue80;
+    }
+  }
+
+  @media screen and (width <= 900px) {
+    display: flex;
+    width: 100%;
+    min-width: auto;
+    height: 100%;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 50px;
+    background-color: transparent;
+    color: $color-black100;
+    gap: 5px;
+
+    @include bodySBold;
+  }
+}
+
+.iconWrapper {
+  display: none;
+  width: 62px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+
+  & svg,
+  path {
+    width: 24px;
+    height: 24px;
+    fill: currentcolor;
+  }
+
+  @media screen and (width <= 900px) {
+    display: flex;
+  }
 }

@@ -41,8 +41,27 @@
   line-height: 30px;
 }
 
-@media (width <= 768px) {
-  .gridContainer {
+@media (width <= 1025px) {
+  .container {
     grid-template-columns: 1fr;
+  }
+  
+  .image {
+    display: none;
+  }
+  
+  .textContent {
+    padding: 40px;
+  }
+}
+
+@media (width <= 768px) {
+  .textContent {
+    padding: 30px;
+  }
+  
+  .description {
+    font-size: 20px;
+    line-height: 26px;
   }
 }

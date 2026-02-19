@@ -70,37 +70,34 @@ h2.title {
   gap: 20px;
 }
 
-@media (width <= 1024px) {
+@media (width <= 1025px) {
   .infoSection {
     grid-template-columns: 1fr;
   }
-
+  
   .imageSide {
-    order: -1;
-    margin-bottom: 20px;
+    display: none;
   }
-
-  .phoneImage {
-    min-height: 400px;
-  }
-
-  .info {
+  
+  .textSide {
     padding: 30px;
   }
 }
 
 @media (width <= 768px) {
-  .phoneImage {
-    min-height: 300px;
+  h2.title {
+    font-size: 28px;
+    line-height: 32px;
   }
-}
-
-h2.title {
-  font-size: 28px;
-  line-height: 32px;
-}
-
-.info {
-  padding: 20px;
-  border-radius: 30px;
+  
+  .textSide {
+    padding: 20px;
+    border-radius: 30px;
+  }
+  
+  .infoList {
+    font-size: 20px;
+    line-height: 26px;
+    gap: 20px;
+  }
 }
