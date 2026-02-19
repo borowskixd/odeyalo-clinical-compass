@@ -29,7 +29,9 @@ h3.title {
 
 .teamMember {
   display: flex;
-  width: 247px;
+  width: calc(25% - 15px);
+  min-width: 247px;
+  max-width: 350px;
   flex: 0 0 auto;
   flex-flow: column;
   gap: 20px;
@@ -37,8 +39,8 @@ h3.title {
 
 .teamMemberPhotoContainer {
   overflow: hidden;
-  width: 247px;
-  height: 339px;
+  width: 100%;
+  aspect-ratio: 247 / 339;
   border-radius: 12px;
 }
 
@@ -53,6 +55,7 @@ h3.title {
   flex-flow: column;
   gap: 5px;
   white-space: pre-line;
+  width: 100%;
 }
 
 .teamMemberName {
@@ -81,16 +84,8 @@ h3.title {
   }
 
   .teamMember {
-    width: 200px;
-  }
-  
-  .teamMemberPhotoContainer {
-    width: 200px;
-    height: 275px;
-  }
-  
-  .teamMemberInfo {
-    width: 200px;
+    width: calc(33.333% - 13.334px);
+    min-width: 200px;
   }
 }
 
@@ -108,15 +103,15 @@ h3.title {
   }
   
   .teamMember {
-    width: 180px;
+    width: calc(50% - 7.5px);
+    min-width: 180px;
   }
-  
-  .teamMemberPhotoContainer {
-    width: 180px;
-    height: 247px;
-  }
-  
-  .teamMemberInfo {
-    width: 180px;
+}
+
+@media (width <= 480px) {
+  .teamMember {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
   }
 }
