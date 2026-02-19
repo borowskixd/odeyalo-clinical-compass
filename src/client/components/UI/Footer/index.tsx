@@ -28,13 +28,13 @@ export const Footer: FC = () => {
     <>
       <footer className={styles.footer}>
         <Container className={styles.container}>
-          <Link
-            href={pages.main.path}
-            className={styles.logo}
-          >
-            <LogoIcon />
-          </Link>
-          <div className={styles.contacts}>
+          <div className={styles.nav}>
+            <Link
+              href={pages.main.path}
+              className={styles.logo}
+            >
+              <LogoIcon />
+            </Link>
             <div className={styles.contactBlock}>
               <span className={styles.contactTitle}>Связаться с нами</span>
               <div className={styles.socials}>
@@ -54,13 +54,13 @@ export const Footer: FC = () => {
                 </IconButton>
               </div>
             </div>
-            <SecondaryButton
-              className={styles.privacyButton}
-              onClick={openModalHandler}
-            >
-              Политика конфиденциальности
-            </SecondaryButton>
           </div>
+          <SecondaryButton
+            className={styles.privacyButton}
+            onClick={openModalHandler}
+          >
+            Политика конфиденциальности
+          </SecondaryButton>
         </Container>
       </footer>
 

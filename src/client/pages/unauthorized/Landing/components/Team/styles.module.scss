@@ -20,26 +20,26 @@ h3.title {
 
 .team {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 50px 20px;
   max-width: 1500px;
   padding: 40px;
+  gap: 50px 20px;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .teamMember {
   display: flex;
-  flex-flow: column;
-  gap: 20px;
   width: 100%;
   max-width: 350px;
+  flex-flow: column;
+  gap: 20px;
   justify-self: center;
 }
 
 .teamMemberPhotoContainer {
   overflow: hidden;
   width: 100%;
-  aspect-ratio: 247 / 339;
   border-radius: 12px;
+  aspect-ratio: 247 / 339;
 }
 
 .teamMemberPhoto {
@@ -50,10 +50,10 @@ h3.title {
 
 .teamMemberInfo {
   display: flex;
+  width: 100%;
   flex-flow: column;
   gap: 5px;
   white-space: pre-line;
-  width: 100%;
 }
 
 .teamMemberName {
@@ -76,7 +76,7 @@ h3.title {
     font-size: 36px;
     line-height: 40px;
   }
-  
+
   .team {
     gap: 40px 20px;
   }
@@ -92,14 +92,14 @@ h3.title {
     gap: 30px 15px;
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   h3.title {
     margin-top: 30px;
     margin-left: 30px;
     font-size: 32px;
     line-height: 36px;
   }
-  
+
   .teamMember {
     min-width: 180px;
   }
@@ -107,10 +107,10 @@ h3.title {
 
 @media (width <= 480px) {
   .team {
-    grid-template-columns: 1fr;
     gap: 20px;
+    grid-template-columns: 1fr;
   }
-  
+
   .teamMember {
     max-width: 300px;
     justify-self: center;

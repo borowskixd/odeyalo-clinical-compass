@@ -48,8 +48,8 @@ h3.title {
   background-position: 90% center;
   background-repeat: no-repeat;
   background-size: contain;
-  
-  @media (max-width: 1024px) {
+
+  @media (width <= 1024px) {
     background-position: 90% top;
   }
 }

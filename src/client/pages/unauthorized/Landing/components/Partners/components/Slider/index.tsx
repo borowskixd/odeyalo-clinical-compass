@@ -17,10 +17,10 @@ export const Slider = ({ children }: SliderProps) => {
 
   const updateProgress = (swiper: any) => {
     if (!swiper) return;
-    
+
     const slidesPerView = swiper.params.slidesPerView;
     const maxIndex = Math.max(0, totalSlides - slidesPerView);
-    
+
     if (maxIndex > 0) {
       const newProgress = (swiper.activeIndex / maxIndex) * 100;
       setProgress(newProgress);
