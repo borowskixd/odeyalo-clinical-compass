@@ -7,7 +7,7 @@ export const Team: FC = () => {
   return (
     <section
       id="landing-team"
-      className={styles.teamSection}
+      className={`${styles.teamSection} ${styles.background}`}
     >
       <h3 className={styles.title}>Команда</h3>
       <div className={styles.team}>

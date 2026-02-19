@@ -1,66 +1,103 @@
 @use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
 
 .title {
-  font-family: var(--font-cygre);
-  font-weight: 700;
+  margin-bottom: 10px;
+
+  @include titleCygre;
 }
 
 h2.title {
-  font-size: 32px;
-  line-height: 36px;
+  font-size: 40px;
+  line-height: 44px;
 }
 
 .infoSection {
   display: grid;
-  gap: 10px 15px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 260px 260px;
-}
-
-.info {
-  padding: 60px;
-  border-radius: 70px;
+  align-items: start;
+  border-radius: 40px;
   background-color: $color-white100;
+  gap: 30px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.textSide {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  gap: 20px;
+}
+
+.imageSide {
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.phoneImage {
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  border-radius: 40px;
+  background-image: url("/static/landing/phone-screen.webp");
+  background-position: center;
   background-repeat: no-repeat;
-}
-
-.info1 {
-  background-image: url("/static/landing/pet-love.webp");
-  background-position-x: calc(100% - 40px);
-  background-position-y: calc(100% - 10px);
-  grid-row: 1 / 3;
-}
-
-.info2 {
-  background-image: url("/static/landing/flower.webp");
-  background-position-x: calc(100% - 56px);
-  background-position-y: 100%;
-}
-
-.info3 {
-  background-image: url("/static/landing/coffee.webp");
-  background-position-x: calc(100% - 46px);
-  background-position-y: calc(100% - 2px);
-}
-
-.infoTitle {
-  margin-bottom: 20px;
+  background-size: contain;
 }
 
 .infoList {
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
+  font-family: var(--font-inter);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  gap: 30px;
+  line-height: 30px;
+}
+
+.infoListItem {
+  position: relative;
   gap: 20px;
 }
 
-.infoListItem1 {
-  max-width: 500px;
+.listItemContent {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+  gap: 20px;
 }
 
-.infoListItem2 {
-  max-width: 550px;
+@media (width <= 1025px) {
+  .infoSection {
+    grid-template-columns: 1fr;
+  }
+
+  .imageSide {
+    display: none;
+  }
+
+  .textSide {
+    padding: 30px;
+  }
 }
 
-.infoDescription {
-  max-width: 500px;
+@media (width <= 768px) {
+  h2.title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .textSide {
+    padding: 20px;
+    border-radius: 30px;
+  }
+
+  .infoList {
+    font-size: 20px;
+    gap: 20px;
+    line-height: 26px;
+  }
 }

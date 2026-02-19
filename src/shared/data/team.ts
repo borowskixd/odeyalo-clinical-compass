@@ -5,10 +5,12 @@ import DaniilKostin from "@/client/assets/webp/team/DaniilKostin.webp";
 import DmitryBespalov from "@/client/assets/webp/team/DmitryBespalov.webp";
 import IlyaFomin from "@/client/assets/webp/team/IlyaFomin.webp";
 import IslambekMaratov from "@/client/assets/webp/team/IslambekMaratov.webp";
+import KamillaSaskeneva from "@/client/assets/webp/team/KamillaSaskeneva.webp";
 import MaksimBazhenov from "@/client/assets/webp/team/MaksimBazhenov.webp";
-import PavelPupenko from "@/client/assets/webp/team/PavelPupenko.webp";
-import PolinaOzerova from "@/client/assets/webp/team/PolinaOzerova.webp";
+import SofyaKhrabrova from "@/client/assets/webp/team/SofyaKhrabrova.webp";
+import SofyaSkripnikova from "@/client/assets/webp/team/SofyaSkripnikova.webp";
 import TimofeySimonov from "@/client/assets/webp/team/TimofeySimonov.webp";
+import VladAldoshin from "@/client/assets/webp/team/VladAldoshin.webp";
 
 export interface TeamMember {
   name: string;
@@ -20,7 +22,7 @@ export const team: TeamMember[] = [
   {
     name: "Тимофей Симонов",
     image: TimofeySimonov,
-    role: "руководитель, android-разработчик",
+    role: "руководитель,\nandroid-разработчик",
   },
   {
     name: "Илья Фомин",
@@ -33,9 +35,14 @@ export const team: TeamMember[] = [
     role: "психолог",
   },
   {
-    name: "Полина Озерова",
-    image: PolinaOzerova,
-    role: "дизайнер",
+    name: "Камилла Саскенева",
+    image: KamillaSaskeneva,
+    role: "психолог",
+  },
+  {
+    name: "София Скрипникова",
+    image: SofyaSkripnikova,
+    role: "психолог",
   },
   {
     name: "Даниил Костин",
@@ -43,8 +50,18 @@ export const team: TeamMember[] = [
     role: "дизайнер",
   },
   {
+    name: "Влад Алдошин",
+    image: VladAldoshin,
+    role: "ios-разработчик",
+  },
+  {
     name: "Максим Баженов",
     image: MaksimBazhenov,
+    role: "frontend-разработчик",
+  },
+  {
+    name: "Софья Храброва",
+    image: SofyaKhrabrova,
     role: "frontend-разработчик",
   },
   {
@@ -60,11 +77,6 @@ export const team: TeamMember[] = [
   {
     name: "Исламбек Маратов",
     image: IslambekMaratov,
-    role: "backend-разработчик",
-  },
-  {
-    name: "Павел Пупенко",
-    image: PavelPupenko,
     role: "backend-разработчик",
   },
 ];
