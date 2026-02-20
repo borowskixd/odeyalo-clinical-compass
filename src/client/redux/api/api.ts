@@ -14,6 +14,7 @@ export const api = createApi({
     "Notes",
     "ExerciseResults",
     "Users",
+    "Tasks",
   ],
   baseQuery: fetchBaseQuery({ baseUrl: BFF_API_URL }),
   endpoints: () => ({}),
