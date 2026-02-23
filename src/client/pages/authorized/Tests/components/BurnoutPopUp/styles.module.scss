@@ -1,0 +1,135 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContainer {
+  background-color: $color-blue80;
+  border-radius: 28px;
+  padding: 24px;
+  max-width: 480px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-height: 220px;
+  transition: min-height 0.3s ease;
+}
+
+.detailsButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px 12px;
+  background-color: $color-blue100;
+  color: $color-white100;
+  @include bodyM;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  z-index: 10;
+  height: 40px;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+  
+  &:hover {
+    background-color: darken($color-blue100, 10%);
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 90px;
+}
+
+.iconTopLeft {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  color: $color-white100;
+  
+  svg {
+    width: 65px;
+    height: 65px;
+    fill: currentColor;
+  }
+}
+
+.title {
+  margin-bottom: 15px;
+  text-align: left;
+  color: $color-white100;
+  @include titleXS;
+}
+
+.scaleContainer {
+  margin-bottom: 0px;
+}
+
+.scale {
+  width: 100%;
+  height: 50px;
+  background-color: $color-blue100;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.scaleFill {
+  height: 100%;
+  transition: width 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $color-white100;
+  
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 40%,
+    90% 100%, 
+    0% 100%
+  );
+
+  border-radius: 15px;
+}
+
+.detailsWrapper {
+  margin-top: 20px;
+  padding-top: 5px;
+  border-top: 1px solid rgba($color-white100, 0.2);
+
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
