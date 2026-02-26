@@ -1,18 +1,5 @@
 @use "@/client/styles/colors" as *;
 
-.container {
-  max-width: 420px;
-  height: min-content;
-
-  @media screen and (width <= 700px) {
-    max-width: 100%;
-  }
-}
-
-.title {
-  margin-bottom: 20px;
-}
-
 .tasks {
   & ul:not(:empty) {
     margin-bottom: 30px;

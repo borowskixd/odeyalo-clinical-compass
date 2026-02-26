@@ -6,12 +6,10 @@ import * as Yup from "yup";
 import { DayTasks } from "../DayTasks";
 import styles from "./styles.module.scss";
 import {
-  ContentWrapper,
   DefaultError,
   FormikForm,
   IconButton,
   LoadingLoop,
-  PageTitle,
 } from "@/client/components";
 import { useCreateTaskMutation, useGetTasksQuery } from "@/client/redux";
 import { CreateTaskRequestData, GetTaskResponseData } from "@/shared/types";
@@ -67,8 +65,7 @@ export const CreateTaskForm: FC = () => {
   };
 
   return (
-    <ContentWrapper className={styles.container}>
-      <PageTitle className={styles.title}>Задачи</PageTitle>
+    <>
       <div className={styles.tasks}>{renderContent()}</div>
       {!create ? (
         <Button
@@ -119,6 +116,6 @@ export const CreateTaskForm: FC = () => {
           </IconButton>
         </FormikForm>
       )}
-    </ContentWrapper>
+    </>
   );
 };

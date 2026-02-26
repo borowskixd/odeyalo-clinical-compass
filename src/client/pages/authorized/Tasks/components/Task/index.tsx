@@ -76,8 +76,11 @@ export const Task: FC<TaskProps> = ({
     setEdit(true);
   };
   const handleEndEdit = () => setEdit(false);
-  const handleOpemModal = () => setOpenModal(true);
-  const handleCloseModal = () => setOpenModal(false);
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setOpen(false);
+  };
 
   return (
     <li className={cl(styles.task, completed ? styles.completed : null)}>
@@ -157,7 +160,7 @@ export const Task: FC<TaskProps> = ({
                       size="xs"
                       width="max"
                       className={styles.deleteButton}
-                      onClick={handleOpemModal}
+                      onClick={handleOpenModal}
                     >
                       Удалить
                     </Button>
