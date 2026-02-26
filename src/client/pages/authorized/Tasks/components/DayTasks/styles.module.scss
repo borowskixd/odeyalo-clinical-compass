@@ -1,0 +1,18 @@
+@use "@/client/styles/colors" as *;
+
+.date {
+  display: block;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+
+  & > span {
+    color: $color-black30;
+    text-transform: lowercase;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

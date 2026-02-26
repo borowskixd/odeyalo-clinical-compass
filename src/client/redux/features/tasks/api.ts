@@ -9,7 +9,7 @@ import {
 const tasksApi = api.injectEndpoints({
   endpoints: (builder) => {
     return {
-      getTasks: builder.query<GetTasksResponseData, Date>({
+      getTasks: builder.query<GetTasksResponseData, void>({
         query: () => `/tasks`,
         providesTags: ["Auth", "Tasks"],
       }),

@@ -1,0 +1,37 @@
+@use "@/client/styles/colors" as *;
+
+.container {
+  max-width: 420px;
+  height: min-content;
+
+  @media screen and (width <= 700px) {
+    max-width: 100%;
+  }
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.tasks {
+  & ul:not(:empty) {
+    margin-bottom: 30px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.input > label {
+  height: 44px !important;
+}
+
+.cancelButton {
+  background-color: $color-white70;
+  color: $color-black100;
+}

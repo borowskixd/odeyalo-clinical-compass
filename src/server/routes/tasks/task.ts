@@ -13,7 +13,7 @@ const updateTask = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
     const body: UpdateTaskRequestData = await request.json();
 
-    await serverFetch.put<void, UpdateTaskApiRequestData>(
+    await serverFetch.patch<void, UpdateTaskApiRequestData>(
       "/user-task/update",
       mapUpdateTaskRequest(body, id),
     );

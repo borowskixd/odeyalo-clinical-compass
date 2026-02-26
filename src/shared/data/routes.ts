@@ -131,6 +131,11 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
+  tasks: new Page("/tasks", "practices", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
 };
 
 export const routes: Routes = Array.from(Object.values(pages)).toSorted(

@@ -79,8 +79,8 @@ export const mapDatetimeToText = (datetime: string): string => {
   return result;
 };
 
-export const getCurrentDay = (): string => {
-  const date = new Date();
+export const getCurrentDay = (d?: Date): string => {
+  const date = d ?? new Date();
 
   const day = days[date.getDay()];
   const mappedDay = day.charAt(0).toUpperCase() + day.slice(1);

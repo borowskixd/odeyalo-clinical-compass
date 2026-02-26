@@ -118,6 +118,7 @@ export interface Pages {
   exerciseResult: Page<{ id: string; result_id: string }>;
   profile: Page;
   profileSettings: Page;
+  tasks: Page;
 }
 
 interface Route {
