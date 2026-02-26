@@ -1,8 +1,8 @@
 "use client";
 
 import { type FC, useState } from "react";
-import { PrimaryButton } from "@/client/components";
 import { BurnoutPopUp } from "../BurnoutPopUp";
+import { PrimaryButton } from "@/client/components";
 
 export const BurnoutButton: FC = () => {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
