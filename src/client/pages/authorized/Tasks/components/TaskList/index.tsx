@@ -1,5 +1,6 @@
 "use client";
 
+import { Text } from "@odeyalo/uikit";
 import { FC, ReactNode } from "react";
 import { DayTasks } from "../DayTasks";
 import styles from "./styles.module.scss";
@@ -29,7 +30,11 @@ export const TaskList: FC = () => {
       );
     }
 
-    return result;
+    return result.length ? (
+      result
+    ) : (
+      <Text variant="body-l-bold">Добавьте свою первую задачу!</Text>
+    );
   };
 
   return (
