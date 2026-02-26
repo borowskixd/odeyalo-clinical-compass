@@ -1,0 +1,136 @@
+@use "@/client/styles/colors" as *;
+
+.task {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 16px;
+
+  &.completed {
+    .taskContent {
+      background-color: $color-blue80;
+      color: $color-white100;
+    }
+
+    .mark {
+      background-color: $color-blue80;
+    }
+
+    .point {
+      background-color: $color-blue80;
+    }
+  }
+}
+
+.mark {
+  display: flex;
+  min-width: 30px;
+  max-width: 30px;
+  min-height: 30px;
+  max-height: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: $color-white70;
+}
+
+.point {
+  min-width: 22px;
+  max-width: 22px;
+  min-height: 22px;
+  max-height: 22px;
+  border: 3px solid $color-white70;
+  border-radius: 50%;
+  background-color: $color-white70;
+}
+
+.taskContent {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: $color-white70;
+  color: $color-black100;
+  gap: 8px;
+
+  & > span {
+    line-height: 24px !important;
+    overflow-wrap: anywhere;
+  }
+
+  .completed {
+    background-color: $color-blue80;
+    color: $color-white100;
+  }
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 8px;
+}
+
+.deleteButton {
+  color: $color-red100;
+
+  &:hover {
+    background-color: $color-red100;
+    color: $color-white100;
+  }
+
+  &:focus {
+    background-color: $color-red80;
+    color: $color-white100;
+  }
+}
+
+.acceptDeleteButton {
+  background-color: $color-red100;
+  color: $color-white100;
+
+  &:hover {
+    background-color: $color-red80;
+  }
+
+  &:focus {
+    background-color: $color-red60;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.input > label {
+  height: 44px !important;
+}
+
+.cancelButton {
+  background-color: $color-white70;
+  color: $color-black100;
+}
+
+.acceptDeleteButton {
+  background-color: $color-red100;
+  color: $color-white100;
+
+  &:hover {
+    background-color: $color-red80;
+  }
+
+  &:focus {
+    background-color: $color-red60;
+  }
+}
+
+.modalButtons {
+  display: flex;
+  gap: 16px;
+}

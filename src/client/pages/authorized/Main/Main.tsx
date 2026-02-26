@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import { DailyTasks, Onboarding } from "./components";
+import { DailyTasks, Onboarding, TasksPreview } from "./components";
 import styles from "./styles.module.scss";
 import { Container, ContentWrapper, PageTitle } from "@/client/components";
 import { ImageBackground } from "@/client/components/backgrounds";
@@ -25,8 +25,12 @@ export const MainPage: FC = () => {
             <Onboarding />
           </ContentWrapper>
           <ContentWrapper>
-            <PageTitle className={styles.title}>Ментальное здоровье</PageTitle>
+            <PageTitle className={styles.title}>Ритм дня</PageTitle>
             <GamificationProgressBar />
+          </ContentWrapper>
+          <ContentWrapper>
+            <PageTitle className={styles.title}>Задачи</PageTitle>
+            <TasksPreview />
           </ContentWrapper>
         </div>
       </div>
