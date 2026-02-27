@@ -7,13 +7,12 @@ import { BurnoutDetails } from "./components/BurnoutDetails";
 import styles from "./styles.module.scss";
 
 interface BurnoutPopUpProps {
+  result: number;
   onClose: () => void;
 }
 
-export const BurnoutPopUp: FC<BurnoutPopUpProps> = ({ onClose }) => {
+export const BurnoutPopUp: FC<BurnoutPopUpProps> = ({ result, onClose }) => {
   const [showDetails, setShowDetails] = useState(false);
-
-  const result = 0.8;
 
   const getBurnoutLevel = (result: number) => {
     if (result < 0.33) {

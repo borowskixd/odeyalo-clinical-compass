@@ -66,7 +66,7 @@ const authApi = api.injectEndpoints({
 
     getBurnoutCalculate: builder.query<GetBurnoutCalculateResponseData, void>({
       query: () => ({
-        url: "/auth/burnout_calculate/",
+        url: "/auth/burnout",
         method: "GET",
       }),
       transformResponse: (response: GetBurnoutCalculateApiResponseData) => {
