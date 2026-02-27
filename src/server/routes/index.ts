@@ -10,5 +10,6 @@ export * from "./hr";
 export * from "./moods";
 export * from "./notes";
 export * from "./psychologists";
+export * from "./tasks";
 export * from "./tests";
 export * from "./users";

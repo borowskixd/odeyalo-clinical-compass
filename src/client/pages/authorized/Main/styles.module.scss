@@ -19,6 +19,10 @@
   &.first {
     max-width: 420px;
 
+    @media screen and (width <= 900px) {
+      max-width: 320px;
+    }
+
     @media screen and (width <= 740px) {
       max-width: 100%;
     }

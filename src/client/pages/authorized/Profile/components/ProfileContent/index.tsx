@@ -35,7 +35,7 @@ export const ProfileContent: FC = () => {
               as="h2"
               className={styles.subtitle}
             >
-              Ментальное здоровье
+              Ритм дня
             </Text>
             <GamificationProgressBar />
           </div>

@@ -1,11 +1,23 @@
 .content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
   & p {
     margin-top: 10px;
   }
 }
 
-.title {
-  margin-bottom: 20px;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.button {
+  min-width: 40px;
+  height: 40px;
 }
 
 .subtitle {
