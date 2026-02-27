@@ -1,14 +1,14 @@
-import { mapBurnoutCalculateResponse } from "@/server/mappers/auth/burnoutCalculate";
 import { api } from "../../api";
+import { mapBurnoutCalculateResponse } from "@/server/mappers/auth/burnoutCalculate";
 import {
   type ChangePasswordRequestData,
+  GetBurnoutCalculateApiResponseData,
+  type GetBurnoutCalculateResponseData,
   type LoginRequestData,
   type RegistrationRequestData,
   type RegistrationResponseData,
   type ResetPasswordRequestData,
   type ResponseSuccessInfo,
-  type GetBurnoutCalculateResponseData,
-  GetBurnoutCalculateApiResponseData,
 } from "@/shared/types";
 
 const authApi = api.injectEndpoints({

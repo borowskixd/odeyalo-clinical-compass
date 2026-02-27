@@ -2,4 +2,5 @@ export interface GetBurnoutCalculateApiResponseData {
   result: number;
 }
 
-export type GetBurnoutCalculateResponseData = GetBurnoutCalculateApiResponseData;
+export type GetBurnoutCalculateResponseData =
+  GetBurnoutCalculateApiResponseData;

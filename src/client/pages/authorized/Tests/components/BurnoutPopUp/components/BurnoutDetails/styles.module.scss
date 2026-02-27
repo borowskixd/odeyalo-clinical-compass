@@ -2,19 +2,19 @@
 
 .container {
   width: 100%;
-  margin-top: 20px;
-  padding: 20px 16px;
-  color: $color-blue100;
-  background-color: $color-white80;
-  border-radius: 12px;
-  animation: fadeIn 0.3s ease;
   box-sizing: border-box;
+  padding: 20px 16px;
+  border-radius: 12px;
+  margin-top: 20px;
+  animation: fadeIn 0.3s ease;
+  background-color: $color-white80;
+  color: $color-blue100;
 }
 
 .meaning {
   margin-bottom: 16px;
   line-height: 1.5;
-  
+
   strong {
     display: block;
     margin-bottom: 4px;
@@ -23,20 +23,20 @@
 
 .recommendations {
   margin-top: 16px;
-  
+
   strong {
     display: block;
     margin-bottom: 8px;
   }
-  
+
   ul {
-    margin: 0;
     padding-left: 20px;
-    
+    margin: 0;
+
     li {
       margin-bottom: 8px;
       line-height: 1.4;
-      
+
       &:last-child {
         margin-bottom: 0;
       }
@@ -48,6 +48,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
