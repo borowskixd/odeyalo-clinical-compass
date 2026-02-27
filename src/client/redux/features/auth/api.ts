@@ -1,6 +1,9 @@
 import { api } from "../../api";
+import { mapBurnoutCalculateResponse } from "@/server/mappers/auth/burnoutCalculate";
 import {
   type ChangePasswordRequestData,
+  GetBurnoutCalculateApiResponseData,
+  type GetBurnoutCalculateResponseData,
   type LoginRequestData,
   type RegistrationRequestData,
   type RegistrationResponseData,
@@ -60,6 +63,17 @@ const authApi = api.injectEndpoints({
         body,
       }),
     }),
+
+    getBurnoutCalculate: builder.query<GetBurnoutCalculateResponseData, void>({
+      query: () => ({
+        url: "/auth/burnout_calculate/",
+        method: "GET",
+      }),
+      transformResponse: (response: GetBurnoutCalculateApiResponseData) => {
+        return mapBurnoutCalculateResponse(response);
+      },
+      providesTags: ["Auth"],
+    }),
   }),
 });
 
@@ -69,4 +83,5 @@ export const {
   useLogoutMutation,
   useResetPasswordMutation,
   useChangePasswordMutation,
+  useGetBurnoutCalculateQuery,
 } = authApi;

@@ -1,3 +1,4 @@
+export * from "./burnoutCalculate";
 export * from "./changePassword";
 export * from "./login";
 export * from "./me";
