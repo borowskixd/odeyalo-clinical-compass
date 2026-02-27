@@ -10,8 +10,8 @@ interface NavLink {
 const navList: NavLink[] = [
   { href: "/#landing-advantages", title: "Преимущества" },
   { href: "/#landing-achievements", title: "Достижения" },
+  { href: "/#landing-team", title: "О нас" },
   { href: "/#landing-partners", title: "Партнёры" },
-  { href: "/#landing-team", title: "Команда" },
 ];
 
 export const NavBar: FC = () => {

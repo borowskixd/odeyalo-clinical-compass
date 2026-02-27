@@ -1,4 +1,5 @@
 @use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
 
 .title {
   font-family: var(--font-cygre);
@@ -6,44 +7,112 @@
 }
 
 h3.title {
-  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-left: 40px;
   font-size: 40px;
   line-height: 44px;
-  text-align: center;
+}
+
+.background {
+  border-radius: 40px;
+  background-color: $color-white100;
 }
 
 .team {
   display: grid;
-  gap: 30px 15px;
+  max-width: 1500px;
+  padding: 40px;
+  gap: 50px 20px;
   grid-template-columns: repeat(4, 1fr);
 }
 
 .teamMember {
   display: flex;
   width: 100%;
+  max-width: 350px;
   flex-flow: column;
   gap: 20px;
+  justify-self: center;
 }
 
 .teamMemberPhotoContainer {
   overflow: hidden;
   width: 100%;
-  border-radius: 100px;
+  border-radius: 12px;
+  aspect-ratio: 247 / 339;
 }
 
 .teamMemberPhoto {
   width: 100%;
   height: 100%;
-  max-height: 364px;
   object-fit: cover;
 }
 
 .teamMemberInfo {
   display: flex;
+  width: 100%;
   flex-flow: column;
   gap: 5px;
+  white-space: pre-line;
+}
+
+.teamMemberName {
+  @include titleCygre;
 }
 
 .teamMemberRole {
-  color: $color-blue60;
+  color: $color-black100;
+}
+
+@media (width <= 1160px) {
+  .team {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (width <= 900px) {
+  h3.title {
+    margin-left: 30px;
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .team {
+    gap: 40px 20px;
+  }
+
+  .teamMember {
+    min-width: 200px;
+  }
+}
+
+@media (width <= 768px) {
+  .team {
+    padding: 30px;
+    gap: 30px 15px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  h3.title {
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .teamMember {
+    min-width: 180px;
+  }
+}
+
+@media (width <= 480px) {
+  .team {
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  .teamMember {
+    max-width: 300px;
+    justify-self: center;
+  }
 }

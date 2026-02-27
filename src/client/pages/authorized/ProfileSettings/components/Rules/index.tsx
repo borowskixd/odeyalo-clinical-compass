@@ -2,8 +2,7 @@ import { Button, Text } from "@odeyalo/uikit";
 import { type FC, useState } from "react";
 import { type SectionProps } from "../../types";
 import { ProfileSection } from "../ProfileSection";
-import { UserAgreement } from "./components";
-import { Modal } from "@/client/components";
+import { Modal, UserAgreement } from "@/client/components";
 
 export const Rules: FC<SectionProps> = (props) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

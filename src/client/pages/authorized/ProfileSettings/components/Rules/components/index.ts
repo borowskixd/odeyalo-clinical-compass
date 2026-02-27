@@ -1,1 +1,0 @@
-export { UserAgreement } from "./UserAgreement";

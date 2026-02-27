@@ -1,10 +1,11 @@
 @use "@/client/styles/colors" as *;
 
 .strong {
-  color: $color-blue80;
+  color: $color-white100;
 }
 
 .title {
+  color: $color-white100;
   font-family: var(--font-cygre);
   font-weight: 700;
 }
@@ -36,14 +37,19 @@ h3.title {
 
 .mainSection {
   display: flex;
-  height: 520px;
+  min-height: 520px;
   align-items: center;
-  background-image: url("/static/landing/meditation.webp");
-  background-position: right center;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 40px;
+  border-radius: 32px;
+  background-color: $color-blue80;
+  background-image: url("/static/landing/feather.webp");
+  background-position: 90% center;
   background-repeat: no-repeat;
   background-size: contain;
-}
 
-.mainSectionImage {
-  padding-right: 39px;
+  @media (width <= 1024px) {
+    background-position: 90% top;
+  }
 }

@@ -1,5 +1,5 @@
 import { type ReactNode } from "react";
-import { Header } from "@/client/components";
+import { Footer, Header } from "@/client/components";
 
 export default function AuthorizedLayout({
   children,
@@ -10,6 +10,7 @@ export default function AuthorizedLayout({
     <>
       <Header />
       <main>{children}</main>
+      <Footer />
     </>
   );
 }
