@@ -1,15 +1,23 @@
 import { NextResponse } from "next/server";
-import { mapBurnoutCalculateResponse } from "@/server/mappers/auth/burnoutCalculate";
+import { mapBurnoutCalculateResponse } from "@/server/mappers";
 import { createRequest } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
-import { GetBurnoutCalculateApiResponseData } from "@/shared/types";
+import {
+  GetBurnoutCalculateApiResponseData,
+  GetBurnoutCalculateResponseData,
+} from "@/shared/types";
 
 const getBurnout = createRequest(async (request, serverFetch) => {
-  const { data } = await serverFetch.get<GetBurnoutCalculateApiResponseData>(
-    "/auth/burnout_calculate",
+  const burnoutResponse =
+    await serverFetch.get<GetBurnoutCalculateApiResponseData>(
+      "/auth/burnout_calculate",
+    );
+
+  const data: GetBurnoutCalculateResponseData = mapBurnoutCalculateResponse(
+    burnoutResponse.data,
   );
 
-  return NextResponse.json(mapBurnoutCalculateResponse(data), httpStatuses.ok);
+  return NextResponse.json(data, httpStatuses.ok);
 });
 
 export const BurnoutRoutes = {

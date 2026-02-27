@@ -1,3 +1,4 @@
+import cl from "classnames";
 import { type FC, type ReactNode } from "react";
 import styles from "./styles.module.scss";
 
@@ -10,15 +11,13 @@ interface Props {
 
 export const Container: FC<Props> = ({
   children,
-  className = "",
+  className,
   isLarge = false,
   ...props
 }) => {
   return (
     <div
-      className={`${styles.container} ${
-        isLarge ? styles.large : ""
-      } ${className}`}
+      className={cl(styles.container, isLarge ? styles.large : "", className)}
       {...props}
     >
       {children}
