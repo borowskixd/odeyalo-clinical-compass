@@ -10,10 +10,14 @@ export const Message = forwardRef<HTMLDivElement, MessageProps>(
   ({ message, author }, ref) => {
     return (
       <div
-        ref={ref}
-        className={cl(styles.message, author === "user" ? styles.user : null)}
+        className={cl(styles.container, author === "user" ? styles.user : null)}
       >
-        <Text>{message}</Text>
+        <div
+          ref={ref}
+          className={styles.message}
+        >
+          <Text>{message}</Text>
+        </div>
       </div>
     );
   },

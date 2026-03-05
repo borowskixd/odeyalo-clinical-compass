@@ -23,8 +23,16 @@ export const Chat: FC<ChatProps> = ({ onOpenChange, open, anchorElement }) => {
   const isMobile = useAppSelector(selectIsMobile);
 
   useEffect(() => {
-    lastUserMessageRef.current?.scrollIntoView({
-      block: "start",
+    const container = chatRef.current;
+    const message = lastUserMessageRef.current;
+
+    if (!container || !message) return;
+
+    const top =
+      message.offsetTop - container.offsetTop - container.clientTop - 10;
+
+    container.scrollTo({
+      top,
       behavior: "smooth",
     });
   }, [messages, hideMessages]);
