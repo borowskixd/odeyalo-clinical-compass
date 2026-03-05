@@ -6,7 +6,7 @@ import "@odeyalo/uikit/dist/main.css";
 import "@odeyalo/uikit/styles/fonts.scss";
 import "@odeyalo/uikit/styles/styles.scss";
 import { fontVariablesClass } from "@/client/assets/fonts";
-import { ModalsPortal, SnackbarsPortal } from "@/client/components";
+import { ChatBot, ModalsPortal, SnackbarsPortal } from "@/client/components";
 import { AuthLayer, StoreLayer } from "@/client/components/layers";
 import { AnalyticsProvider } from "@/shared/analytics";
 
@@ -40,6 +40,7 @@ const RootLayout: FC<RootLayoutProps> = async ({
             </AuthLayer>
             <SnackbarsPortal />
             <ModalsPortal />
+            <ChatBot />
           </StoreLayer>
         </AnalyticsProvider>
       </body>

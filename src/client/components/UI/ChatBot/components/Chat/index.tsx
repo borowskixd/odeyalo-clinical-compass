@@ -1,0 +1,88 @@
+"use client";
+
+import { Popup, PopupProps, Text } from "@odeyalo/uikit";
+import { FC, useEffect, useRef } from "react";
+import { Message } from "../Message";
+import { Nav } from "../Nav";
+import styles from "./styles.module.scss";
+import { ContentWrapper } from "@/client/components";
+import { useAppSelector } from "@/client/hooks";
+import {
+  selectChatBotHideMessages,
+  selectChatBotMessages,
+  selectIsMobile,
+} from "@/client/redux";
+
+type ChatProps = Pick<PopupProps, "anchorElement" | "onOpenChange" | "open">;
+
+export const Chat: FC<ChatProps> = ({ onOpenChange, open, anchorElement }) => {
+  const chatRef = useRef<HTMLDivElement>(null);
+  const lastUserMessageRef = useRef<HTMLDivElement>(null);
+  const messages = useAppSelector(selectChatBotMessages);
+  const hideMessages = useAppSelector(selectChatBotHideMessages);
+  const isMobile = useAppSelector(selectIsMobile);
+
+  useEffect(() => {
+    lastUserMessageRef.current?.scrollIntoView({
+      block: "start",
+      behavior: "smooth",
+    });
+  }, [messages, hideMessages]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const timeout = setTimeout(() => {
+      if (chatRef.current) {
+        chatRef.current.scrollTop = chatRef.current.scrollHeight;
+      }
+    }, 0);
+
+    return () => clearTimeout(timeout);
+  }, [open]);
+
+  const lastUserMessageIndex = messages.findLastIndex(
+    (message) => message.author === "user",
+  );
+
+  return (
+    <Popup
+      open={open}
+      onOpenChange={onOpenChange}
+      anchorElement={anchorElement}
+      placement={isMobile ? "top-end" : "left-end"}
+      className={styles.popup}
+      floatingClassName={styles.popup}
+      offset={8}
+      zIndex={1000}
+    >
+      <ContentWrapper>
+        <Text
+          className={styles.title}
+          variant="title-cygre"
+        >
+          Чем могу помочь?
+        </Text>
+        <div
+          ref={chatRef}
+          className={styles.chat}
+        >
+          {!hideMessages &&
+            messages.map(({ message, author }, index) => (
+              <Message
+                ref={
+                  index === lastUserMessageIndex
+                    ? lastUserMessageRef
+                    : undefined
+                }
+                key={index}
+                message={message}
+                author={author}
+              />
+            ))}
+          <Nav />
+        </div>
+      </ContentWrapper>
+    </Popup>
+  );
+};
