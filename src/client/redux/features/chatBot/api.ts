@@ -11,7 +11,7 @@ const chatBotApi = api.injectEndpoints({
       query: () => "/chat-bot/groups",
     }),
 
-    getChatBotQuestions: builder.query<GetChatBotQuestionsResponseData, string>(
+    getChatBotQuestions: builder.query<GetChatBotQuestionsResponseData, number>(
       {
         query: (groupId) => `/chat-bot/questions/${groupId}`,
       },
@@ -20,16 +20,11 @@ const chatBotApi = api.injectEndpoints({
     getChatBotEmergency: builder.query<GetChatBotEmergencyResponseData, void>({
       query: () => `/chat-bot/emergency`,
     }),
-
-    getChatBotAnswer: builder.query<GetChatBotEmergencyResponseData, string>({
-      query: (questionId) => `/chat-bot/answers/${questionId}`,
-    }),
   }),
 });
 
 export const {
   useGetChatBotGroupsQuery,
-  useGetChatBotAnswerQuery,
   useGetChatBotEmergencyQuery,
   useGetChatBotQuestionsQuery,
 } = chatBotApi;

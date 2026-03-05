@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { type AccessRole } from "../config/access";
 
 export interface PopupsState {
@@ -40,10 +41,21 @@ export interface NotesState {
   calendarDate: Date | null;
 }
 
+export interface Message {
+  message: ReactNode;
+  author: "user" | "bot";
+}
+
+export interface ChatBotState {
+  messages: Message[];
+  hideMessages: boolean;
+}
+
 export interface InitialState {
   authReducer: AuthState;
   popupsReducer: PopupsState;
   notesReducer: NotesState;
+  chatBotReducer: ChatBotState;
 }
 
 export type ReducersNames = Record<keyof InitialState, string>;

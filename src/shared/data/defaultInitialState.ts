@@ -5,6 +5,7 @@ export const reducers: ReducersNames = {
   authReducer: "auth",
   popupsReducer: "popups",
   notesReducer: "notes",
+  chatBotReducer: "notes",
 };
 
 export const defaultInitialState: InitialState = {
@@ -31,5 +32,9 @@ export const defaultInitialState: InitialState = {
   },
   notesReducer: {
     calendarDate: null,
+  },
+  chatBotReducer: {
+    messages: [],
+    hideMessages: false,
   },
 };
