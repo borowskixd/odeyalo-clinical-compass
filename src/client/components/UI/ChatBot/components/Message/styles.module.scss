@@ -1,6 +1,24 @@
 @use "@/client/styles/colors" as *;
 @use "@/client/styles/fontStyles" as *;
 
+.container {
+  margin-right: 20px;
+
+  &.user {
+    margin-right: 0;
+    margin-left: 20px;
+
+    & > .message {
+      margin-right: 0;
+      margin-left: auto;
+      background-color: $color-blue80;
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 4px;
+      color: $color-white100;
+    }
+  }
+}
+
 .message {
   max-width: 100%;
   padding: 10px 20px;
@@ -8,15 +26,6 @@
   margin-right: auto;
   background-color: $color-white100;
   overflow-wrap: break-word;
-
-  &.user {
-    margin-right: 0;
-    margin-left: auto;
-    background-color: $color-blue80;
-    border-bottom-left-radius: 18px;
-    border-bottom-right-radius: 4px;
-    color: $color-white100;
-  }
 
   & a {
     color: $color-blue80;
