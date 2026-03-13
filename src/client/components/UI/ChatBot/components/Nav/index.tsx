@@ -89,7 +89,7 @@ export const Nav: FC = () => {
       ) : (
         <>
           <Button
-            view="action"
+            view="primary"
             width="max"
             onClick={handleEmergency}
             disabled={getEmergencyQuery.isLoading}

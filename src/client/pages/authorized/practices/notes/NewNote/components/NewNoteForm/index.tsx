@@ -73,6 +73,7 @@ export const NewNoteForm: FC = () => {
           placeholder="Напишите сюда что-нибудь..."
           className={styles.noteInput}
           disabled={isLoading || isSuccess}
+          minRows={10}
         />
         {isError && !!error && (
           <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>

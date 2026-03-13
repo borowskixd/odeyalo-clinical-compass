@@ -1,6 +1,13 @@
 "use client";
 
-import { Popup, PopupProps, Text } from "@odeyalo/uikit";
+import {
+  Button,
+  Icon,
+  Icons24Solid,
+  Popup,
+  PopupProps,
+  Text,
+} from "@odeyalo/uikit";
 import { FC, useEffect, useRef } from "react";
 import { Message } from "../Message";
 import { Nav } from "../Nav";
@@ -53,6 +60,8 @@ export const Chat: FC<ChatProps> = ({ onOpenChange, open, anchorElement }) => {
     (message) => message.author === "user",
   );
 
+  const handleCloseChat = () => onOpenChange?.(false);
+
   return (
     <Popup
       open={open}
@@ -60,17 +69,20 @@ export const Chat: FC<ChatProps> = ({ onOpenChange, open, anchorElement }) => {
       anchorElement={anchorElement}
       placement={isMobile ? "top-end" : "left-end"}
       className={styles.popup}
-      floatingClassName={styles.popup}
       offset={8}
       zIndex={1000}
     >
       <ContentWrapper>
-        <Text
-          className={styles.title}
-          variant="title-cygre"
-        >
-          Чем могу помочь?
-        </Text>
+        <header className={styles.header}>
+          <Text variant="title-xs">Чем могу помочь?</Text>
+          <Button
+            view="unstyled"
+            className={styles.closeButton}
+            onClick={handleCloseChat}
+          >
+            <Icon data={Icons24Solid.XMarkIcon} />
+          </Button>
+        </header>
         <div
           ref={chatRef}
           className={styles.chat}

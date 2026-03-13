@@ -3,6 +3,7 @@ import {
   Icon,
   Icons20,
   Icons24Solid,
+  Modal,
   Popup,
   Text,
 } from "@odeyalo/uikit";
@@ -14,7 +15,6 @@ import {
   Button as DefaultButton,
   FormikForm,
   IconButton,
-  Modal,
 } from "@/client/components";
 import { useDeleteTaskMutation, useUpdateTaskMutation } from "@/client/redux";
 import { CreateTaskRequestData } from "@/shared/types";
@@ -107,7 +107,7 @@ export const Task: FC<TaskProps> = ({
             />
           </IconButton>
           <IconButton
-            view="action"
+            view="primary"
             width="max"
             disabled={updateTaskMutation.isLoading}
             className={styles.cancelButton}
@@ -151,7 +151,7 @@ export const Task: FC<TaskProps> = ({
                     <Button
                       size="xs"
                       width="max"
-                      view="action"
+                      view="primary"
                       onClick={handleStartEdit}
                     >
                       Редактировать
@@ -165,28 +165,27 @@ export const Task: FC<TaskProps> = ({
                       Удалить
                     </Button>
                     <Modal
-                      isOpen={openModal}
-                      onCloseAction={handleCloseModal}
+                      open={openModal}
+                      onOpenChange={setOpenModal}
                       title={"Удалить задачу?"}
-                      content={
-                        <div className={styles.modalButtons}>
-                          <Button
-                            width="max"
-                            onClick={handleCloseModal}
-                          >
-                            Отмена
-                          </Button>
-                          <Button
-                            className={styles.acceptDeleteButton}
-                            width="max"
-                            onClick={handleDelete}
-                            disabled={deleteTaskMutation.isLoading}
-                          >
-                            Удалить
-                          </Button>
-                        </div>
-                      }
-                    />
+                    >
+                      <div className={styles.modalButtons}>
+                        <Button
+                          width="max"
+                          onClick={handleCloseModal}
+                        >
+                          Отмена
+                        </Button>
+                        <Button
+                          className={styles.acceptDeleteButton}
+                          width="max"
+                          onClick={handleDelete}
+                          disabled={deleteTaskMutation.isLoading}
+                        >
+                          Удалить
+                        </Button>
+                      </div>
+                    </Modal>
                   </div>
                 </Popup>
               </>

@@ -29,7 +29,7 @@ export const Feedback: FC<SectionProps> = (props) => {
         создателей, пожалуйста, свяжитесь с нами!
       </Text>
       <Button
-        view="action"
+        view="primary"
         width="max"
         href="https://t.me/desman4"
         target="_blank"
@@ -37,7 +37,7 @@ export const Feedback: FC<SectionProps> = (props) => {
         Написать в Telegram
       </Button>
       <Button
-        view="action"
+        view="primary"
         width="max"
         href={`mailto:${FEEDBACK_EMAIL}`}
         onClick={copyToClipboard}

@@ -5,8 +5,6 @@
 }
 
 .noteInput {
-  min-height: 220px;
-
   &::placeholder {
     @include bodyL;
   }

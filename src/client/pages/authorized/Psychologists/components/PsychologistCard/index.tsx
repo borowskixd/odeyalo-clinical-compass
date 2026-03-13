@@ -1,9 +1,10 @@
 "use client";
 
+import { Modal } from "@odeyalo/uikit";
 import { type FC, useState } from "react";
 import { SendApplicationForm } from "../SendApplicationForm";
 import styles from "./styles.module.scss";
-import { Modal, PrimaryButton, UserCard } from "@/client/components";
+import { PrimaryButton, UserCard } from "@/client/components";
 import { type GetPsychologistsResponseData } from "@/shared/types";
 
 interface Props {
@@ -28,15 +29,15 @@ export const PsychologistCard: FC<Props> = ({ psychologist }) => {
       </div>
       <Modal
         title="Заявка психологу"
-        onCloseAction={closeModal}
-        isOpen={modalIsOpen}
-        content={
-          <SendApplicationForm
-            psychologistId={psychologist.userId}
-            closeModal={closeModal}
-          />
-        }
-      />
+        onOpenChange={setModalIsOpen}
+        open={modalIsOpen}
+        disableBodyScrollLock={true}
+      >
+        <SendApplicationForm
+          psychologistId={psychologist.userId}
+          closeModal={closeModal}
+        />
+      </Modal>
     </UserCard>
   );
 };

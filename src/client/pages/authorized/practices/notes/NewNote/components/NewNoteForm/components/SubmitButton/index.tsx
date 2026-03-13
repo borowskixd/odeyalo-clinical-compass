@@ -23,7 +23,7 @@ export const SubmitButton: FC<Props> = ({ disabled }) => {
       type="submit"
       className={styles.button}
       disabled={isButtonDisabled}
-      view="action"
+      view="primary"
       width="max"
     >
       Сохранить
