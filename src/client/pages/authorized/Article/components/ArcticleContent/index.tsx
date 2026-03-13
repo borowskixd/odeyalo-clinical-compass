@@ -61,7 +61,7 @@ export const ArticleContent: FC = () => {
           <Subtopics subtopics={article.subtopics} />
           <Button
             width="max"
-            view={isRead ? "normal" : "action"}
+            view={isRead ? "default" : "primary"}
             onClick={readArticleHandler}
             disabled={isLoading || isRead}
           >

@@ -116,7 +116,7 @@ export const TestContent: FC = () => {
               }}
               onClick={() => selectAnswerHandler(answer.score)}
               align="left"
-              view={isSelected ? "action" : "normal"}
+              view={isSelected ? "primary" : "default"}
               width="max"
             >
               {answer.text}
@@ -127,6 +127,7 @@ export const TestContent: FC = () => {
       <h4 className={styles.question}>{currentQuestion.oppositeText}</h4>
       <div className={styles.buttons}>
         <Button
+          view="unstyled"
           className={styles.navButton}
           onClick={prevQuestion}
           disabled={currentQuestionNumber <= 0}
@@ -144,6 +145,7 @@ export const TestContent: FC = () => {
           answers={answers}
         />
         <Button
+          view="unstyled"
           className={styles.navButton}
           onClick={nextQuestion}
           disabled={nextButtonDisabled}

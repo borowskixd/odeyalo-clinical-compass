@@ -31,7 +31,7 @@ export const BurnoutButton: FC = () => {
       <Button
         ref={setButtonRef}
         onClick={openPopUp}
-        view="action"
+        view="primary"
         size="s"
         width="auto"
       >

@@ -19,7 +19,7 @@ export const ChatBot: FC = () => {
       <Container className={styles.container}>
         <Button
           ref={setButtonRef}
-          view="action"
+          view="primary"
           size="xl"
           className={styles.button}
           onClick={handleToggleOpen}

@@ -69,7 +69,7 @@ export const CreateTaskForm: FC = () => {
       <div className={styles.tasks}>{renderContent()}</div>
       {!create ? (
         <Button
-          view="action"
+          view="primary"
           width="max"
           onClick={handleStartCreate}
         >
@@ -93,7 +93,7 @@ export const CreateTaskForm: FC = () => {
           />
           <IconButton
             type="submit"
-            view="action"
+            view="primary"
             width="max"
             disabled={createTaskMutation.isLoading}
           >
@@ -103,7 +103,7 @@ export const CreateTaskForm: FC = () => {
             />
           </IconButton>
           <IconButton
-            view="action"
+            view="primary"
             width="max"
             disabled={createTaskMutation.isLoading}
             className={styles.cancelButton}

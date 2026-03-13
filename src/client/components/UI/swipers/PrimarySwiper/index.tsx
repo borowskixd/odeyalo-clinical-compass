@@ -4,7 +4,7 @@ import { type FC, type ReactNode } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from "./styles.module.scss";
-import "swiper/scss";
+import "swiper/swiper.css";
 import { NextIcon } from "@/client/assets/icons";
 
 interface Props {

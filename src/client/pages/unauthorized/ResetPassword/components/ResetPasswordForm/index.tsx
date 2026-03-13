@@ -56,7 +56,7 @@ export const ResetPasswordForm: FC = () => {
       <Button
         type="submit"
         disabled={isLoading}
-        view="action"
+        view="primary"
         width="max"
       >
         Сбросить пароль

@@ -21,7 +21,7 @@ export const CreateNoteButton: FC = () => {
     <Button
       className={styles.button}
       href={createNoteLink}
-      view="action"
+      view="primary"
       width="max"
     >
       Добавить запись

@@ -72,7 +72,7 @@ export const ChangePasswordForm: FC = () => {
       <Button
         type="submit"
         disabled={isLoading}
-        view="action"
+        view="primary"
         width="max"
       >
         Сменить пароль

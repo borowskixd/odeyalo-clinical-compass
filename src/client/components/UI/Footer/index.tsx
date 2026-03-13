@@ -1,16 +1,11 @@
 "use client";
 
+import { Button, Icon, Modal } from "@odeyalo/uikit";
 import Link from "next/link";
 import { type FC, useState } from "react";
 import styles from "./styles.module.scss";
 import { LogoIcon, TelegramIcon, VkIcon } from "@/client/assets/icons";
-import {
-  Container,
-  IconButton,
-  Modal,
-  SecondaryButton,
-  UserAgreement,
-} from "@/client/components";
+import { Container, SecondaryButton, UserAgreement } from "@/client/components";
 import { pages } from "@/shared/data";
 
 export const Footer: FC = () => {
@@ -18,10 +13,6 @@ export const Footer: FC = () => {
 
   const openModalHandler = () => {
     setIsModalOpen(true);
-  };
-
-  const closeModalHandler = () => {
-    setIsModalOpen(false);
   };
 
   return (
@@ -38,20 +29,28 @@ export const Footer: FC = () => {
             <div className={styles.contactBlock}>
               <span className={styles.contactTitle}>Связаться с нами</span>
               <div className={styles.socials}>
-                <IconButton
-                  className={styles.iconButton}
+                <Button
+                  view="default"
+                  width="max"
                   href="https://vk.com/discuss_with_cbt"
                   target="_blank"
                 >
-                  <VkIcon />
-                </IconButton>
-                <IconButton
-                  className={styles.iconButton}
+                  <Icon
+                    data={VkIcon}
+                    size={24}
+                  />
+                </Button>
+                <Button
+                  view="default"
+                  width="max"
                   href="https://t.me/discuss_with_cbt"
                   target="_blank"
                 >
-                  <TelegramIcon />
-                </IconButton>
+                  <Icon
+                    data={TelegramIcon}
+                    size={24}
+                  />
+                </Button>
               </div>
             </div>
           </div>
@@ -63,13 +62,13 @@ export const Footer: FC = () => {
           </SecondaryButton>
         </Container>
       </footer>
-
       <Modal
-        isOpen={isModalOpen}
-        onCloseAction={closeModalHandler}
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
         title="Пользовательское соглашение и политика конфиденциальности"
-        content={<UserAgreement />}
-      />
+      >
+        <UserAgreement />
+      </Modal>
     </>
   );
 };

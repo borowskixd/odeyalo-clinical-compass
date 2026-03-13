@@ -76,7 +76,7 @@ export const LoginForm: FC = () => {
       <div className={styles.buttons}>
         <Button
           type="submit"
-          view="action"
+          view="primary"
           width="max"
           disabled={isLoading}
         >

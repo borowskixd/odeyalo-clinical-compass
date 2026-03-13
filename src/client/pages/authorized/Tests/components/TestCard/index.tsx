@@ -1,8 +1,9 @@
 "use client";
 
+import { Modal } from "@odeyalo/uikit";
 import { type FC, useState } from "react";
 import styles from "./styles.module.scss";
-import { Modal, PrimaryButton, SecondaryButton } from "@/client/components";
+import { PrimaryButton, SecondaryButton } from "@/client/components";
 import { pages } from "@/shared/data";
 import { type GetTestsResponseData } from "@/shared/types";
 
@@ -15,10 +16,6 @@ export const TestCard: FC<Props> = ({ exercise }) => {
 
   const handleOpen = () => {
     setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
   };
 
   const renderModalContent = () => {
@@ -59,11 +56,12 @@ export const TestCard: FC<Props> = ({ exercise }) => {
         <h5 className={styles.title}>{exercise.title}</h5>
       </div>
       <Modal
-        isOpen={isOpen}
+        open={isOpen}
         title={exercise.title}
-        onCloseAction={handleClose}
-        content={renderModalContent()}
-      />
+        onOpenChange={setIsOpen}
+      >
+        {renderModalContent()}
+      </Modal>
     </>
   );
 };

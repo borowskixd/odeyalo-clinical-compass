@@ -1,7 +1,6 @@
-import { Button } from "@odeyalo/uikit";
+import { Button, Modal } from "@odeyalo/uikit";
 import { type FC, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import { Modal } from "@/client/components";
 import { useDeleteMeMutation, useLogoutMutation } from "@/client/redux";
 import { redirectWithReload } from "@/client/utils";
 import { pages } from "@/shared/data";
@@ -46,51 +45,49 @@ export const LogoutButtons: FC = () => {
   return (
     <div className={styles.buttons}>
       <Modal
-        isOpen={isLogoutModalOpen}
-        onCloseAction={closeLogoutModalHandler}
+        open={isLogoutModalOpen}
+        onOpenChange={setIsLogoutModalOpen}
         title={"Выйти из аккаунта?"}
-        content={
-          <div className={styles.modalButtons}>
-            <Button
-              width="max"
-              onClick={closeLogoutModalHandler}
-            >
-              Остаться
-            </Button>
-            <Button
-              className={styles.acceptDeleteButton}
-              width="max"
-              onClick={logoutHandler}
-              disabled={logoutState.isLoading}
-            >
-              Выйти
-            </Button>
-          </div>
-        }
-      />
+      >
+        <div className={styles.modalButtons}>
+          <Button
+            width="max"
+            onClick={closeLogoutModalHandler}
+          >
+            Остаться
+          </Button>
+          <Button
+            className={styles.acceptDeleteButton}
+            width="max"
+            onClick={logoutHandler}
+            disabled={logoutState.isLoading}
+          >
+            Выйти
+          </Button>
+        </div>
+      </Modal>
       <Modal
-        isOpen={isDeleteAccountModalOpen}
-        onCloseAction={closeDeleteAccountModalHandler}
+        open={isDeleteAccountModalOpen}
+        onOpenChange={setIsDeleteAccountModalOpen}
         title={"Вы уверены, что хотите удалить аккаунт?"}
-        content={
-          <div className={styles.modalButtons}>
-            <Button
-              width="max"
-              onClick={closeDeleteAccountModalHandler}
-            >
-              Отмена
-            </Button>
-            <Button
-              className={styles.acceptDeleteButton}
-              width="max"
-              onClick={deleteAccountHandler}
-              disabled={deleteAccountState.isLoading}
-            >
-              Удалить аккаунт
-            </Button>
-          </div>
-        }
-      />
+      >
+        <div className={styles.modalButtons}>
+          <Button
+            width="max"
+            onClick={closeDeleteAccountModalHandler}
+          >
+            Отмена
+          </Button>
+          <Button
+            className={styles.acceptDeleteButton}
+            width="max"
+            onClick={deleteAccountHandler}
+            disabled={deleteAccountState.isLoading}
+          >
+            Удалить аккаунт
+          </Button>
+        </div>
+      </Modal>
       <Button
         view="secondary"
         width="max"
