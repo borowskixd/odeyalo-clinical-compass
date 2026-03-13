@@ -87,8 +87,6 @@ const createServerFetch = (request: NextRequest): ServerFetch => {
           Cookie: request.cookies.toString(),
         };
 
-        console.log(request.cookies.toString());
-
         return serverAxios.request<T, AxiosResponse<T>, D>(newConfig);
       }
     };
