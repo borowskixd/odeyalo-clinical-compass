@@ -12,9 +12,9 @@ export const MainPage: FC = () => {
       <ImageBackground />
       <div className={styles.widgets}>
         <div className={`${styles.column} ${styles.first}`}>
-          <ContentWrapper className={styles.dailyTasks}>
-            <PageTitle className={styles.title}>План на сегодня</PageTitle>
-            <DailyTasks />
+          <ContentWrapper>
+            <PageTitle className={styles.title}>Ритм дня</PageTitle>
+            <GamificationProgressBar />
           </ContentWrapper>
           <ContentWrapper>
             <MoodTracker showRedirectButton />
@@ -25,12 +25,12 @@ export const MainPage: FC = () => {
             <Onboarding />
           </ContentWrapper>
           <ContentWrapper>
-            <PageTitle className={styles.title}>Ритм дня</PageTitle>
-            <GamificationProgressBar />
-          </ContentWrapper>
-          <ContentWrapper>
             <PageTitle className={styles.title}>Задачи</PageTitle>
             <TasksPreview />
+          </ContentWrapper>
+          <ContentWrapper className={styles.dailyTasks}>
+            <PageTitle className={styles.title}>План на сегодня</PageTitle>
+            <DailyTasks />
           </ContentWrapper>
         </div>
       </div>
