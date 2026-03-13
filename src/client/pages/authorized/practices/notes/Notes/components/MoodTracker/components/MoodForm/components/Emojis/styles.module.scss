@@ -1,6 +1,10 @@
 @use "@/client/styles/colors" as *;
 @use "@/client/styles/fontStyles" as *;
 
+.container {
+  width: 100%;
+}
+
 .title {
   margin-bottom: 20px;
   font-family: var(--font-cygre);

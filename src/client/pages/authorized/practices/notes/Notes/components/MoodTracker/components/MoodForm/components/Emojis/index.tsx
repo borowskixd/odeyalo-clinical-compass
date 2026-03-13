@@ -26,7 +26,7 @@ export const Emojis: FC<Props> = ({ onUpdate }) => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <h4 className={styles.title}>Эмоции</h4>
       <div className={styles.list}>
         {isLoading &&
