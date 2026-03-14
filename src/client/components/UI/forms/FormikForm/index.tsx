@@ -1,5 +1,6 @@
 "use client";
 
+import cl from "classnames";
 import { Form, Formik, type FormikConfig, type FormikValues } from "formik";
 import { type ReactNode } from "react";
 import {
@@ -25,7 +26,7 @@ export const FormikForm = <Values extends FormikValues = FormikValues>({
   return (
     <Formik<Values> {...props}>
       <Form
-        className={`${styles.form} ${className}`}
+        className={cl(styles.form, className)}
         noValidate
       >
         {children}

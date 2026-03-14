@@ -1,7 +1,9 @@
-.form {
-  display: flex;
-  width: 100%;
-  flex-flow: column;
-  align-items: center;
-  gap: 32px;
+@layer components {
+  .form {
+    display: flex;
+    width: 100%;
+    flex-flow: column;
+    align-items: center;
+    gap: 32px;
+  }
 }
