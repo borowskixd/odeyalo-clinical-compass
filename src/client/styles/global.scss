@@ -1,15 +1,11 @@
 @use "@/client/styles/colors" as *;
-@use "@/client/styles/fontStyles" as *;
 
 body {
   min-height: 100vh;
   padding: 30px 16px 110px;
   background-color: $color-white70;
   color: $color-black100;
-  font-family: var(--font-inter);
   overflow-x: hidden;
-
-  @include bodyM;
 
   @media screen and (width <= 900px) {
     padding-top: 186px;
@@ -27,13 +23,4 @@ body {
   justify-content: flex-end;
   padding: 30px 16px 110px;
   pointer-events: none;
-}
-
-#modals {
-  position: relative;
-  z-index: 10000;
-}
-
-body.disable-scroll {
-  overflow: hidden;
 }

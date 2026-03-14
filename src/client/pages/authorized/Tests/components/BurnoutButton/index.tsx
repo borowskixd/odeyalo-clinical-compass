@@ -42,12 +42,13 @@ export const BurnoutButton: FC = () => {
         onOpenChange={setOpen}
         anchorElement={buttonRef}
         placement="bottom"
-        className={styles.popup}
       >
-        <Text variant="body-m-bold">
-          Для оценки склонности к выгоранию пройдите тест &#34;Что мне
-          свойственно?&#34;
-        </Text>
+        <div className={styles.popup}>
+          <Text variant="body-m-bold">
+            Для оценки склонности к выгоранию пройдите тест &#34;Что мне
+            свойственно?&#34;
+          </Text>
+        </div>
       </Popup>
 
       {!buttonDisabled && isPopUpOpen && (

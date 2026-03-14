@@ -2,7 +2,7 @@
 
 import { Text } from "@odeyalo/uikit";
 import { type FC } from "react";
-import { FEEDBACK_EMAIL } from "../constants";
+import { FEEDBACK_EMAIL } from "./constants";
 import styles from "./styles.module.scss";
 
 export const UserAgreement: FC = () => {
