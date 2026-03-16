@@ -3,6 +3,8 @@
 .popup {
   width: 100%;
   max-width: 400px;
+  border-radius: 16px;
+  box-shadow: var(--box-shadow);
 
   & > div {
     border-radius: 24px;
@@ -31,7 +33,6 @@ button.closeButton {
   max-height: 580px;
   flex-direction: column;
   padding: 16px 16px 0;
-  border-radius: 16px;
   background-color: $color-white70;
   gap: 10px;
   overflow-y: auto;
