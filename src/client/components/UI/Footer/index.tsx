@@ -1,20 +1,14 @@
 "use client";
 
-import { Button, Icon, Modal } from "@odeyalo/uikit";
+import { Button, Icon } from "@odeyalo/uikit";
 import Link from "next/link";
-import { type FC, useState } from "react";
+import { type FC } from "react";
 import styles from "./styles.module.scss";
 import { LogoIcon, TelegramIcon, VkIcon } from "@/client/assets/icons";
-import { Container, SecondaryButton, UserAgreement } from "@/client/components";
+import { Container } from "@/client/components";
 import { pages } from "@/shared/data";
 
 export const Footer: FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  const openModalHandler = () => {
-    setIsModalOpen(true);
-  };
-
   return (
     <>
       <footer className={styles.footer}>
@@ -54,21 +48,16 @@ export const Footer: FC = () => {
               </div>
             </div>
           </div>
-          <SecondaryButton
+          <Button
+            view="unstyled"
             className={styles.privacyButton}
-            onClick={openModalHandler}
+            href={pages.policy.path}
+            target="_blank"
           >
             Политика конфиденциальности
-          </SecondaryButton>
+          </Button>
         </Container>
       </footer>
-      <Modal
-        open={isModalOpen}
-        onOpenChange={setIsModalOpen}
-        title="Пользовательское соглашение и политика конфиденциальности"
-      >
-        <UserAgreement />
-      </Modal>
     </>
   );
 };

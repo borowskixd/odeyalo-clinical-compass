@@ -16,6 +16,7 @@ export type ActiveNavId =
 
 export const pages: Pages = {
   main: new Page("/", "main"),
+  policy: new Page("/policy", "main"),
   login: new Page("/login", "login", [ACCESS.unauthorized]),
   registration: new Page("/registration", "login", [ACCESS.unauthorized]),
   cabinet: new Page("/cabinet", "cabinet", [ACCESS.psychologist, ACCESS.hr]),

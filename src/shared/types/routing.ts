@@ -88,6 +88,7 @@ export class Page<P extends Record<string, any> = never> {
 
 export interface Pages {
   main: Page;
+  policy: Page;
   login: Page;
   registration: Page;
   cabinet: Page;

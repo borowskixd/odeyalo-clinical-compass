@@ -19,7 +19,7 @@
 
 .button {
   border-radius: 50%;
-  box-shadow: 0 4px 20px $color-black20;
+  box-shadow: var(--box-shadow);
   pointer-events: auto;
 
   @media (width <= 900px) {
