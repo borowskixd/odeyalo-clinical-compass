@@ -82,7 +82,7 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
         type="submit"
         className={styles.button}
         disabled={isLoading}
-        view="action"
+        view="primary"
         width="max"
       >
         Сохранить

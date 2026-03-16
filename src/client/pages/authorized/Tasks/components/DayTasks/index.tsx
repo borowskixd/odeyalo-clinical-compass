@@ -3,7 +3,7 @@ import { FC } from "react";
 import { Task } from "../Task";
 import styles from "./styles.module.scss";
 import { GetTasksResponseData } from "@/shared/types";
-import { getCurrentDay } from "@/shared/utils";
+import { compareDates, getCurrentDay } from "@/shared/utils";
 
 interface DayTasksProps {
   date?: Date;
@@ -12,11 +12,16 @@ interface DayTasksProps {
 }
 
 export const DayTasks: FC<DayTasksProps> = ({
-  date,
+  date = new Date(),
   tasks,
   readonly = false,
 }) => {
-  const [day, dateText] = getCurrentDay(date).split(",");
+  const [day] = getCurrentDay(date).split(",");
+  const isToday = compareDates(date, new Date(), {
+    date: true,
+    month: true,
+    fullYear: true,
+  });
 
   return (
     <div>
@@ -24,7 +29,17 @@ export const DayTasks: FC<DayTasksProps> = ({
         className={styles.date}
         variant="body-l-bold"
       >
-        {date ? day : "сегодня"} <span>{dateText}</span>
+        {!isToday && (
+          <>
+            {day}{" "}
+            <span>
+              {`${date.getDay().toString().padStart(2, "0")}.${(date.getMonth() + 1).toString().padStart(2, "0")}`}
+              {date.getFullYear() === new Date().getFullYear()
+                ? ""
+                : `.${date.getFullYear()}`}
+            </span>
+          </>
+        )}
       </Text>
       <ul className={styles.list}>
         {tasks.map((task) => {

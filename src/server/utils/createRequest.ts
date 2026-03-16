@@ -2,6 +2,7 @@ import { type AxiosRequestConfig, type AxiosResponse } from "axios";
 import { type NextRequest, NextResponse } from "next/server";
 import { mapErrorResponse } from "@/server/mappers";
 import { serverAxios } from "@/shared/config/api";
+import { cookies } from "@/shared/data";
 import { type ResponseError } from "@/shared/types";
 
 type Method = "get" | "delete" | "head" | "options" | "post" | "put" | "patch";
@@ -61,7 +62,33 @@ const createServerFetch = (request: NextRequest): ServerFetch => {
         },
       };
 
-      return await serverAxios.request<T, AxiosResponse<T>, D>(newConfig);
+      try {
+        return await serverAxios.request<T, AxiosResponse<T>, D>(newConfig);
+      } catch (error: any) {
+        if (error.response?.status !== 401) throw error;
+
+        const refreshToken = request.cookies.get(
+          cookies.refreshToken.name,
+        )?.value;
+
+        if (!refreshToken) throw error;
+
+        const refreshResponse = await serverAxios.post("/auth/refresh-token", {
+          refresh_token: refreshToken,
+        });
+
+        const { access_token, refresh_token } = refreshResponse.data;
+
+        request.cookies.set(cookies.accessToken.name, access_token);
+        request.cookies.set(cookies.refreshToken.name, refresh_token);
+
+        newConfig.headers = {
+          ...newConfig.headers,
+          Cookie: request.cookies.toString(),
+        };
+
+        return serverAxios.request<T, AxiosResponse<T>, D>(newConfig);
+      }
     };
 
   return {

@@ -1,6 +1,7 @@
+import { Modal } from "@odeyalo/uikit";
 import { type FC } from "react";
 import styles from "./styles.module.scss";
-import { Button, Modal } from "@/client/components";
+import { Button } from "@/client/components";
 
 interface ConfirmationModalProps {
   isOpen: boolean;
@@ -15,17 +16,14 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
 }) => {
   return (
     <Modal
-      isOpen={isOpen}
-      onCloseAction={onCancel}
+      open={isOpen}
+      onOpenChange={onCancel}
       title="Вы уверены, что хотите удалить этот отзыв?"
-      content={
-        <>
-          <div className={styles.modalButtons}>
-            <Button onClick={onConfirm}>Удалить</Button>
-            <Button onClick={onCancel}>Отмена</Button>
-          </div>
-        </>
-      }
-    />
+    >
+      <div className={styles.modalButtons}>
+        <Button onClick={onConfirm}>Удалить</Button>
+        <Button onClick={onCancel}>Отмена</Button>
+      </div>
+    </Modal>
   );
 };

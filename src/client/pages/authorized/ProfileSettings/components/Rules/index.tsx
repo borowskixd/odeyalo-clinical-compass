@@ -1,18 +1,14 @@
-import { Button, Text } from "@odeyalo/uikit";
+import { Button, Modal, Text } from "@odeyalo/uikit";
 import { type FC, useState } from "react";
 import { type SectionProps } from "../../types";
 import { ProfileSection } from "../ProfileSection";
-import { Modal, UserAgreement } from "@/client/components";
+import { UserAgreement } from "@/client/components";
 
 export const Rules: FC<SectionProps> = (props) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openModalHandler = () => {
     setIsModalOpen(true);
-  };
-
-  const closeModalHandler = () => {
-    setIsModalOpen(false);
   };
 
   return (
@@ -28,20 +24,21 @@ export const Rules: FC<SectionProps> = (props) => {
 Гарантируем конфиденциальность и неразглашение персональной информации.`}
       </Text>
       <Button
-        view="action"
+        view="primary"
         width="max"
         onClick={openModalHandler}
       >
         Политика конфиденциальности
       </Button>
       <Modal
-        isOpen={isModalOpen}
-        onCloseAction={closeModalHandler}
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
         title={
           "Пользовательское соглашение и политика конфиденциальности психологического приложения"
         }
-        content={<UserAgreement />}
-      />
+      >
+        <UserAgreement />
+      </Modal>
     </ProfileSection>
   );
 };

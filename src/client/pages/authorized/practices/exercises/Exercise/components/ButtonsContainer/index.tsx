@@ -30,7 +30,7 @@ export const ButtonsContainer: FC<Props> = ({
       )}
       {isLastPage && (
         <Button
-          view="action"
+          view="primary"
           width="max"
           type="submit"
           disabled={disabled}
@@ -40,7 +40,7 @@ export const ButtonsContainer: FC<Props> = ({
       )}
       {!isLastPage && (
         <Button
-          view="action"
+          view="primary"
           width="max"
           onClick={nextPageHandler}
           type="button"

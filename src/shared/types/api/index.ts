@@ -2,6 +2,7 @@ export * from "./applications";
 export * from "./articles";
 export * from "./auth";
 export * from "./auth_yandex";
+export * from "./chatBot";
 export * from "./clients";
 export * from "./dailyTasks";
 export * from "./exercises";

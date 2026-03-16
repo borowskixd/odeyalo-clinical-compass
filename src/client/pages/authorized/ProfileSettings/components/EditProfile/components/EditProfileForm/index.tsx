@@ -111,7 +111,7 @@ export const EditProfileForm: FC<Props> = ({ onBack }) => {
         )}
         <Button
           type="submit"
-          view="action"
+          view="primary"
           width="max"
           disabled={updateProfileState.isLoading}
         >

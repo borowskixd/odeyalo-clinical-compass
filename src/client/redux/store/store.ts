@@ -6,7 +6,12 @@ import {
   type UnknownAction,
 } from "@reduxjs/toolkit";
 import { api } from "../api";
-import { authReducer, notesReducer, popupsReducer } from "../features";
+import {
+  authReducer,
+  chatBotReducer,
+  notesReducer,
+  popupsReducer,
+} from "../features";
 import { type InitialState } from "@/shared/types";
 
 const rootReducer = combineReducers({
@@ -14,6 +19,7 @@ const rootReducer = combineReducers({
   authReducer,
   popupsReducer,
   notesReducer,
+  chatBotReducer,
 });
 
 export const createStore = (initialState: InitialState): Store => {

@@ -58,20 +58,6 @@
   display: flex;
   width: 100%;
   gap: 15px;
-
-  .iconButton {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    border-radius: 12px;
-    background-color: $color-white70;
-
-    @media screen and (width <= 470px) {
-      height: 40px;
-    }
-  }
 }
 
 .privacyButton {
