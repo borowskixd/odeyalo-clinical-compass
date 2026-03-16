@@ -4,7 +4,7 @@ import { Text } from "@odeyalo/uikit";
 import { type FC } from "react";
 import { FEEDBACK_EMAIL } from "./constants";
 import styles from "./styles.module.scss";
-import { Container, ContentWrapper } from "@/client/components";
+import { AppLink, Container, ContentWrapper } from "@/client/components";
 
 export const PolicyPage: FC = () => {
   return (
@@ -186,13 +186,41 @@ export const PolicyPage: FC = () => {
           3.4. Передача данных третьим лицам:
         </Text>
         <ul>
-          <Text as={"li"}>
-            не осуществляется без согласия Пользователя, кроме случаев,
-            предусмотренных законодательством;
-          </Text>
+          <Text as={"li"}>не осуществляется без согласия Пользователя;</Text>
           <Text as={"li"}>
             возможна передача агрегированных (не персональных) данных партнёрам
             для исследований.
+          </Text>
+        </ul>
+        <Text
+          as={"h3"}
+          variant="body-m-bold"
+        >
+          3.5. Срок хранения персональных данных:
+        </Text>
+        <ul>
+          <Text as={"li"}>
+            персональные данные пользователя хранятся до тех пор, пока
+            пользователь не примет решение об их удалении.
+          </Text>
+          <Text as={"li"}>
+            пользователь может удалить свои персональные данные одним из
+            следующих способов:
+            <ol>
+              <Text as={"li"}>
+                1. удалить аккаунт непосредственно в приложении. После удаления
+                аккаунта все связанные с ним персональные данные будут удалены;
+              </Text>
+              <Text as={"li"}>
+                2. направить запрос на удаление персональных данных по
+                электронной почте:{" "}
+                <AppLink href="mailto:blanketwithcbt@gmail.com">
+                  blanketwithcbt@gmail.com
+                </AppLink>
+                . После получения запроса данные пользователя будут удалены в
+                разумный срок.
+              </Text>
+            </ol>
           </Text>
         </ul>
         <Text
