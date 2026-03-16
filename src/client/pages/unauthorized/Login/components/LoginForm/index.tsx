@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import styles from "./styles.module.scss";
 import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
-import { useLoginMutation, useYandexLoginQuery } from "@/client/redux";
+import { useLoginMutation } from "@/client/redux";
 import { mapApiErrorMessage, redirectWithReload } from "@/client/utils";
 import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
@@ -31,10 +31,6 @@ export const LoginForm: FC = () => {
     useLoginMutation();
   const { logEvent } = useAnalytics();
 
-  const { refetch: yandexLogin } = useYandexLoginQuery(undefined, {
-    skip: true, // Не выполняем запрос автоматически
-  });
-
   useEffect(() => {
     logEvent("login-page-opened");
   }, [logEvent]);
@@ -52,7 +48,7 @@ export const LoginForm: FC = () => {
 
   const handleYandexLogin = () => {
     logEvent("yandex-login-clicked");
-    yandexLogin();
+    window.location.href = "http://localhost/yandex/login";
   };
 
   return (
@@ -83,7 +79,6 @@ export const LoginForm: FC = () => {
         <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>
       )}
 
-      {/* Яндекс авторизация */}
       <div className={styles.yandexDivider}>
         <span className={styles.dividerText}>или</span>
       </div>
@@ -122,7 +117,6 @@ export const LoginForm: FC = () => {
   );
 };
 
-// Иконка Яндекса
 const YandexIcon = () => (
   <svg
     width="20"
