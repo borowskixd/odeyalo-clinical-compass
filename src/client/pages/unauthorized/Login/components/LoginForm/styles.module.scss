@@ -16,3 +16,38 @@
   flex-flow: column;
   gap: 16px;
 }
+
+.yandexButton {
+  background-color: $color-white100;
+  border: 1px solid $color-black100;
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: $color-black30;
+  margin: 5px 0;
+  
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: $color-black30;
+  }
+  
+  &::before {
+    margin-right: 16px;
+  }
+  
+  &::after {
+    margin-left: 16px;
+  }
+}

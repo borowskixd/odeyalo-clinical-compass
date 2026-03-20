@@ -5,6 +5,7 @@ import Link from "next/link";
 import { type FC, useEffect } from "react";
 import * as Yup from "yup";
 import styles from "./styles.module.scss";
+import { YandexIcon } from "@/client/assets/icons";
 import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import { useLoginMutation } from "@/client/redux";
@@ -79,23 +80,6 @@ export const LoginForm: FC = () => {
         <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>
       )}
 
-      <div className={styles.yandexDivider}>
-        <span className={styles.dividerText}>или</span>
-      </div>
-
-      <Button
-        onClick={handleYandexLogin}
-        view="secondary"
-        width="max"
-        disabled={isLoading}
-        className={styles.yandexButton}
-      >
-        <div className={styles.yandexButtonContent}>
-          <YandexIcon />
-          Войти через Яндекс
-        </div>
-      </Button>
-
       <div className={styles.buttons}>
         <Button
           type="submit"
@@ -112,19 +96,18 @@ export const LoginForm: FC = () => {
         >
           Зарегистрироваться
         </Button>
+        <div className={styles.divider}>или</div>
+        <Button
+          onClick={handleYandexLogin}
+          view="secondary"
+          width="max"
+          disabled={isLoading}
+          className={styles.yandexButton}
+        >
+          <YandexIcon />
+          Войти с Яндекс ID
+        </Button>
       </div>
     </FormikForm>
   );
 };
-
-const YandexIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-  >
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-    <path d="M13 7h-2v6h2V7zm0 8h-2v2h2v-2z" />
-  </svg>
-);
