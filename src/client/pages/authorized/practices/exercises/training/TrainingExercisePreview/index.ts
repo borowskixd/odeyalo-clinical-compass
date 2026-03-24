@@ -1,0 +1,1 @@
+export { TrainingExercisePreviewPage } from "./TrainingExercisePreview";

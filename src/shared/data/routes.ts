@@ -108,6 +108,16 @@ export const pages: Pages = {
     "practices",
     [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
   ),
+  trainingExercise: new Page<{ id: string }>(
+    "/practices/exercises/training/:id",
+    "practices",
+    [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
+  ),
+  trainingExercisePreview: new Page<{ id: string }>(
+    "/practices/exercises/training/:id/preview",
+    "practices",
+    [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
+  ),
   exerciseResult: new Page<{ id: string; result_id: string }>(
     "/practices/exercises/:id/results/:result_id",
     "practices",
