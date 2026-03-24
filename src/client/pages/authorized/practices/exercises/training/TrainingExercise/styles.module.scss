@@ -1,0 +1,45 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.container {
+  max-width: 420px;
+}
+
+.title {
+  margin-bottom: 30px;
+
+  @media screen and (width <= 450px) {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+  }
+}
+
+.question {
+  margin-bottom: 20px;
+
+  @include bodyXL;
+}
+
+.answerButtons {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 52px;
+  gap: 10px;
+}
+
+.explanation {
+  width: 100%;
+  padding: 16px;
+  border-radius: 28px;
+  background-color: $color-white70;
+}

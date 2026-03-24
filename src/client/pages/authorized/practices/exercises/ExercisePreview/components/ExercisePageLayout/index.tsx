@@ -7,12 +7,13 @@ interface Props {
   exerciseTitle: string;
   exerciseDescription?: string;
   exerciseStartLink: string;
-  history: {
+  history?: {
     id: string;
     title: string;
     date: string;
     link: string;
   }[];
+  completed?: boolean;
 }
 
 export const ExercisePageLayout: FC<Props> = ({
@@ -21,6 +22,7 @@ export const ExercisePageLayout: FC<Props> = ({
   exerciseDescription,
   exerciseStartLink,
   history,
+  completed = false,
 }) => {
   return (
     <ImageWrapper
@@ -31,8 +33,9 @@ export const ExercisePageLayout: FC<Props> = ({
         title={exerciseTitle}
         description={exerciseDescription}
         startLink={exerciseStartLink}
+        completed={completed}
       />
-      <History history={history} />
+      {history && <History history={history} />}
     </ImageWrapper>
   );
 };

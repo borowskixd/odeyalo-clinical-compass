@@ -116,6 +116,8 @@ export interface Pages {
   usersResults: Page;
   exercise: Page<{ id: string }>;
   exercisePreview: Page<{ id: string }>;
+  trainingExercise: Page<{ id: string }>;
+  trainingExercisePreview: Page<{ id: string }>;
   exerciseResult: Page<{ id: string; result_id: string }>;
   profile: Page;
   profileSettings: Page;
