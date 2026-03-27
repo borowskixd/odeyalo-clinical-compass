@@ -20,7 +20,7 @@
   padding: 24px;
   border-radius: 28px;
   background-color: $color-blue80;
-  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  box-shadow: var(--box-shadow);
   transition: min-height 0.3s ease;
 }
 

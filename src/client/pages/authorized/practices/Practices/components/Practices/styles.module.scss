@@ -3,6 +3,10 @@
 .title {
   margin-bottom: 16px;
 
+  &.trainingTitle {
+    margin-top: 20px;
+  }
+
   @include titleXS;
 }
 

@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import { type FC, type ReactNode } from "react";
 import "@/client/styles/global.scss";
-import "@/client/styles/reset.scss";
-import "@odeyalo/uikit/dist/main.css";
-import "@odeyalo/uikit/styles/fonts.scss";
-import "@odeyalo/uikit/styles/styles.scss";
+import "@odeyalo/uikit/styles.css";
 import { fontVariablesClass } from "@/client/assets/fonts";
-import { ChatBot, ModalsPortal, SnackbarsPortal } from "@/client/components";
+import { ChatBot, SnackbarsPortal } from "@/client/components";
 import { AuthLayer, StoreLayer } from "@/client/components/layers";
 import { AnalyticsProvider } from "@/shared/analytics";
 
@@ -39,7 +36,6 @@ const RootLayout: FC<RootLayoutProps> = async ({
               {children}
             </AuthLayer>
             <SnackbarsPortal />
-            <ModalsPortal />
             <ChatBot />
           </StoreLayer>
         </AnalyticsProvider>

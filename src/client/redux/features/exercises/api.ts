@@ -7,6 +7,10 @@ import {
   type GetExerciseResultsResponseData,
   type GetExercisesResponseData,
   type GetExerciseStructureResponseData,
+  GetTrainingExerciseResponseData,
+  GetTrainingExercisesResponseData,
+  GetTrainingExerciseStructureResponseData,
+  ResponseSuccessInfo,
 } from "@/shared/types";
 
 const exercisesApi = api.injectEndpoints({
@@ -54,6 +58,38 @@ const exercisesApi = api.injectEndpoints({
         `/exercises/${exerciseId}/results/${resultId}`,
       providesTags: ["Auth", "ExerciseResults"],
     }),
+
+    getTrainingExercises: builder.query<GetTrainingExercisesResponseData, void>(
+      {
+        query: () => "/exercises/training",
+        providesTags: ["TrainingExercise"],
+      },
+    ),
+
+    completeTrainingExercise: builder.mutation<ResponseSuccessInfo, string>({
+      query: (trainingExerciseId) => ({
+        url: `/exercises/training/${trainingExerciseId}`,
+        method: "POST",
+      }),
+      invalidatesTags: ["TrainingExercise"],
+    }),
+
+    getTrainingExercise: builder.query<GetTrainingExerciseResponseData, string>(
+      {
+        query: (trainingExerciseId) =>
+          `/exercises/training/${trainingExerciseId}`,
+        providesTags: ["TrainingExercise"],
+      },
+    ),
+
+    getTrainingExerciseStructure: builder.query<
+      GetTrainingExerciseStructureResponseData,
+      string
+    >({
+      query: (trainingExerciseId) =>
+        `/exercises/training/${trainingExerciseId}/structure`,
+      providesTags: ["TrainingExercise"],
+    }),
   }),
 });
 
@@ -64,4 +100,8 @@ export const {
   useGetExerciseStructureQuery,
   useGetExerciseResultsQuery,
   useGetExerciseResultQuery,
+  useGetTrainingExercisesQuery,
+  useGetTrainingExerciseQuery,
+  useGetTrainingExerciseStructureQuery,
+  useCompleteTrainingExerciseMutation,
 } = exercisesApi;

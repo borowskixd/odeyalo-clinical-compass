@@ -1,4 +1,12 @@
+@use "@/client/styles/colors" as *;
+
 .popup {
+  display: flex;
   max-width: 305px;
+  flex-direction: column;
   padding: 12px;
+  border-radius: 12px;
+  background-color: $color-white100;
+  box-shadow: var(--box-shadow);
+  gap: 8px;
 }

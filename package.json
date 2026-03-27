@@ -11,7 +11,7 @@
     "stylelint": "stylelint \\\"src/**/*.{css,scss}\\\""
   },
   "dependencies": {
-    "@odeyalo/uikit": "^0.0.14",
+    "@odeyalo/uikit": "^0.0.19",
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "1.13.5",
     "classnames": "^2.5.1",

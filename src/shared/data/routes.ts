@@ -16,6 +16,7 @@ export type ActiveNavId =
 
 export const pages: Pages = {
   main: new Page("/", "main"),
+  policy: new Page("/policy", "main"),
   login: new Page("/login", "login", [ACCESS.unauthorized]),
   registration: new Page("/registration", "login", [ACCESS.unauthorized]),
   cabinet: new Page("/cabinet", "cabinet", [ACCESS.psychologist, ACCESS.hr]),
@@ -104,6 +105,16 @@ export const pages: Pages = {
   ]),
   exercisePreview: new Page<{ id: string }>(
     "/practices/exercises/:id/preview",
+    "practices",
+    [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
+  ),
+  trainingExercise: new Page<{ id: string }>(
+    "/practices/exercises/training/:id",
+    "practices",
+    [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
+  ),
+  trainingExercisePreview: new Page<{ id: string }>(
+    "/practices/exercises/training/:id/preview",
     "practices",
     [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
   ),
