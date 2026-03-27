@@ -5,6 +5,7 @@ import { type FC, useState } from "react";
 import { BurnoutPopUp } from "../BurnoutPopUp";
 import styles from "./styles.module.scss";
 import { useGetBurnoutCalculateQuery } from "@/client/redux";
+import { pages } from "@/shared/data";
 
 export const BurnoutButton: FC = () => {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
@@ -26,11 +27,6 @@ export const BurnoutButton: FC = () => {
 
   const closePopUp = () => {
     setIsPopUpOpen(false);
-  };
-
-  const handleNavigateToTest = () => {
-    setOpen(false);
-    window.location.href = `/tests/${TEST_ID}`;
   };
 
   return (
@@ -55,7 +51,9 @@ export const BurnoutButton: FC = () => {
             Для оценки склонности к выгоранию пройдите тест &#34;Что мне
             свойственно?&#34;
           </Text>
-          <Button onClick={handleNavigateToTest}>Перейти к прохождению</Button>
+          <Button href={pages.test.getLink({ params: { id: TEST_ID } })}>
+            Перейти
+          </Button>
         </div>
       </Popup>
 
