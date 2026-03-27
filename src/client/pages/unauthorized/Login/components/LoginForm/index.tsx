@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@odeyalo/uikit";
+import { Button, Icon } from "@odeyalo/uikit";
 import Link from "next/link";
 import { type FC, useEffect } from "react";
 import * as Yup from "yup";
@@ -11,6 +11,7 @@ import { useAppDispatch } from "@/client/hooks";
 import { useLoginMutation } from "@/client/redux";
 import { mapApiErrorMessage, redirectWithReload } from "@/client/utils";
 import { useAnalytics } from "@/shared/analytics";
+import { SEVER_API_URL } from "@/shared/config/api";
 import { pages } from "@/shared/data";
 import { type LoginRequestData } from "@/shared/types";
 
@@ -49,7 +50,6 @@ export const LoginForm: FC = () => {
 
   const handleYandexLogin = () => {
     logEvent("yandex-login-clicked");
-    window.location.href = "http://localhost/yandex/login";
   };
 
   return (
@@ -96,16 +96,17 @@ export const LoginForm: FC = () => {
         >
           Зарегистрироваться
         </Button>
-        <div className={styles.divider}>или</div>
+        <div className={styles.divider}>или продолжить через</div>
         <Button
           onClick={handleYandexLogin}
-          view="secondary"
+          view="inverse"
           width="max"
           disabled={isLoading}
-          className={styles.yandexButton}
+          align="center"
+          href={`${SEVER_API_URL}/yandex/login`}
         >
-          <YandexIcon />
-          Войти с Яндекс ID
+          <Icon data={YandexIcon} />
+          Яндекс ID
         </Button>
       </div>
     </FormikForm>

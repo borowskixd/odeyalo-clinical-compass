@@ -17,6 +17,7 @@ export type AnalyticsEventName =
   | "profile-page-opened"
   | "login-success"
   | "yandex-login-clicked"
+  | "yandex-register-clicked"
   | "register-success"
   | "theory-read"
   | "test-passed"
