@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@odeyalo/uikit";
 import { type FC, useCallback, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 
@@ -78,7 +79,9 @@ export const Hero: FC = () => {
       </section>
       <div className={styles.dotsContainer}>
         {slides.map((_, index) => (
-          <button
+          <Button
+            view="unstyled"
+            shape="circle"
             key={index}
             className={`${styles.dot} ${currentSlide === index ? styles.dotActive : ""}`}
             onClick={() => goToSlide(index)}
