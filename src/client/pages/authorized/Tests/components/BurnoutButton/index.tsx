@@ -5,12 +5,15 @@ import { type FC, useState } from "react";
 import { BurnoutPopUp } from "../BurnoutPopUp";
 import styles from "./styles.module.scss";
 import { useGetBurnoutCalculateQuery } from "@/client/redux";
+import { pages } from "@/shared/data";
 
 export const BurnoutButton: FC = () => {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [open, setOpen] = useState<boolean>(false);
   const { data: burnout, isLoading, isError } = useGetBurnoutCalculateQuery();
   const [buttonRef, setButtonRef] = useState<HTMLButtonElement | null>(null);
+
+  const TEST_ID = "e89f7acb-cd31-4d27-aadd-24f6c7d52794";
 
   const buttonDisabled = isError || isLoading;
 
@@ -48,6 +51,9 @@ export const BurnoutButton: FC = () => {
             Для оценки склонности к выгоранию пройдите тест &#34;Что мне
             свойственно?&#34;
           </Text>
+          <Button href={pages.test.getLink({ params: { id: TEST_ID } })}>
+            Перейти
+          </Button>
         </div>
       </Popup>
 
