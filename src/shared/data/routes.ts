@@ -123,6 +123,11 @@ export const pages: Pages = {
     "practices",
     [ACCESS.client, ACCESS.psychologist, ACCESS.hr],
   ),
+  squareBreathing: new Page("/practices/squareBreathing", "practices", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
   usersActivity: new Page("/admin/users/activity", "usersActivity", [
     ACCESS.admin,
   ]),

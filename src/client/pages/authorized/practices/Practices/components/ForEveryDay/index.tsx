@@ -10,19 +10,34 @@ export const ForEveryDay: FC = () => {
   return (
     <section>
       <h3 className={styles.title}>На каждый день</h3>
-      <Button
-        size="xl"
-        view="primary"
-        width="max"
-        align="left"
-        href={pages.notes.path}
-      >
-        Дневник эмоций
-        <Icon
-          data={ArrowForward}
-          size={24}
-        />
-      </Button>
+      <div className={styles.buttons}>
+        <Button
+          size="xl"
+          view="primary"
+          width="max"
+          align="left"
+          href={pages.notes.path}
+        >
+          Дневник эмоций
+          <Icon
+            data={ArrowForward}
+            size={24}
+          />
+        </Button>
+        <Button
+          size="xl"
+          view="primary"
+          width="max"
+          align="left"
+          href={pages.squareBreathing.path}
+        >
+          Дыхание по квадрату
+          <Icon
+            data={ArrowForward}
+            size={24}
+          />
+        </Button>
+      </div>
     </section>
   );
 };

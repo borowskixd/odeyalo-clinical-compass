@@ -1,0 +1,157 @@
+.content {
+  display: flex;
+  margin-top: 50px;
+  gap: 50px;
+
+  @media screen and (width <= 900px) {
+    flex-direction: column;
+  }
+
+  @media screen and (width <= 400px) {
+    gap: 20px;
+  }
+}
+
+.breathCircleContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.breathCircle {
+  --button-padding: 0;
+
+  display: flex;
+  width: 100%;
+  max-width: 346px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--blue40);
+
+  & > span {
+    display: flex;
+    width: 100%;
+    max-width: 220px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--blue80);
+    color: var(--white100);
+    font: var(--text-title-cygre);
+  }
+
+  &:hover {
+    background-color: var(--blue60);
+  }
+
+  &.breath {
+    & > span {
+      animation: breath 16s infinite;
+    }
+  }
+
+  @keyframes breath {
+    0% {
+      max-width: 220px;
+    }
+
+    25% {
+      max-width: 100%;
+    }
+
+    50% {
+      max-width: 100%;
+    }
+
+    75% {
+      max-width: 220px;
+    }
+
+    100% {
+      max-width: 220px;
+    }
+  }
+
+  @keyframes exhale {
+    0% {
+      max-width: 100%;
+    }
+
+    100% {
+      max-width: 220px;
+    }
+  }
+}
+
+.info {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.cycle {
+  display: flex;
+  gap: 18px;
+
+  @media screen and (width <= 400px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.cycleItem {
+  display: flex;
+  width: 75px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  &.active > .cycleItemCircle {
+    background-color: var(--blue80);
+    color: var(--white100);
+  }
+}
+
+.cycleItemCircle {
+  display: flex;
+  width: 70px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--blue40);
+  color: var(--blue100);
+  font-size: 26px;
+  transition: background-color var(--transition-delay);
+}
+
+.cards {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+
+  @media screen and (width <= 900px) {
+    max-width: 380px;
+  }
+
+  @media screen and (width <= 400px) {
+    flex-direction: column;
+  }
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 20px 16px;
+  border-radius: 28px;
+  background-color: var(--white70);
+  gap: 2px;
+}
