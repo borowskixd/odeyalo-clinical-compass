@@ -12,6 +12,8 @@ export const BurnoutButton: FC = () => {
   const { data: burnout, isLoading, isError } = useGetBurnoutCalculateQuery();
   const [buttonRef, setButtonRef] = useState<HTMLButtonElement | null>(null);
 
+  const TEST_ID = "e89f7acb-cd31-4d27-aadd-24f6c7d52794";
+
   const buttonDisabled = isError || isLoading;
 
   const openPopUp = () => {
@@ -24,6 +26,11 @@ export const BurnoutButton: FC = () => {
 
   const closePopUp = () => {
     setIsPopUpOpen(false);
+  };
+
+  const handleNavigateToTest = () => {
+    setOpen(false);
+    window.location.href = `/tests/${TEST_ID}`;
   };
 
   return (
@@ -48,6 +55,7 @@ export const BurnoutButton: FC = () => {
             Для оценки склонности к выгоранию пройдите тест &#34;Что мне
             свойственно?&#34;
           </Text>
+          <Button onClick={handleNavigateToTest}>Перейти к прохождению</Button>
         </div>
       </Popup>
 
