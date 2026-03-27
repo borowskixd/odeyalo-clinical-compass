@@ -16,3 +16,26 @@
   flex-flow: column;
   gap: 16px;
 }
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  text-align: center;
+
+  &::before,
+  &::after {
+    height: 1px;
+    flex: 1;
+    background-color: $color-black20;
+    content: "";
+  }
+
+  &::before {
+    margin-right: 16px;
+  }
+
+  &::after {
+    margin-left: 16px;
+  }
+}
