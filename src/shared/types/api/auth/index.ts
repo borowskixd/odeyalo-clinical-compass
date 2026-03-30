@@ -4,3 +4,4 @@ export * from "./login";
 export * from "./me";
 export * from "./registration";
 export * from "./resetPassword";
+export * from "./yandexCallback";

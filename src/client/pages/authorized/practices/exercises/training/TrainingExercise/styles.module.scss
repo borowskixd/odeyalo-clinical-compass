@@ -5,6 +5,14 @@
   max-width: 420px;
 }
 
+.header {
+  padding: 20px;
+  border-radius: 32px 32px 0 0;
+  margin: -20px -20px 30px;
+  background-color: $color-blue80;
+  color: $color-white100;
+}
+
 .title {
   margin-bottom: 30px;
 
@@ -16,16 +24,22 @@
 }
 
 .question {
-  margin-bottom: 20px;
+  padding: 16px 20px;
+  border-radius: 28px;
+  background-color: $color-blue100;
 
   @include bodyXL;
+}
+
+.correct {
+  margin-bottom: 20px;
+  font-size: 26px;
 }
 
 .answerButtons {
   display: flex;
   width: 100%;
   flex-direction: column;
-  margin-bottom: 20px;
   gap: 16px;
 }
 

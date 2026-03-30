@@ -11,3 +11,4 @@ export * from "./NextIcon";
 export * from "./TelegramIcon";
 export * from "./types";
 export * from "./VkIcon";
+export * from "./YandexIcon";

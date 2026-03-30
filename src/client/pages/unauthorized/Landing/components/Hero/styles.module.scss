@@ -1,5 +1,47 @@
 @use "@/client/styles/colors" as *;
 
+.slideGreen {
+  padding: 40px;
+  border-radius: 32px;
+  background-color: $color-green80;
+  background-image: url("/static/landing/pillows.webp");
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  background-size: 600px;
+
+  @media (width <= 1024px) {
+    background-position: 90% top;
+  }
+}
+
+.slideRed {
+  padding: 40px;
+  border-radius: 32px;
+  background-color: $color-red100;
+  background-image: url("/static/landing/heart_2.webp");
+  background-position: 90% calc(50% - 30px);
+  background-repeat: no-repeat;
+  background-size: 350px;
+
+  @media (width <= 1024px) {
+    background-position: 90% top;
+  }
+}
+
+.slideBlue {
+  padding: 40px;
+  border-radius: 32px;
+  background-color: $color-blue80;
+  background-image: url("/static/landing/book_2.webp");
+  background-position: 100% calc(50% - 30px);
+  background-repeat: no-repeat;
+  background-size: 450px;
+
+  @media (width <= 1024px) {
+    background-position: 90% top;
+  }
+}
+
 .strong {
   color: $color-white100;
 }
@@ -14,42 +56,66 @@ h1.title {
   max-width: 960px;
   font-size: 56px;
   line-height: 62px;
-}
 
-h2.title {
-  font-size: 32px;
-  line-height: 36px;
-}
-
-h3.title {
-  margin-bottom: 40px;
-  font-size: 40px;
-  line-height: 44px;
-  text-align: center;
-}
-
-.container {
-  display: flex;
-  flex-flow: column;
-  font-size: 20px;
-  gap: 140px;
+  @media (width <= 768px) {
+    font-size: 32px;
+    line-height: 38px;
+  }
 }
 
 .mainSection {
+  position: relative;
   display: flex;
+  overflow: hidden;
   min-height: 520px;
   align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  border-radius: 32px;
+  background-color: transparent;
+}
+
+.carouselContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.slidesWrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  display: flex;
+  width: 100%;
+  min-height: 520px;
+  flex: 0 0 100%;
   align-items: flex-end;
   justify-content: flex-start;
-  padding: 40px;
-  border-radius: 32px;
-  background-color: $color-blue80;
-  background-image: url("/static/landing/feather.webp");
-  background-position: 90% center;
-  background-repeat: no-repeat;
-  background-size: contain;
+}
 
-  @media (width <= 1024px) {
-    background-position: 90% top;
+.heroWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dotsContainer {
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.dot {
+  --button-height: 15px;
+  --button-width: 15px;
+  --button-padding: 0;
+  --button-background-color: #{$color-white100};
+  --button-background-color-hover: #{$color-blue80};
+
+  &.dotActive {
+    --button-background-color: #{$color-blue80};
   }
 }

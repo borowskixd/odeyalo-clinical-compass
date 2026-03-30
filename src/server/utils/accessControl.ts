@@ -3,12 +3,36 @@ import { deleteAuthCookies, setAuthCookies } from "@/server/utils/cookies";
 import { ACCESS } from "@/shared/config/access";
 import { bffAxios, serverAxios } from "@/shared/config/api";
 import { cookies } from "@/shared/data";
-import type { GetMeResponseData } from "@/shared/types";
+import type {
+  GetMeResponseData,
+  YandexCallbackApiResponseData,
+} from "@/shared/types";
 import { checkAccess, parseAccessJWT } from "@/shared/utils";
 
 export const checkAuth = async (
   request: NextRequest,
 ): Promise<NextResponse> => {
+  const searchParams = request.nextUrl.searchParams;
+  if (searchParams.has("code")) {
+    const code = searchParams.get("code");
+    try {
+      const { data } = await serverAxios.get<YandexCallbackApiResponseData>(
+        "/yandex/callback/code",
+        {
+          params: {
+            code: code,
+          },
+        },
+      );
+      return setAuthCookies(NextResponse.next(), {
+        accessToken: data?.access_token,
+        refreshToken: data?.refresh_token,
+      });
+    } catch {
+      return NextResponse.redirect(new URL("/auth/login", request.url));
+    }
+  }
+
   const accessToken = request.cookies.get(cookies.accessToken.name)?.value;
   const refreshToken = request.cookies.get(cookies.refreshToken.name)?.value;
 

@@ -7,6 +7,12 @@
   @include titleXS;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .kptDiary {
   display: flex;
   flex-direction: column;

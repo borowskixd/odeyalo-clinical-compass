@@ -11,13 +11,13 @@
     "stylelint": "stylelint \\\"src/**/*.{css,scss}\\\""
   },
   "dependencies": {
-    "@odeyalo/uikit": "^0.0.19",
+    "@odeyalo/uikit": "^0.0.20",
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "1.13.5",
     "classnames": "^2.5.1",
     "firebase": "^12.9.0",
     "formik": "^2.4.6",
-    "next": "16.1.5",
+    "next": "16.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-input-mask": "^2.0.4",

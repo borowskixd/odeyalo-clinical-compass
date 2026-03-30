@@ -42,7 +42,9 @@ export const TrainingExercisePage = () => {
   }, [completeTrainingExerciseMutation.isSuccess, router, id]);
 
   const nextQuestion = () => {
-    setCurrentQuestionNumber((prev) => prev + 1);
+    if (currentAnswer?.correct) {
+      setCurrentQuestionNumber((prev) => prev + 1);
+    }
     setCurrentAnswer(null);
     setAnswerSelected(false);
   };
@@ -62,56 +64,68 @@ export const TrainingExercisePage = () => {
 
     const questionsCount = trainingExerciseStructure.questions.length;
     const isLastQuestion = currentQuestionNumber === questionsCount - 1;
+    const showNextQuestionButton =
+      answerSelected && !(currentAnswer?.correct && isLastQuestion);
     const buttonDisabled =
       !currentAnswer ||
-      (currentAnswer && answerSelected && !isLastQuestion) ||
+      (currentAnswer && showNextQuestionButton) ||
       completeTrainingExerciseMutation.isLoading;
 
     const handleClickButton = () => {
       if (!answerSelected) {
         setAnswerSelected(true);
-      } else if (isLastQuestion) {
+      } else if (isLastQuestion && currentAnswer?.correct) {
         completeTrainingExercise(id);
       }
     };
 
     return (
-      <div>
-        <PageTitle className={styles.title}>
-          {trainingExerciseStructure.title}
-        </PageTitle>
-        <Text
-          variant="body-xl"
-          as="h4"
-          className={styles.question}
-        >
-          {currentQuestionNumber + 1}. {currentQuestion.question}
-        </Text>
+      <section>
+        <header className={styles.header}>
+          <PageTitle className={styles.title}>
+            {trainingExerciseStructure.title}
+          </PageTitle>
+          <Text
+            variant="body-xl"
+            as="h4"
+            className={styles.question}
+          >
+            {currentQuestion.question}
+          </Text>
+        </header>
         <div className={styles.answerButtons}>
-          {currentQuestion.answers.map((answer) => {
-            const isSelected = answer.id === currentAnswer?.id;
+          {!answerSelected &&
+            currentQuestion.answers.map((answer) => {
+              const isSelected = answer.id === currentAnswer?.id;
 
-            if (answerSelected && !isSelected) return null;
-
-            return (
-              <Button
-                readOnly={isSelected}
-                key={answer.id}
-                onClick={() => setCurrentAnswer(answer)}
-                align="left"
-                view={isSelected ? "primary" : "default"}
-                width="max"
-                ellipsis={false}
-              >
-                {answer.answer}
-              </Button>
-            );
-          })}
+              return (
+                <Button
+                  readOnly={isSelected}
+                  key={answer.id}
+                  onClick={() => setCurrentAnswer(answer)}
+                  align="left"
+                  view={isSelected ? "primary" : "default"}
+                  width="max"
+                  ellipsis={false}
+                >
+                  {answer.answer}
+                </Button>
+              );
+            })}
         </div>
         {currentAnswer && answerSelected && (
-          <div className={styles.explanation}>
-            <Text variant="body-xl">{currentAnswer.explanation}</Text>
-          </div>
+          <>
+            <Text
+              variant="title-cygre"
+              as="h4"
+              className={styles.correct}
+            >
+              {currentAnswer.correct ? "Верно!" : "Неверно, попробуйте еще"}
+            </Text>
+            <div className={styles.explanation}>
+              <Text variant="body-xl">{currentAnswer.explanation}</Text>
+            </div>
+          </>
         )}
         <div className={styles.buttons}>
           <Button
@@ -123,11 +137,11 @@ export const TrainingExercisePage = () => {
           >
             {currentAnswer && !answerSelected
               ? "Сохранить"
-              : isLastQuestion
+              : isLastQuestion && currentAnswer?.correct
                 ? "Завершить"
                 : `${currentQuestionNumber + 1} из ${questionsCount}`}
           </Button>
-          {answerSelected && !isLastQuestion && (
+          {showNextQuestionButton && (
             <Button
               view="default"
               shape="circle"
@@ -140,7 +154,7 @@ export const TrainingExercisePage = () => {
             </Button>
           )}
         </div>
-      </div>
+      </section>
     );
   };
 
