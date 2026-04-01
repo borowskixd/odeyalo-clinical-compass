@@ -29,6 +29,8 @@
   }
 
   &.second {
+    max-width: calc(100% - 420px - 24px);
+
     @media screen and (width <= 740px) {
       flex-direction: column-reverse;
     }

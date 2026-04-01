@@ -1,3 +1,4 @@
+import { SEVER_API_URL } from "@/shared/config/api";
 import {
   type GetDailyTasksApiResponse,
   type GetDailyTasksResponse,
@@ -7,14 +8,10 @@ import { getDailyTaskType } from "@/shared/utils";
 export const mapGetDailyTasksResponse = (
   data: GetDailyTasksApiResponse,
 ): GetDailyTasksResponse => {
-  return data.map(
-    ({ id, destination_id, title, is_complete, short_description, type }) => ({
-      id,
-      title,
-      description: short_description,
-      taskType: getDailyTaskType(type),
-      taskId: destination_id,
-      completed: is_complete,
-    }),
-  );
+  return data.map(({ id, type, destination_id, link_to_picture }) => ({
+    id,
+    taskType: getDailyTaskType(type),
+    taskId: destination_id,
+    linkToPicture: `${SEVER_API_URL}${link_to_picture}`,
+  }));
 };

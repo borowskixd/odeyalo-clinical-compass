@@ -2,29 +2,39 @@
 @use "@/client/styles/fontStyles" as *;
 
 .card {
+  position: relative;
   display: flex;
+  overflow: hidden;
   width: 100%;
-  flex-flow: column;
-  padding: 16px;
-  border-radius: 12px;
-  background-color: $color-white70;
-  gap: 4px;
-
-  &.completed {
-    background-color: $color-blue30;
-    color: $color-blue60;
-  }
-
-  &.active {
-    background-color: $color-blue80;
-    color: $color-white100;
-  }
+  border-radius: 28px;
 }
 
 .cardTitle {
   @include bodyMBold;
 }
 
-.cardDescription {
-  @include bodyM;
+.imageContainer {
+  width: 100%;
+  aspect-ratio: 3/2;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tag {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 14px 10px;
+  border-radius: 12px;
+  background: $color-black100;
+  color: $color-white100;
+  text-transform: lowercase;
 }

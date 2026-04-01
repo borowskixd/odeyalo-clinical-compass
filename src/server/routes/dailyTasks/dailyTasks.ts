@@ -8,8 +8,7 @@ import {
 } from "@/shared/types";
 
 const getDailyTasks = createRequest(async (request, serverFetch) => {
-  const response =
-    await serverFetch.get<GetDailyTasksApiResponse>("/daily_tasks");
+  const response = await serverFetch.get<GetDailyTasksApiResponse>("/ontology");
 
   const data: GetDailyTasksResponse = mapGetDailyTasksResponse(response.data);
 
