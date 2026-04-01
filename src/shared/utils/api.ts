@@ -30,23 +30,19 @@ export const getRoleId = (role: AccessRole): -1 | 0 | 1 | 2 | 3 => {
   return -1;
 };
 
-export const getDailyTaskType = (taskType: number): DailyTaskType => {
+export const getDailyTaskType = (
+  taskType: "practice" | "test",
+): DailyTaskType => {
   switch (taskType) {
-    case 1: {
-      return DAILY_TASK_TYPES.theory;
-    }
-    case 2: {
-      return DAILY_TASK_TYPES.moodTracker;
-    }
-    case 3: {
+    case "test": {
       return DAILY_TASK_TYPES.test;
     }
-    case 4: {
-      return DAILY_TASK_TYPES.kptDiary;
+    case "practice": {
+      return DAILY_TASK_TYPES.exercise;
     }
   }
 
-  return DAILY_TASK_TYPES.exercise;
+  return DAILY_TASK_TYPES.theory;
 };
 
 export const getDailyTaskLink = (
@@ -56,17 +52,11 @@ export const getDailyTaskLink = (
   const getLinkConfig = { params: { id: taskId } };
 
   switch (taskType) {
-    case "theory": {
-      return pages.article.getLink(getLinkConfig);
-    }
     case "test": {
       return pages.test.getLink(getLinkConfig);
     }
-    case "moodTracker": {
-      return pages.notes.path;
-    }
-    case "kptDiary": {
-      return pages.practices.path;
+    case "exercise": {
+      return pages.exercisePreview.getLink(getLinkConfig);
     }
   }
 

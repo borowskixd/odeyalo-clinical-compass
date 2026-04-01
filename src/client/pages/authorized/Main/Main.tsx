@@ -28,10 +28,7 @@ export const MainPage: FC = () => {
             <PageTitle className={styles.title}>Задачи</PageTitle>
             <TasksPreview />
           </ContentWrapper>
-          <ContentWrapper className={styles.dailyTasks}>
-            <PageTitle className={styles.title}>План на сегодня</PageTitle>
-            <DailyTasks />
-          </ContentWrapper>
+          <DailyTasks />
         </div>
       </div>
     </Container>
