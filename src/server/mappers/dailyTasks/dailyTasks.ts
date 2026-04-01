@@ -8,7 +8,7 @@ import { getDailyTaskType } from "@/shared/utils";
 export const mapGetDailyTasksResponse = (
   data: GetDailyTasksApiResponse,
 ): GetDailyTasksResponse => {
-  return data.map(({ id, type, destination_id, link_to_picture }) => ({
+  return data.result.map(({ id, type, destination_id, link_to_picture }) => ({
     id,
     taskType: getDailyTaskType(type),
     taskId: destination_id,

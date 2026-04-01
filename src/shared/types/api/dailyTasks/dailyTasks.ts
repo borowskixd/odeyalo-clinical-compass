@@ -1,11 +1,13 @@
 export type GetDailyTasksApiResponse = {
-  id: string;
-  type: "practice" | "test";
-  created_at: string;
-  destination_id: string;
-  link_to_picture: string;
-  user_id: string;
-}[];
+  result: {
+    id: string;
+    type: "practice" | "test";
+    created_at: string;
+    destination_id: string;
+    link_to_picture: string;
+    user_id: string;
+  }[];
+};
 
 export type GetDailyTasksResponse = {
   id: string;
