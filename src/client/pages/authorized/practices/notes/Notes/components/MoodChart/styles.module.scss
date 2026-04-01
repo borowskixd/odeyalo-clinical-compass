@@ -2,8 +2,9 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-  @include titleCygre;
   margin-bottom: 20px;
+
+  @include titleCygre;
 }
 
 .chartContainer {

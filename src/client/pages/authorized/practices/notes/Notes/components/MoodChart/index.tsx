@@ -17,14 +17,11 @@ import { useGetWeeklyMoodsQuery } from "@/client/redux";
 export const MoodChart: FC = () => {
   const { data, isLoading, error } = useGetWeeklyMoodsQuery();
 
-  console.log("MoodChart debug:", { isLoading, hasData: !!data, error });
-
   if (isLoading) {
     return <LoadingLoop />;
   }
 
   if (error) {
-    console.error("Error loading moods:", error);
     return (
       <div className={styles.chartContainer}>
         <div className={styles.emptyState}>

@@ -11,8 +11,8 @@
     flex-direction: column;
 
     & > * {
-      flex: none;
       width: 100%;
+      flex: none;
     }
   }
 }
