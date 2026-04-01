@@ -7,6 +7,7 @@ import {
   type GetNoteResponseData,
   type GetNotesCalendarFilledDatesResponseData,
   type GetNotesResponseData,
+  type GetWeeklyMoodsResponseData,
   type ResponseSuccessInfo,
   type SaveMoodRequestData,
 } from "@/shared/types";
@@ -55,6 +56,10 @@ const notesApi = api.injectEndpoints({
         },
         providesTags: ["Auth", "Moods"],
       }),
+      getWeeklyMoods: builder.query<GetWeeklyMoodsResponseData, void>({
+        query: () => "/moods/weekly",
+        providesTags: ["Auth", "Moods"],
+      }),
       getEmojis: builder.query<GetEmojisResponseData, void>({
         query: () => {
           return `/moods/emojis`;
@@ -81,5 +86,6 @@ export const {
   useGetMoodQuery,
   useGetEmojisQuery,
   useGetMoodsQuery,
+  useGetWeeklyMoodsQuery,
   useSaveMoodMutation,
 } = notesApi;

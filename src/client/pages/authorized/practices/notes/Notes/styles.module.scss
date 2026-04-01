@@ -4,21 +4,28 @@
   gap: 16px;
 
   & > * {
-    max-width: calc(50% - 8px);
+    flex: 1;
   }
 
   @media screen and (width <= 800px) {
     flex-direction: column;
 
     & > * {
-      max-width: none;
+      width: 100%;
+      flex: none;
     }
   }
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
 .sidebar {
   display: flex;
   width: 100%;
-  flex-flow: column;
+  flex-direction: column;
   gap: 40px;
 }
