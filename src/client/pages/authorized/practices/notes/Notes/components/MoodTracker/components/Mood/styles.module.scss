@@ -33,17 +33,26 @@
 .emojisContainer {
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  container-name: emojis;
+  container-type: inline-size;
   gap: 10px;
 }
 
 .emoji {
   display: flex;
-  width: 100%;
   min-width: 68px;
   height: 54px;
+  flex: 1 1 68px;
   align-items: center;
   justify-content: center;
   border-radius: 27px;
   background-color: $color-white70;
   font-size: 28px;
+
+  @container emojis (width <= 420px) {
+    height: 40px;
+    font-size: 22px;
+  }
 }
