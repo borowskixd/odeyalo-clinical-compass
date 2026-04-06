@@ -33,7 +33,7 @@ export const DayTasks: FC<DayTasksProps> = ({
           <>
             {day}{" "}
             <span>
-              {`${date.getDay().toString().padStart(2, "0")}.${(date.getMonth() + 1).toString().padStart(2, "0")}`}
+              {`${date.getDate().toString().padStart(2, "0")}.${(date.getMonth() + 1).toString().padStart(2, "0")}`}
               {date.getFullYear() === new Date().getFullYear()
                 ? ""
                 : `.${date.getFullYear()}`}
