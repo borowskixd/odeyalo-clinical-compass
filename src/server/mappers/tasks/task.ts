@@ -10,12 +10,12 @@ import { mapDateToApiDateFormat } from "@/shared/utils";
 export const mapGetTaskResponse = (
   data: GetTaskApiResponseData,
 ): GetTaskResponseData => {
-  const { text, id, created_at, is_complete } = data;
+  const { text, id, completed_at, created_at, is_complete } = data;
 
   return {
     id,
     task: text,
-    date: mapDateToApiDateFormat(new Date(created_at)),
+    date: mapDateToApiDateFormat(new Date(completed_at ?? created_at)),
     completed: is_complete,
   };
 };

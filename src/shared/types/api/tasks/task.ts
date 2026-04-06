@@ -8,6 +8,7 @@ export type GetTaskResponseData = {
 export type GetTaskApiResponseData = {
   id: string;
   text: string;
+  completed_at?: string;
   created_at: string;
   is_complete: boolean;
   user_id: string;
