@@ -18,11 +18,10 @@ interface InitialValues {
   score: number;
 }
 
-const initialValues: InitialValues = {
-  score: 50,
-};
-
 export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
+  const [sessionStorageTracker, setSessionStorageTracker] = useState<
+    string | null
+  >(null);
   const [saveMood, { isLoading, isSuccess }] = useSaveMoodMutation();
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
   const [emojiIds, setEmojiIds] = useState<number[]>([]);
@@ -30,10 +29,22 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
   const { logEvent } = useAnalytics();
 
   useEffect(() => {
+    const sessionStorageValue = sessionStorage.getItem("tracker");
+    setSessionStorageTracker(sessionStorageValue);
+  }, [setSessionStorageTracker, emojiIds]);
+
+  useEffect(() => {
     if (isSuccess) {
       logEvent("mood-added");
     }
   }, [isSuccess, logEvent]);
+
+  const tracker = sessionStorageTracker
+    ? (JSON.parse(sessionStorageTracker) as {
+        mood: number;
+        emojis: number[];
+      })
+    : { mood: 50, emojis: [] };
 
   const submitHandler = (values: InitialValues) => {
     if (emojiIds.length) {
@@ -58,21 +69,39 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
   const selectEmojiHandler = (emojiIds: number[]) => {
     setEmojiIds(emojiIds);
     setErrorMessage(null);
+    sessionStorage.setItem(
+      "tracker",
+      JSON.stringify({
+        ...tracker,
+        emojis: emojiIds,
+      }),
+    );
   };
 
   return (
     <FormikForm<InitialValues>
-      initialValues={initialValues}
+      initialValues={{ score: tracker.mood }}
+      enableReinitialize
       onSubmit={submitHandler}
       className={styles.form}
     >
       <MoodTrackerValue />
       <FormikForm.RangeInput
         name="score"
-        min="0"
-        max="100"
+        onUpdate={(value) => {
+          sessionStorage.setItem(
+            "tracker",
+            JSON.stringify({
+              ...tracker,
+              mood: value,
+            }),
+          );
+        }}
       />
-      <Emojis onUpdate={selectEmojiHandler} />
+      <Emojis
+        onUpdate={selectEmojiHandler}
+        defaultEmojis={tracker.emojis}
+      />
       {errorMessage && (
         <div style={{ marginTop: "10px" }}>
           <FormErrorLabel>{errorMessage}</FormErrorLabel>

@@ -1,18 +1,19 @@
 "use client";
 
+import { RangeInput, RangeInputProps } from "@odeyalo/uikit";
 import { type FieldConfig, useField } from "formik";
-import { type FC, type InputHTMLAttributes } from "react";
-import { RangeInput as DefaultRangeInput } from "@/client/components";
+import { type FC } from "react";
 
-type Props = FieldConfig & InputHTMLAttributes<HTMLInputElement>;
+type Props = RangeInputProps & FieldConfig;
 
-export const RangeInput: FC<Props> = ({ ...props }) => {
-  const [field] = useField(props.name);
+export const FormikRangeInput: FC<Props> = (props) => {
+  const [field, meta] = useField(props.name);
 
   return (
-    <DefaultRangeInput
-      {...field}
+    <RangeInput
       {...props}
+      {...field}
+      errorMessage={meta.error && meta.touched ? meta.error : undefined}
     />
   );
 };

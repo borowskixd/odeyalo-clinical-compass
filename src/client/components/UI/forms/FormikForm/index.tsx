@@ -7,9 +7,9 @@ import {
   FileInput,
   FormikDatePicker,
   FormikPhoneInput,
+  FormikRangeInput,
   FormikTextArea,
   FormikTextInput,
-  RangeInput,
 } from "./components";
 import styles from "./styles.module.scss";
 
@@ -40,4 +40,4 @@ FormikForm.TextArea = FormikTextArea;
 FormikForm.DatePicker = FormikDatePicker;
 FormikForm.PhoneInput = FormikPhoneInput;
 FormikForm.FileInput = FileInput;
-FormikForm.RangeInput = RangeInput;
+FormikForm.RangeInput = FormikRangeInput;

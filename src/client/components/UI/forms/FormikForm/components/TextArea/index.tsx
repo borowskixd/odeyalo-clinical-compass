@@ -40,7 +40,7 @@ export const FormikTextArea: FC<Props> = ({
         {...props}
         {...field}
         errorMessage={meta.error && meta.touched ? meta.error : undefined}
-      ></TextArea>
+      />
     </div>
   );
 };

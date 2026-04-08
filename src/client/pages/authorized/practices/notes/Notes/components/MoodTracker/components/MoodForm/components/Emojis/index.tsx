@@ -1,15 +1,20 @@
-import { type FC, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { Button } from "@/client/components";
 import { useGetEmojisQuery } from "@/client/redux";
 
 interface Props {
   onUpdate: (emojiIds: number[]) => void;
+  defaultEmojis: number[];
 }
 
-export const Emojis: FC<Props> = ({ onUpdate }) => {
-  const [emojiIds, setEmojiIds] = useState<number[]>([]);
+export const Emojis: FC<Props> = ({ onUpdate, defaultEmojis = [] }) => {
+  const [emojiIds, setEmojiIds] = useState<number[]>(defaultEmojis);
   const { data: emojis, isLoading } = useGetEmojisQuery();
+
+  useEffect(() => {
+    setEmojiIds(defaultEmojis);
+  }, [defaultEmojis]);
 
   const onSelectHandler = (emojiId: number) => {
     const newEmojiIds: number[] = [];
