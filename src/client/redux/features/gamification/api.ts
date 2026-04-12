@@ -1,6 +1,7 @@
 import { api } from "../../api";
 import {
   type GetCurrentGamificationScoreResponse,
+  type GetPraiseResponse,
   type GetWeeklyGamificationScoreResponse,
 } from "@/shared/types";
 
@@ -35,10 +36,15 @@ const gamificationApi = api.injectEndpoints({
         "Articles",
       ],
     }),
+    getPraise: builder.query<GetPraiseResponse, void>({
+      query: () => "/gamification/praise",
+      providesTags: ["Auth"],
+    }),
   }),
 });
 
 export const {
   useGetCurrentGamificationScoreQuery,
   useGetWeeklyGamificationScoreQuery,
+  useGetPraiseQuery,
 } = gamificationApi;

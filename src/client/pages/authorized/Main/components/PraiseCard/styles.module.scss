@@ -1,0 +1,40 @@
+@use "@/client/styles/colors" as *;
+
+.content {
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  right: 10px;
+}
+
+.smileIcon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  color: $color-green80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.days {
+  text-align: center;
+  color: $color-green80
+}
+
+.title {
+  font-family: var(--font-cygre);
+  font-size: 25px;
+  line-height: 20px;
+  margin-top: 15px;
+}
+
+.subtitle {
+  margin-top: 10px;
+  font-size: 18px;
+  line-height: 1.4;
+}
