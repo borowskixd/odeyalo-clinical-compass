@@ -7,6 +7,7 @@ export * from "./dailyTasks";
 export * from "./errors";
 export * from "./exercises";
 export * from "./feedbacks";
+export * from "./gamification";
 export * from "./hr";
 export * from "./moods";
 export * from "./notes";
