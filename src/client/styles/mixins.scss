@@ -1,7 +1,6 @@
-@use "@/client/styles/variables" as *;
+@use "@/client/styles/colors" as *;
 
 @mixin card {
-  border: 1px solid $color-outline-variant;
   border-radius: 12px;
-  background-color: $color-surface;
+  background-color: $color-white70;
 }

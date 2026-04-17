@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Icon } from "@odeyalo/uikit";
+import { Button, Icon, Text } from "@odeyalo/uikit";
 import Link from "next/link";
 import { type FC } from "react";
 import styles from "./styles.module.scss";
@@ -56,6 +56,7 @@ export const Footer: FC = () => {
           >
             Политика конфиденциальности
           </Button>
+          <Text className={styles.inn}>ИНН: 701718203368</Text>
         </Container>
       </footer>
     </>

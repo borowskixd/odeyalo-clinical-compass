@@ -23,25 +23,25 @@ const getPsychologists = createRequest(async (request, serverFetch) => {
     );
   }
 
-  const psychologistsPromise =
-    serverFetch.get<GetPsychologistsApiResponseData>("/managers");
+  // const myPsychologistsPromise =
+  //   serverFetch.get<GetPsychologistsApiResponseData>("/managers");
 
-  const myPsychologistsPromise =
-    serverFetch.get<GetPsychologistsApiResponseData>("/client/my-psychologist");
+  const psychologistsResponse =
+    await serverFetch.get<GetPsychologistsApiResponseData>("/psychologist");
 
-  const [psychologistsResponse, myPsychologistsResponse] = await Promise.all([
-    psychologistsPromise,
-    myPsychologistsPromise,
-  ]);
+  // const [psychologistsResponse, myPsychologistsResponse] = await Promise.all([
+  //   psychologistsPromise,
+  //   myPsychologistsPromise,
+  // ]);
 
-  const filteredPsychologists = psychologistsResponse.data.filter(
-    (el) =>
-      myPsychologistsResponse.data.findIndex((val) => el.id === val.id) ===
-        -1 && el.id !== tokenData.payload.userId,
-  );
+  // const filteredPsychologists = psychologistsResponse.data.filter(
+  //   (el) =>
+  //     myPsychologistsResponse.data.findIndex((val) => el.id === val.id) ===
+  //       -1 && el.id !== tokenData.payload.userId,
+  // );
 
   const psychologistsResponseData: GetPsychologistsResponseData =
-    mapGetPsychologistsResponse(filteredPsychologists);
+    mapGetPsychologistsResponse(psychologistsResponse.data);
 
   return NextResponse.json(psychologistsResponseData, httpStatuses.ok);
 });
