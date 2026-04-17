@@ -6,14 +6,15 @@ import {
 export const mapGetPsychologistsResponse = (
   data: GetPsychologistsApiResponseData,
 ): GetPsychologistsResponseData => {
-  return data.map((el) => {
-    const { id, username, online } = el;
+  return data.items.map((el) => {
+    const { id, username, inquiries } = el;
 
     return {
       userId: id,
       username,
-      isOnline: online,
+      isOnline: false,
       profileImage: "",
+      inquiries,
     };
   });
 };

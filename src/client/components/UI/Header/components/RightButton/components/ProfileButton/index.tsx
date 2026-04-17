@@ -59,18 +59,26 @@ export const ProfileButton: FC = () => {
               Кабинет {profile.role === ACCESS.hr ? "HR" : "психолога"}
             </Button>
           )}
-          {/*<Button*/}
-          {/*  className={styles.popupItem}*/}
-          {/*  href={pages.psychologist.path}*/}
-          {/*>*/}
-          {/*  Психологи*/}
-          {/*</Button>*/}
+          <Button
+            className={styles.popupItem}
+            href={pages.psychologist.path}
+          >
+            Психологи
+          </Button>
           {profile.role === ACCESS.client && (
             <Button
               className={styles.popupItem}
               href={pages.hrSurvey.path}
             >
               Анкета HR
+            </Button>
+          )}
+          {profile.role === ACCESS.client && (
+            <Button
+              className={styles.popupItem}
+              href={pages.psychologistSurvey.path}
+            >
+              Анкета Психолога
             </Button>
           )}
         </div>

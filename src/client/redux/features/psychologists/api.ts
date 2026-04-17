@@ -1,5 +1,10 @@
 import { api } from "../../api";
-import { type GetPsychologistsResponseData } from "@/shared/types";
+import {
+  GetInquiriesResponseData,
+  type GetPsychologistsResponseData,
+  type ResponseSuccessInfo,
+  SendPsychologistSurveyRequestData,
+} from "@/shared/types";
 
 const psychologistsApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -11,8 +16,26 @@ const psychologistsApi = api.injectEndpoints({
       query: () => "/psychologists/my",
       providesTags: ["Auth"],
     }),
+    getInquiries: builder.query<GetInquiriesResponseData, void>({
+      query: () => "/psychologists/inquiry",
+    }),
+    sendPsychologistSurvey: builder.mutation<
+      ResponseSuccessInfo,
+      SendPsychologistSurveyRequestData
+    >({
+      query: (body) => ({
+        url: "/psychologists/survey",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
   }),
 });
 
-export const { useGetPsychologistsQuery, useGetMyPsychologistsQuery } =
-  psychologistsApi;
+export const {
+  useGetPsychologistsQuery,
+  useGetMyPsychologistsQuery,
+  useGetInquiriesQuery,
+  useSendPsychologistSurveyMutation,
+} = psychologistsApi;

@@ -1,19 +1,28 @@
+import { GetInquiriesResponseData } from "@/shared/types";
+
 export type GetPsychologistsResponseData = {
   userId: string;
   username: string;
   profileImage: string;
   isOnline: boolean;
+  inquiries: GetInquiriesResponseData;
 }[];
 
 export type GetPsychologistsApiResponseData = {
-  id: string;
-  username: string;
-  online: boolean;
-  company: string;
-  face_to_face: false;
-  gender: string;
-  email: string;
-  birth_date: string;
-  description: string;
-  role_id: number;
-}[];
+  items: {
+    id: string;
+    username: string;
+    birth_date: string;
+    higher_education_university: string;
+    higher_education_specialization: string;
+    academic_degree: string;
+    courses: string;
+    work_format: string;
+    association: string;
+    inquiries: GetInquiriesResponseData;
+  }[];
+  total: number;
+  page: number;
+  per_page: number;
+  pages: number;
+};

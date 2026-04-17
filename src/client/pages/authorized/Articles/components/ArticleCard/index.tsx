@@ -15,15 +15,13 @@ export const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
       href={pages.article.getLink({ params: { id: article.id } })}
       className={styles.card}
     >
-      {imageSrc && (
-        <div className={styles.imageContainer}>
-          <img
-            src={imageSrc}
-            alt={article.theme}
-            className={styles.image}
-          />
-        </div>
-      )}
+      <div className={styles.imageContainer}>
+        <img
+          src={imageSrc}
+          alt={article.theme}
+          className={styles.image}
+        />
+      </div>
       <div className={styles.title}>{article.theme}</div>
       <div className={styles.tags}>
         {article.tags.map((tag, index) => (

@@ -1,73 +1,91 @@
 "use client";
 
-import { type FC } from "react";
+import { Button } from "@odeyalo/uikit";
+import { useRouter } from "next/navigation";
+import { type FC, useEffect, useState } from "react";
 import * as Yup from "yup";
 import styles from "./styles.module.scss";
-import { FormikForm, PrimaryButton } from "@/client/components";
+import {
+  DefaultError,
+  FormErrorLabel,
+  FormikForm,
+  LoadingLoop,
+} from "@/client/components";
+import {
+  useGetInquiriesQuery,
+  useSendPsychologistSurveyMutation,
+} from "@/client/redux";
+import { mapApiErrorMessage } from "@/client/utils";
+import { pages } from "@/shared/data";
 
 interface PsychologistSurveyFormFields {
   username: string;
-  birthday: Date | null;
-  education: string;
-  primaryMethod: string;
-  additionalEducation: string;
-  diploms: FileList | null;
-  careerStart: string;
-  onlineExperience: string;
-  currentClients: string;
-  personalTherapy: string;
-  supervisions: string;
-  socialNetworkLink: string;
-  photos: FileList | null;
-  phoneNumber: string;
-  about: string;
-  unacceptableThings: string;
+  birth_date: Date | null;
+  higher_education_university: string;
+  higher_education_specialization: string;
+  academic_degree: string;
+  association: string;
+  courses: string;
+  work_format: string;
 }
 
 const initialValues: PsychologistSurveyFormFields = {
   username: "",
-  birthday: null,
-  education: "",
-  primaryMethod: "",
-  additionalEducation: "",
-  diploms: null,
-  careerStart: "",
-  onlineExperience: "",
-  currentClients: "",
-  personalTherapy: "",
-  supervisions: "",
-  socialNetworkLink: "",
-  photos: null,
-  phoneNumber: "",
-  about: "",
-  unacceptableThings: "",
+  birth_date: null,
+  higher_education_university: "",
+  higher_education_specialization: "",
+  academic_degree: "",
+  association: "",
+  courses: "",
+  work_format: "",
 };
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Данное поле обязательно"),
-  birthday: Yup.string().required("Дата обязательна"),
-  education: Yup.string().required("Данное поле обязательно"),
-  primaryMethod: Yup.string().required("Данное поле обязательно"),
-  additionalEducation: Yup.string().required("Данное поле обязательно"),
-  diploms: Yup.mixed().required("Данное поле обязательно"),
-  careerStart: Yup.string().required("Данное поле обязательно"),
-  onlineExperience: Yup.string().required("Данное поле обязательно"),
-  currentClients: Yup.string().required("Данное поле обязательно"),
-  personalTherapy: Yup.string().required("Данное поле обязательно"),
-  supervisions: Yup.string().required("Данное поле обязательно"),
-  socialNetworkLink: Yup.string().required("Данное поле обязательно"),
-  photos: Yup.mixed().required("Данное поле обязательно"),
-  phoneNumber: Yup.string()
-    .required("Данное поле обязательно")
-    .min(11, "Введите корректный номер телефона"),
-  about: Yup.string().required("Данное поле обязательно"),
-  unacceptableThings: Yup.string().required("Данное поле обязательно"),
+  birth_date: Yup.string().required("Дата обязательна"),
+  higher_education_university: Yup.string().required("Данное поле обязательно"),
+  higher_education_specialization: Yup.string().required(
+    "Данное поле обязательно",
+  ),
+  academic_degree: Yup.string().required("Данное поле обязательно"),
+  association: Yup.string().required("Данное поле обязательно"),
+  courses: Yup.string().required("Данное поле обязательно"),
+  work_format: Yup.string().required("Данное поле обязательно"),
 });
 
 export const PsychologistSurveyForm: FC = () => {
-  const onSubmit = (values: PsychologistSurveyFormFields) => {
-    console.log(values);
+  const router = useRouter();
+  const { data: inquiries, isLoading, isError, error } = useGetInquiriesQuery();
+  const [sendSurvey, sendState] = useSendPsychologistSurveyMutation();
+  const [inquiryIds, setInquiryIds] = useState<number[]>([]);
+
+  useEffect(() => {
+    if (sendState.isSuccess) router.push(pages.cabinet.path);
+  }, [sendState.isSuccess, router]);
+
+  if (isLoading) return <LoadingLoop />;
+  if (isError || !inquiries) return <DefaultError error={error} />;
+
+  const handleClick = (id: number) => {
+    setInquiryIds((ids) => {
+      const newIds = [...ids];
+      const index = newIds.indexOf(id);
+      if (index !== -1) newIds.splice(index, 1);
+      else newIds.push(id);
+
+      return newIds;
+    });
   };
+
+  const onSubmit = (values: PsychologistSurveyFormFields) => {
+    sendSurvey({
+      ...values,
+      birth_date: values.birth_date!.toString(),
+      inquiry_ids: inquiryIds,
+    });
+  };
+
+  const disabled = sendState.isLoading;
 
   return (
     <FormikForm
@@ -82,124 +100,90 @@ export const PsychologistSurveyForm: FC = () => {
         placeholder="Введите Ваше имя"
         labelText="Ваши Фамилия Имя Отчество"
         required
+        disabled={disabled}
       />
       <FormikForm.DatePicker
-        name="birthday"
+        name="birth_date"
         type="text"
         placeholder="Введите ответ"
         labelText="Ваша дата рождения?"
         required
+        disabled={disabled}
       />
       <FormikForm.TextArea
-        name="education"
+        name="higher_education_university"
         type="text"
         placeholder="Введите ответ"
-        labelText="Какое у вас высшее образование? Напишите о базовом психологическом обучении или переподготовке: 1. Год окончания 2. Название ВУЗа 3. Название факультета и специалитета 4. Укажите академическую степень (бакалавриат, магистратура) или ученую степень (если есть)."
-        exampleText={`Например,\n2003 - МГУ - факультет психологии, клиническая психология - бакалавр.\n2010 - ВШЭ - психоанализ - магистерская программа (2 года).`}
+        labelText={`Какое у вас высшее образование?\n1. Год окончания 2. Название ВУЗа`}
+        exampleText={`Например,\n2003 - МГУ, клиническая психология.\n2010 - ВШЭ - психоанализ.`}
         required
+        disabled={disabled}
+      />
+      <FormikForm.TextArea
+        name="higher_education_specialization"
+        type="text"
+        placeholder="Введите ответ"
+        labelText="Напишите название факультета и специалитета"
+        exampleText={`Например,\nФакультет психологии, клиническая психология.\nПсихоанализ.`}
+        required
+        disabled={disabled}
+      />
+      <FormikForm.TextArea
+        name="academic_degree"
+        type="text"
+        placeholder="Введите ответ"
+        labelText="Укажите академическую степень (бакалавриат, магистратура) или ученую степень (если есть)."
+        required
+        disabled={disabled}
+      />
+      <FormikForm.TextArea
+        name="courses"
+        type="text"
+        placeholder="Введите ответ"
+        labelText="Напишите, какое у вас дополнительное образование, если есть (зависимости, РПП, ПТСР или другое)."
+        required
+        disabled={disabled}
       />
       <FormikForm.Input
-        name="primaryMethod"
+        name="work_format"
+        type="text"
+        placeholder="Введите ответ"
+        labelText="Выберите формат работы"
+        required
+        disabled={disabled}
+      />
+      <FormikForm.Input
+        name="association"
         type="text"
         placeholder="Введите ответ"
         labelText="Ваш основной метод?"
         required
+        disabled={disabled}
       />
-      <FormikForm.Input
-        name="additionalEducation"
-        type="text"
-        placeholder="Введите ответ"
-        labelText="Напишите, какое у вас дополнительное образование, если есть (зависимости, РПП, ПТСР или другое)"
-        required
-      />
-      <FormikForm.FileInput
-        name="diploms"
-        labelText="Пожалуйста, прикрепите фотографии развернутых дипломов и сертификатов, подтверждающих обучение. Обязательные документы: (1) диплом о базовом психологическом (смежном) обучении / переподготовке (2)документы об обучении методу. Если обучение не окончено, пожалуйста, прикрепите справку из обучающего учреждения."
-        accept="image/*"
-        multiple
-        required
-      />
-      <FormikForm.Input
-        name="careerStart"
-        type="text"
-        placeholder="Введите ответ"
-        labelText="Когда вы начали консультировать? За деньги, не в рамках учебной программы. Обязательно напишите месяц, не только год."
-        exampleText="Например, май 2019"
-        required
-      />
-      <FormikForm.Input
-        name="onlineExperience"
-        type="text"
-        placeholder="Введите ответ"
-        labelText="Есть ли опыт работы онлайн? Если да, то сколько лет?"
-        required
-      />
-      <FormikForm.Input
-        name="currentClients"
-        type="number"
-        placeholder="Введите цифру"
-        labelText="Сколько клиентов у вас сейчас в практике?"
-        exampleText="Пожалуйста, не за всю историю практики, а на текущий момент."
-        required
-        min="0"
-      />
-      <FormikForm.Input
-        name="personalTherapy"
-        type="text"
-        placeholder="Введите ответ"
-        labelText="Проходите ли вы личную психотерапию?"
-        required
-      />
-      <FormikForm.Input
-        name="supervisions"
-        type="text"
-        placeholder="Введите ответ"
-        labelText="Проходите ли вы регулярные супервизии?"
-        required
-      />
-      <FormikForm.Input
-        name="socialNetworkLink"
-        type="text"
-        placeholder="Введите ответ"
-        labelText="Ссылка на профили в социальных сетях"
-        required
-      />
-      <FormikForm.FileInput
-        name="photos"
-        labelText="Прикрепите ваши фотографии. Требования к фото: 1/ Цветные 2/ Лицо по центру и хорошо освещено 3/ Размер не менее 1МБ 4/ В формате (название).jpg 5/ В количестве не более трех штук."
-        exampleText="Если мы заключим с вами договор, одна из фотографий будет использована на платформе для рассказа о вас клиентам."
-        accept="image/*"
-        multiple
-        required
-      />
-      <FormikForm.PhoneInput
-        name="phoneNumber"
-        placeholder="+7 (000) 000 00 00"
-        labelText="Номер телефона для связи."
-        exampleText={`Номер должен начинаться с "+" и содержать международный код вашей страны`}
-        required
-      />
-      <FormikForm.TextArea
-        name="about"
-        type="text"
-        placeholder="Введите ответ"
-        labelText="Расскажите нам о себе в свободной форме. Что считаете нам нужно узнать о вас, чтобы понять, какой вы специалист?"
-        required
-      />
-      <FormikForm.TextArea
-        name="unacceptableThings"
-        type="text"
-        placeholder="Введите ответ"
-        labelText="Какие вещи вы считаете недопустимыми в психотерапевтическом процессе? Почему?"
-        required
-      />
-      <PrimaryButton
+      <div className={styles.inquiries}>
+        {inquiries.map((inquiry) => (
+          <Button
+            size="xs"
+            onClick={() => handleClick(inquiry.id)}
+            key={inquiry.id}
+            view={inquiryIds.includes(inquiry.id) ? "primary" : "default"}
+          >
+            {inquiry.text}
+          </Button>
+        ))}
+      </div>
+      {sendState.isError && (
+        <FormErrorLabel>{mapApiErrorMessage(sendState.error)}</FormErrorLabel>
+      )}
+      <Button
         type="submit"
         className={styles.button}
-        isMedium={true}
+        view="primary"
+        width="max"
+        disabled={disabled}
       >
         Сохранить
-      </PrimaryButton>
+      </Button>
     </FormikForm>
   );
 };
