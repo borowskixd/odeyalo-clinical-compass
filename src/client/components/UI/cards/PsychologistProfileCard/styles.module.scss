@@ -1,0 +1,62 @@
+﻿@use "@/client/styles/variables" as *;
+@use "@/client/styles/textStyles" as *;
+
+.card {
+  padding: 0;
+  background-color: transparent;
+}
+
+.details {
+  display: grid;
+  flex-direction: column;
+  margin-bottom: 16px;
+  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+
+  @media screen and (width <= 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detailItem {
+  display: flex;
+  flex-flow: column;
+  border-radius: 8px;
+  gap: 4px;
+}
+
+.detailLabel {
+  color: $color-on-surface;
+}
+
+.detailValue {
+  color: $color-on-surface-variant;
+
+  @include bodyMedium;
+}
+
+.inquiriesBlock {
+  display: flex;
+  flex-flow: column;
+  margin-top: 2px;
+  gap: 8px;
+}
+
+.inquiries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.inquiry {
+  --button-background-color: var(--blue40);
+}
+
+.button {
+  max-width: 50%;
+  margin-top: 24px;
+
+  @media screen and (width <= 700px) {
+    max-width: 100%;
+  }
+}

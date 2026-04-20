@@ -1,0 +1,17 @@
+﻿@use "@/client/styles/variables" as *;
+@use "@/client/styles/textStyles" as *;
+
+.problems {
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}

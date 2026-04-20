@@ -1,9 +1,11 @@
+﻿"use client";
+
+import { Button } from "@odeyalo/uikit";
 import { type FC } from "react";
-import { PrimaryButton } from "../../buttons";
-import { ProfileImage } from "../../images";
-import { Symptom } from "../../Symptom";
-import styles from "../styles.module.scss";
-import { pages } from "@/shared/data";
+import { UserCard } from "../UserCard";
+import styles from "./styles.module.scss";
+import { DefaultError, LoadingLoop } from "@/client/components";
+import { useGetInquiriesQuery } from "@/client/redux";
 import { type GetClientsResponseData } from "@/shared/types";
 
 interface Props {
@@ -11,45 +13,53 @@ interface Props {
 }
 
 export const ClientCard: FC<Props> = ({ client }) => {
-  return (
-    <div className={styles.clientCard}>
-      <div className={styles.cardHeader}>
-        <ProfileImage
-          src={client.profileImage}
-          alt="profile"
-          size={40}
-        />
-        <div className={styles.clientInfo}>
-          <div className={styles.username}>{client.username}</div>
-          <div
-            className={`${styles.status} ${
-              client.isOnline ? styles.isOnline : ""
-            }`}
-          >
-            {client.isOnline ? "Онлайн" : "Был(а) недавно"}
-          </div>
-        </div>
-        {/* <button className={styles.moreButton}>
-          <MoreVerticalIcon />
-        </button> */}
-      </div>
-      <div className={styles.problems}>
-        {client.problems.map((problem, index) => {
+  const { data: inquiries, ...getInquiriesQuery } = useGetInquiriesQuery();
+
+  const renderContent = () => {
+    if (getInquiriesQuery.isLoading) return <LoadingLoop />;
+    if (getInquiriesQuery.isError || !inquiries)
+      return <DefaultError error={getInquiriesQuery.error} />;
+
+    return (
+      <div className={styles.inquiries}>
+        {client.problems.map((inquiry) => {
+          const el = inquiries.find((el) => el.id === inquiry);
+
+          if (!el) return null;
           return (
-            <Symptom
-              key={index}
-              problem={problem}
-            />
+            <Button
+              size="xs"
+              key={inquiry}
+              readOnly
+              className={styles.inquiry}
+            >
+              {el.text}
+            </Button>
           );
         })}
       </div>
-      <div className={styles.buttons}>
-        <PrimaryButton
-          href={pages.client.getLink({ params: { id: client.userId } })}
-        >
-          Профиль
-        </PrimaryButton>
+    );
+  };
+
+  return (
+    <UserCard
+      userData={{
+        username: client.username,
+        profileImage: client.profileImage,
+      }}
+      subtitle="Клиент"
+      className={styles.card}
+    >
+      {renderContent()}
+      <div className={styles.actions}>
+        {/*<Button*/}
+        {/*  href={pages.client.getLink({ params: { id: client.userId } })}*/}
+        {/*  width="max"*/}
+        {/*  view="primary"*/}
+        {/*>*/}
+        {/*  Профиль*/}
+        {/*</Button>*/}
       </div>
-    </div>
+    </UserCard>
   );
 };

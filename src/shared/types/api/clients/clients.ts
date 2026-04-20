@@ -2,7 +2,7 @@ export type GetClientsResponseData = {
   userId: string;
   username: string;
   isOnline: boolean;
-  problems: string[];
+  problems: number[];
   profileImage: string;
 }[];
 
@@ -12,5 +12,5 @@ export type GetClientsApiResponseData = {
   birth_date: string;
   text: string;
   gender: string;
-  inquiry: string[];
+  inquiry: number[];
 }[];
