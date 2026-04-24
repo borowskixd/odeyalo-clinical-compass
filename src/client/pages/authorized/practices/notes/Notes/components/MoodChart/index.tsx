@@ -34,14 +34,21 @@ export const MoodChart: FC = () => {
   if (!data || data.length === 0) {
     return (
       <div className={styles.chartContainer}>
-        <div className={styles.emptyState}>
-          Нет данных о настроении за последние 7 дней
-        </div>
+        <div className={styles.emptyState}>Нет данных о настроении</div>
       </div>
     );
   }
 
-  const chartData = mapMoodsToWeeklyChartData(data);
+  const lastSevenMoods = data.slice(-7);
+  const chartData = mapMoodsToWeeklyChartData(lastSevenMoods);
+
+  if (chartData.length === 0) {
+    return (
+      <div className={styles.chartContainer}>
+        <div className={styles.emptyState}>Нет данных для отображения</div>
+      </div>
+    );
+  }
 
   const maxScore = Math.max(...chartData.map((item) => item.score), 100);
   const yAxisDomain = [0, Math.ceil(maxScore / 10) * 10];
@@ -112,8 +119,8 @@ export const MoodChart: FC = () => {
           </ResponsiveContainer>
         </div>
         <div className={styles.chartX}>
-          {chartData.map((el) => (
-            <div key={el.day}>{el.day}</div>
+          {chartData.map((el, index) => (
+            <div key={el.day + el.score + index}>{el.day}</div>
           ))}
         </div>
       </div>
