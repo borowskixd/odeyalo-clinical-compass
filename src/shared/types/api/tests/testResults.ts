@@ -15,6 +15,7 @@ export interface GetTestResultApiResponseData {
   test_result_id: string;
   datetime: string;
   scale_results: TestScaleResultApiData[];
+  tags: string[];
 }
 
 interface TestScaleResultData {
@@ -29,6 +30,7 @@ export interface TestResultData {
   testId: string;
   datetime: string;
   scaleResults: TestScaleResultData[];
+  tags: string[];
 }
 
 export interface GetTestResultResponseData extends TestResultData {

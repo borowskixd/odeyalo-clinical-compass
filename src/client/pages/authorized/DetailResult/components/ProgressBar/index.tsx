@@ -22,27 +22,30 @@ export const ProgressBar: FC<ProgressBarProps> = ({ scale, result }) => {
   const percent = (max - min) / 100;
   const valuePercent = (result - min) / percent;
 
+  const getLevelText = () => {
+    const middleValue = (max + min) / 2;
+    if (result > middleValue) {
+      return "Высокий уровень";
+    } else if (result < middleValue) {
+      return "Низкий уровень";
+    } else {
+      return "Средний уровень";
+    }
+  };
+
   return (
-    <div className={styles.result}>
-      <h4
-        className={styles.resultTitle}
-        style={{ backgroundColor: color + "30" }}
-      >
-        {title}
-      </h4>
-      <div className={styles.progressBar}>
-        <div
-          className={styles.progressLine}
-          style={{ backgroundColor: color + "30" }}
-        >
+    <div className={styles.progressBarContainer}>
+      <h4 className={styles.resultTitle}>{title}</h4>
+      <div className={styles.progressWrapper}>
+        <div className={styles.progressLine}>
           <div
             className={styles.progress}
             style={{ width: `${valuePercent}%`, backgroundColor: color }}
           ></div>
         </div>
         <div className={styles.values}>
-          <div>{result}</div>
-          <div>{max}</div>
+          <div className={styles.levelText}>{getLevelText()}</div>
+          <div>{`${result} из ${max}`}</div>
         </div>
       </div>
     </div>

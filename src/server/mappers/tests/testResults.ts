@@ -16,7 +16,7 @@ import { mapDatetimeToText } from "@/shared/utils";
 export const mapTestResultResponse = (
   data: GetTestResultApiResponseData,
 ): TestResultData => {
-  const { test_result_id, test_id, datetime, scale_results } = data;
+  const { test_result_id, test_id, datetime, scale_results, tags } = data;
 
   return {
     id: test_result_id,
@@ -30,6 +30,7 @@ export const mapTestResultResponse = (
         recommendations: user_recommendation,
       }),
     ),
+    tags: tags || [],
   };
 };
 

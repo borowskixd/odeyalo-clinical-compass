@@ -1,9 +1,10 @@
 "use client";
 
-import { notFound, useParams } from "next/navigation";
+import { notFound, useParams, useRouter } from "next/navigation";
 import { type FC, useEffect } from "react";
 import { ProgressBar } from "../ProgressBar";
 import styles from "./styles.module.scss";
+import { getTagConfig } from "./utils";
 import { DefaultError, LoadingLoop } from "@/client/components";
 import { useGetTestResultQuery } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
@@ -11,6 +12,7 @@ import { useAnalytics } from "@/shared/analytics";
 export const ResultContent: FC = () => {
   const { id } = useParams<{ id: string }>();
   const { logEvent } = useAnalytics();
+  const router = useRouter();
 
   const { data: testResult, ...getTestResultState } = useGetTestResultQuery(id);
 
@@ -23,46 +25,47 @@ export const ResultContent: FC = () => {
     return <DefaultError error={getTestResultState.error} />;
   if (!testResult) notFound();
 
+  const firstTag = testResult.tags?.[0];
+  const tagConfig = firstTag ? getTagConfig(firstTag) : null;
+
+  const handleTagClick = () => {
+    if (tagConfig?.link) {
+      router.push(tagConfig.link);
+    }
+  };
+
   return (
     <>
       <h2 className={styles.subtitle}>{testResult.title}</h2>
       <div className={styles.results}>
         {testResult.scales.map((scale) => {
-          const { id } = scale;
-          const result =
-            testResult.scaleResults.find((res) => res.id === id)?.score ?? 0;
-
-          return (
-            <ProgressBar
-              key={id}
-              scale={scale}
-              result={result}
-            />
+          const scaleResult = testResult.scaleResults.find(
+            (res) => res.id === scale.id,
           );
-        })}
-      </div>
-      <div className={styles.resultsDescription}>
-        {testResult.scales.map((el) => {
-          const scale = testResult.scaleResults.find((res) => res.id === el.id);
-          const score = scale?.score ?? 0;
-
-          const border = el.borders.find(
-            (el) => score >= el.leftBorder && score <= el.rightBorder,
-          );
+          const score = scaleResult?.score ?? 0;
 
           return (
             <div
-              className={styles.resultItem}
-              key={el.id}
+              key={scale.id}
+              className={styles.resultItemWrapper}
             >
-              <h3 className={styles.resultItemTitle}>{el.title}</h3>
-              <div className={styles.resultItemContent}>
-                <h5 className={styles.resultItemScore}>
-                  {score}, {border?.title}
-                </h5>
-                <p className={styles.resultItemDescription}>
-                  {scale?.recommendations}
+              <ProgressBar
+                scale={scale}
+                result={score}
+              />
+              <div className={styles.resultDescription}>
+                <h2 className={styles.subtitle2}>Что делать дальше?</h2>
+                <p className={styles.recommendations}>
+                  {scaleResult?.recommendations}
                 </p>
+                {tagConfig && (
+                  <button
+                    className={styles.button}
+                    onClick={handleTagClick}
+                  >
+                    {tagConfig.text}
+                  </button>
+                )}
               </div>
             </div>
           );
