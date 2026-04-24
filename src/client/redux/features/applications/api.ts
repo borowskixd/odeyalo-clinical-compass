@@ -27,6 +27,7 @@ const applicationsApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["Applications"],
     }),
 
     confirmApplication: builder.mutation<ResponseSuccessInfo, string>({

@@ -1,8 +1,8 @@
-@use "@/client/styles/variables" as *;
+﻿@use "@/client/styles/variables" as *;
 @use "@/client/styles/textStyles" as *;
 @use "@/client/styles/mixins" as *;
 
-.clientCard {
+.card {
   position: relative;
   display: flex;
   width: 100%;
@@ -12,24 +12,24 @@
   @include card;
 }
 
-.cardHeader {
+.header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .profileImage {
   overflow: hidden;
+  flex-shrink: 0;
   border-radius: 7px;
 }
 
-.clientInfo {
+.userInfo {
   display: flex;
   width: 100%;
   max-width: calc(100% - 56px);
   flex-flow: column;
-  margin-left: 16px;
+  margin-left: 12px;
   gap: 4px;
 }
 
@@ -41,12 +41,15 @@
   @include titleMedium;
 }
 
-.status {
-  color: $color-inverse-primary;
-
-  &.isOnline {
-    color: $color-on-primary-fixed-variant;
-  }
+.subtitle {
+  color: $color-on-surface-variant;
 
   @include bodyMedium;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+  gap: 12px;
 }

@@ -1,12 +1,17 @@
-import { type FC, useEffect } from "react";
-import { useSelector } from "react-redux";
+﻿import { Button, Text } from "@odeyalo/uikit";
+import { type FC, useEffect, useState } from "react";
 import * as Yup from "yup";
 import styles from "./styles.module.scss";
-import { FormErrorLabel, FormikForm, PrimaryButton } from "@/client/components";
+import {
+  DefaultError,
+  FormErrorLabel,
+  FormikForm,
+  LoadingLoop,
+} from "@/client/components";
 import { useAppDispatch } from "@/client/hooks";
 import {
   PopupsService,
-  selectProfile,
+  useGetInquiriesQuery,
   useSendApplicationMutation,
 } from "@/client/redux";
 import { mapApiErrorMessage } from "@/client/utils";
@@ -21,7 +26,7 @@ interface SendApplicationFormFields {
 }
 
 const validationSchema = Yup.object().shape({
-  request: Yup.string(),
+  request: Yup.string().trim().required("Опишите запрос"),
 });
 
 export const SendApplicationForm: FC<Props> = ({
@@ -29,8 +34,9 @@ export const SendApplicationForm: FC<Props> = ({
   closeModal,
 }) => {
   const dispatch = useAppDispatch();
-  const profile = useSelector(selectProfile);
+  const [inquiryIds, setInquiryIds] = useState<number[]>([]);
 
+  const { data: inquiries, ...getInquiriesQuery } = useGetInquiriesQuery();
   const [sendApplication, { isLoading, isSuccess, isError, error, reset }] =
     useSendApplicationMutation();
 
@@ -45,14 +51,46 @@ export const SendApplicationForm: FC<Props> = ({
   const onSubmit = (values: SendApplicationFormFields) => {
     sendApplication({
       psychologistId,
+      inquiry: inquiryIds,
       ...values,
     });
+  };
+
+  const handleClick = (id: number) => {
+    setInquiryIds((ids) => {
+      const newIds = [...ids];
+      const index = newIds.indexOf(id);
+      if (index !== -1) newIds.splice(index, 1);
+      else newIds.push(id);
+
+      return newIds;
+    });
+  };
+
+  const renderContent = () => {
+    if (getInquiriesQuery.isLoading) return <LoadingLoop />;
+    if (getInquiriesQuery.isError || !inquiries)
+      return <DefaultError error={getInquiriesQuery.error} />;
+
+    return (
+      <div className={styles.inquiries}>
+        {inquiries.map((inquiry) => (
+          <Button
+            size="xs"
+            onClick={() => handleClick(inquiry.id)}
+            key={inquiry.id}
+            view={inquiryIds.includes(inquiry.id) ? "primary" : "default"}
+          >
+            {inquiry.text}
+          </Button>
+        ))}
+      </div>
+    );
   };
 
   return (
     <FormikForm
       initialValues={{
-        username: profile.username,
         request: "",
       }}
       validationSchema={validationSchema}
@@ -62,19 +100,28 @@ export const SendApplicationForm: FC<Props> = ({
       <FormikForm.Input
         name="request"
         type="text"
-        placeholder="Введите ответ"
+        placeholder="Введите запрос"
         labelText="Ваше обращение"
         disabled={isLoading}
       />
+      <Text
+        variant="body-l"
+        className={styles.label}
+      >
+        Что вас беспокоит?
+      </Text>
+      {renderContent()}
       {isError && !!error && (
         <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>
       )}
-      <PrimaryButton
+      <Button
         type="submit"
+        view="primary"
+        width="max"
         className={styles.formButton}
       >
         Отправить
-      </PrimaryButton>
+      </Button>
     </FormikForm>
   );
 };

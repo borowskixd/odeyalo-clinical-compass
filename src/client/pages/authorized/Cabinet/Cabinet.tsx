@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { type FC } from "react";
 import styles from "./styles.module.scss";
@@ -25,8 +25,14 @@ export const CabinetPage: FC = () => {
   const clientsQuery = useGetClientsQuery();
   const applicationsQuery = useGetApplicationsQuery();
 
-  if (clientsQuery.isLoading) return <LoadingLoop />;
+  if (clientsQuery.isLoading || applicationsQuery.isLoading) {
+    return <LoadingLoop />;
+  }
+
   if (clientsQuery.isError) return <DefaultError error={clientsQuery.error} />;
+  if (applicationsQuery.isError) {
+    return <DefaultError error={applicationsQuery.error} />;
+  }
 
   return (
     <Container>

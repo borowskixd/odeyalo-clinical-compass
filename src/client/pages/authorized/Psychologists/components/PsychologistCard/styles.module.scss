@@ -1,5 +1,16 @@
-.inquiries {
+﻿.inquiries {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 16px;
   gap: 4px;
+}
+
+.inquiry {
+  --button-background-color: var(--blue40);
+}
+
+.buttons {
+  display: flex;
+  margin-top: auto;
+  gap: 8px;
 }

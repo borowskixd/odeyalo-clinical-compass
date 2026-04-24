@@ -156,7 +156,7 @@ export const PsychologistSurveyForm: FC = () => {
         name="association"
         type="text"
         placeholder="Введите ответ"
-        labelText="Ваш основной метод?"
+        labelText="Ассоциация"
         required
         disabled={disabled}
       />

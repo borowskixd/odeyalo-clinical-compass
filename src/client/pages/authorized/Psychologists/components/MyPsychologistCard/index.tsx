@@ -1,4 +1,4 @@
-import { type FC } from "react";
+﻿import { type FC } from "react";
 import { UserCard } from "@/client/components";
 import { type GetPsychologistsResponseData } from "@/shared/types";
 
@@ -7,5 +7,10 @@ interface Props {
 }
 
 export const MyPsychologistCard: FC<Props> = ({ psychologist }) => {
-  return <UserCard userData={psychologist} />;
+  return (
+    <UserCard
+      userData={psychologist}
+      subtitle="Психолог"
+    />
+  );
 };

@@ -11,6 +11,7 @@ export * from "./Main";
 export * from "./practices";
 export * from "./Profile";
 export * from "./ProfileSettings";
+export * from "./Psychologist";
 export * from "./Psychologists";
 export * from "./PsychologistSurvey";
 export * from "./Results";

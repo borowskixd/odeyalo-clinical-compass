@@ -3,5 +3,6 @@ export * from "./ApplicationProfileCard";
 export * from "./ClientCard";
 export * from "./GiveExerciseCard";
 export * from "./ProfileCard";
+export * from "./PsychologistProfileCard";
 export * from "./TestCard";
 export * from "./UserCard";

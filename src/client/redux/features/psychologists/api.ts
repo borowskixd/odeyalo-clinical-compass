@@ -1,6 +1,7 @@
 import { api } from "../../api";
 import {
   GetInquiriesResponseData,
+  type GetPsychologistResponseData,
   type GetPsychologistsResponseData,
   type ResponseSuccessInfo,
   SendPsychologistSurveyRequestData,
@@ -10,6 +11,10 @@ const psychologistsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getPsychologists: builder.query<GetPsychologistsResponseData, void>({
       query: () => "/psychologists",
+      providesTags: ["Auth"],
+    }),
+    getPsychologist: builder.query<GetPsychologistResponseData, string>({
+      query: (id) => `/psychologists/${id}`,
       providesTags: ["Auth"],
     }),
     getMyPsychologists: builder.query<GetPsychologistsResponseData, void>({
@@ -35,6 +40,7 @@ const psychologistsApi = api.injectEndpoints({
 
 export const {
   useGetPsychologistsQuery,
+  useGetPsychologistQuery,
   useGetMyPsychologistsQuery,
   useGetInquiriesQuery,
   useSendPsychologistSurveyMutation,
