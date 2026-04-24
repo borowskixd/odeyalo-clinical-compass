@@ -1,8 +1,6 @@
-// utils.ts
 import { type GetWeeklyMoodsResponseData } from "@/shared/types";
-import { mapDateToApiDateFormat } from "@/shared/utils";
 
-type WeeklyChartData = { day: string; score: number }[];
+type WeeklyChartData = { day: string; score: number; fullDate?: string }[];
 
 const mapDayToString = (day: number): string => {
   switch (day) {
@@ -28,19 +26,17 @@ const mapDayToString = (day: number): string => {
 export const mapMoodsToWeeklyChartData = (
   moodsData: GetWeeklyMoodsResponseData,
 ): WeeklyChartData => {
-  const result: WeeklyChartData = [];
+  const sortedMoods = [...moodsData].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+  );
 
-  for (let i = 6; i >= 0; i--) {
-    const date = new Date(Date.now() - i * 24 * 60 * 60 * 1000);
-    const formattedDate = mapDateToApiDateFormat(date);
+  return sortedMoods.map((mood) => {
+    const date = new Date(mood.date);
+    const dayOfWeek = date.getDay();
 
-    const mood = moodsData.find((item) => item.date === formattedDate);
-
-    result.push({
-      day: mapDayToString(date.getDay()),
-      score: mood?.score ?? 0,
-    });
-  }
-
-  return result;
+    return {
+      day: mapDayToString(dayOfWeek),
+      score: mood.score,
+    };
+  });
 };
