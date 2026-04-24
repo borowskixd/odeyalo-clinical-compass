@@ -7,7 +7,7 @@ export const DetailResultPage: FC = () => {
   return (
     <Container>
       <ContentWrapper>
-        <PageTitle className={styles.title}>Результаты теста</PageTitle>
+        <PageTitle className={styles.title}>Результат</PageTitle>
         <ResultContent />
       </ContentWrapper>
     </Container>
