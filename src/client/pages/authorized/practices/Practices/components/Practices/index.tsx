@@ -3,7 +3,9 @@
 import cl from "classnames";
 import { type FC, useEffect } from "react";
 import { PracticeCard } from "../PracticeCard";
+import { InfoButton } from "./components";
 import styles from "./styles.module.scss";
+import { POPUP_TEXTS } from "./utils";
 import { FormErrorLabel, LoadingLoop } from "@/client/components";
 import {
   useGetExercisesQuery,
@@ -42,7 +44,10 @@ export const Practices: FC = () => {
 
     return (
       <>
-        <h3 className={styles.title}>Проработка проблемы</h3>
+        <div className={styles.headerWrapper}>
+          <h3 className={styles.title}>Изучаем себя</h3>
+          <InfoButton popupText={POPUP_TEXTS.STUDYING_OURSELVES} />
+        </div>
         <div className={styles.list}>
           {getExerciseQuery.data &&
             getExerciseQuery.data.exercises.map((exercise) => {
@@ -58,9 +63,10 @@ export const Practices: FC = () => {
               );
             })}
         </div>
-        <h3 className={cl(styles.title, styles.trainingTitle)}>
-          Обучающие упражнения
-        </h3>
+        <div className={cl(styles.headerWrapper, styles.trainingHeader)}>
+          <h3 className={styles.title}>Обучающие упражнения</h3>
+          <InfoButton popupText={POPUP_TEXTS.TRAINING_EXERCISES} />
+        </div>
         <div className={styles.list}>
           {getTrainingExerciseQuery.data &&
             getTrainingExerciseQuery.data.exercises.map((exercise) => {

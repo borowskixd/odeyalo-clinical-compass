@@ -2,12 +2,8 @@
 
 .title {
   margin-bottom: 16px;
-
-  &.trainingTitle {
-    margin-top: 20px;
-  }
-
   @include titleXS;
+  margin: 0;
 }
 
 .list {
@@ -21,5 +17,16 @@
 
   @media screen and (width <= 450px) {
     grid-template-columns: 1fr;
+  }
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  &.trainingHeader {
+    margin-top: 20px;
   }
 }
