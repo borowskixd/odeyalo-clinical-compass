@@ -51,6 +51,11 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
+  psychologistProfile: new Page<{ id: string }>("/psychologists/:id", null, [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
   result: new Page<{ id: string }>("/results/:id", "tests", [
     ACCESS.client,
     ACCESS.psychologist,

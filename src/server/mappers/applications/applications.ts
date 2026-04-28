@@ -8,28 +8,31 @@ import {
 export const mapGetApplicationsResponse = (
   data: GetApplicationsApiResponseData,
 ): GetApplicationsResponseData => {
-  return data.map((el) => {
-    const { id, client_id, status, text } = el;
+  return data
+    .filter((el) => !el.status)
+    .map((el) => {
+      const { id, client_id, status, text, inquiry } = el;
 
-    return {
-      id,
-      userId: client_id,
-      username: "",
-      isOnline: status,
-      problem: text,
-      profileImage: "",
-    };
-  });
+      return {
+        id,
+        userId: client_id,
+        username: "",
+        isOnline: status,
+        problem: text,
+        profileImage: "",
+        inquiry,
+      };
+    });
 };
 
 export const mapSendApplicationRequest = (
   data: SendApplicationRequestData,
 ): SendApplicationApiRequestData => {
-  const { psychologistId, request } = data;
+  const { psychologistId, request, inquiry } = data;
 
   return {
     manager_id: psychologistId,
     text: request,
-    inquiry: [],
+    inquiry,
   };
 };

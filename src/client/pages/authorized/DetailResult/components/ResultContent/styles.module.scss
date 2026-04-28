@@ -7,6 +7,15 @@
   @include titleXS;
 }
 
+.resultItemWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  gap: 12px;
+  background-color: $color-white70;
+  border-radius: 15px;
+}
+
 .results {
   display: flex;
   flex-flow: column;
@@ -14,38 +23,31 @@
   gap: 20px;
 }
 
-.resultsDescription {
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-  gap: 40px;
+.subtitle2 {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  @include bodyLBold;
 }
 
-.resultItem {
-  display: flex;
-  width: 100%;
-  flex-flow: column;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.resultItemContent {
-  width: 100%;
-  padding: 16px;
-  border-radius: 20px;
-  background-color: $color-white70;
-}
-
-.resultItemTitle {
-  @include bodyXLBold;
-}
-
-.resultItemScore {
-  margin-bottom: 10px;
-
-  @include bodyMBold;
-}
-
-.resultItemDescription {
+.recommendations {
   @include bodyM;
+}
+
+.button {
+  margin-top: 15px;
+  border-radius: 10px;
+  padding: 14px;
+  background-color: $color-white100;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $color-blue80;
+    color: $color-white100;
+  }
+
+  &:active {
+    background-color: $color-blue80;
+    color: $color-white100;
+  }
 }

@@ -1,30 +1,11 @@
 @use "@/client/styles/colors" as *;
 @use "@/client/styles/fontStyles" as *;
 
-.result {
-  display: flex;
-  align-items: flex-end;
-  gap: 28px;
-
-  @media screen and (width <= 650px) {
-    flex-flow: column;
-    align-items: flex-start;
-  }
-}
-
 .resultTitle {
-  display: flex;
   width: 100%;
-  max-width: 240px;
-  min-height: 62px;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  border-radius: 12px;
-  background-color: $color-blue30;
-  text-align: center;
+  margin-bottom: 20px;
 
-  @include bodyM;
+  @include bodyXLBold;
 
   @media screen and (width <= 650px) {
     min-height: 48px;
@@ -45,9 +26,10 @@
 .progressLine {
   position: relative;
   width: 100%;
-  height: 10px;
+  height: 30px;
   border-radius: 5px;
-  background-color: $color-blue30;
+  background-color: $color-white100;
+  border-radius: 12px;
 }
 
 .progress {
@@ -57,14 +39,24 @@
   bottom: 0;
   left: 0;
   min-width: 10px;
-  height: 10px;
-  border-radius: 5px;
+  height: 30px;
+  border-radius: 12px;
   background-color: $color-blue80;
 }
 
 .values {
   display: flex;
   justify-content: space-between;
+  text-align: right;
+  width: 100%;
+  margin-top: 10px;
 
-  @include bodyS;
+  @include bodyMBold;
 }
+
+.levelText {
+  text-align: left;
+  font-weight: 500;
+  @include bodyMBold;
+}
+

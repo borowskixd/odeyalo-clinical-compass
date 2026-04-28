@@ -100,6 +100,7 @@ export interface Pages {
   changePassword: Page;
   resetPassword: Page;
   psychologist: Page;
+  psychologistProfile: Page<{ id: string }>;
   result: Page<{ id: string }>;
   detailResult: Page<{ id: string }>;
   hrSurvey: Page;

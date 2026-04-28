@@ -5,6 +5,7 @@ export type GetApplicationsResponseData = {
   isOnline: boolean;
   problem: string;
   profileImage: string;
+  inquiry: number[];
 }[];
 
 export type GetApplicationsApiResponseData = {
@@ -20,6 +21,7 @@ export type GetApplicationsApiResponseData = {
 export interface SendApplicationRequestData {
   psychologistId: string;
   request: string;
+  inquiry: number[];
 }
 
 export interface SendApplicationApiRequestData {
