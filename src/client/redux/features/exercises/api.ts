@@ -7,10 +7,11 @@ import {
   type GetExerciseResultsResponseData,
   type GetExercisesResponseData,
   type GetExerciseStructureResponseData,
-  GetTrainingExerciseResponseData,
-  GetTrainingExercisesResponseData,
-  GetTrainingExerciseStructureResponseData,
-  ResponseSuccessInfo,
+  type GetTrainingExerciseResponseData,
+  type GetTrainingExercisesResponseData,
+  type GetTrainingExerciseStructureResponseData,
+  type GetUserPassedExercisesResponseData,
+  type ResponseSuccessInfo,
 } from "@/shared/types";
 
 const exercisesApi = api.injectEndpoints({
@@ -47,15 +48,26 @@ const exercisesApi = api.injectEndpoints({
       providesTags: ["Auth", "ExerciseResults"],
     }),
 
+    getUserPassedExercises: builder.query<
+      GetUserPassedExercisesResponseData,
+      string
+    >({
+      query: (userId) => `/exercises/passed/${userId}`,
+      providesTags: ["Auth", "ExerciseResults"],
+    }),
+
     getExerciseResult: builder.query<
       GetExerciseResultResponseData,
       {
         exerciseId: string;
         resultId: string;
+        userId?: string | null;
       }
     >({
-      query: ({ exerciseId, resultId }) =>
-        `/exercises/${exerciseId}/results/${resultId}`,
+      query: ({ exerciseId, resultId, userId }) =>
+        `/exercises/${exerciseId}/results/${resultId}${
+          userId ? `?user_id=${userId}` : ""
+        }`,
       providesTags: ["Auth", "ExerciseResults"],
     }),
 
@@ -99,6 +111,7 @@ export const {
   useGetExerciseQuery,
   useGetExerciseStructureQuery,
   useGetExerciseResultsQuery,
+  useGetUserPassedExercisesQuery,
   useGetExerciseResultQuery,
   useGetTrainingExercisesQuery,
   useGetTrainingExerciseQuery,

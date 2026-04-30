@@ -8,10 +8,13 @@ const getExerciseResult = createRequest<{
   id: string;
   result_id: string;
 }>(async (request, serverFetch, { id, result_id }) => {
+  const userId = request.nextUrl.searchParams.get("user_id");
+  const path = userId
+    ? `/exercises/${id}/results/${result_id}/user/${userId}`
+    : `/exercises/${id}/results/${result_id}`;
+
   const getExerciseResultResponse =
-    await serverFetch.get<GetExerciseResultApiResponseData>(
-      `/exercises/${id}/results/${result_id}`,
-    );
+    await serverFetch.get<GetExerciseResultApiResponseData>(path);
 
   const responseData = mapGetExerciseResultResponse(
     getExerciseResultResponse.data,

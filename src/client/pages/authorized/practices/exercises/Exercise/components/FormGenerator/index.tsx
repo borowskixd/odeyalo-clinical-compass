@@ -3,7 +3,7 @@ import { type ChangeEventHandler, type FC, type ReactNode } from "react";
 import { ExerciseStructure, Grid } from "../../../../components";
 import { toGridTemplateAreas } from "../../../../components/Grid/utils";
 import { type ValueType } from "../../types";
-import { RangeInputWrapper } from "@/client/pages/authorized/practices/exercises/Exercise/components/FormGenerator/components";
+import { RangeInputWrapper } from "./components";
 import { type GetExerciseStructureResponseData } from "@/shared/types";
 
 interface Props {

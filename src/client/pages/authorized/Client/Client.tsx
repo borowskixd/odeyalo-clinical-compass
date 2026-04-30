@@ -7,9 +7,9 @@ import {
   Container,
   ContentWrapper,
   DefaultError,
+  ExerciseResultCard,
   LoadingLoop,
   PageTitle,
-  PrimaryButton,
   ProfileCard,
   Subtitle,
   TestCard,
@@ -18,10 +18,10 @@ import { useAppSelector } from "@/client/hooks";
 import {
   selectRole,
   useGetClientQuery,
+  useGetUserPassedExercisesQuery,
   useGetUserPassedTestsQuery,
 } from "@/client/redux";
 import { ACCESS } from "@/shared/config/access";
-import { pages } from "@/shared/data";
 
 export const ClientPage: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -30,13 +30,28 @@ export const ClientPage: FC = () => {
   const { data: client, ...getClientState } = useGetClientQuery(id);
   const { data: passedTests, ...getUserPassedTestsState } =
     useGetUserPassedTestsQuery(id);
+  const { data: passedExercises, ...getUserPassedExercisesState } =
+    useGetUserPassedExercisesQuery(id);
 
-  if (getClientState.isLoading || getUserPassedTestsState.isLoading)
+  if (
+    getClientState.isLoading ||
+    getUserPassedTestsState.isLoading ||
+    getUserPassedExercisesState.isLoading
+  ) {
     return <LoadingLoop />;
-  if (getClientState.isError)
+  }
+
+  if (getClientState.isError) {
     return <DefaultError error={getClientState.error} />;
-  if (getUserPassedTestsState.isError)
+  }
+
+  if (getUserPassedTestsState.isError) {
     return <DefaultError error={getUserPassedTestsState.error} />;
+  }
+
+  if (getUserPassedExercisesState.isError) {
+    return <DefaultError error={getUserPassedExercisesState.error} />;
+  }
 
   return (
     <Container>
@@ -54,27 +69,37 @@ export const ClientPage: FC = () => {
             </Subtitle>
             {!!passedTests && !!passedTests.length && (
               <div className={styles.tests}>
-                {passedTests.map((el) => {
+                {passedTests.map((test) => {
                   return (
                     <TestCard
-                      key={el.id}
-                      test={el}
+                      key={test.id}
+                      test={test}
                       params={{ userId: id }}
                     />
                   );
                 })}
               </div>
             )}
-            <div className={styles.buttons}>
-              <PrimaryButton
-                href={pages.giveTest.getLink({
-                  queryParams: {
-                    userId: id,
-                  },
-                })}
-              >
-                Назначить задание
-              </PrimaryButton>
+
+            <div className={styles.section}>
+              <Subtitle>
+                {!!passedExercises && !!passedExercises.results.length
+                  ? "Пройденные упражнения"
+                  : "Нет пройденных упражнений"}
+              </Subtitle>
+              {!!passedExercises && !!passedExercises.results.length && (
+                <div className={styles.tests}>
+                  {passedExercises.results.map((result) => {
+                    return (
+                      <ExerciseResultCard
+                        key={result.id}
+                        result={result}
+                        userId={id}
+                      />
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
         </div>

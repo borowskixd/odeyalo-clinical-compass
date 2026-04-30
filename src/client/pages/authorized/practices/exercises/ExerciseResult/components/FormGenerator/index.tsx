@@ -62,11 +62,17 @@ export const FormGenerator: FC<FormGeneratorProps> = ({
             />
           );
         } else if (section.type === "slider") {
+          const parsedValue =
+            typeof section.value === "string"
+              ? Number(section.value)
+              : Number.NaN;
+
           const rangeProps = {
             min: 1,
             max: 5,
             step: 1,
             defaultValue: 3,
+            value: Number.isFinite(parsedValue) ? parsedValue : 3,
             labels: ["Ужасно", "Плохо", "Нормально", "Хорошо", "Потрясающе"],
           };
 

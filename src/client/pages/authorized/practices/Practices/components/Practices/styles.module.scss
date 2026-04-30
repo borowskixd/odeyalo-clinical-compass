@@ -1,9 +1,10 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
-  margin-bottom: 16px;
-  @include titleXS;
   margin: 0;
+  margin-bottom: 16px;
+
+  @include titleXS;
 }
 
 .list {
@@ -22,8 +23,8 @@
 
 .headerWrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 16px;
 
   &.trainingHeader {

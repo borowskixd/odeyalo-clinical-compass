@@ -1,3 +1,3 @@
-export type ValueType = string | string[];
+export type ValueType = string | string[] | number;
 
 export type FormValuesType = Record<string, ValueType>;
