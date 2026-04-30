@@ -6,6 +6,7 @@ import { UserCard } from "../UserCard";
 import styles from "./styles.module.scss";
 import { DefaultError, LoadingLoop } from "@/client/components";
 import { useGetInquiriesQuery } from "@/client/redux";
+import { pages } from "@/shared/data";
 import { type GetClientsResponseData } from "@/shared/types";
 
 interface Props {
@@ -52,13 +53,13 @@ export const ClientCard: FC<Props> = ({ client }) => {
     >
       {renderContent()}
       <div className={styles.actions}>
-        {/*<Button*/}
-        {/*  href={pages.client.getLink({ params: { id: client.userId } })}*/}
-        {/*  width="max"*/}
-        {/*  view="primary"*/}
-        {/*>*/}
-        {/*  Профиль*/}
-        {/*</Button>*/}
+        <Button
+          href={pages.client.getLink({ params: { id: client.userId } })}
+          width="max"
+          view="primary"
+        >
+          Профиль
+        </Button>
       </div>
     </UserCard>
   );

@@ -4,7 +4,7 @@ import type {
 } from "@/shared/types";
 
 export type ExerciseSectionView = "default" | "primary";
-export type ExerciseSectionType = "addable_list" | "input";
+export type ExerciseSectionType = "addable_list" | "input" | "slider";
 
 export type GetExerciseStructureApiResponseData = GetExerciseApiResponseData & {
   pages: {

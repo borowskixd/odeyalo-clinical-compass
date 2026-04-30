@@ -109,7 +109,7 @@ export const ExercisePage: FC = () => {
       for (const key in values) {
         mappedValues.push({
           id: key,
-          value: values[key],
+          value: Array.isArray(values[key]) ? values[key] : String(values[key]),
         });
       }
 

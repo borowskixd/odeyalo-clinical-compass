@@ -1,7 +1,7 @@
 "use client";
 
 import { Text } from "@odeyalo/uikit";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { type FC, useEffect } from "react";
 import { FormGenerator } from "./components";
 import styles from "./styles.module.scss";
@@ -18,11 +18,13 @@ import { mapDatetimeToText } from "@/shared/utils";
 
 export const ExerciseResultPage: FC = () => {
   const { id, result_id } = useParams<{ id: string; result_id: string }>();
+  const searchParams = useSearchParams();
   const { logEvent } = useAnalytics();
 
   const { data, error, isLoading } = useGetExerciseResultQuery({
     exerciseId: id,
     resultId: result_id,
+    userId: searchParams.get("userId"),
   });
 
   useEffect(() => {

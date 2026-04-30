@@ -9,7 +9,20 @@ interface Props {
   profile: GetClientResponseData;
 }
 
+const mapGenderToText = (gender: string) => {
+  switch (gender) {
+    case "male":
+      return "Мужской";
+    case "female":
+      return "Женский";
+    default:
+      return "Не указан";
+  }
+};
+
 export const ProfileCard: FC<Props> = ({ profile }) => {
+  const hasDescription = Boolean(profile.description.trim());
+
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
@@ -33,6 +46,7 @@ export const ProfileCard: FC<Props> = ({ profile }) => {
       <div className={styles.info}>
         Возраст: {profile.age === 0 ? "не указан" : mapAgeToText(profile.age)}
       </div>
+      <div className={styles.info}>Пол: {mapGenderToText(profile.gender)}</div>
       {!!profile.problems.length && (
         <>
           <div className={styles.info}>Запрос:</div>
@@ -47,6 +61,11 @@ export const ProfileCard: FC<Props> = ({ profile }) => {
             })}
           </div>
         </>
+      )}
+      {hasDescription && (
+        <div className={styles.description}>
+          О пользователе: {profile.description}
+        </div>
       )}
     </div>
   );
