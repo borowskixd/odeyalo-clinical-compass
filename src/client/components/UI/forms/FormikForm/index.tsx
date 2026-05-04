@@ -8,6 +8,7 @@ import {
   FormikDatePicker,
   FormikPhoneInput,
   FormikRangeInput,
+  FormikSelect,
   FormikTextArea,
   FormikTextInput,
 } from "./components";
@@ -41,3 +42,4 @@ FormikForm.DatePicker = FormikDatePicker;
 FormikForm.PhoneInput = FormikPhoneInput;
 FormikForm.FileInput = FileInput;
 FormikForm.RangeInput = FormikRangeInput;
+FormikForm.Select = FormikSelect;

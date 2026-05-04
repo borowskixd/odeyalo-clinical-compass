@@ -1,0 +1,117 @@
+@use "@/client/styles/variables" as *;
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/textStyles" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.label {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+  gap: 4px;
+}
+
+.labelText {
+  white-space: pre-wrap;
+
+  &.required::after {
+    color: $color-error;
+    content: " *";
+  }
+
+  @include titleMedium;
+}
+
+.exampleText {
+  display: block;
+  color: $color-secondary;
+  white-space: pre-wrap;
+
+  @include bodySmall;
+}
+
+.field {
+  display: inline-flex;
+  width: 100%;
+  height: fit-content;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.selectWrapper {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-radius: 12px;
+  background-color: $color-blue20;
+  color: $color-black100;
+  cursor: pointer;
+  gap: 12px;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+
+  &:hover {
+    background-color: $color-blue40;
+  }
+
+  &:focus-within {
+    background-color: $color-green80;
+    color: $color-white100;
+  }
+
+  &:focus-within .placeholder {
+    color: $color-black20;
+  }
+
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &.error {
+    background-color: $color-red20;
+  }
+
+  &::after {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 auto;
+    border-right: 2px solid currentcolor;
+    border-bottom: 2px solid currentcolor;
+    content: "";
+    transform: translateY(-2px) rotate(45deg);
+  }
+}
+
+.select {
+  width: 100%;
+  height: 100%;
+  appearance: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  &.placeholder {
+    color: $color-black60;
+  }
+
+  option {
+    color: $color-black100;
+  }
+
+  @include bodyM;
+}
+
+.errorText {
+  margin-top: 6px;
+  color: var(--red80);
+
+  @include bodyM;
+}
