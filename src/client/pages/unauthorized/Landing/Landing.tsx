@@ -1,13 +1,6 @@
 import { redirect } from "next/navigation";
 import { type FC } from "react";
-import {
-  Achievements,
-  Advantages,
-  Header,
-  Hero,
-  Partners,
-  Team,
-} from "./components";
+import { Achievements, Advantages, Header, Hero, Partners } from "./components";
 import styles from "./styles.module.scss";
 import { Container, Footer } from "@/client/components";
 import { pages } from "@/shared/data";
@@ -26,7 +19,7 @@ export const LandingPage: FC = async () => {
           <Hero />
           <Advantages />
           <Achievements />
-          <Team />
+          {/*<Team />*/}
           <Partners />
         </Container>
       </main>
