@@ -5,8 +5,13 @@ import { type FC, useEffect, useState } from "react";
 import { Emojis, MoodTrackerValue } from "./components";
 import styles from "./styles.module.scss";
 import { FormErrorLabel, FormikForm } from "@/client/components";
-import { useAppSelector } from "@/client/hooks";
-import { selectNotesCalendarDate, useSaveMoodMutation } from "@/client/redux";
+import { useAppDispatch, useAppSelector } from "@/client/hooks";
+import {
+  notesActions,
+  selectMoodTracker,
+  selectNotesCalendarDate,
+  useSaveMoodMutation,
+} from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 import { compareDates, mapDateToApiDateFormat } from "@/shared/utils";
 
@@ -19,32 +24,21 @@ interface InitialValues {
 }
 
 export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
-  const [sessionStorageTracker, setSessionStorageTracker] = useState<
-    string | null
-  >(null);
-  const [saveMood, { isLoading, isSuccess }] = useSaveMoodMutation();
+  const dispatch = useAppDispatch();
+  const moodTracker = useAppSelector(selectMoodTracker);
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
+  const [saveMood, { isLoading, isSuccess }] = useSaveMoodMutation();
   const [emojiIds, setEmojiIds] = useState<number[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { logEvent } = useAnalytics();
 
-  useEffect(() => {
-    const sessionStorageValue = sessionStorage.getItem("tracker");
-    setSessionStorageTracker(sessionStorageValue);
-  }, [setSessionStorageTracker, emojiIds]);
+  console.log(moodTracker);
 
   useEffect(() => {
     if (isSuccess) {
       logEvent("mood-added");
     }
   }, [isSuccess, logEvent]);
-
-  const tracker = sessionStorageTracker
-    ? (JSON.parse(sessionStorageTracker) as {
-        mood: number;
-        emojis: number[];
-      })
-    : { mood: 50, emojis: [] };
 
   const submitHandler = (values: InitialValues) => {
     if (emojiIds.length) {
@@ -69,18 +63,16 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
   const selectEmojiHandler = (emojiIds: number[]) => {
     setEmojiIds(emojiIds);
     setErrorMessage(null);
-    sessionStorage.setItem(
-      "tracker",
-      JSON.stringify({
-        ...tracker,
-        emojis: emojiIds,
-      }),
-    );
+    dispatch(notesActions.setMoodTrackerEmojis(emojiIds));
+  };
+
+  const handleUpdateMood = (value: number) => {
+    dispatch(notesActions.setMoodTrackerValue(value));
   };
 
   return (
     <FormikForm<InitialValues>
-      initialValues={{ score: tracker.mood }}
+      initialValues={{ score: moodTracker.mood }}
       enableReinitialize
       onSubmit={submitHandler}
       className={styles.form}
@@ -88,19 +80,11 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
       <MoodTrackerValue />
       <FormikForm.RangeInput
         name="score"
-        onUpdate={(value) => {
-          sessionStorage.setItem(
-            "tracker",
-            JSON.stringify({
-              ...tracker,
-              mood: value,
-            }),
-          );
-        }}
+        onUpdate={handleUpdateMood}
       />
       <Emojis
         onUpdate={selectEmojiHandler}
-        defaultEmojis={tracker.emojis}
+        defaultEmojis={moodTracker.emojis}
       />
       {errorMessage && (
         <div style={{ marginTop: "10px" }}>
