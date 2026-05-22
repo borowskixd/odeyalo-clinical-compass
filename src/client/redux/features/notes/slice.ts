@@ -11,6 +11,12 @@ const notesSlice = createSlice({
     setNotesCalendarDate: (state, { payload }: PayloadAction<Date>) => {
       state.calendarDate = payload;
     },
+    setMoodTrackerValue: (state, { payload }: PayloadAction<number>) => {
+      state.moodTracker.mood = payload;
+    },
+    setMoodTrackerEmojis: (state, { payload }: PayloadAction<number[]>) => {
+      state.moodTracker.emojis = payload;
+    },
   },
 });
 

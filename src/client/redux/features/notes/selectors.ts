@@ -9,3 +9,7 @@ const selectNotesModule = (state: RootState) => {
 export const selectNotesCalendarDate = (state: RootState) => {
   return selectNotesModule(state).calendarDate ?? currentDate;
 };
+
+export const selectMoodTracker = (state: RootState) => {
+  return selectNotesModule(state).moodTracker;
+};

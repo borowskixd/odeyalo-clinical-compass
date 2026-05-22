@@ -39,6 +39,7 @@ export interface AuthState {
 
 export interface NotesState {
   calendarDate: Date | null;
+  moodTracker: { mood: number; emojis: number[] };
 }
 
 export interface Message {

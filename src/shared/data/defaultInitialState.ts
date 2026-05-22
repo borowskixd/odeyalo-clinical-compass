@@ -32,6 +32,10 @@ export const defaultInitialState: InitialState = {
   },
   notesReducer: {
     calendarDate: null,
+    moodTracker: {
+      mood: 50,
+      emojis: [],
+    },
   },
   chatBotReducer: {
     messages: [],
