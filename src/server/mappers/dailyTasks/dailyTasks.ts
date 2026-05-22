@@ -8,10 +8,13 @@ import { getDailyTaskType } from "@/shared/utils";
 export const mapGetDailyTasksResponse = (
   data: GetDailyTasksApiResponse,
 ): GetDailyTasksResponse => {
-  return data.result.map(({ id, type, destination_id, link_to_picture }) => ({
-    id,
-    taskType: getDailyTaskType(type),
-    taskId: destination_id,
-    linkToPicture: `${SEVER_API_URL}${link_to_picture}`,
-  }));
+  return data.result.map(
+    ({ id, destination_title, type, destination_id, link_to_picture }) => ({
+      id,
+      title: destination_title,
+      taskType: getDailyTaskType(type),
+      taskId: destination_id,
+      linkToPicture: `${SEVER_API_URL}${link_to_picture}`,
+    }),
+  );
 };

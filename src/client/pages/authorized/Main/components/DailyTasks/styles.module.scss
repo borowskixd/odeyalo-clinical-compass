@@ -1,3 +1,11 @@
+@use "@/client/styles/fontStyles" as *;
+
 .title {
   margin-bottom: 10px;
+}
+
+.cardTitle {
+  margin-top: 10px;
+  margin-left: 6px;
+  @include bodyL;
 }

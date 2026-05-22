@@ -1,6 +1,7 @@
 export type GetDailyTasksApiResponse = {
   result: {
     id: string;
+    destination_title: string;
     type: "practice" | "test";
     created_at: string;
     destination_id: string;
@@ -11,6 +12,7 @@ export type GetDailyTasksApiResponse = {
 
 export type GetDailyTasksResponse = {
   id: string;
+  title: string;
   taskType: DailyTaskType;
   taskId: string;
   linkToPicture: string;
