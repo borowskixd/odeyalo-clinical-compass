@@ -1,11 +1,8 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
+  margin: 0;
   margin-bottom: 16px;
-
-  &.trainingTitle {
-    margin-top: 20px;
-  }
 
   @include titleXS;
 }
@@ -21,5 +18,16 @@
 
   @media screen and (width <= 450px) {
     grid-template-columns: 1fr;
+  }
+}
+
+.headerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  &.trainingHeader {
+    margin-top: 20px;
   }
 }

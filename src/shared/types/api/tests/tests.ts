@@ -6,6 +6,13 @@ export type GetTestsApiResponseData = {
   link: string;
 }[];
 
+export type GetUserPassedTestsApiResponseData = {
+  test_id: string;
+  title: string;
+  description: string;
+  link: string;
+}[];
+
 export type GetTestsResponseData = {
   id: string;
   title: string;

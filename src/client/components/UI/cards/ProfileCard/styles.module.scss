@@ -49,12 +49,20 @@
 
 .profileImage {
   display: flex;
+  border-radius: 50%;
   margin: 0 auto 16px;
 }
 
 .info {
   margin-bottom: 8px;
   color: $color-on-surface-variant;
+
+  @include bodyMedium;
+}
+
+.description {
+  color: $color-on-surface-variant;
+  white-space: pre-wrap;
 
   @include bodyMedium;
 }

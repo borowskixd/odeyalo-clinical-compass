@@ -4,6 +4,8 @@ export type GetClientResponseData = {
   isOnline: boolean;
   problems: string[];
   age: number;
+  gender: string;
+  description: string;
   profileImage: string;
 };
 

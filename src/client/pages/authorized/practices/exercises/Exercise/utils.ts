@@ -14,6 +14,8 @@ export const generateInitialValue = (
         fieldInitialValue = "";
       } else if (section.type === "addable_list") {
         fieldInitialValue = [];
+      } else if (section.type === "slider") {
+        fieldInitialValue = 3;
       }
 
       initialValue[section.id] = fieldInitialValue;

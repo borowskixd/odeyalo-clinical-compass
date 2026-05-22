@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@odeyalo/uikit";
+import { Button, Text } from "@odeyalo/uikit";
 import { useRouter } from "next/navigation";
 import { type FC, useEffect, useState } from "react";
 import * as Yup from "yup";
@@ -52,6 +52,21 @@ const validationSchema = Yup.object().shape({
   courses: Yup.string().required("Данное поле обязательно"),
   work_format: Yup.string().required("Данное поле обязательно"),
 });
+
+const workFormatOptions = [
+  {
+    label: "онлайн",
+    value: "онлайн",
+  },
+  {
+    label: "очно",
+    value: "очно",
+  },
+  {
+    label: "онлайн и очно",
+    value: "онлайн и очно",
+  },
+];
 
 export const PsychologistSurveyForm: FC = () => {
   const router = useRouter();
@@ -140,15 +155,15 @@ export const PsychologistSurveyForm: FC = () => {
         name="courses"
         type="text"
         placeholder="Введите ответ"
-        labelText="Напишите, какое у вас дополнительное образование, если есть (зависимости, РПП, ПТСР или другое)."
+        labelText="Напишите, какое у вас дополнительное образование (зависимости, РПП, ПТСР или другое)."
         required
         disabled={disabled}
       />
-      <FormikForm.Input
+      <FormikForm.Select
         name="work_format"
-        type="text"
-        placeholder="Введите ответ"
+        placeholder="Выберите формат работы"
         labelText="Выберите формат работы"
+        options={workFormatOptions}
         required
         disabled={disabled}
       />
@@ -156,10 +171,13 @@ export const PsychologistSurveyForm: FC = () => {
         name="association"
         type="text"
         placeholder="Введите ответ"
-        labelText="Ассоциация"
+        labelText="Ваши методы работы"
         required
         disabled={disabled}
       />
+      <div className={styles.title}>
+        <Text variant="body-l">Запросы, с которыми работаете</Text>
+      </div>
       <div className={styles.inquiries}>
         {inquiries.map((inquiry) => (
           <Button

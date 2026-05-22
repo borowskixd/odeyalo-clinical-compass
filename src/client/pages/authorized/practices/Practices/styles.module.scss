@@ -1,3 +1,5 @@
+@use "@/client/styles/colors" as *;
+
 .title {
   margin-bottom: 30px;
 }
@@ -11,4 +13,22 @@
     gap: 32px;
     grid-template-columns: 1fr;
   }
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.popup {
+  display: flex;
+  max-width: 305px;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: $color-white100;
+  box-shadow: var(--box-shadow);
+  gap: 8px;
 }

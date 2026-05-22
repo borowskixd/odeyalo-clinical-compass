@@ -1,0 +1,60 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.infoButton {
+  background-color: $color-white100;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.overlay {
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0 0 0 / 30%);
+  inset: 0;
+}
+
+.popup {
+  position: fixed;
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80vh;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: $color-white100;
+  box-shadow: var(--box-shadow);
+  gap: 16px;
+  overflow-y: auto;
+  transform: translate(-50%, -50%);
+}
+
+.popupText {
+  color: $color-black100;
+  line-height: 1.5;
+  text-align: left;
+  white-space: pre-line;
+
+  @include bodyM;
+}
+
+.closeButton {
+  width: 100%;
+  max-width: 150px;
+}
