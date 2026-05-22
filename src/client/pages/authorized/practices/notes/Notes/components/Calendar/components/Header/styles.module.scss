@@ -1,4 +1,9 @@
+@use "@/client/styles/colors" as *;
 @use "@/client/styles/fontStyles" as *;
+
+.titleWrapper {
+  position: relative;
+}
 
 .title {
   text-transform: capitalize;
@@ -7,6 +12,20 @@
 
   @media screen and (width <= 900px) {
     @include titleXS;
+  }
+}
+
+.year {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  display: inline-block;
+
+  &:hover {
+    color: $color-blue80;
+  }
+
+  &.active {
+    color: $color-blue80;
   }
 }
 

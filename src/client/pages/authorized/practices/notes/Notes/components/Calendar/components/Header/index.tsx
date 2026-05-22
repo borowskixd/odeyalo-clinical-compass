@@ -1,6 +1,8 @@
+// client/components/Header/Header.tsx
 "use client";
 
-import { type FC } from "react";
+import { type FC, useRef, useState } from "react";
+import { YearPickerButton } from "./components";
 import styles from "./styles.module.scss";
 import { ArrowLeft, ArrowRight } from "@/client/assets/icons";
 import { Button } from "@/client/components";
@@ -11,6 +13,8 @@ import { compareDates, months } from "@/shared/utils";
 export const Header: FC = () => {
   const dispatch = useAppDispatch();
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
+  const [isYearPickerOpen, setIsYearPickerOpen] = useState(false);
+  const yearButtonRef = useRef<HTMLSpanElement>(null);
 
   const prevMonthHandler = () => {
     const prevDate = new Date(
@@ -40,11 +44,51 @@ export const Header: FC = () => {
     month: true,
   });
 
+  const currentYear = notesCalendarDate.getFullYear();
+  const currentMonth = notesCalendarDate.getMonth();
+
+  const handleYearClick = () => {
+    setIsYearPickerOpen(!isYearPickerOpen);
+  };
+
+  const handleYearSelect = (year: number) => {
+    const newDate = new Date(year, currentMonth, 1);
+    dispatch(notesActions.setNotesCalendarDate(newDate));
+    setIsYearPickerOpen(false);
+  };
+
+  const handleClosePicker = () => {
+    setIsYearPickerOpen(false);
+  };
+
   return (
     <div className={styles.header}>
-      <h2 className={styles.title}>
-        {months[notesCalendarDate.getMonth()]} {notesCalendarDate.getFullYear()}
-      </h2>
+      <div className={styles.titleWrapper}>
+        <h2 className={styles.title}>
+          {months[notesCalendarDate.getMonth()]}{" "}
+          <span
+            ref={yearButtonRef}
+            className={`${styles.year} ${isYearPickerOpen ? styles.active : ""}`}
+            onClick={handleYearClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                handleYearClick();
+              }
+            }}
+          >
+            {notesCalendarDate.getFullYear()}
+          </span>
+        </h2>
+        {isYearPickerOpen && (
+          <YearPickerButton
+            currentYear={currentYear}
+            onYearSelect={handleYearSelect}
+            onClose={handleClosePicker}
+          />
+        )}
+      </div>
       <div className={styles.buttons}>
         <Button
           className={styles.button}

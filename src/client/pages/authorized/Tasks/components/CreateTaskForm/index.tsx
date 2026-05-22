@@ -73,10 +73,7 @@ export const CreateTaskForm: FC = () => {
           width="max"
           onClick={handleStartCreate}
         >
-          <Icon
-            data={Icons24Solid.PlusIcon}
-            size={24}
-          />
+          Добавить задачу
         </Button>
       ) : (
         <FormikForm

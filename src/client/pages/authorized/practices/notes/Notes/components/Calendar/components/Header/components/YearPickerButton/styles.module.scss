@@ -1,0 +1,83 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.yearPicker {
+  position: absolute;
+  margin-top: 8px;
+  background-color: $color-white100;
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+  z-index: 1000;
+  min-width: 280px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: $color-white100;
+}
+
+.title {
+  @include bodyXLBold;
+}
+
+.navButton {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  
+  & > svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 16px;
+}
+
+.yearOption {
+  padding: 8px 12px;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+  @include bodyXL;
+  
+  &:hover {
+    background-color: $color-white70;
+  }
+  
+  &.activeYear {
+    background-color: $color-blue80;
+    color: $color-white100;
+    
+    &:hover {
+      background-color: $color-blue80;
+    }
+  }
+}
+
+@media screen and (width <= 768px) {
+  .yearPicker {
+    max-width: 320px;
+  }
+  
+  .grid {
+    max-height: 360px;
+  }
+  
+  .yearOption {
+    padding: 10px 12px;
+  }
+}
