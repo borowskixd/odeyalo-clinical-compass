@@ -41,6 +41,9 @@ export const DailyTasks: FC = () => {
             return (
               <SwiperSlide key={dailyTask.id}>
                 <DailyTaskCard dailyTask={dailyTask} />
+                {dailyTask.title && (
+                  <div className={styles.cardTitle}>{dailyTask.title}</div>
+                )}
               </SwiperSlide>
             );
           })}
