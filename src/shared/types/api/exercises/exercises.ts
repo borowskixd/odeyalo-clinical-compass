@@ -4,7 +4,7 @@ import {
 } from "@/shared/types";
 
 export type GetExercisesApiResponseData = {
-  exercises: Pick<
+  regular_exercises: Pick<
     GetExerciseApiResponseData,
     "id" | "title" | "picture_link" | "open"
   >[];
@@ -22,6 +22,8 @@ export type CompleteExerciseApiRequestData = {
   filled_fields: {
     field_id: string;
     text: string | string[];
+    pulled_completed_exercise_id: null | string;
+    pulled_group_key: null | string;
   }[];
 };
 

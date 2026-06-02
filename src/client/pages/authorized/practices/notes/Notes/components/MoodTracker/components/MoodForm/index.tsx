@@ -32,8 +32,6 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { logEvent } = useAnalytics();
 
-  console.log(moodTracker);
-
   useEffect(() => {
     if (isSuccess) {
       logEvent("mood-added");
