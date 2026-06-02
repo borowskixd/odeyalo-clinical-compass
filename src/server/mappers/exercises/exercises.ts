@@ -11,10 +11,10 @@ import {
 export const mapGetExercisesResponse = (
   data: GetExercisesApiResponseData,
 ): GetExercisesResponseData => {
-  const { exercises } = data;
+  const { regular_exercises } = data;
 
   return {
-    exercises: exercises.map((exercise) => {
+    exercises: regular_exercises.map((exercise) => {
       const { id, open, title, picture_link } = exercise;
 
       return {
@@ -37,6 +37,8 @@ export const mapCompleteExerciseRequest = (
     filled_fields: values.map((value) => ({
       field_id: value.id,
       text: value.value,
+      pulled_completed_exercise_id: null,
+      pulled_group_key: null,
     })),
   };
 };
