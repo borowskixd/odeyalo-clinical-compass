@@ -82,9 +82,15 @@ export const TrainingExercisePage = () => {
     return (
       <section>
         <header className={styles.header}>
-          <PageTitle className={styles.title}>
-            {trainingExerciseStructure.title}
-          </PageTitle>
+          {currentQuestion.formulation && (
+            <PageTitle
+              variant="body-m"
+              as="p"
+              className={styles.title}
+            >
+              {currentQuestion.formulation}
+            </PageTitle>
+          )}
           <Text
             variant="body-xl"
             as="h4"
