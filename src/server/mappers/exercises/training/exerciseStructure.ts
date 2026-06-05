@@ -19,6 +19,7 @@ export const mapGetTrainingExerciseStructureResponse = (
     questions: questions.map((question) => ({
       id: question.id,
       question: question.text,
+      formulation: question.formulation,
       answers: question.variants.map((variant) => {
         const { id, title, explanation, correct } = variant;
 

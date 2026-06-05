@@ -11,6 +11,7 @@ export type GetTrainingExerciseStructureApiResponseData = Omit<
     training_exercise_id: string;
     id: string;
     text: string;
+    formulation: string;
     variants: {
       question_id: string;
       title: string;
@@ -28,6 +29,7 @@ export type GetTrainingExerciseStructureResponseData = Omit<
   questions: {
     id: string;
     question: string;
+    formulation: string;
     answers: {
       id: string;
       answer: string;
