@@ -2,7 +2,8 @@
 
 import { Button, Icon, Icons16, Text } from "@odeyalo/uikit";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { CompletionScreen } from "./components/CompletionScreen";
 import styles from "./styles.module.scss";
 import {
   Container,
@@ -35,11 +36,9 @@ export const TrainingExercisePage = () => {
   const [currentAnswer, setCurrentAnswer] = useState<Answer | null>(null);
   const [answerSelected, setAnswerSelected] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (completeTrainingExerciseMutation.isSuccess) {
-      router.push(pages.trainingExercisePreview.getLink({ params: { id } }));
-    }
-  }, [completeTrainingExerciseMutation.isSuccess, router, id]);
+  const goToPractices = () => {
+    router.push(pages.practices.path);
+  };
 
   const nextQuestion = () => {
     if (currentAnswer?.correct) {
@@ -75,7 +74,7 @@ export const TrainingExercisePage = () => {
       if (!answerSelected) {
         setAnswerSelected(true);
       } else if (isLastQuestion && currentAnswer?.correct) {
-        completeTrainingExercise(id);
+        void completeTrainingExercise(id);
       }
     };
 
@@ -160,9 +159,18 @@ export const TrainingExercisePage = () => {
             </Button>
           )}
         </div>
+        {completeTrainingExerciseMutation.isError && (
+          <FormErrorLabel>
+            {mapApiErrorMessage(completeTrainingExerciseMutation.error)}
+          </FormErrorLabel>
+        )}
       </section>
     );
   };
+
+  if (completeTrainingExerciseMutation.isSuccess) {
+    return <CompletionScreen onClose={goToPractices} />;
+  }
 
   return (
     <Container className={styles.container}>

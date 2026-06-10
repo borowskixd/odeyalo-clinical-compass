@@ -9,7 +9,6 @@ interface ArticleCardProps {
 }
 
 export const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
-  const imageSrc = article.educationMaterials?.[0]?.pictureLink || "";
   return (
     <Link
       href={pages.article.getLink({ params: { id: article.id } })}
@@ -17,7 +16,7 @@ export const ArticleCard: FC<ArticleCardProps> = ({ article }) => {
     >
       <div className={styles.imageContainer}>
         <img
-          src={imageSrc}
+          src={article.link}
           alt={article.theme}
           className={styles.image}
         />

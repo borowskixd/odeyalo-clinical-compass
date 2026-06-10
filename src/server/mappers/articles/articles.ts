@@ -11,7 +11,7 @@ export const mapGetArticlesResponse = (
     return {
       id: el.id,
       theme: el.theme,
-      link: el.link,
+      link: `${SEVER_API_URL}${el.link_to_picture}`,
       tags: el.tags,
       educationMaterials: el.education_materials.map((material) => ({
         id: material.id,
