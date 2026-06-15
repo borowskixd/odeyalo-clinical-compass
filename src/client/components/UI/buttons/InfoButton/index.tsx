@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Icons20 } from "@odeyalo/uikit";
 import { type FC, useState } from "react";
 import styles from "./styles.module.scss";
@@ -12,6 +14,10 @@ export const InfoButton: FC<InfoButtonProps> = ({ popupText }) => {
   return (
     <div className={styles.container}>
       <Button
+        type="button"
+        aria-label="Показать описание"
+        aria-expanded={isPopupOpen}
+        aria-haspopup="dialog"
         onClick={() => setIsPopupOpen(!isPopupOpen)}
         size="s"
         width="auto"
@@ -26,9 +32,15 @@ export const InfoButton: FC<InfoButtonProps> = ({ popupText }) => {
             className={styles.overlay}
             onClick={() => setIsPopupOpen(false)}
           />
-          <div className={styles.popup}>
+          <div
+            className={styles.popup}
+            role="dialog"
+            aria-label="Описание"
+            aria-modal="true"
+          >
             <div className={styles.popupText}>{popupText}</div>
             <Button
+              type="button"
               onClick={() => setIsPopupOpen(false)}
               view="primary"
               size="s"

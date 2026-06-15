@@ -8,6 +8,7 @@ interface TestScaleResultApiData {
   conclusion: string;
   color: string;
   user_recommendation: string;
+  description: string;
 }
 
 export interface GetTestResultApiResponseData {
@@ -23,6 +24,7 @@ interface TestScaleResultData {
   score: number;
   conclusion: string;
   recommendations: string;
+  description: string;
 }
 
 export interface TestResultData {
