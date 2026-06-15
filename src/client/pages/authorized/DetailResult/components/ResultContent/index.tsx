@@ -52,6 +52,7 @@ export const ResultContent: FC = () => {
               <ProgressBar
                 scale={scale}
                 result={score}
+                description={scaleResult?.description}
               />
               <div className={styles.resultDescription}>
                 <h2 className={styles.subtitle2}>Что делать дальше?</h2>

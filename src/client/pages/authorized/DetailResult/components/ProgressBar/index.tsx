@@ -2,14 +2,20 @@
 
 import { type FC } from "react";
 import styles from "./styles.module.scss";
+import { InfoButton } from "@/client/components";
 import { type GetTestResultResponseData } from "@/shared/types";
 
 interface ProgressBarProps {
   scale: GetTestResultResponseData["scales"][number];
   result: number;
+  description?: string;
 }
 
-export const ProgressBar: FC<ProgressBarProps> = ({ scale, result }) => {
+export const ProgressBar: FC<ProgressBarProps> = ({
+  scale,
+  result,
+  description,
+}) => {
   const { title, min, max } = scale;
 
   const color = scale.borders.reduce((acc, border) => {
@@ -35,7 +41,10 @@ export const ProgressBar: FC<ProgressBarProps> = ({ scale, result }) => {
 
   return (
     <div className={styles.progressBarContainer}>
-      <h4 className={styles.resultTitle}>{title}</h4>
+      <div className={styles.titleWrapper}>
+        <h4 className={styles.resultTitle}>{title}</h4>
+        {description && <InfoButton popupText={description} />}
+      </div>
       <div className={styles.progressWrapper}>
         <div className={styles.progressLine}>
           <div

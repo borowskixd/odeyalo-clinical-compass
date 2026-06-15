@@ -23,11 +23,12 @@ export const mapTestResultResponse = (
     testId: test_id,
     datetime: mapDatetimeToText(datetime),
     scaleResults: scale_results.map(
-      ({ scale_id, score, conclusion, user_recommendation }) => ({
+      ({ scale_id, score, conclusion, user_recommendation, description }) => ({
         id: scale_id,
         score,
         conclusion,
         recommendations: user_recommendation,
+        description: description.charAt(0).toUpperCase() + description.slice(1),
       }),
     ),
     tags: tags || [],

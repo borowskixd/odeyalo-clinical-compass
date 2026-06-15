@@ -3,10 +3,9 @@
 import cl from "classnames";
 import { type FC, useEffect } from "react";
 import { PracticeCard } from "../PracticeCard";
-import { InfoButton } from "./components";
 import styles from "./styles.module.scss";
 import { POPUP_TEXTS } from "./utils";
-import { FormErrorLabel, LoadingLoop } from "@/client/components";
+import { FormErrorLabel, InfoButton, LoadingLoop } from "@/client/components";
 import {
   useGetExercisesQuery,
   useGetTrainingExercisesQuery,
