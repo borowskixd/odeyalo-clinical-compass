@@ -4,9 +4,15 @@ import { Button, Icon, Icons24Solid } from "@odeyalo/uikit";
 import { type FC, useEffect, useRef, useState } from "react";
 import { type Swiper as SwiperInstance } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { WIDGET_INFO_TEXTS } from "../../utils";
 import { DailyTaskCard } from "../DailyTaskCard";
 import styles from "./styles.module.scss";
-import { ContentWrapper, LoadingLoop, PageTitle } from "@/client/components";
+import {
+  ContentWrapper,
+  InfoButton,
+  LoadingLoop,
+  PageTitle,
+} from "@/client/components";
 import { useGetDailyTasksQuery } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 import { DAILY_TASK_TYPES } from "@/shared/data";
@@ -104,7 +110,10 @@ export const DailyTasks: FC = () => {
 
   return (
     <ContentWrapper>
-      <PageTitle className={styles.title}>План на сегодня</PageTitle>
+      <div className={styles.headerWrapper}>
+        <PageTitle className={styles.title}>План на сегодня</PageTitle>
+        <InfoButton popupText={WIDGET_INFO_TEXTS.DAILY_PLAN} />
+      </div>
       {renderContent()}
     </ContentWrapper>
   );

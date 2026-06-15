@@ -2,7 +2,15 @@
 @use "@/client/styles/fontStyles" as *;
 
 .title {
+  margin: 0;
+}
+
+.headerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 10px;
+  gap: 12px;
 }
 
 .carousel {

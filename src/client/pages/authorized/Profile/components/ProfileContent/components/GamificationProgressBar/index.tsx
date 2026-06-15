@@ -8,7 +8,13 @@ import { useGetCurrentGamificationScoreQuery } from "@/client/redux";
 
 const MAX_SCORE = 40;
 
-export const GamificationProgressBar: FC = () => {
+interface GamificationProgressBarProps {
+  showDescription?: boolean;
+}
+
+export const GamificationProgressBar: FC<GamificationProgressBarProps> = ({
+  showDescription = true,
+}) => {
   const { data, isLoading } = useGetCurrentGamificationScoreQuery();
 
   if (isLoading || !data) return <LoadingLoop />;
@@ -39,15 +45,17 @@ export const GamificationProgressBar: FC = () => {
             {MAX_SCORE}
           </div>
         </div>
-        <Text
-          variant="body-l-bold"
-          className={styles.label}
-          as="p"
-        >
-          Каждый балл — это маленький шаг к осознанности. Шкала помогает
-          поддерживать ритм развития. Чтобы набрать очки, читайте теорию,
-          проходите тесты и выполняйте упражнения.
-        </Text>
+        {showDescription && (
+          <Text
+            variant="body-l-bold"
+            className={styles.label}
+            as="p"
+          >
+            Каждый балл — это маленький шаг к осознанности. Шкала помогает
+            поддерживать ритм развития. Чтобы набрать очки, читайте теорию,
+            проходите тесты и выполняйте упражнения.
+          </Text>
+        )}
       </div>
     </div>
   );
