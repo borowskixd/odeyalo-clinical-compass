@@ -18,6 +18,7 @@ const exercisesApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getExercises: builder.query<GetExercisesResponseData, void>({
       query: () => "/exercises",
+      providesTags: ["Exercises"],
     }),
 
     completeExercise: builder.mutation<
@@ -29,11 +30,12 @@ const exercisesApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["ExerciseResults"],
+      invalidatesTags: ["ExerciseResults", "Exercises"],
     }),
 
     getExercise: builder.query<GetExerciseResponseData, string>({
       query: (exerciseId) => `/exercises/${exerciseId}`,
+      providesTags: ["Exercises"],
     }),
 
     getExerciseStructure: builder.query<

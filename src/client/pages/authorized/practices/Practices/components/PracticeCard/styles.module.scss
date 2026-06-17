@@ -3,16 +3,28 @@
 
 .card {
   display: flex;
+  width: 100%;
   flex-flow: column;
+  color: $color-black100;
   cursor: pointer;
   gap: 10px;
+  text-align: left;
 
   &:hover > .title {
     color: $color-blue80;
   }
+
+  &.locked {
+    cursor: not-allowed;
+
+    &:hover > .title {
+      color: $color-black60;
+    }
+  }
 }
 
 .imageContainer {
+  position: relative;
   overflow: hidden;
   width: 100%;
   max-height: 165px;
@@ -27,6 +39,42 @@
   object-fit: cover;
 }
 
+.lockOverlay {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(28 26 26 / 48%);
+  inset: 0;
+}
+
+.lockIcon {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgb(255 255 255 / 92%);
+  color: $color-blue80;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .title {
   @include bodyM;
+}
+
+.locked .title {
+  color: $color-black60;
+}
+
+.lockedLabel {
+  margin-top: -6px;
+  color: $color-black40;
+
+  @include bodyS;
 }

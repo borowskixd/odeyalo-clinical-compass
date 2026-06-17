@@ -4,7 +4,10 @@ import { AddableInputGroup, TextArea } from "@odeyalo/uikit";
 import { type FC } from "react";
 import { ExerciseStructure, Grid } from "../../../../components";
 import { toGridTemplateAreas } from "@/client/pages/authorized/practices/components/Grid/utils";
-import { RangeInputWrapper } from "@/client/pages/authorized/practices/exercises/Exercise/components/FormGenerator/components";
+import {
+  RangeInputWrapper,
+  SelectablePills,
+} from "@/client/pages/authorized/practices/exercises/Exercise/components/FormGenerator/components";
 import { type GetExerciseResultResponseData } from "@/shared/types";
 
 type FormGeneratorProps = {
@@ -82,6 +85,26 @@ export const FormGenerator: FC<FormGeneratorProps> = ({
               key={key}
               component={RangeInputWrapper}
               {...rangeProps}
+            />
+          );
+        } else if (section.type === "choice") {
+          const value = Array.isArray(section.value)
+            ? section.value.join(", ")
+            : section.value;
+
+          return (
+            <ExerciseStructure
+              key={key}
+              {...commonProps}
+              component={SelectablePills}
+              options={[
+                {
+                  value,
+                  title: value,
+                },
+              ]}
+              value={value}
+              disabled
             />
           );
         }

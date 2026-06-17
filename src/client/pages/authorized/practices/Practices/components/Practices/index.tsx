@@ -56,6 +56,7 @@ export const Practices: FC = () => {
                   key={exercise.id}
                   title={exercise.title}
                   src={exercise.image}
+                  locked={exercise.closed}
                   link={pages.exercisePreview.getLink({
                     params: { id: exercise.id },
                   })}
@@ -63,7 +64,30 @@ export const Practices: FC = () => {
               );
             })}
         </div>
-        <div className={cl(styles.headerWrapper, styles.trainingHeader)}>
+        {getExerciseQuery.data &&
+          getExerciseQuery.data.relatedExercises.length > 0 && (
+            <>
+              <div className={cl(styles.headerWrapper, styles.sectionHeader)}>
+                <h3 className={styles.title}>Работа с проблемой</h3>
+              </div>
+              <div className={styles.list}>
+                {getExerciseQuery.data.relatedExercises.map((exercise) => {
+                  return (
+                    <PracticeCard
+                      key={exercise.id}
+                      title={exercise.title}
+                      src={exercise.image}
+                      locked={exercise.closed}
+                      link={pages.exercisePreview.getLink({
+                        params: { id: exercise.id },
+                      })}
+                    />
+                  );
+                })}
+              </div>
+            </>
+          )}
+        <div className={cl(styles.headerWrapper, styles.sectionHeader)}>
           <h3 className={styles.title}>Обучающие упражнения</h3>
           <InfoButton popupText={POPUP_TEXTS.TRAINING_EXERCISES} />
         </div>

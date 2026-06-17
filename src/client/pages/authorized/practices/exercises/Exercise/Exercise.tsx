@@ -12,17 +12,25 @@ import { ExerciseHeader } from "../../components";
 import { ButtonsContainer, FormGenerator } from "./components";
 import styles from "./styles.module.scss";
 import { type FormValuesType, type ValueType } from "./types";
-import { generateInitialValue, validateExerciseData } from "./utils";
+import {
+  generateInitialValue,
+  getPulledFieldReference,
+  mapFormValueToText,
+  validateExerciseData,
+} from "./utils";
 import {
   Container,
   ContentWrapper,
   FormErrorLabel,
   LoadingLoop,
+  PageTitle,
 } from "@/client/components";
 import {
   useCompleteExerciseMutation,
+  useGetExerciseQuery,
   useGetExerciseStructureQuery,
 } from "@/client/redux";
+import { mapApiErrorMessage } from "@/client/utils";
 import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 import { type CompleteExerciseRequestData } from "@/shared/types";
@@ -32,8 +40,11 @@ export const ExercisePage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const { logEvent } = useAnalytics();
 
+  const { data: exercise, ...getExerciseState } = useGetExerciseQuery(id);
   const { data: exerciseStructure, ...getExerciseStructureState } =
-    useGetExerciseStructureQuery(id);
+    useGetExerciseStructureQuery(id, {
+      skip: !exercise || exercise.closed,
+    });
   const [completeExercise, completeExerciseState] =
     useCompleteExerciseMutation();
 
@@ -105,11 +116,15 @@ export const ExercisePage: FC = () => {
 
     if (validationError === null) {
       const mappedValues: CompleteExerciseRequestData["values"] = [];
+      const pulledReference = values ? getPulledFieldReference(values) : null;
 
       for (const key in values) {
         mappedValues.push({
           id: key,
-          value: Array.isArray(values[key]) ? values[key] : String(values[key]),
+          value: mapFormValueToText(values[key]),
+          pulledCompletedExerciseId:
+            pulledReference?.pulledCompletedExerciseId ?? null,
+          pulledGroupKey: pulledReference?.pulledGroupKey ?? null,
         });
       }
 
@@ -123,7 +138,43 @@ export const ExercisePage: FC = () => {
     }
   };
 
-  if (getExerciseStructureState.isLoading) return <LoadingLoop />;
+  if (
+    getExerciseState.isLoading ||
+    (!exercise?.closed && getExerciseStructureState.isLoading)
+  ) {
+    return <LoadingLoop />;
+  }
+
+  if (getExerciseState.isError) {
+    return (
+      <FormErrorLabel>
+        {mapApiErrorMessage(getExerciseState.error)}
+      </FormErrorLabel>
+    );
+  }
+
+  if (getExerciseStructureState.isError) {
+    return (
+      <FormErrorLabel>
+        {mapApiErrorMessage(getExerciseStructureState.error)}
+      </FormErrorLabel>
+    );
+  }
+
+  if (exercise?.closed) {
+    return (
+      <Container>
+        <ContentWrapper>
+          <div className={styles.lockedState}>
+            <PageTitle>Упражнение пока недоступно</PageTitle>
+            <p className={styles.lockedText}>
+              Сначала выполните предыдущее упражнение.
+            </p>
+          </div>
+        </ContentWrapper>
+      </Container>
+    );
+  }
 
   return (
     <Container>
@@ -140,6 +191,7 @@ export const ExercisePage: FC = () => {
             <FormGenerator
               exerciseStructure={exerciseStructure}
               pageNumber={pageNumber}
+              values={values}
               changeHandler={changeHandler}
             />
             {showError && errorMessage && (

@@ -11,19 +11,21 @@ import {
 export const mapGetExercisesResponse = (
   data: GetExercisesApiResponseData,
 ): GetExercisesResponseData => {
-  const { regular_exercises } = data;
+  const mapExercise = ({
+    id,
+    open,
+    title,
+    picture_link,
+  }: GetExercisesApiResponseData["regular_exercises"][number]) => ({
+    id,
+    title,
+    image: `${SEVER_API_URL}${picture_link}`,
+    closed: !open,
+  });
 
   return {
-    exercises: regular_exercises.map((exercise) => {
-      const { id, open, title, picture_link } = exercise;
-
-      return {
-        id,
-        title,
-        image: `${SEVER_API_URL}${picture_link}`,
-        closed: !open,
-      };
-    }),
+    exercises: data.regular_exercises.map(mapExercise),
+    relatedExercises: data.related_exercises.map(mapExercise),
   };
 };
 
@@ -37,8 +39,8 @@ export const mapCompleteExerciseRequest = (
     filled_fields: values.map((value) => ({
       field_id: value.id,
       text: value.value,
-      pulled_completed_exercise_id: null,
-      pulled_group_key: null,
+      pulled_completed_exercise_id: value.pulledCompletedExerciseId ?? null,
+      pulled_group_key: value.pulledGroupKey ?? null,
     })),
   };
 };

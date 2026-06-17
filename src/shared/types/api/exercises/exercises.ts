@@ -3,18 +3,24 @@ import {
   type GetExerciseResponseData,
 } from "@/shared/types";
 
+type ExerciseListItemApiResponseData = Pick<
+  GetExerciseApiResponseData,
+  "id" | "title" | "picture_link" | "open"
+>;
+
+type ExerciseListItemResponseData = Pick<
+  GetExerciseResponseData,
+  "id" | "title" | "image" | "closed"
+>;
+
 export type GetExercisesApiResponseData = {
-  regular_exercises: Pick<
-    GetExerciseApiResponseData,
-    "id" | "title" | "picture_link" | "open"
-  >[];
+  regular_exercises: ExerciseListItemApiResponseData[];
+  related_exercises: ExerciseListItemApiResponseData[];
 };
 
 export type GetExercisesResponseData = {
-  exercises: Pick<
-    GetExerciseResponseData,
-    "id" | "title" | "image" | "closed"
-  >[];
+  exercises: ExerciseListItemResponseData[];
+  relatedExercises: ExerciseListItemResponseData[];
 };
 
 export type CompleteExerciseApiRequestData = {
@@ -32,6 +38,8 @@ export type CompleteExerciseRequestData = {
   values: {
     id: string;
     value: string | string[];
+    pulledCompletedExerciseId?: null | string;
+    pulledGroupKey?: null | string;
   }[];
 };
 

@@ -6,6 +6,7 @@ export * from "./CloseIcon";
 export * from "./DefaultAvatarIcon";
 export * from "./Feather";
 export * from "./LoadingIcon";
+export * from "./LockIcon";
 export * from "./Logo";
 export * from "./NextIcon";
 export * from "./TelegramIcon";

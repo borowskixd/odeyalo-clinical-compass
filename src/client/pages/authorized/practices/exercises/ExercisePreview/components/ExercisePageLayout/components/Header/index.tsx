@@ -8,6 +8,7 @@ interface Props {
   description?: string;
   startLink: string;
   completed?: boolean;
+  locked?: boolean;
 }
 
 export const Header: FC<Props> = ({
@@ -15,20 +16,38 @@ export const Header: FC<Props> = ({
   description,
   startLink,
   completed = false,
+  locked = false,
 }) => {
+  const buttonText = locked
+    ? "Сначала выполните предыдущее упражнение"
+    : completed
+      ? "Вы уже выполнили данное упражнение"
+      : "Начать";
+
   return (
     <div className={styles.textContainer}>
       <PageTitle>{title}</PageTitle>
       {description && <p className={styles.text}>{description}</p>}
-      <Button
-        href={startLink}
-        className={styles.button}
-        view="primary"
-        width="max"
-        disabled={completed}
-      >
-        {completed ? "Вы уже выполнили данное упражнение" : "Начать"}
-      </Button>
+      {locked ? (
+        <Button
+          className={styles.button}
+          view="primary"
+          width="max"
+          disabled
+        >
+          {buttonText}
+        </Button>
+      ) : (
+        <Button
+          href={startLink}
+          className={styles.button}
+          view="primary"
+          width="max"
+          disabled={completed}
+        >
+          {buttonText}
+        </Button>
+      )}
     </div>
   );
 };
