@@ -13,6 +13,7 @@ export const api = createApi({
     "Moods",
     "Notes",
     "ExerciseResults",
+    "Exercises",
     "TrainingExercise",
     "Users",
     "Tasks",

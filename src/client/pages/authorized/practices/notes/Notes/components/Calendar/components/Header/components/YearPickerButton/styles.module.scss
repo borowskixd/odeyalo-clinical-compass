@@ -3,13 +3,13 @@
 
 .yearPicker {
   position: absolute;
+  z-index: 1000;
+  overflow: hidden;
+  min-width: 280px;
+  border-radius: 12px;
   margin-top: 8px;
   background-color: $color-white100;
-  border-radius: 12px;
   box-shadow: var(--box-shadow);
-  z-index: 1000;
-  min-width: 280px;
-  overflow: hidden;
 }
 
 .header {
@@ -28,12 +28,12 @@
   width: 28px;
   height: 28px;
   padding: 0;
-  
+
   &:disabled {
-    opacity: 0.4;
     cursor: not-allowed;
+    opacity: 0.4;
   }
-  
+
   & > svg {
     width: 16px;
     height: 16px;
@@ -42,41 +42,42 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
   padding: 16px;
+  gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .yearOption {
   padding: 8px 12px;
-  text-align: center;
   border-radius: 12px;
   cursor: pointer;
-  @include bodyXL;
-  
+  text-align: center;
+
   &:hover {
     background-color: $color-white70;
   }
-  
+
   &.activeYear {
     background-color: $color-blue80;
     color: $color-white100;
-    
+
     &:hover {
       background-color: $color-blue80;
     }
   }
+
+  @include bodyXL;
 }
 
 @media screen and (width <= 768px) {
   .yearPicker {
     max-width: 320px;
   }
-  
+
   .grid {
     max-height: 360px;
   }
-  
+
   .yearOption {
     padding: 10px 12px;
   }

@@ -16,9 +16,9 @@
 }
 
 .year {
+  display: inline-block;
   cursor: pointer;
   transition: opacity 0.2s ease;
-  display: inline-block;
 
   &:hover {
     color: $color-blue80;

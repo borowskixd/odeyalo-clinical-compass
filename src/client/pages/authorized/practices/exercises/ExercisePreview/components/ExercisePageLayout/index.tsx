@@ -14,6 +14,7 @@ interface Props {
     link: string;
   }[];
   completed?: boolean;
+  locked?: boolean;
 }
 
 export const ExercisePageLayout: FC<Props> = ({
@@ -23,6 +24,7 @@ export const ExercisePageLayout: FC<Props> = ({
   exerciseStartLink,
   history,
   completed = false,
+  locked = false,
 }) => {
   return (
     <ImageWrapper
@@ -34,6 +36,7 @@ export const ExercisePageLayout: FC<Props> = ({
         description={exerciseDescription}
         startLink={exerciseStartLink}
         completed={completed}
+        locked={locked}
       />
       {history && <History history={history} />}
     </ImageWrapper>

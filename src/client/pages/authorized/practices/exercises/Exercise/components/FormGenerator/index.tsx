@@ -2,21 +2,30 @@ import { AddableInputGroup, TextArea } from "@odeyalo/uikit";
 import { type ChangeEventHandler, type FC, type ReactNode } from "react";
 import { ExerciseStructure, Grid } from "../../../../components";
 import { toGridTemplateAreas } from "../../../../components/Grid/utils";
-import { type ValueType } from "../../types";
-import { RangeInputWrapper } from "./components";
+import { type FormValuesType, type ValueType } from "../../types";
+import { getPulledTargetSectionId, isPulledFieldValue } from "../../utils";
+import {
+  PulledFieldsSelect,
+  RangeInputWrapper,
+  SelectablePills,
+} from "./components";
 import { type GetExerciseStructureResponseData } from "@/shared/types";
 
 interface Props {
   exerciseStructure: GetExerciseStructureResponseData;
   pageNumber: number;
+  values: FormValuesType | null;
   changeHandler: (name: string, value: ValueType) => void;
 }
 
 export const FormGenerator: FC<Props> = ({
   exerciseStructure,
   pageNumber,
+  values,
   changeHandler: handler,
 }) => {
+  const pulledTargetSectionId = getPulledTargetSectionId(exerciseStructure);
+
   return exerciseStructure.pages.map((page) => {
     const gridStyle = {
       ["--grid-template-areas" as any]: toGridTemplateAreas(
@@ -41,7 +50,20 @@ export const FormGenerator: FC<Props> = ({
             sectionIndex,
           };
 
-          if (section.type === "input") {
+          if (section.id === pulledTargetSectionId) {
+            const value = values?.[section.id] ?? null;
+
+            component = (
+              <ExerciseStructure
+                {...commonProps}
+                key={section.id}
+                component={PulledFieldsSelect}
+                options={exerciseStructure.pulledFields}
+                value={isPulledFieldValue(value) ? value : null}
+                onUpdate={(value) => handler(commonProps.name, value)}
+              />
+            );
+          } else if (section.type === "input") {
             const changeHandler: ChangeEventHandler<HTMLTextAreaElement> = (
               event,
             ) => {
@@ -68,6 +90,22 @@ export const FormGenerator: FC<Props> = ({
                 key={section.id}
                 component={AddableInputGroup}
                 onUpdate={changeHandler}
+              />
+            );
+          } else if (section.type === "choice") {
+            const value = values?.[section.id];
+
+            component = (
+              <ExerciseStructure
+                {...commonProps}
+                key={section.id}
+                component={SelectablePills}
+                options={section.variants.map((variant) => ({
+                  value: variant.title,
+                  title: variant.title,
+                }))}
+                value={typeof value === "string" ? value : undefined}
+                onUpdate={(value) => handler(commonProps.name, value)}
               />
             );
           } else if (section.type === "slider") {
