@@ -39,8 +39,7 @@ export const MoodChart: FC = () => {
     );
   }
 
-  const lastSevenMoods = data.slice(-7);
-  const chartData = mapMoodsToWeeklyChartData(lastSevenMoods);
+  const chartData = mapMoodsToWeeklyChartData(data).slice(-7);
 
   if (chartData.length === 0) {
     return (

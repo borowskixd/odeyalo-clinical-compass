@@ -1,19 +1,25 @@
 export type GetWeeklyMoodsResponseData = {
-  id: string;
-  score: number;
   date: string;
-  userId: string;
-  emojis: {
+  weekday: number;
+  moodTrackers: {
     id: number;
-    emoji: string;
+    score: number;
+    createdAt: string;
+    userId: string;
+    emojiIds: number[];
+    emojiTexts: string[];
   }[];
 }[];
 
 export type GetWeeklyMoodsApiResponseData = {
-  id: string;
-  score: number;
-  created_at: string;
-  user_id: string;
-  emoji_ids: number[];
-  emoji_texts: string[];
+  date: string;
+  weekday: number;
+  mood_trackers: {
+    id: number;
+    score: number;
+    created_at: string;
+    user_id: string;
+    emoji_ids: number[];
+    emoji_texts: string[];
+  }[];
 }[];
