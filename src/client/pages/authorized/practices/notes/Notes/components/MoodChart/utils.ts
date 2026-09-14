@@ -26,7 +26,16 @@ const mapDayToString = (day: number): string => {
 export const mapMoodsToWeeklyChartData = (
   moodsData: GetWeeklyMoodsResponseData,
 ): WeeklyChartData => {
-  const sortedMoods = [...moodsData].sort(
+  const flatMoods = moodsData.flatMap((day) =>
+    day.moodTrackers.map((tracker) => ({
+      date: day.date,
+      weekday: day.weekday,
+      score: tracker.score,
+      createdAt: tracker.createdAt,
+    })),
+  );
+
+  const sortedMoods = [...flatMoods].sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
 
@@ -37,6 +46,7 @@ export const mapMoodsToWeeklyChartData = (
     return {
       day: mapDayToString(dayOfWeek),
       score: mood.score,
+      fullDate: mood.date,
     };
   });
 };
