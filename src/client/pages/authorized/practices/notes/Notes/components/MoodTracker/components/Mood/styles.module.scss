@@ -20,6 +20,29 @@
   color: $color-white100;
   font-family: var(--font-cygre);
   font-size: 20px;
+
+  &.Ужасно {
+    background-color: $color-yellow100;
+  }
+
+  &.Плохо {
+    background-color: $color-yellow30;
+    color: $color-black100;
+  }
+
+  &.Нормально {
+    background-color: $color-white70;
+    color: $color-black100;
+  }
+
+  &.Хорошо {
+    background-color: $color-green30;
+    color: $color-black100;
+  }
+
+  &.Превосходно {
+    background-color: $color-green80;
+  }
 }
 
 .mood {
@@ -27,7 +50,7 @@
 }
 
 .time {
-  color: $color-blue40;
+  color: color-mix(in srgb, currentColor 0%, $color-black100 40%);
 }
 
 .emojisContainer {
