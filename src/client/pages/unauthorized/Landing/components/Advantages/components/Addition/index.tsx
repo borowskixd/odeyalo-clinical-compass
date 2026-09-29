@@ -1,4 +1,5 @@
 import { type FC } from "react";
+import { TextLinks } from "./components";
 import styles from "./styles.module.scss";
 
 export const Addition: FC = () => {
@@ -11,12 +12,15 @@ export const Addition: FC = () => {
       <div className={styles.textContent}>
         <h2 className={`${styles.title}`}>Научно-доказанный подход</h2>
         <div className={styles.description}>
-          Мы основываемся на научных данных
+          Мы основываемся на научных
           <br />
-          и сами проводим исследования
+          данных и сами проводим исследования эффективности
           <br />
-          эффективности нашего приложения
+          нашего приложения
         </div>
+      </div>
+      <div className={styles.textLinksWrapper}>
+        <TextLinks />
       </div>
     </div>
   );

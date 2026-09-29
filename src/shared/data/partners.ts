@@ -4,6 +4,7 @@ import Dialectica from "@/client/assets/webp/partners/dialectica.webp";
 import Fasie from "@/client/assets/webp/partners/fasie.webp";
 import Gazprom from "@/client/assets/webp/partners/gazprom.webp";
 import Mercuria from "@/client/assets/webp/partners/mercuria.webp";
+import SibGMU from "@/client/assets/webp/partners/SibGMU.webp";
 import Tokp from "@/client/assets/webp/partners/tokp.webp";
 import Tsu from "@/client/assets/webp/partners/tsu.webp";
 import Tusur from "@/client/assets/webp/partners/tusur.webp";
@@ -15,6 +16,11 @@ export interface Partner {
 }
 
 export const partners: Partner[] = [
+  {
+    name: "СибГМУ",
+    image: SibGMU,
+    link: "https://www.ssmu.ru/",
+  },
   {
     name: "Меркурия Благотворительный Фонд",
     image: Mercuria,
