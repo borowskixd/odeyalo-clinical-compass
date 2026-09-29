@@ -1,0 +1,11 @@
+.textLinks {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.textLinks__item {
+  font-size: 12px;
+  line-height: 1.5;
+}
