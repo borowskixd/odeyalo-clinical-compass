@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import { Addition, Step } from "./components";
+import { Addition, Reviews, Step } from "./components";
 import styles from "./styles.module.scss";
 
 export const Advantages: FC = () => {
@@ -50,7 +50,8 @@ export const Advantages: FC = () => {
           />
         </div>
       </section>
-      <Addition></Addition>
+      <Addition />
+      <Reviews />
     </>
   );
 };
