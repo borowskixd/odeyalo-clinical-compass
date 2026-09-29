@@ -1,6 +1,7 @@
 @use "@/client/styles/colors" as *;
 
 .slideGreen {
+  position: relative;
   padding: 40px;
   border-radius: 32px;
   background-color: $color-green80;
@@ -9,12 +10,26 @@
   background-repeat: no-repeat;
   background-size: 600px;
 
+  &::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 200px;
+    height: 253px;
+    background-image: url("/static/landing/QR.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
   @media (width <= 1024px) {
     background-position: 90% top;
   }
 }
 
 .slideRed {
+  position: relative;
   padding: 40px;
   border-radius: 32px;
   background-color: $color-red100;
@@ -23,12 +38,26 @@
   background-repeat: no-repeat;
   background-size: 350px;
 
+  &::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 200px;
+    height: 253px;
+    background-image: url("/static/landing/QR.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
   @media (width <= 1024px) {
     background-position: 90% top;
   }
 }
 
 .slideBlue {
+  position: relative;
   padding: 40px;
   border-radius: 32px;
   background-color: $color-blue80;
@@ -36,6 +65,19 @@
   background-position: 100% calc(50% - 30px);
   background-repeat: no-repeat;
   background-size: 450px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 200px;
+    height: 253px;
+    background-image: url("/static/landing/QR.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 
   @media (width <= 1024px) {
     background-position: 90% top;
