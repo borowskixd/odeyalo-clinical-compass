@@ -4,6 +4,7 @@ import {
   type GetEmojisResponseData,
   type GetMoodResponseData,
   type GetMoodsResponseData,
+  type GetMoodTagsResponseData,
   type GetNoteResponseData,
   type GetNotesCalendarFilledDatesResponseData,
   type GetNotesResponseData,
@@ -74,6 +75,10 @@ const notesApi = api.injectEndpoints({
         }),
         invalidatesTags: ["Moods"],
       }),
+      getMoodTags: builder.query<GetMoodTagsResponseData, void>({
+        query: () => "/notes/tags",
+        providesTags: [],
+      }),
     };
   },
 });
@@ -88,4 +93,5 @@ export const {
   useGetMoodsQuery,
   useGetWeeklyMoodsQuery,
   useSaveMoodMutation,
+  useGetMoodTagsQuery,
 } = notesApi;

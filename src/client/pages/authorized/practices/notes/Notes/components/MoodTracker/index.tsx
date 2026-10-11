@@ -61,6 +61,14 @@ export const MoodTracker: FC<MoodTrackerProps> = ({
         </Button>
       )}
       {!!moods?.length && <MoodList />}
+      <Button
+        width="max"
+        view="secondary"
+        href={pages.tags.path}
+        className={styles.redirectButton}
+      >
+        Далее
+      </Button>
     </div>
   );
 };

@@ -103,6 +103,11 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
+  tags: new Page("/practices/notes/tags", "practices", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
   exercise: new Page<{ id: string }>("/practices/exercises/:id", "practices", [
     ACCESS.client,
     ACCESS.psychologist,
