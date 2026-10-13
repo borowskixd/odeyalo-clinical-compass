@@ -2,6 +2,7 @@ import { api } from "../../api";
 import {
   type CreateNoteRequestData,
   type GetEmojisResponseData,
+  type GetEmotionsResponseData,
   type GetMoodResponseData,
   type GetMoodsResponseData,
   type GetMoodTagsResponseData,
@@ -79,6 +80,10 @@ const notesApi = api.injectEndpoints({
         query: () => "/notes/tags",
         providesTags: [],
       }),
+      getEmotions: builder.query<GetEmotionsResponseData, void>({
+        query: () => "/notes/emotions",
+        providesTags: [],
+      }),
     };
   },
 });
@@ -94,4 +99,5 @@ export const {
   useGetWeeklyMoodsQuery,
   useSaveMoodMutation,
   useGetMoodTagsQuery,
+  useGetEmotionsQuery,
 } = notesApi;

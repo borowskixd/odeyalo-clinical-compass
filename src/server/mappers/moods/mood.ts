@@ -8,12 +8,20 @@ import {
 export const mapSaveMoodRequest = (
   data: SaveMoodRequestData,
 ): SaveMoodApiRequestData => {
-  const { score, date, emojiIds } = data;
+  const { score, date, emojiIds, emotions, otherEmotion, influenceFactors } =
+    data;
 
   return {
     score,
-    emoji_ids: emojiIds,
     day: date,
+    emoji_ids: emojiIds,
+    emotions,
+    other_emotion: otherEmotion,
+    influence_factors: influenceFactors.map((factor) => ({
+      category_id: factor.categoryId,
+      option_ids: factor.optionIds,
+      custom_text: factor.customText ?? "",
+    })),
   };
 };
 

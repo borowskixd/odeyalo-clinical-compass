@@ -1,22 +1,21 @@
 "use client";
 
 import { Button } from "@odeyalo/uikit";
-import { type FC, useEffect, useState } from "react";
-import { Emojis, MoodTrackerValue } from "./components";
+import { useRouter } from "next/navigation";
+import { type FC } from "react";
+import { Emojis } from "./components";
 import styles from "./styles.module.scss";
-import { FormErrorLabel, FormikForm } from "@/client/components";
+import { FormikForm } from "@/client/components";
 import { useAppDispatch, useAppSelector } from "@/client/hooks";
 import {
   notesActions,
+  selectMoodDraft,
   selectMoodTracker,
-  selectNotesCalendarDate,
-  useSaveMoodMutation,
 } from "@/client/redux";
-import { useAnalytics } from "@/shared/analytics";
-import { compareDates, mapDateToApiDateFormat } from "@/shared/utils";
+import { pages } from "@/shared/data";
 
 interface Props {
-  onSubmitAction: () => void;
+  onSubmitAction?: () => void;
 }
 
 interface InitialValues {
@@ -24,48 +23,28 @@ interface InitialValues {
 }
 
 export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const moodTracker = useAppSelector(selectMoodTracker);
-  const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
-  const [saveMood, { isLoading, isSuccess }] = useSaveMoodMutation();
-  const [emojiIds, setEmojiIds] = useState<number[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const { logEvent } = useAnalytics();
-
-  useEffect(() => {
-    if (isSuccess) {
-      logEvent("mood-added");
-    }
-  }, [isSuccess, logEvent]);
+  const moodDraft = useAppSelector(selectMoodDraft);
 
   const submitHandler = (values: InitialValues) => {
-    if (emojiIds.length) {
-      const isCurrentDate = compareDates(notesCalendarDate, "current", {
-        fullYear: true,
-        month: true,
-        date: true,
-      });
-
-      saveMood({
-        ...values,
-        emojiIds: emojiIds,
-        date: isCurrentDate ? null : mapDateToApiDateFormat(notesCalendarDate),
-      });
-
-      onSubmitAction();
-    } else {
-      setErrorMessage("Необходимо выбрать хотя бы одну эмоцию");
-    }
+    dispatch(notesActions.setMoodDraftScore(values.score));
+    onSubmitAction?.();
+    router.push(pages.tags.path);
   };
 
-  const selectEmojiHandler = (emojiIds: number[]) => {
-    setEmojiIds(emojiIds);
-    setErrorMessage(null);
-    dispatch(notesActions.setMoodTrackerEmojis(emojiIds));
+  const selectEmotionsHandler = (emotions: string[]) => {
+    dispatch(notesActions.setMoodDraftEmotions(emotions));
   };
 
   const handleUpdateMood = (value: number) => {
     dispatch(notesActions.setMoodTrackerValue(value));
+  };
+
+  const handleOtherClick = () => {
+    dispatch(notesActions.setMoodDraftScore(moodTracker.mood));
+    router.push(pages.emotions.path);
   };
 
   return (
@@ -75,28 +54,22 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
       onSubmit={submitHandler}
       className={styles.form}
     >
-      <MoodTrackerValue />
       <FormikForm.RangeInput
         name="score"
         onUpdate={handleUpdateMood}
       />
       <Emojis
-        onUpdate={selectEmojiHandler}
-        defaultEmojis={moodTracker.emojis}
+        onUpdate={selectEmotionsHandler}
+        onOtherClick={handleOtherClick}
+        defaultEmotions={moodDraft.emotions}
       />
-      {errorMessage && (
-        <div style={{ marginTop: "10px" }}>
-          <FormErrorLabel>{errorMessage}</FormErrorLabel>
-        </div>
-      )}
       <Button
         type="submit"
         className={styles.button}
-        disabled={isLoading}
-        view="primary"
+        view="secondary"
         width="max"
       >
-        Сохранить
+        Далее
       </Button>
     </FormikForm>
   );

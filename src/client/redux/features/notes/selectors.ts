@@ -13,3 +13,7 @@ export const selectNotesCalendarDate = (state: RootState) => {
 export const selectMoodTracker = (state: RootState) => {
   return selectNotesModule(state).moodTracker;
 };
+
+export const selectMoodDraft = (state: RootState) => {
+  return selectNotesModule(state).moodDraft;
+};
