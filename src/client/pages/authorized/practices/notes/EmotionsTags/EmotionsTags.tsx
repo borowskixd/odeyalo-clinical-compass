@@ -2,12 +2,13 @@
 
 import { Button } from "@odeyalo/uikit";
 import { useRouter } from "next/navigation";
-import { type FC } from "react";
+import { type FC, useState } from "react";
 import { OtherButton } from "./components";
 import styles from "./styles.module.scss";
 import {
   Container,
   ContentWrapper,
+  FormErrorLabel,
   LoadingLoop,
   PageTitle,
 } from "@/client/components";
@@ -25,6 +26,8 @@ export const EmotionsTagsPage: FC = () => {
   const moodDraft = useAppSelector(selectMoodDraft);
   const { data, isLoading } = useGetEmotionsQuery();
 
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   if (isLoading) {
     return <LoadingLoop />;
   }
@@ -35,7 +38,11 @@ export const EmotionsTagsPage: FC = () => {
   const customTitle = data?.customTitle ?? "Другое";
   const allowCustomText = data?.allowCustomText ?? false;
 
+  const hasAnyEmotion =
+    moodDraft.emotions.length > 0 || moodDraft.otherEmotion.trim().length > 0;
+
   const onSelectHandler = (emotion: string) => {
+    setErrorMessage(null);
     const next = moodDraft.emotions.includes(emotion)
       ? moodDraft.emotions.filter((e) => e !== emotion)
       : [...moodDraft.emotions, emotion];
@@ -44,10 +51,16 @@ export const EmotionsTagsPage: FC = () => {
   };
 
   const onOtherChange = (isSelected: boolean, text: string) => {
+    setErrorMessage(null);
     dispatch(notesActions.setMoodDraftOtherEmotion(isSelected ? text : ""));
   };
 
   const onNextHandler = () => {
+    if (!hasAnyEmotion) {
+      setErrorMessage("Выберите хотя бы одну эмоцию или введите свою");
+      return;
+    }
+    setErrorMessage(null);
     router.push(pages.tags.path);
   };
 
@@ -76,23 +89,33 @@ export const EmotionsTagsPage: FC = () => {
           </div>
         </div>
 
-        {allowCustomText && (
-          <OtherButton
-            title={customTitle}
-            initialSelected={moodDraft.otherEmotion.trim().length > 0}
-            initialText={moodDraft.otherEmotion}
-            onChange={onOtherChange}
-          />
-        )}
+        <div className={styles.actions}>
+          {allowCustomText && (
+            <OtherButton
+              title={customTitle}
+              initialSelected={moodDraft.otherEmotion.trim().length > 0}
+              initialText={moodDraft.otherEmotion}
+              onChange={onOtherChange}
+            />
+          )}
 
-        <Button
-          width="max"
-          view="secondary"
-          type="button"
-          onClick={onNextHandler}
-        >
-          Далее
-        </Button>
+          <Button
+            width="max"
+            view="primary"
+            type="button"
+            onClick={onNextHandler}
+            className={styles.nextButton}
+            disabled={!hasAnyEmotion} // Блокируем кнопку
+          >
+            Далее
+          </Button>
+        </div>
+
+        {errorMessage && (
+          <div style={{ marginTop: "10px" }}>
+            <FormErrorLabel>{errorMessage}</FormErrorLabel>
+          </div>
+        )}
       </ContentWrapper>
     </Container>
   );

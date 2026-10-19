@@ -113,6 +113,11 @@ export const pages: Pages = {
     ACCESS.psychologist,
     ACCESS.hr,
   ]),
+  advices: new Page("/practices/advices", "practices", [
+    ACCESS.client,
+    ACCESS.psychologist,
+    ACCESS.hr,
+  ]),
   exercise: new Page<{ id: string }>("/practices/exercises/:id", "practices", [
     ACCESS.client,
     ACCESS.psychologist,

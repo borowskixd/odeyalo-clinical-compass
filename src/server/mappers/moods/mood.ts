@@ -2,6 +2,7 @@ import {
   type GetMoodApiResponseData,
   type GetMoodResponseData,
   type SaveMoodApiRequestData,
+  type SaveMoodInfluenceFactorData,
   type SaveMoodRequestData,
 } from "@/shared/types";
 
@@ -28,18 +29,33 @@ export const mapSaveMoodRequest = (
 export const mapGetMoodResponse = (
   data: GetMoodApiResponseData,
 ): GetMoodResponseData => {
-  const { id, emoji_ids, emoji_texts, user_id, score, created_at } = data;
+  const {
+    id,
+    emoji_ids,
+    emoji_texts,
+    user_id,
+    score,
+    created_at,
+    emotions,
+    influence_factors,
+  } = data;
 
   return {
     id,
     date: created_at,
     score,
     userId: user_id,
-    emojis: emoji_ids.map((el, index) => {
-      return {
-        id: el,
-        emoji: emoji_texts[index],
-      };
-    }),
+    emojis: emoji_ids.map((el, index) => ({
+      id: el,
+      emoji: emoji_texts[index],
+    })),
+    emotions,
+    influenceFactors: influence_factors.map(
+      (factor): SaveMoodInfluenceFactorData => ({
+        categoryId: factor.category_id,
+        optionIds: factor.option_ids,
+        customText: factor.custom_text,
+      }),
+    ),
   };
 };

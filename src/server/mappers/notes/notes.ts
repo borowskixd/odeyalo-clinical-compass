@@ -9,11 +9,12 @@ import {
 export const mapCreateNoteRequest = (
   data: CreateNoteRequestData,
 ): CreateNoteApiRequestData => {
-  const { note, date } = data;
+  const { note, date, trackerId } = data;
 
   return {
     text: note,
     day: date,
+    mood_tracker_id: trackerId,
   };
 };
 

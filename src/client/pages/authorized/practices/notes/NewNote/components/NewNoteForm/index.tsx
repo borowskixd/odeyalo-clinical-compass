@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@odeyalo/uikit";
 import { useRouter, useSearchParams } from "next/navigation";
 import { type FC, useEffect } from "react";
 import { NoteDate, SubmitButton } from "./components";
@@ -9,7 +10,7 @@ import { useCreateNoteMutation } from "@/client/redux";
 import { mapApiErrorMessage } from "@/client/utils";
 import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
-import { compareDates, mapDateToApiDateFormat } from "@/shared/utils";
+import { mapDateToApiDateFormat } from "@/shared/utils";
 
 interface InitialValues {
   note: string;
@@ -26,10 +27,11 @@ export const NewNoteForm: FC = () => {
     useCreateNoteMutation();
   const { logEvent } = useAnalytics();
 
+  const trackerId = searchParams.get("trackerId");
+
   useEffect(() => {
     if (isSuccess) {
-      router.push(pages.notes.path);
-
+      router.push(pages.advices.path);
       logEvent("note-added");
     }
   }, [isSuccess, router, logEvent]);
@@ -38,16 +40,7 @@ export const NewNoteForm: FC = () => {
 
   let date: Date | null = null;
 
-  if (
-    dateParam &&
-    !isNaN(new Date(dateParam).valueOf()) &&
-    new Date() > new Date(dateParam) &&
-    !compareDates(new Date(dateParam), "current", {
-      fullYear: true,
-      month: true,
-      date: true,
-    })
-  ) {
+  if (dateParam && !isNaN(new Date(dateParam).valueOf())) {
     date = new Date(dateParam);
   }
 
@@ -55,9 +48,14 @@ export const NewNoteForm: FC = () => {
     const dateValue = date ? mapDateToApiDateFormat(date) : null;
 
     createNote({
-      ...values,
+      note: values.note,
       date: dateValue,
+      trackerId: trackerId ?? "",
     });
+  };
+
+  const onSkipHandler = () => {
+    router.push(pages.advices.path);
   };
 
   return (
@@ -79,6 +77,17 @@ export const NewNoteForm: FC = () => {
           <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>
         )}
         <SubmitButton disabled={isLoading || isSuccess} />
+
+        <Button
+          type="button"
+          width="max"
+          view="secondary"
+          className={styles.skipButton}
+          disabled={isLoading || isSuccess}
+          onClick={onSkipHandler}
+        >
+          Пропустить
+        </Button>
       </FormikForm>
     </>
   );

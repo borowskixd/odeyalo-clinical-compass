@@ -2,10 +2,10 @@
 
 import { Button } from "@odeyalo/uikit";
 import { useRouter } from "next/navigation";
-import { type FC } from "react";
+import { type FC, useState } from "react";
 import { Emojis } from "./components";
 import styles from "./styles.module.scss";
-import { FormikForm } from "@/client/components";
+import { FormErrorLabel, FormikForm } from "@/client/components";
 import { useAppDispatch, useAppSelector } from "@/client/hooks";
 import {
   notesActions,
@@ -28,13 +28,22 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
   const moodTracker = useAppSelector(selectMoodTracker);
   const moodDraft = useAppSelector(selectMoodDraft);
 
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const submitHandler = (values: InitialValues) => {
+    if (moodDraft.emotions.length === 0) {
+      setErrorMessage("Выберите хотя бы одну эмоцию");
+      return;
+    }
+
+    setErrorMessage(null);
     dispatch(notesActions.setMoodDraftScore(values.score));
     onSubmitAction?.();
     router.push(pages.tags.path);
   };
 
   const selectEmotionsHandler = (emotions: string[]) => {
+    setErrorMessage(null);
     dispatch(notesActions.setMoodDraftEmotions(emotions));
   };
 
@@ -63,11 +72,17 @@ export const MoodForm: FC<Props> = ({ onSubmitAction }) => {
         onOtherClick={handleOtherClick}
         defaultEmotions={moodDraft.emotions}
       />
+      {errorMessage && (
+        <div style={{ marginTop: "10px" }}>
+          <FormErrorLabel>{errorMessage}</FormErrorLabel>
+        </div>
+      )}
       <Button
         type="submit"
         className={styles.button}
-        view="secondary"
+        view="primary"
         width="max"
+        disabled={moodDraft.emotions.length === 0}
       >
         Далее
       </Button>

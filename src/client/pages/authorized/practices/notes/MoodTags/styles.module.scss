@@ -1,13 +1,10 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
 .title {
   margin-bottom: 20px;
 }
 
-.saveButton {
-  margin-top: 20px;
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
 }

@@ -3,6 +3,8 @@ import {
   type CreateNoteRequestData,
   type GetEmojisResponseData,
   type GetEmotionsResponseData,
+  GetHelpCategoriesResponseData,
+  GetHelpCategoryByIdResponseData,
   type GetMoodResponseData,
   type GetMoodsResponseData,
   type GetMoodTagsResponseData,
@@ -84,6 +86,20 @@ const notesApi = api.injectEndpoints({
         query: () => "/notes/emotions",
         providesTags: [],
       }),
+      getNoteByMoodTracker: builder.query<GetNoteResponseData | null, string>({
+        query: (id) => `/notes/${id}`,
+        providesTags: ["Notes"],
+      }),
+      getHelpCategories: builder.query<GetHelpCategoriesResponseData, void>({
+        query: () => "/advices",
+      }),
+
+      getHelpCategoryById: builder.query<
+        GetHelpCategoryByIdResponseData,
+        string
+      >({
+        query: (id) => `/advices/${id}`,
+      }),
     };
   },
 });
@@ -100,4 +116,7 @@ export const {
   useSaveMoodMutation,
   useGetMoodTagsQuery,
   useGetEmotionsQuery,
+  useGetNoteByMoodTrackerQuery,
+  useGetHelpCategoriesQuery,
+  useGetHelpCategoryByIdQuery,
 } = notesApi;

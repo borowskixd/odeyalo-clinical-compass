@@ -1,0 +1,91 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.title {
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 0 10px 10px; 
+
+  @media screen and (width <= 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 510px;
+  padding: 20px;
+  border-radius: 30px;
+  background-color: $color-white70;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  transition: background-color 0.2s;
+
+  background-position: 90% top;
+  background-repeat: no-repeat;
+  background-size: 300px;
+  
+  text-align: center;
+  transition: background-color 0.2s;
+
+  &.reflect, &.focus {
+    background-color: $color-blue80;
+    
+    .cardTitle {
+      color: $color-white100;
+    }
+  }
+
+  &.relax {
+    background-color: $color-white70;
+  }
+
+  &.reflect {
+    background-image: url("/static/landing/feather.webp");
+  }
+
+  &.focus {
+    background-image: url("/static/landing/heart_2.webp");
+  }
+
+  &.relax {
+    background-image: url("/static/landing/book.webp");
+  }
+  .reflectButton, .focusButton {
+  background-color: $color-white100 !important;
+  color: $color-blue80 !important;
+
+  &:hover {
+    background-color: $color-white70 !important;
+  }
+  }
+}
+
+.cardContent {
+  display: flex;
+  flex-grow: 1;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.cardTitle {
+  @include titleCygre;
+  text-align: left;
+}
+
+.cardButton {
+  margin-top: 16px;
+  width: 100%;
+}

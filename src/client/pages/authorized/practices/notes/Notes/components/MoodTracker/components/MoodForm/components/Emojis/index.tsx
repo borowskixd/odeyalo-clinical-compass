@@ -31,7 +31,7 @@ export const Emojis: FC<Props> = ({
 
   return (
     <div className={styles.container}>
-      <h4 className={styles.title}>Эмоции</h4>
+      <h4 className={styles.title}>Что чувствуешь?</h4>
       <div className={styles.list}>
         {isLoading &&
           new Array(7).fill("").map((_, index) => (

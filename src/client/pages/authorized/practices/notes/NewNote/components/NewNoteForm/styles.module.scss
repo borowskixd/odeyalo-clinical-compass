@@ -4,6 +4,10 @@
   gap: 20px;
 }
 
+.skipButton{
+  max-width: 536px;
+}
+
 .noteInput {
   &::placeholder {
     @include bodyL;

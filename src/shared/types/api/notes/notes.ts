@@ -6,11 +6,13 @@ import {
 export type CreateNoteRequestData = {
   note: string;
   date: string | null;
+  trackerId: string;
 };
 
 export type CreateNoteApiRequestData = {
   text: string;
   day: string | null;
+  mood_tracker_id: string;
 };
 
 export type GetNotesResponseData = GetNoteResponseData[];

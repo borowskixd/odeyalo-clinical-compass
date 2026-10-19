@@ -5,15 +5,13 @@
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
-  width: 100%;
-  margin-bottom: 20px;
+  width: auto;
 }
 
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
   gap: 6px;
   width: 150px;
   height: 52px;
@@ -39,6 +37,5 @@
   padding: 10px 12px;
   border-radius: 28px;
   font-size: 14px;
-  margin-top: 15px;
   background: $color-white70;
 }

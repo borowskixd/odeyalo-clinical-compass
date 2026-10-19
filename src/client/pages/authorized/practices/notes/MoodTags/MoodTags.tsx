@@ -1,13 +1,15 @@
 "use client";
 
-import { Button } from "@odeyalo/uikit";
-import { type FC, useEffect, useState } from "react";
-import { OtherButton, TagsForm } from "./components";
+import { useRouter } from "next/navigation";
+import { type FC, useEffect, useRef } from "react";
+import { MoodInfluenceForm } from "./components";
 import styles from "./styles.module.scss";
+import { POPUP_TEXTS } from "./utils";
 import {
   Container,
   ContentWrapper,
   FormErrorLabel,
+  InfoButton,
   LoadingLoop,
   PageTitle,
 } from "@/client/components";
@@ -16,33 +18,65 @@ import {
   notesActions,
   selectMoodDraft,
   selectNotesCalendarDate,
+  useGetMoodsQuery,
   useGetMoodTagsQuery,
   useSaveMoodMutation,
 } from "@/client/redux";
 import { mapApiErrorMessage } from "@/client/utils";
 import { useAnalytics } from "@/shared/analytics";
+import { pages } from "@/shared/data";
 import { type MoodInfluenceFactorDraft } from "@/shared/types";
 import { compareDates, mapDateToApiDateFormat } from "@/shared/utils";
 
 export const MoodTagsPage: FC = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const moodDraft = useAppSelector(selectMoodDraft);
   const notesCalendarDate = useAppSelector(selectNotesCalendarDate);
   const { data, isLoading, isError, error } = useGetMoodTagsQuery();
+  const { refetch: refetchMoods } = useGetMoodsQuery(notesCalendarDate);
   const [saveMood, { isLoading: isSaving, isSuccess, error: saveError }] =
     useSaveMoodMutation();
   const { logEvent } = useAnalytics();
 
-  const [factors, setFactors] = useState<
-    Record<string, { optionIds: string[]; customText: string }>
-  >({});
+  const hasRedirected = useRef(false);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (!isSuccess || hasRedirected.current) return;
+    hasRedirected.current = true;
+
+    refetchMoods().then(({ data: moods }) => {
+      const list = moods ?? [];
+      const lastMood = list.reduce<(typeof list)[number] | undefined>(
+        (latest, current) => {
+          if (!latest) return current;
+          return new Date(current.date) > new Date(latest.date)
+            ? current
+            : latest;
+        },
+        undefined,
+      );
+
       logEvent("mood-added");
       dispatch(notesActions.resetMoodDraft());
-    }
-  }, [isSuccess, logEvent, dispatch]);
+
+      if (lastMood) {
+        const isCurrentDate = compareDates(notesCalendarDate, "current", {
+          fullYear: true,
+          month: true,
+          date: true,
+        });
+
+        const dateQuery = isCurrentDate
+          ? ""
+          : `&date=${mapDateToApiDateFormat(notesCalendarDate)}`;
+
+        router.replace(
+          `${pages.createNote.path}?trackerId=${lastMood.id}${dateQuery}`,
+        );
+      }
+    });
+  }, [isSuccess, refetchMoods, logEvent, dispatch, router, notesCalendarDate]);
 
   if (isLoading) {
     return <LoadingLoop />;
@@ -52,42 +86,7 @@ export const MoodTagsPage: FC = () => {
     return <FormErrorLabel>{mapApiErrorMessage(error)}</FormErrorLabel>;
   }
 
-  const categories = (data ?? []).filter((c) => !c.allowCustomText);
-  const other = (data ?? []).find((c) => c.allowCustomText);
-
-  const setCategoryOptions = (categoryId: string, optionIds: string[]) => {
-    setFactors((prev) => ({
-      ...prev,
-      [categoryId]: {
-        optionIds,
-        customText: prev[categoryId]?.customText ?? "",
-      },
-    }));
-  };
-
-  const setCategoryCustomText = (categoryId: string, customText: string) => {
-    setFactors((prev) => ({
-      ...prev,
-      [categoryId]: {
-        optionIds: prev[categoryId]?.optionIds ?? [],
-        customText,
-      },
-    }));
-  };
-
-  const collectInfluenceFactors = (): MoodInfluenceFactorDraft[] => {
-    return Object.entries(factors)
-      .filter(([, value]) => value.optionIds.length > 0 || value.customText)
-      .map(([categoryId, value]) => ({
-        categoryId,
-        optionIds: value.optionIds,
-        customText: value.customText,
-      }));
-  };
-
-  const onSaveHandler = () => {
-    const influenceFactors = collectInfluenceFactors();
-
+  const onSaveHandler = (influenceFactors: MoodInfluenceFactorDraft[]) => {
     const isCurrentDate = compareDates(notesCalendarDate, "current", {
       fullYear: true,
       month: true,
@@ -107,42 +106,20 @@ export const MoodTagsPage: FC = () => {
   return (
     <Container>
       <ContentWrapper>
-        <PageTitle className={styles.title}>Что повлияло?</PageTitle>
-
-        <div className={styles.grid}>
-          {categories.map((category) => (
-            <TagsForm
-              key={category.id}
-              data={category}
-              onChange={(optionIds) =>
-                setCategoryOptions(category.id, optionIds)
-              }
-            />
-          ))}
+        <div className={styles.header}>
+          <PageTitle className={styles.title}>Что повлияло?</PageTitle>
+          <InfoButton
+            title={POPUP_TEXTS.EXPLANATION_TITLE}
+            popupText={POPUP_TEXTS.EXPLANATION}
+          />
         </div>
 
-        {other && (
-          <OtherButton
-            onChange={(isSelected, text) =>
-              setCategoryCustomText(other.id, isSelected ? text : "")
-            }
-          />
-        )}
-
-        {saveError && (
-          <FormErrorLabel>{mapApiErrorMessage(saveError)}</FormErrorLabel>
-        )}
-
-        <Button
-          type="button"
-          width="max"
-          view="primary"
-          disabled={isSaving}
-          onClick={onSaveHandler}
-          className={styles.saveButton}
-        >
-          Сохранить
-        </Button>
+        <MoodInfluenceForm
+          categories={data ?? []}
+          isLoading={isSaving}
+          error={saveError}
+          onSubmit={onSaveHandler}
+        />
       </ContentWrapper>
     </Container>
   );
