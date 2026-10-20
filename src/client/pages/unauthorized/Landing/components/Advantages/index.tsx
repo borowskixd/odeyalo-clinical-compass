@@ -39,6 +39,7 @@ export const Advantages: FC = () => {
               </div>
             </li>
           </ul>
+          <h2 className={`${styles.title}`}>&quot;399 рублей&quot; в месяц</h2>
         </div>
 
         <div className={styles.imageSide}>
