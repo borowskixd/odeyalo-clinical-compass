@@ -33,6 +33,8 @@ export const mapGetHelpCategoryByIdResponse = (
       (material): GetHelpMaterialResponseData => ({
         type: material.type,
         materialId: material.material_id,
+        title: material.title,
+        imageUrl: material.image_url,
       }),
     ),
   };

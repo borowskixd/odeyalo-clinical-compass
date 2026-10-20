@@ -4,8 +4,8 @@ import { Button } from "@odeyalo/uikit";
 import Link from "next/link";
 import { type FC } from "react";
 import styles from "./styles.module.scss";
-import { LoadingLoop } from "@/client/components";
 import { useGetHelpCategoryByIdQuery } from "@/client/redux";
+import { getDailyTaskLink, getDailyTaskType } from "@/shared/utils";
 
 interface ModalProps {
   categoryId: string;
@@ -13,10 +13,18 @@ interface ModalProps {
 }
 
 export const HelpCategoryModal: FC<ModalProps> = ({ categoryId, onClose }) => {
-  const { data: category, isLoading } = useGetHelpCategoryByIdQuery(categoryId);
+  const { data: category } = useGetHelpCategoryByIdQuery(categoryId);
 
-  if (isLoading) return <LoadingLoop />;
   if (!category) return null;
+
+  const getMaterialLink = (type: string, materialId: string) => {
+    if (type === "theory") {
+      return `/articles/${materialId}`;
+    }
+
+    const taskType = getDailyTaskType(type as "practice" | "test");
+    return getDailyTaskLink(taskType, materialId) ?? "#";
+  };
 
   return (
     <div
@@ -32,28 +40,35 @@ export const HelpCategoryModal: FC<ModalProps> = ({ categoryId, onClose }) => {
         <div className={styles.materialsList}>
           {category.materials.map((material) => {
             let tag = "Материал";
-            let href = "#";
 
-            if (material.type === "test") {
-              tag = "Тест";
-              href = `/tests/${material.materialId}`;
-            } else if (material.type === "practice") {
-              tag = "Практика";
-              href = `/practices/${material.materialId}`;
-            } else if (material.type === "theory") {
-              tag = "Теория";
-              href = `/theory/${material.materialId}`;
-            }
+            if (material.type === "test") tag = "Тест";
+            else if (material.type === "practice") tag = "Практика";
+            else if (material.type === "theory") tag = "Теория";
+
+            const href = getMaterialLink(material.type, material.materialId);
 
             return (
-              <Link
+              <div
                 key={material.materialId}
-                href={href}
-                className={styles.materialCard}
+                className={styles.materialItem}
               >
-                <span className={styles.materialTag}>{tag}</span>
-                <span className={styles.materialLink}>Перейти</span>
-              </Link>
+                <Link
+                  href={href}
+                  className={styles.materialCard}
+                >
+                  <div className={styles.materialImageContainer}>
+                    <img
+                      src={material.imageUrl}
+                      alt={material.title}
+                      className={styles.materialImage}
+                    />
+                  </div>
+                  <p className={styles.materialTag}>{tag}</p>
+                </Link>
+                {material.title && (
+                  <div className={styles.materialTitle}>{material.title}</div>
+                )}
+              </div>
             );
           })}
         </div>

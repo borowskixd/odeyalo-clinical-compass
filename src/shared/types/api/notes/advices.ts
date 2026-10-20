@@ -8,6 +8,8 @@ export type GetHelpCategoriesApiResponseData = GetHelpCategoryApiResponseData[];
 export type GetHelpMaterialApiResponseData = {
   type: string;
   material_id: string;
+  title: string;
+  image_url: string;
 };
 
 export type GetHelpCategoryByIdApiResponseData = {
@@ -26,6 +28,8 @@ export type GetHelpCategoriesResponseData = GetHelpCategoryResponseData[];
 export type GetHelpMaterialResponseData = {
   type: string;
   materialId: string;
+  title: string;
+  imageUrl: string;
 };
 
 export type GetHelpCategoryByIdResponseData = {

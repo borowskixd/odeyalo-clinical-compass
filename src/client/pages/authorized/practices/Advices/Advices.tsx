@@ -12,6 +12,12 @@ import {
 } from "@/client/components";
 import { useGetHelpCategoriesQuery } from "@/client/redux";
 
+const CARD_DESCRIPTIONS: Record<string, string> = {
+  reflect: "Выяснить причины своего состояния",
+  relax: "Вдох, выдох...",
+  focus: "Настроиться на нужный лад",
+};
+
 export const AdvicesPage: FC = () => {
   const { data: categories, isLoading } = useGetHelpCategoriesQuery();
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
@@ -32,7 +38,14 @@ export const AdvicesPage: FC = () => {
               className={`${styles.card} ${styles[category.id] || ""}`}
             >
               <div className={styles.cardContent}>
-                <span className={styles.cardTitle}>{category.title}</span>
+                <div className={styles.textWrapper}>
+                  <span className={styles.cardTitle}>{category.title}</span>
+                  {CARD_DESCRIPTIONS[category.id] && (
+                    <span className={styles.cardDescription}>
+                      {CARD_DESCRIPTIONS[category.id]}
+                    </span>
+                  )}
+                </div>
               </div>
               <Button
                 type="button"
