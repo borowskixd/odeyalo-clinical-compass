@@ -55,7 +55,6 @@ export const Practices: FC = () => {
                   key={exercise.id}
                   title={exercise.title}
                   src={exercise.image}
-                  locked={exercise.closed}
                   link={pages.exercisePreview.getLink({
                     params: { id: exercise.id },
                   })}

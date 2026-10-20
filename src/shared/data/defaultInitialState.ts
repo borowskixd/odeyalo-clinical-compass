@@ -5,7 +5,7 @@ export const reducers: ReducersNames = {
   authReducer: "auth",
   popupsReducer: "popups",
   notesReducer: "notes",
-  chatBotReducer: "notes",
+  chatBotReducer: "chatBot",
 };
 
 export const defaultInitialState: InitialState = {
@@ -35,6 +35,12 @@ export const defaultInitialState: InitialState = {
     moodTracker: {
       mood: 50,
       emojis: [],
+    },
+    moodDraft: {
+      score: 50,
+      emotions: [],
+      otherEmotion: "",
+      influenceFactors: [],
     },
   },
   chatBotReducer: {

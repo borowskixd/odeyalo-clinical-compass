@@ -108,6 +108,9 @@ export interface Pages {
   articles: Page;
   article: Page<{ id: string }>;
   notes: Page;
+  advices: Page;
+  tags: Page;
+  emotions: Page;
   note: Page<{ id: string }>;
   createNote: Page;
   practices: Page;

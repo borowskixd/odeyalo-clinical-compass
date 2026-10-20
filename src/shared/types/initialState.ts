@@ -37,9 +37,23 @@ export interface AuthState {
   ua: UserAgent;
 }
 
+export type MoodInfluenceFactorDraft = {
+  categoryId: string;
+  optionIds: string[];
+  customText: string;
+};
+
+export type MoodDraft = {
+  score: number;
+  emotions: string[];
+  otherEmotion: string;
+  influenceFactors: MoodInfluenceFactorDraft[];
+};
+
 export interface NotesState {
   calendarDate: Date | null;
   moodTracker: { mood: number; emojis: number[] };
+  moodDraft: MoodDraft;
 }
 
 export interface Message {

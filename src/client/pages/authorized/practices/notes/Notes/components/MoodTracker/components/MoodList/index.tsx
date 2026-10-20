@@ -25,6 +25,7 @@ export const MoodList: FC = () => {
         return (
           <Mood
             key={mood.id}
+            moodId={mood.id}
             score={mood.score}
             date={new Date(mood.date)}
             emojis={mood.emojis.map((el) => el.emoji)}

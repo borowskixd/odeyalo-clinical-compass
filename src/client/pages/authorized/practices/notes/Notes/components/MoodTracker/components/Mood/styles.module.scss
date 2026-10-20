@@ -79,3 +79,25 @@
     font-size: 22px;
   }
 }
+
+.iconLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: color-mix(in srgb, currentColor 0%, transparent 80%);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: color-mix(in srgb, currentColor 0%, transparent 60%);
+  }
+}
+
+.icon {
+  font-size: 22px;
+  line-height: 1;
+}

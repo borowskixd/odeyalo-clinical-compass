@@ -49,7 +49,9 @@ export const MoodTracker: FC<MoodTrackerProps> = ({
           </AppButton>
         )}
       </div>
+
       {isFormOpened && <MoodForm onSubmitAction={closeFormHandler} />}
+
       {!!isRedirectButtonEnabled && (
         <Button
           width="max"
@@ -60,6 +62,7 @@ export const MoodTracker: FC<MoodTrackerProps> = ({
           Перейти к дневнику эмоций
         </Button>
       )}
+
       {!!moods?.length && <MoodList />}
     </div>
   );

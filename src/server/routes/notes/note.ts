@@ -2,22 +2,29 @@ import { NextResponse } from "next/server";
 import { mapGetNoteResponse } from "@/server/mappers";
 import { createRequest } from "@/server/utils";
 import { httpStatuses } from "@/shared/data";
-import type { GetNotesApiResponseData } from "@/shared/types";
+import type { GetNoteApiResponseData } from "@/shared/types";
 
 const getNote = createRequest<{ id: string }>(
   async (request, serverFetch, { id }) => {
-    const { data: notes } =
-      await serverFetch.get<GetNotesApiResponseData>("/diary");
+    try {
+      const { data: note } = await serverFetch.get<GetNoteApiResponseData>(
+        `/diary/by_mood_tracker/${id}`,
+      );
 
-    const data = notes.find((note) => note.id === id);
+      if (!note) {
+        return NextResponse.json({
+          error: "not found",
+          status: httpStatuses.notFound,
+        });
+      }
 
-    if (!data)
+      return NextResponse.json(mapGetNoteResponse(note));
+    } catch {
       return NextResponse.json({
         error: "not found",
         status: httpStatuses.notFound,
       });
-
-    return NextResponse.json(mapGetNoteResponse(data));
+    }
   },
 );
 

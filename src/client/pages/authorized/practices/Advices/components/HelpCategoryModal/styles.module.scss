@@ -1,0 +1,105 @@
+@use "@/client/styles/colors" as *;
+@use "@/client/styles/fontStyles" as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0 0 0 / 30%);
+}
+
+.modal {
+  width: 90%;
+  max-width: 900px;
+  max-height: 150vh;
+  padding: 24px;
+  border-radius: 24px;
+  background-color: $color-white100;
+  box-shadow: var(--box-shadow);
+  overflow-y: auto;
+}
+
+.modalTitle {
+  margin: 0 0 20px;
+  @include titleXS;
+}
+
+.materialsList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 8px;
+
+  @media screen and (width <= 500px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.materialItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.materialCard {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.materialImageContainer {
+  width: 100%;
+  aspect-ratio: 3/2;
+}
+
+.materialTag {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px 6px;
+  border-radius: 10px;
+  background: $color-black100;
+  color: $color-white100;
+  font-size: 12px;
+  text-transform: lowercase;
+  margin: 0;
+}
+
+.materialLink {
+  font-size: 14px;
+  color: $color-blue80;
+}
+
+.closeButton {
+  margin-top: 10px;
+}
+
+.materialImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.materialInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.materialTitle {
+  margin-top: 10px;
+  margin-left: 6px;
+  @include bodyM;
+}
+
+.closeButton {
+  margin-top: 10px;
+}
