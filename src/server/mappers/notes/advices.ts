@@ -1,3 +1,4 @@
+import { SEVER_API_URL } from "@/shared/config/api";
 import {
   type GetHelpCategoriesApiResponseData,
   type GetHelpCategoriesResponseData,
@@ -34,7 +35,7 @@ export const mapGetHelpCategoryByIdResponse = (
         type: material.type,
         materialId: material.material_id,
         title: material.title,
-        imageUrl: material.image_url,
+        imageUrl: `${SEVER_API_URL}${material.image_url}`,
       }),
     ),
   };
