@@ -28,7 +28,9 @@ export const mapTestResultResponse = (
         score,
         conclusion,
         recommendations: user_recommendation,
-        description: description.charAt(0).toUpperCase() + description.slice(1),
+        description: description
+          ? description.charAt(0).toUpperCase() + description.slice(1)
+          : "",
       }),
     ),
     tags: tags || [],
