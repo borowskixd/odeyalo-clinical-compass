@@ -59,7 +59,7 @@ export const PsychologistProfileCard: FC<Props> = ({ profile }) => {
         username: profile.username,
         profileImage: profile.profileImage,
       }}
-      subtitle="Психолог"
+      subtitle="Психиатр"
       className={styles.card}
     >
       <div className={styles.details}>

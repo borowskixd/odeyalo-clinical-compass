@@ -43,7 +43,7 @@ export const PsychologistsPage: FC = () => {
         {/*    ))}*/}
         {/*</div>*/}
         <h2 className={styles.subtitle}>
-          {psychologists && psychologists.length ? "Все психологи" : ""}
+          {psychologists && psychologists.length ? "Все психиатры" : ""}
         </h2>
         <div className={styles.psychologistList}>
           {psychologists &&
@@ -61,7 +61,7 @@ export const PsychologistsPage: FC = () => {
   return (
     <Container>
       <ContentWrapper>
-        <PageTitle className={styles.title}>Психологи</PageTitle>
+        <PageTitle className={styles.title}>Психиатры</PageTitle>
         {renderContent()}
       </ContentWrapper>
     </Container>

@@ -30,7 +30,7 @@ export const PsychologistCard: FC<Props> = ({ psychologist }) => {
   return (
     <UserCard
       userData={psychologist}
-      subtitle="Психолог"
+      subtitle="Психиатр"
     >
       <div className={styles.inquiries}>
         {psychologist.inquiries.map((inquiry) => (
@@ -65,7 +65,7 @@ export const PsychologistCard: FC<Props> = ({ psychologist }) => {
               Оставить заявку
             </Button>
             <Modal
-              title="Заявка психологу"
+              title="Заявка психиатру"
               onOpenChange={setModalIsOpen}
               open={modalIsOpen}
               disableBodyScrollLock={true}

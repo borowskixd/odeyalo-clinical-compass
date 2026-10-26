@@ -48,7 +48,7 @@ export const ClientCard: FC<Props> = ({ client }) => {
         username: client.username,
         profileImage: client.profileImage,
       }}
-      subtitle="Клиент"
+      subtitle="Пациент"
       className={styles.card}
     >
       {renderContent()}

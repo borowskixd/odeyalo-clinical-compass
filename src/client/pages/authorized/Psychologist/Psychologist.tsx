@@ -26,7 +26,7 @@ export const PsychologistPage: FC = () => {
   return (
     <Container>
       <ContentWrapper>
-        <PageTitle className={styles.title}>Профиль психолога</PageTitle>
+        <PageTitle className={styles.title}>Профиль психиатра</PageTitle>
         {psychologist && <PsychologistProfileCard profile={psychologist} />}
       </ContentWrapper>
     </Container>

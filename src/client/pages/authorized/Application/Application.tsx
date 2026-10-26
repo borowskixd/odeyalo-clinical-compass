@@ -57,7 +57,7 @@ export const ApplicationPage: FC = () => {
     <Container>
       <ContentWrapper>
         <PageTitle className={styles.title}>
-          Профиль {role === ACCESS.psychologist ? "клиента" : "сотрудника"}
+          Профиль {role === ACCESS.psychologist ? "пациента" : "сотрудника"}
         </PageTitle>
         <div className={styles.main}>
           {application && <ApplicationProfileCard profile={application} />}

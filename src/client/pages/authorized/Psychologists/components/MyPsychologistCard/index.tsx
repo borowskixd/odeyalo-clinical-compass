@@ -10,7 +10,7 @@ export const MyPsychologistCard: FC<Props> = ({ psychologist }) => {
   return (
     <UserCard
       userData={psychologist}
-      subtitle="Психолог"
+      subtitle="Психиатр"
     />
   );
 };

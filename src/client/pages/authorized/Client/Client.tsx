@@ -60,7 +60,7 @@ export const ClientPage: FC = () => {
     <Container>
       <ContentWrapper>
         <PageTitle className={styles.title}>
-          Профиль {role === ACCESS.psychologist ? "клиента" : "сотрудника"}
+          Профиль {role === ACCESS.psychologist ? "пациента" : "сотрудника"}
         </PageTitle>
         <div className={styles.main}>
           <div className={styles.leftColumn}>

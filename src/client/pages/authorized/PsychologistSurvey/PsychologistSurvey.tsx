@@ -4,7 +4,7 @@ import { FormPageLayout } from "@/client/components/layouts";
 
 export const PsychologistSurveyPage: FC = () => {
   return (
-    <FormPageLayout title="Анкета психолога">
+    <FormPageLayout title="Анкета психиатра">
       <PsychologistSurveyForm />
     </FormPageLayout>
   );

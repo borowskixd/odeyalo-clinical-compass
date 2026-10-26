@@ -50,7 +50,7 @@ export const CabinetPage: FC = () => {
     <Container>
       <ContentWrapper>
         <PageTitle className={styles.title}>
-          Кабинет {isPsychologist ? "психолога" : "HR-менеджера"}
+          Кабинет {isPsychologist ? "психиатра" : "HR-менеджера"}
         </PageTitle>
 
         {isPsychologist && !!visibleAlerts.length && (
@@ -86,8 +86,8 @@ export const CabinetPage: FC = () => {
         <div>
           <h2 className={`${styles.subtitle} ${styles.clientsSubtitle}`}>
             {!!clientsQuery.data && clientsQuery.data.length
-              ? `Мои ${isPsychologist ? "клиенты" : "сотрудники"}`
-              : `У вас нет ${isPsychologist ? "клиентов" : "сотрудников"}`}
+              ? `Мои ${isPsychologist ? "пациенты" : "сотрудники"}`
+              : `У вас нет ${isPsychologist ? "пациентов" : "сотрудников"}`}
           </h2>
           <div className={styles.list}>
             {clientsQuery.data &&

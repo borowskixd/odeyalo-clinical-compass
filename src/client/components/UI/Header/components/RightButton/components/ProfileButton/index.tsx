@@ -56,14 +56,14 @@ export const ProfileButton: FC = () => {
               href={pages.cabinet.path}
               className={styles.popupItem}
             >
-              Кабинет {profile.role === ACCESS.hr ? "HR" : "психолога"}
+              Кабинет {profile.role === ACCESS.hr ? "HR" : "психиатра"}
             </Button>
           )}
           <Button
             className={styles.popupItem}
             href={pages.psychologist.path}
           >
-            Психологи
+            Психиатры
           </Button>
           {profile.role === ACCESS.client && (
             <Button
@@ -78,7 +78,7 @@ export const ProfileButton: FC = () => {
               className={styles.popupItem}
               href={pages.psychologistSurvey.path}
             >
-              Анкета Психолога
+              Анкета Психиатра
             </Button>
           )}
         </div>
