@@ -118,6 +118,7 @@ export const TestContent: FC = () => {
               align="left"
               view={isSelected ? "primary" : "default"}
               width="max"
+              ellipsis={false}
             >
               {answer.text}
             </Button>
