@@ -1,0 +1,27 @@
+@use "@/client/styles/textStyles" as *;
+
+.step {
+  display: flex;
+  max-width: 480px;
+  flex-flow: column;
+  gap: 16px;
+}
+
+.question {
+  @include titleSmall;
+}
+
+.numberInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}

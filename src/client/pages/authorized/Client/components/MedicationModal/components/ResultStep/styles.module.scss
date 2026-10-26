@@ -1,0 +1,19 @@
+@use "@/client/styles/fontStyles" as *;
+
+.step {
+  display: flex;
+  max-width: 480px;
+  flex-flow: column;
+  gap: 16px;
+}
+
+.resultText {
+  @include bodyM;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}

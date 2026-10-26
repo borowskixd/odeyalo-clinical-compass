@@ -11,6 +11,13 @@
   margin-bottom: 40px;
 }
 
+.leftColumn {
+  display: flex;
+  flex-flow: column;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
 .tests {
   display: flex;
   flex-flow: column;

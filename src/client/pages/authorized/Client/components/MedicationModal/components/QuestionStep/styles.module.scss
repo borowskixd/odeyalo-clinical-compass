@@ -1,0 +1,22 @@
+@use "@/client/styles/textStyles" as *;
+
+.step {
+  display: flex;
+  max-width: 480px;
+  flex-flow: column;
+  gap: 16px;
+}
+
+.question {
+  @include titleSmall;
+}
+
+.options {
+  display: flex;
+  flex-flow: column;
+  gap: 12px;
+}
+
+.backButton {
+  align-self: flex-start;
+}

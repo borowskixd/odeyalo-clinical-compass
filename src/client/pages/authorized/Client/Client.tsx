@@ -1,7 +1,9 @@
 "use client";
 
+import { Button } from "@odeyalo/uikit";
 import { useParams } from "next/navigation";
-import { type FC } from "react";
+import { type FC, useState } from "react";
+import { MedicationModal } from "./components";
 import styles from "./styles.module.scss";
 import {
   Container,
@@ -32,6 +34,7 @@ export const ClientPage: FC = () => {
     useGetUserPassedTestsQuery(id);
   const { data: passedExercises, ...getUserPassedExercisesState } =
     useGetUserPassedExercisesQuery(id);
+  const [isMedicationOpen, setIsMedicationOpen] = useState(false);
 
   if (
     getClientState.isLoading ||
@@ -60,7 +63,18 @@ export const ClientPage: FC = () => {
           Профиль {role === ACCESS.psychologist ? "клиента" : "сотрудника"}
         </PageTitle>
         <div className={styles.main}>
-          {client && <ProfileCard profile={client} />}
+          <div className={styles.leftColumn}>
+            {client && <ProfileCard profile={client} />}
+            {role === ACCESS.psychologist && (
+              <Button
+                view="primary"
+                onClick={() => setIsMedicationOpen(true)}
+              >
+                Получить рекомендации по лечению
+              </Button>
+            )}
+          </div>
+
           <div>
             <Subtitle>
               {!!passedTests && !!passedTests.length
@@ -103,6 +117,11 @@ export const ClientPage: FC = () => {
             </div>
           </div>
         </div>
+
+        <MedicationModal
+          isOpen={isMedicationOpen}
+          onClose={() => setIsMedicationOpen(false)}
+        />
       </ContentWrapper>
     </Container>
   );
