@@ -1,0 +1,58 @@
+@use "@/client/styles/variables" as *;
+@use "@/client/styles/fontStyles" as *;
+@use "@/client/styles/mixins" as *;
+@use "@/client/styles/colors" as *;
+
+.alertsCard {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  padding: 20px;
+  gap: 12px;
+  @include card;
+  background-color: #FFC927;
+  border-radius: 28px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  @include bodyM;
+
+}
+
+.header {
+  display: flex;
+  flex-flow: column;
+  gap: 2px;
+}
+
+.headerTitle {
+  @include bodyXL;
+}
+
+.body {
+  display: flex;
+  flex-flow: column;
+  @include bodyM;
+}
+
+.resultsLink {
+  align-self: flex-start;
+  background-color: $color-black100;
+  color: $color-white100;
+  padding: 12px 24px;
+  border-radius: 18px;
+
+  @include bodyS;
+}

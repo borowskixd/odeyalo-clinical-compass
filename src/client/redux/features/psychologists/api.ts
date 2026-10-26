@@ -1,6 +1,7 @@
 import { api } from "../../api";
 import {
   GetInquiriesResponseData,
+  GetPsychologistAlertsResponseData,
   type GetPsychologistResponseData,
   type GetPsychologistsResponseData,
   type ResponseSuccessInfo,
@@ -35,6 +36,12 @@ const psychologistsApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Auth"],
     }),
+    getPsychologistAlerts: builder.query<
+      GetPsychologistAlertsResponseData,
+      void
+    >({
+      query: () => "/psychologists/alerts",
+    }),
   }),
 });
 
@@ -44,4 +51,5 @@ export const {
   useGetMyPsychologistsQuery,
   useGetInquiriesQuery,
   useSendPsychologistSurveyMutation,
+  useGetPsychologistAlertsQuery,
 } = psychologistsApi;

@@ -1,3 +1,4 @@
+export * from "./alerts";
 export * from "./inquiry";
 export * from "./myPsychologists";
 export * from "./psychologist";
