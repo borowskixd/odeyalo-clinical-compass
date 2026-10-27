@@ -12,6 +12,7 @@
   @include card;
   background-color: #FFC927;
   border-radius: 28px;
+  height: 100%; 
 }
 
 .closeButton {
@@ -28,7 +29,6 @@
   cursor: pointer;
 
   @include bodyM;
-
 }
 
 .header {
@@ -45,6 +45,7 @@
   display: flex;
   flex-flow: column;
   @include bodyM;
+  flex: 1; 
 }
 
 .resultsLink {

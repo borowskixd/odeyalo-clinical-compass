@@ -1,20 +1,22 @@
 "use client";
 
-import { notFound, useParams, useRouter } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { type FC, useEffect } from "react";
 import { ProgressBar } from "../ProgressBar";
 import styles from "./styles.module.scss";
-import { getTagConfig } from "./utils";
 import { DefaultError, LoadingLoop } from "@/client/components";
-import { useGetTestResultQuery } from "@/client/redux";
+import { useGetTestQuery, useGetTestResultQuery } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 
 export const ResultContent: FC = () => {
   const { id } = useParams<{ id: string }>();
   const { logEvent } = useAnalytics();
-  const router = useRouter();
 
   const { data: testResult, ...getTestResultState } = useGetTestResultQuery(id);
+
+  const { data: testInfo } = useGetTestQuery(testResult?.testId || "", {
+    skip: !testResult?.testId,
+  });
 
   useEffect(() => {
     logEvent("test-detail-result-page-opened");
@@ -25,18 +27,11 @@ export const ResultContent: FC = () => {
     return <DefaultError error={getTestResultState.error} />;
   if (!testResult) notFound();
 
-  const firstTag = testResult.tags?.[0];
-  const tagConfig = firstTag ? getTagConfig(firstTag) : null;
-
-  const handleTagClick = () => {
-    if (tagConfig?.link) {
-      router.push(tagConfig.link);
-    }
-  };
+  const pageTitle = testInfo?.title || testResult.title;
 
   return (
     <>
-      <h2 className={styles.subtitle}>{testResult.title}</h2>
+      <h2 className={styles.subtitle}>{pageTitle}</h2>
       <div className={styles.results}>
         {testResult.scales.map((scale) => {
           const scaleResult = testResult.scaleResults.find(
@@ -59,14 +54,6 @@ export const ResultContent: FC = () => {
                 <p className={styles.recommendations}>
                   {scaleResult?.recommendations}
                 </p>
-                {tagConfig && (
-                  <button
-                    className={styles.button}
-                    onClick={handleTagClick}
-                  >
-                    {tagConfig.text}
-                  </button>
-                )}
               </div>
             </div>
           );

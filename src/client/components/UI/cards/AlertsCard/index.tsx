@@ -4,6 +4,7 @@ import { Button, Icon, Icons24Solid } from "@odeyalo/uikit";
 import Link from "next/link";
 import { type FC } from "react";
 import styles from "./styles.module.scss";
+import { useGetTestQuery, useGetTestResultQuery } from "@/client/redux";
 import { pages } from "@/shared/data";
 import { type GetPsychologistAlertsResponseData } from "@/shared/types";
 
@@ -14,6 +15,16 @@ interface AlertsCardProps {
 
 export const AlertsCard: FC<AlertsCardProps> = ({ alert, onClose }) => {
   const { clientName, testTitle, testResultId } = alert;
+
+  const { data: testResult } = useGetTestResultQuery(testResultId, {
+    skip: !testResultId, // Не делаем запрос, если id нет
+  });
+
+  const { data: testInfo } = useGetTestQuery(testResult?.testId || "", {
+    skip: !testResult?.testId,
+  });
+
+  const displayTitle = testInfo?.title || testTitle;
 
   return (
     <div className={styles.alertsCard}>
@@ -39,7 +50,7 @@ export const AlertsCard: FC<AlertsCardProps> = ({ alert, onClose }) => {
           У пользователя <span className={styles.bodyAccent}>{clientName}</span>
         </div>
         <div className={styles.bodyText}>повышенные результаты теста</div>
-        <div className={`${styles.bodyText}`}>{testTitle}</div>
+        <div className={`${styles.bodyText}`}>{displayTitle}</div>
       </div>
 
       <Link

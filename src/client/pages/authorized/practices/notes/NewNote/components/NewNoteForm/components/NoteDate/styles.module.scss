@@ -1,8 +1,0 @@
-@use "@/client/styles/fontStyles" as *;
-
-.date {
-  margin: 10px 0 30px;
-  text-transform: capitalize;
-
-  @include bodyLBold;
-}

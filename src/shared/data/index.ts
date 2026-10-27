@@ -1,7 +1,6 @@
 export * from "./achievements";
 export * from "./clinRecomendations";
 export * from "./cookies";
-export * from "./dailyTaskTypes";
 export * from "./defaultInitialState";
 export * from "./httpStatuses";
 export * from "./partners";

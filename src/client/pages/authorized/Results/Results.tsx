@@ -13,7 +13,7 @@ import {
   RadarChart,
   SimpleBarChart,
 } from "@/client/components";
-import { useGetTestResultsQuery } from "@/client/redux";
+import { useGetTestQuery, useGetTestResultsQuery } from "@/client/redux";
 import { useAnalytics } from "@/shared/analytics";
 import { pages } from "@/shared/data";
 
@@ -47,9 +47,13 @@ export const ResultsPage: FC = () => {
     userId: searchParams.get("userId"),
   });
 
+  const { data: testInfo } = useGetTestQuery(id);
+
   if (getTestResultsState.isLoading) return <LoadingLoop />;
   if (getTestResultsState.isError)
     return <DefaultError error={getTestResultsState.error} />;
+
+  const displayTitle = testInfo?.title || test?.title;
 
   return (
     <Container>
@@ -57,7 +61,7 @@ export const ResultsPage: FC = () => {
         {test && (
           <>
             <PageTitle className={styles.title}>
-              История теста: {test.title}
+              История теста: {displayTitle}
             </PageTitle>
             {test.results.length ? (
               <>

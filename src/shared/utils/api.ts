@@ -1,6 +1,4 @@
 import { ACCESS, type AccessRole } from "@/shared/config/access";
-import { DAILY_TASK_TYPES, pages } from "@/shared/data";
-import { type DailyTaskType } from "@/shared/types";
 
 export const getRole = (roleId: number = -1): AccessRole => {
   if (roleId === 1) {
@@ -28,37 +26,4 @@ export const getRoleId = (role: AccessRole): -1 | 0 | 1 | 2 | 3 => {
   }
 
   return -1;
-};
-
-export const getDailyTaskType = (
-  taskType: "practice" | "test",
-): DailyTaskType => {
-  switch (taskType) {
-    case "test": {
-      return DAILY_TASK_TYPES.test;
-    }
-    case "practice": {
-      return DAILY_TASK_TYPES.exercise;
-    }
-  }
-
-  return DAILY_TASK_TYPES.theory;
-};
-
-export const getDailyTaskLink = (
-  taskType: DailyTaskType,
-  taskId: string,
-): string | null => {
-  const getLinkConfig = { params: { id: taskId } };
-
-  switch (taskType) {
-    case "test": {
-      return pages.test.getLink(getLinkConfig);
-    }
-    case "exercise": {
-      return pages.exercisePreview.getLink(getLinkConfig);
-    }
-  }
-
-  return null;
 };

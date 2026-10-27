@@ -1,1 +1,5 @@
-export { LandingPage as default } from "@/client/pages";
+import { redirect } from "next/navigation";
+
+export default function UnauthorizedPage() {
+  redirect("/login");
+}

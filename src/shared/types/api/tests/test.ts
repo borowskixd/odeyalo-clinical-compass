@@ -50,6 +50,5 @@ export interface GetTestResponseData {
   description: string;
   link: string;
   title: string;
-  shortDescription: string;
   scales: TestScaleData[];
 }

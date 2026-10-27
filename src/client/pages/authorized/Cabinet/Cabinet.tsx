@@ -49,9 +49,7 @@ export const CabinetPage: FC = () => {
   return (
     <Container>
       <ContentWrapper>
-        <PageTitle className={styles.title}>
-          Кабинет {isPsychologist ? "психиатра" : "HR-менеджера"}
-        </PageTitle>
+        <PageTitle className={styles.title}>Кабинет психиатра</PageTitle>
 
         {isPsychologist && !!visibleAlerts.length && (
           <div>

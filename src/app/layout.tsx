@@ -3,7 +3,7 @@ import { type FC, type ReactNode } from "react";
 import "@/client/styles/global.scss";
 import "@odeyalo/uikit/styles.css";
 import { fontVariablesClass } from "@/client/assets/fonts";
-import { ChatBot, SnackbarsPortal } from "@/client/components";
+import { SnackbarsPortal } from "@/client/components";
 import { AuthLayer, StoreLayer } from "@/client/components/layers";
 import { AnalyticsProvider } from "@/shared/analytics";
 
@@ -36,7 +36,6 @@ const RootLayout: FC<RootLayoutProps> = async ({
               {children}
             </AuthLayer>
             <SnackbarsPortal />
-            <ChatBot />
           </StoreLayer>
         </AnalyticsProvider>
       </body>

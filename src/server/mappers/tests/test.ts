@@ -41,13 +41,12 @@ export const mapGetTestScalesResponse = (
 export const mapGetTestResponse = (
   data: GetTestApiResponseData,
 ): GetTestResponseData => {
-  const { id, title, description, short_desc, scale, link } = data;
+  const { id, short_desc, description, scale, link } = data;
 
   return {
-    id: id,
-    title: title,
-    description: description,
-    shortDescription: short_desc,
+    id,
+    title: short_desc,
+    description,
     scales: mapGetTestScalesResponse(scale),
     link,
   };

@@ -1,1 +1,0 @@
-export { ExerciseResultPage } from "./ExerciseResult";

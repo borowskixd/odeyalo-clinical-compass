@@ -68,14 +68,6 @@ export const ProfileButton: FC = () => {
           {profile.role === ACCESS.client && (
             <Button
               className={styles.popupItem}
-              href={pages.hrSurvey.path}
-            >
-              Анкета HR
-            </Button>
-          )}
-          {profile.role === ACCESS.client && (
-            <Button
-              className={styles.popupItem}
               href={pages.psychologistSurvey.path}
             >
               Анкета Психиатра

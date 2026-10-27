@@ -8,11 +8,11 @@ export const mapGetTestQuestionsResponse = (
   currentTest: GetTestApiResponseData,
   testQuestions: GetTestQuestionsApiResponseData,
 ): GetTestQuestionsResponseData => {
-  const { id, title } = currentTest;
+  const { id, short_desc } = currentTest;
 
   return {
     id,
-    title,
+    title: short_desc,
     questions: testQuestions.map(
       ({ id, test_id, number, text, opposite_text, answer_choices }) => ({
         id,

@@ -45,18 +45,6 @@ const rolesNav: Nav = {
       icon: Icons24Solid.HomeIcon,
     },
     {
-      href: pages.articles.path,
-      activeNavId: pages.articles.activeNavId,
-      title: "Теория",
-      icon: Icons24Solid.NewspaperIcon,
-    },
-    {
-      href: pages.practices.path,
-      activeNavId: pages.practices.activeNavId,
-      title: "Практика",
-      icon: Icons24Solid.AcademicCapIcon,
-    },
-    {
       href: pages.tests.path,
       activeNavId: pages.tests.activeNavId,
       title: "Тесты",
@@ -71,18 +59,6 @@ const rolesNav: Nav = {
       icon: Icons24Solid.HomeIcon,
     },
     {
-      href: pages.articles.path,
-      activeNavId: pages.articles.activeNavId,
-      title: "Теория",
-      icon: Icons24Solid.NewspaperIcon,
-    },
-    {
-      href: pages.practices.path,
-      activeNavId: pages.practices.activeNavId,
-      title: "Практика",
-      icon: Icons24Solid.AcademicCapIcon,
-    },
-    {
       href: pages.tests.path,
       activeNavId: pages.tests.activeNavId,
       title: "Тесты",
@@ -95,18 +71,6 @@ const rolesNav: Nav = {
       activeNavId: pages.main.activeNavId,
       title: "План",
       icon: Icons24Solid.HomeIcon,
-    },
-    {
-      href: pages.articles.path,
-      activeNavId: pages.articles.activeNavId,
-      title: "Теория",
-      icon: Icons24Solid.NewspaperIcon,
-    },
-    {
-      href: pages.practices.path,
-      activeNavId: pages.practices.activeNavId,
-      title: "Практика",
-      icon: Icons24Solid.AcademicCapIcon,
     },
     {
       href: pages.tests.path,

@@ -1,8 +1,7 @@
 "use client";
 
-import { Button, Icon, Icons20, Text } from "@odeyalo/uikit";
+import { Button, Icon, Icons20 } from "@odeyalo/uikit";
 import { type FC, useEffect } from "react";
-import { GamificationProgressBar, WeeklyChart } from "./components";
 import styles from "./styles.module.scss";
 import { PageTitle } from "@/client/components";
 import { useAppSelector } from "@/client/hooks";
@@ -29,26 +28,6 @@ export const ProfileContent: FC = () => {
       <div className={styles.content}>
         <PageTitle className={styles.title}>{userData.username}</PageTitle>
         <div className={styles.main}>
-          <div>
-            <Text
-              variant="title-xs"
-              as="h2"
-              className={styles.subtitle}
-            >
-              Ритм дня
-            </Text>
-            <GamificationProgressBar />
-          </div>
-          <div>
-            <Text
-              variant="title-xs"
-              as="h2"
-              className={styles.subtitle}
-            >
-              Непрерывная забота
-            </Text>
-            <WeeklyChart />
-          </div>
           <Button
             width="max"
             align="center"
